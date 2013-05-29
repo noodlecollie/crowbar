@@ -23,7 +23,15 @@ MainWin::MainWin()
   SetUpStatusBar();
 
   // Load plugins.
-  LoadPlugins(PLUGIN_DIRECTORY);
+  // I'M LEARNING C++.
+  // Microsoft's C++ compiler is too nice; g++ is more strict and doesn't let us pass PLUGIN_DIRECTORY
+  // directly to the function because it's just a function macro that returns a QDir.
+  // Technically this is what's called a "temporary" which can't have a reference (the &dir param) assigned to it
+  // because that would result in a null reference once the temporary is terminated.
+  // SO we create a new dir variable from the macro and pass that.
+
+  QDir dir = PLUGIN_DIRECTORY;
+  LoadPlugins(dir);
 
   // Set status bar text.
   ResetFPSMeter();
