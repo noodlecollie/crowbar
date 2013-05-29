@@ -1,4 +1,4 @@
-QT       += core gui
+QT  += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,3 +12,9 @@ SOURCES += \
 HEADERS += \
     mainwin.h \
     interfaces/ICrowbarExtension.h
+
+# For Windows:
+RC_FILE = crowbar.rc
+
+# For OS/X:
+ICON = crowbar.icns
