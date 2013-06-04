@@ -9,72 +9,14 @@
 
 MainWin::MainWin()
 {
-  setMinimumSize(320, 240);
+    setMinimumSize(320, 240);
 
-  // Set up the main window structure.
-  m_pMDI = new QMdiArea(this);
-  this->setCentralWidget(m_pMDI);
+    // Create menu actions and menu bar.
+    CreateMenuActions();
+    CreateMenuBar();
 
-  // Create menu actions and menu bar.
-  CreateMenuActions();
-  CreateMenuBar();
-
-  // Set up status bar.
-  SetUpStatusBar();
-
-  // Load plugins.
-  // I'M LEARNING C++.
-  // Microsoft's C++ compiler is too nice; g++ is more strict and doesn't let us pass PLUGIN_DIRECTORY
-  // directly to the function because it's just a function macro that returns a QDir.
-  // Technically this is what's called a "temporary" which can't have a reference (the &dir param) assigned to it
-  // because that would result in a null reference once the temporary is terminated.
-  // SO we create a new dir variable from the macro and pass that.
-
-  QDir dir = PLUGIN_DIRECTORY;
-  LoadPlugins(dir);
-
-  // Set status bar text.
-  ResetFPSMeter();
-}
-
-// Loads plugins from the specified directory.
-// Input: QDir directory  Directory to load from.
-void MainWin::LoadPlugins(QDir &directory)
-{
-  // Load static plugins first.
-  LoadStaticPlugins();
-
-  // Then dynamic plugins.
-  LoadNonStaticPlugins(directory);
-}
-
-// Loads static plugins.
-void MainWin::LoadStaticPlugins()
-{
-  // StaticInstances() will give us all the static plugins to load.
-  foreach (QObject *plugin, QPluginLoader::staticInstances())
-  {
-    if ( plugin ) m_StaticPluginList.append(plugin);  // Add the plugin pointer to our list.
-  }
-}
-
-// Loads non-static plugins from specified directory.
-// Input: QDir  Directory to load non-static plugins from.
-void MainWin::LoadNonStaticPlugins(QDir &directory)
-{
-  // Iterate through each file in the directory.
-  foreach (QString fileName, directory.entryList(QDir::Files))
-  {
-    QPluginLoader loader(directory.absoluteFilePath(fileName));  // Create a loader for the file using the absolute path.
-    QObject *plugin = loader.instance();                          // Attempt to instance (ie. load) the plugin.
-
-    // If successful:
-    if ( plugin )
-    {
-      m_PluginList.append(plugin);  // Add to list.
-                                        // Note that plugins are automatically unloaded on application exit.
-    }
-  }
+    // Set up status bar.
+    SetUpStatusBar();
 }
 
 // Creates menu actions on startup.
@@ -106,29 +48,4 @@ void MainWin::SetUpStatusBar()
 {
     // The status bar is automatically created by the first call to statusBar().
     statusBar()->setSizeGripEnabled(true);
-
-    // Add the FPS label.
-    m_pStatusFPS = new QLabel();
-    statusBar()->addPermanentWidget(m_pStatusFPS);  // Auto-parented.
-}
-
-// Slot:    Updates the status bar's FPS meter with a float FPS value.
-// Input:   float fps   FPS value as a float.
-void MainWin::UpdateFPSMeter(float fps)
-{
-    // Make sure the FPS label is valid.
-    if ( !m_pStatusFPS ) return;
-
-    // Set the label.
-    QString txt(LABEL_FPS);
-    txt += QString::number(fps);
-    m_pStatusFPS->setText(txt);
-}
-
-// Slot:    Resets FPS meter to "N/A".
-void MainWin::ResetFPSMeter()
-{
-    QString txt(LABEL_FPS);
-    txt += "N/A";
-    m_pStatusFPS->setText(txt);
 }
