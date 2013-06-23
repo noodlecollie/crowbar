@@ -4,43 +4,44 @@
 #include <QObject>
 #include <QString>
 #include <QHash>
+#include <QList>
 
 namespace Plugins
 {
-    enum Type
-    {
-        // Invalid
-        TypeNone = -1,
-
-        // Doctype plugin - defines objects that can exist in a document.
-        // Implements IPluginDoctype.
-        TypeDoc,
-
-        // Render protocol plugin - defines conversions from doctype plugin(s) to
-        // renderable forms. Implements IProtocolRender.
-        TypeRenderProtocol,
-
-        // Tool plugin - defines tool(s) which are operation that can be applied to
-        // map objects. Implements IPluginTool.
-        TypeTool,
-
-        // Serialise protocol plugin - defines de/serialisations from doctype plugin(s)
-        // when importing or exporting. Implements IProtocolSerialise.
-        TypeSerialiseProtocol
-    };
-
-    class PluginManager : public QObject
+   class PluginManager : public QObject
     {
         Q_OBJECT
     public:
-        explicit PluginManager(QObject *parent = 0);
+
+       // Constructor
+       // Input:    QObject* parent Parent widget
+       //           QString loadDir Directory from which to load plugins, relative to application path.
+        explicit PluginManager(QObject *parent = 0, QString loadDir = "");
+
+       // Destructor
         ~PluginManager();
+
+       // Loads plugins and returns a list of IDs for those successfully loaded.
+       // Return:   Qlist   List of successfully loaded plugins.
+        QList<QString> LoadPlugins();
+
+        // Sets the directory from which to load plugins.
+        // Input:   QString Directory path, relative to application path.
+        void SetLoadDir(QString);
 
     signals:
 
     public slots:
 
     protected:
+
+        // Destroys all plugins in the hash table.
+        void DeletePluginList();
+
+        // Generates full path from given plugin load directory.
+        // Return:  QDir    Full path of application and load directory.
+        QDir FullPluginPath();
+
         QString m_szLoadDir;                    // Path to load plugins from.
         QHash<QString, QObject*>* m_PluginList; // List of all loaded plugins.
     };

@@ -14,7 +14,8 @@ SOURCES += \
 HEADERS += \
     mainwin.h \
     documentwindow.h \
-    pluginmanager.h
+    pluginmanager.h \
+    plugin.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 #LIBS           = -Llib -lcbp_docmanager
