@@ -8,12 +8,18 @@ TEMPLATE = app
 SOURCES += \
     main.cpp \
     mainwin.cpp \
-    pluginmanager.cpp
+    pluginmanager.cpp \
+    logwindow.cpp \
+    commandlineparser.cpp \
+    globals.cpp
 
 HEADERS += \
     mainwin.h \
     pluginmanager.h \
-    plugin.h
+    plugin.h \
+    logwindow.h \
+    commandlineparser.h \
+    globals.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 #LIBS           = -Llib -lcbp_docmanager
