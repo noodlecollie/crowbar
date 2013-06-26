@@ -4,7 +4,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Crowbar
 TEMPLATE = app
-INCLUDEPATH +=  ../docmanager
 
 SOURCES += \
     main.cpp \
@@ -13,7 +12,6 @@ SOURCES += \
 
 HEADERS += \
     mainwin.h \
-    documentwindow.h \
     pluginmanager.h \
     plugin.h
 
