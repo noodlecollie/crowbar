@@ -5,6 +5,7 @@ CommandLineParser::CommandLineParser(QObject *parent) :
     QObject(parent)
 {
     m_bDebugging = false;
+    m_bLogging = false;
 }
 
 void CommandLineParser::ParseArguments(int argc, char **argv)
@@ -16,7 +17,13 @@ void CommandLineParser::ParseArguments(int argc, char **argv)
 
         if ( arg.compare(CLA_DEBUGGING) == 0 )
         {
+            // Debugging automatically enabled logging too.
             m_bDebugging = true;
+            m_bLogging = true;
+        }
+        else if ( arg.compare(CLA_LOGGING) == 0 )
+        {
+            m_bLogging = true;
         }
     }
 }
@@ -24,4 +31,10 @@ void CommandLineParser::ParseArguments(int argc, char **argv)
 bool CommandLineParser::Debugging()
 {
     return m_bDebugging;
+}
+
+
+bool CommandLineParser::Logging()
+{
+    return m_bLogging;
 }

@@ -12,9 +12,13 @@
 #include "globals.h"
 #include "commandlineparser.h"
 #include "logwindow.h"
+#include <QList>
 
 MainWin::MainWin()
 {
+    // Add to window tracker.
+    if ( !g_pWindowTracker->contains(this) ) g_pWindowTracker->append(this);
+
     setMinimumSize(320, 240);   // We don't want to go smaller than this.
     resize(800, 600);           // Set default size.
 
@@ -71,4 +75,15 @@ void MainWin::SetUpStatusBar()
 {
     // The status bar is automatically created by the first call to statusBar().
     statusBar()->setSizeGripEnabled(true);
+}
+
+void MainWin::closeEvent(QCloseEvent * event)
+{
+    QWidget::closeEvent(event); // Handle close event first.
+
+    // Remove from window tracker.
+    g_pWindowTracker->removeAt(g_pWindowTracker->indexOf(this));
+
+    // If there are no windows left in the tracker, quit.
+    if ( g_pWindowTracker->size() < 1 ) qApp->quit();
 }

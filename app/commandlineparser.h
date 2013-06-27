@@ -2,6 +2,7 @@
 #define COMMANDLINEPARSER_H
 
 #define CLA_DEBUGGING   "-debug"
+#define CLA_LOGGING     "-log"
 
 #include <QObject>
 
@@ -12,6 +13,7 @@ public:
     explicit CommandLineParser(QObject *parent = 0);
 
     bool Debugging();
+    bool Logging();
     
 signals:
     
@@ -20,7 +22,7 @@ public slots:
 
 private:
     bool m_bDebugging;
-
+    bool m_bLogging;
 };
 
 #endif // COMMANDLINEPARSER_H

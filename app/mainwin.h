@@ -30,6 +30,7 @@ signals:
 public slots:
 
 protected:
+  void closeEvent(QCloseEvent * event);
 
 private:
     // Creates menu bar on startup.

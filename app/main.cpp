@@ -4,6 +4,7 @@
 #include "logwindow.h"
 #include "commandlineparser.h"
 #include "globals.h"
+#include <QString>
 
 int main(int argc, char **argv)
 {
@@ -13,9 +14,14 @@ int main(int argc, char **argv)
     g_pCmdLine = new CommandLineParser();
     g_pCmdLine->ParseArguments(argc, argv);
 
+    g_pWindowTracker = new QList<MainWin*>();
+
     // Create main window and log window
     // (not shown if not debugging).
     g_pLog = new LogWindow();
+    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
+    LogTaggedMessage("LOG", "Log Window Initialised.");
+    LogMessage(__TIMESTAMP__);
     MainWin win;
 
     win.show();
