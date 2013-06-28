@@ -13,6 +13,7 @@
 #include "commandlineparser.h"
 #include "logwindow.h"
 #include <QList>
+#include <QSize>
 
 MainWin::MainWin()
 {
@@ -20,7 +21,6 @@ MainWin::MainWin()
     if ( !g_pWindowTracker->contains(this) ) g_pWindowTracker->append(this);
 
     setMinimumSize(320, 240);   // We don't want to go smaller than this.
-    resize(800, 600);           // Set default size.
 
     // Create menu actions and menu bar.
     CreateMenuActions();
@@ -32,6 +32,11 @@ MainWin::MainWin()
 
 MainWin::~MainWin()
 {
+}
+
+QSize MainWin::sizeHint() const
+{
+    return QSize(800, 600);
 }
 
 // Creates menu actions on startup.

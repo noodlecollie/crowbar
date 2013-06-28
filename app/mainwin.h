@@ -17,6 +17,7 @@
 
 class QMenu;
 class QAction;
+class QSize;
 
 class MainWin : public QMainWindow
 {
@@ -24,6 +25,8 @@ class MainWin : public QMainWindow
 public:
   MainWin();
   ~MainWin();
+
+  QSize sizeHint() const;
   
 signals:
   

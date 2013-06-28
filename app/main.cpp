@@ -22,6 +22,7 @@ int main(int argc, char **argv)
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
     LogTaggedMessage("LOG", "Log Window Initialised.");
     LogMessage(__TIMESTAMP__);
+
     MainWin win;
 
     win.show();
