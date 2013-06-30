@@ -1,5 +1,6 @@
 #include "pluginmanager.h"
 #include <QPluginLoader>
+#include <QApplication>
 
 #include "plugin.h"
 
@@ -8,11 +9,11 @@ namespace Plugins
     // Constructor
     // Input:    QObject* parent Parent widget
     //           QString loadDir Directory from which to load plugins, relative to application path.
-    PluginManager::PluginManager(QObject *parent, QString loadDir = "") :
+    PluginManager::PluginManager(QObject *parent, QString loadDir) :
         QObject(parent)
     {
         m_szLoadDir = loadDir;
-        m_PluginList = new QHash();
+        m_PluginList = new QHash<QString, QObject*>();
     }
 
     // Destructor
@@ -27,10 +28,7 @@ namespace Plugins
     {
         DeletePluginList();                 // Delete current plugin list.
         QDir pluginDir = FullPluginPath();  // Get the directory to load from.
-        QList<QString> list();              // Create a list to store loaded plugins.
-
-        // Exit out with the empty list if the directory is not valid.
-        if ( pluginDir == NULL ) return list;
+        QList<QString> list;                // Create a list to store loaded plugins.
 
         // Iterate through plugins:
         foreach (QString fileName, pluginDir.entryList(QDir::Files))
@@ -46,7 +44,7 @@ namespace Plugins
                 if ( iPlugin && m_PluginList->find(iPlugin->GetUniqueId()) == m_PluginList->end() )
                 {
                     m_PluginList->insert(iPlugin->GetUniqueId(), plugin);   // Add to hash table.
-                    list.append(iPlugin->GetUniqueId);                      // Add ID to our return list.
+                    list.append(iPlugin->GetUniqueId());                         // Add ID to our return list.
                 }
                 else    // The interface is not implemented so we can't load the plugin.
                 {
@@ -54,12 +52,15 @@ namespace Plugins
                 }
             }
         }
+
+        // Return the list.
+        return list;
     }
 
     // Destroys all plugins in the hash table.
     void PluginManager::DeletePluginList()
     {
-        QHashIterator<QString, QObject*> it(m_PluginList);
+        QHashIterator<QString, QObject*> it(*m_PluginList);
 
         while (it.hasNext())
         {
@@ -74,7 +75,7 @@ namespace Plugins
     {
         QDir dir(qApp->applicationDirPath());       // Get the application directory.
 
-        if ( !dir.cd(m_szLoadDir) ) return NULL;    // Don't return if directory is not valid.
+        dir.cd(m_szLoadDir);    // If CD doesn't work we'll just remain in the application directory. Is there a batter way to do this?
         return dir;
     }
 }

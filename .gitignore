@@ -1,3 +1,6 @@
+# Note: don't want to include GLEW documentation.
+glew-1.9.0/doc
+
 #################
 ## Eclipse
 #################
