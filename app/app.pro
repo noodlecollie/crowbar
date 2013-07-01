@@ -13,7 +13,9 @@ SOURCES += \
     pluginmanager.cpp \
     logwindow.cpp \
     commandlineparser.cpp \
-    globals.cpp
+    globals.cpp \
+    baseproperty.cpp \
+    property.cpp
 
 HEADERS += \
     mainwin.h \
@@ -21,7 +23,9 @@ HEADERS += \
     plugin.h \
     logwindow.h \
     commandlineparser.h \
-    globals.h
+    globals.h \
+    baseproperty.h \
+    property.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 #LIBS           = -Llib -lcbp_docmanager
