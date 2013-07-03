@@ -1,0 +1,166 @@
+\hypertarget{class_w_int_property}{\section{W\-Int\-Property Class Reference}
+\label{class_w_int_property}\index{W\-Int\-Property@{W\-Int\-Property}}
+}
+
+
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_int_property}{I\-Int\-Property} .  
+
+
+
+
+{\ttfamily \#include $<$property.\-h$>$}
+
+
+
+Inheritance diagram for W\-Int\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{class_w_int_property__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for W\-Int\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{class_w_int_property__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_w_int_property_a799b26a1c6622fd70068deed73547f6a}{set\-Value} (int value)
+\begin{DoxyCompactList}\small\item\em Sets the property's value as int . \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_w_int_property_a5d3ce207add6e3a5f3868010cf9f37e1}{W\-Int\-Property} (Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. Pass the object which implements the interface as parent. \end{DoxyCompactList}\item 
+\hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_w_int_property_a7881a1f19cf84fc5552188393cf5d7d9}{get\-Property\-Type} () const 
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
+int \hyperlink{class_w_int_property_aea678a96a398024ac3cdcdb31e5999de}{get\-Value} (bool $\ast$success) const 
+\begin{DoxyCompactList}\small\item\em Gets this property's value as int . \end{DoxyCompactList}\item 
+bool \hyperlink{class_w_int_property_a2aadf339189421871abccd98b553ce6b}{can\-Convert} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_i_int_property}{I\-Int\-Property} $\ast$ \hyperlink{class_w_int_property_a7c4faa1f37d022fe9bc1bd2da01c2213}{m\-\_\-\-Interface}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_int_property}{I\-Int\-Property} . 
+
+Wrapper for the \hyperlink{class_i_int_property}{I\-Int\-Property} interface that facilitates binding of slots to the main class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_w_int_property_a5d3ce207add6e3a5f3868010cf9f37e1}{\index{W\-Int\-Property@{W\-Int\-Property}!W\-Int\-Property@{W\-Int\-Property}}
+\index{W\-Int\-Property@{W\-Int\-Property}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{W\-Int\-Property}]{\setlength{\rightskip}{0pt plus 5cm}W\-Int\-Property\-::\-W\-Int\-Property (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_w_int_property_a5d3ce207add6e3a5f3868010cf9f37e1}
+
+
+Constructor. Pass the object which implements the interface as parent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Object who implements \hyperlink{class_i_int_property}{I\-Int\-Property} and whose functions this wrapper should bind slots to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_w_int_property_a2aadf339189421871abccd98b553ce6b}{\index{W\-Int\-Property@{W\-Int\-Property}!can\-Convert@{can\-Convert}}
+\index{can\-Convert@{can\-Convert}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{can\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}bool W\-Int\-Property\-::can\-Convert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_int_property_a2aadf339189421871abccd98b553ce6b}
+
+
+Returns whether or not the property's value can be successfully converted. 
+
+\begin{DoxyReturn}{Returns}
+True if conversion is possible, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_int_property_a25375f7c817ab7a1aeaef72a5bcfafdd}{I\-Int\-Property}.
+
+\hypertarget{class_w_int_property_a7881a1f19cf84fc5552188393cf5d7d9}{\index{W\-Int\-Property@{W\-Int\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Property\-\_\-t} W\-Int\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_int_property_a7881a1f19cf84fc5552188393cf5d7d9}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_int_property_a09151bc49652e07a8b616d192d2f0401}{I\-Int\-Property}.
+
+\hypertarget{class_w_int_property_aea678a96a398024ac3cdcdb31e5999de}{\index{W\-Int\-Property@{W\-Int\-Property}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int W\-Int\-Property\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{success}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_int_property_aea678a96a398024ac3cdcdb31e5999de}
+
+
+Gets this property's value as int . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & True if conversion was successful, false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property's value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_int_property_a32bd5be46bee5c4a53180498767f51d0}{I\-Int\-Property}.
+
+\hypertarget{class_w_int_property_a799b26a1c6622fd70068deed73547f6a}{\index{W\-Int\-Property@{W\-Int\-Property}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void W\-Int\-Property\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_w_int_property_a799b26a1c6622fd70068deed73547f6a}
+
+
+Sets the property's value as int . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_w_int_property_a7c4faa1f37d022fe9bc1bd2da01c2213}{\index{W\-Int\-Property@{W\-Int\-Property}!m\-\_\-\-Interface@{m\-\_\-\-Interface}}
+\index{m\-\_\-\-Interface@{m\-\_\-\-Interface}!WIntProperty@{W\-Int\-Property}}
+\subsubsection[{m\-\_\-\-Interface}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Int\-Property}$\ast$ W\-Int\-Property\-::m\-\_\-\-Interface\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_w_int_property_a7c4faa1f37d022fe9bc1bd2da01c2213}
+The interface that represents the bound functions on the parent object. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{property_8h}{property.\-h}\end{DoxyCompactItemize}

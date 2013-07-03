@@ -57,6 +57,13 @@ LogWindow::~LogWindow()
     CloseLogFile();
 }
 
+QString LogWindow::GetLogFileName() const
+{
+    if ( !m_pLogFile ) return "";
+
+    m_pLogFile->fileName();
+}
+
 bool LogWindow::OpenLogFile(QString filename)
 {
     CloseLogFile();

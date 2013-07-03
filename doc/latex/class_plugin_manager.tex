@@ -1,0 +1,152 @@
+\hypertarget{class_plugin_manager}{\section{Plugin\-Manager Class Reference}
+\label{class_plugin_manager}\index{Plugin\-Manager@{Plugin\-Manager}}
+}
+
+
+Manages loading of plugins.  
+
+
+
+
+{\ttfamily \#include $<$pluginmanager.\-h$>$}
+
+
+
+Inheritance diagram for Plugin\-Manager\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{class_plugin_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Plugin\-Manager\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{class_plugin_manager__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_plugin_manager_a2e8795656b18a1ff483f2d7a4a6b7988}{Set\-Load\-Dir} (Q\-String dir)
+\begin{DoxyCompactList}\small\item\em Sets the directory from which to load plugins. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_plugin_manager_aac3752227a8bdae34eada08e6b80c3ce}{Plugin\-Manager} (Q\-Object $\ast$parent=0, Q\-String load\-Dir=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_plugin_manager_ab657302ef5af357907ae11ad817f5dfc}{\hyperlink{class_plugin_manager_ab657302ef5af357907ae11ad817f5dfc}{$\sim$\-Plugin\-Manager} ()}\label{class_plugin_manager_ab657302ef5af357907ae11ad817f5dfc}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+Q\-List$<$ Q\-String $>$ \hyperlink{class_plugin_manager_a31f3817b1f01dac04059827dc0fe37f7}{Load\-Plugins} ()
+\begin{DoxyCompactList}\small\item\em Loads plugins and returns a list of I\-Ds for those successfully loaded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_plugin_manager_a7299c68a352c5fde51e803b32828b3da}{void \hyperlink{class_plugin_manager_a7299c68a352c5fde51e803b32828b3da}{Delete\-Plugin\-List} ()}\label{class_plugin_manager_a7299c68a352c5fde51e803b32828b3da}
+
+\begin{DoxyCompactList}\small\item\em Destroys all plugins in the hash table. \end{DoxyCompactList}\item 
+Q\-Dir \hyperlink{class_plugin_manager_a08a9b22dabdc191e7ce173c8fca93821}{Full\-Plugin\-Path} ()
+\begin{DoxyCompactList}\small\item\em Generates full path from given plugin load directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_plugin_manager_ad76c45e41d41eac52be4ba19e4ae11fb}{m\-\_\-sz\-Load\-Dir}
+\item 
+Q\-Hash$<$ Q\-String, Q\-Object $\ast$ $>$ $\ast$ \hyperlink{class_plugin_manager_af65cae6069dfdb469aee42c4d2ec94d2}{m\-\_\-\-Plugin\-List}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manages loading of plugins. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_plugin_manager_aac3752227a8bdae34eada08e6b80c3ce}{\index{Plugin\-Manager@{Plugin\-Manager}!Plugin\-Manager@{Plugin\-Manager}}
+\index{Plugin\-Manager@{Plugin\-Manager}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{Plugin\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}Plugin\-Manager\-::\-Plugin\-Manager (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}, }
+\item[{Q\-String}]{load\-Dir = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_plugin_manager_aac3752227a8bdae34eada08e6b80c3ce}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Parent object (usually N\-U\-L\-L). \\
+\hline
+{\em load\-Dir} & Directory from which to load plugins, relative to the application directory. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_plugin_manager_a08a9b22dabdc191e7ce173c8fca93821}{\index{Plugin\-Manager@{Plugin\-Manager}!Full\-Plugin\-Path@{Full\-Plugin\-Path}}
+\index{Full\-Plugin\-Path@{Full\-Plugin\-Path}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{Full\-Plugin\-Path}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Dir Plugin\-Manager\-::\-Full\-Plugin\-Path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_plugin_manager_a08a9b22dabdc191e7ce173c8fca93821}
+
+
+Generates full path from given plugin load directory. 
+
+\begin{DoxyNote}{Note}
+If the path does not exist, the returned path will be the application directory. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+Full path of application and load directory. 
+\end{DoxyReturn}
+\hypertarget{class_plugin_manager_a31f3817b1f01dac04059827dc0fe37f7}{\index{Plugin\-Manager@{Plugin\-Manager}!Load\-Plugins@{Load\-Plugins}}
+\index{Load\-Plugins@{Load\-Plugins}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{Load\-Plugins}]{\setlength{\rightskip}{0pt plus 5cm}Q\-List$<$ Q\-String $>$ Plugin\-Manager\-::\-Load\-Plugins (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_plugin_manager_a31f3817b1f01dac04059827dc0fe37f7}
+
+
+Loads plugins and returns a list of I\-Ds for those successfully loaded. 
+
+\begin{DoxyReturn}{Returns}
+List of successfully loaded plugins. 
+\end{DoxyReturn}
+\hypertarget{class_plugin_manager_a2e8795656b18a1ff483f2d7a4a6b7988}{\index{Plugin\-Manager@{Plugin\-Manager}!Set\-Load\-Dir@{Set\-Load\-Dir}}
+\index{Set\-Load\-Dir@{Set\-Load\-Dir}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{Set\-Load\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}void Plugin\-Manager\-::\-Set\-Load\-Dir (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{dir}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_plugin_manager_a2e8795656b18a1ff483f2d7a4a6b7988}
+
+
+Sets the directory from which to load plugins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & Directory path relative to the application directory. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_plugin_manager_af65cae6069dfdb469aee42c4d2ec94d2}{\index{Plugin\-Manager@{Plugin\-Manager}!m\-\_\-\-Plugin\-List@{m\-\_\-\-Plugin\-List}}
+\index{m\-\_\-\-Plugin\-List@{m\-\_\-\-Plugin\-List}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{m\-\_\-\-Plugin\-List}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Hash$<$Q\-String, Q\-Object$\ast$$>$$\ast$ Plugin\-Manager\-::m\-\_\-\-Plugin\-List\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_plugin_manager_af65cae6069dfdb469aee42c4d2ec94d2}
+List of all loaded plugins. \hypertarget{class_plugin_manager_ad76c45e41d41eac52be4ba19e4ae11fb}{\index{Plugin\-Manager@{Plugin\-Manager}!m\-\_\-sz\-Load\-Dir@{m\-\_\-sz\-Load\-Dir}}
+\index{m\-\_\-sz\-Load\-Dir@{m\-\_\-sz\-Load\-Dir}!PluginManager@{Plugin\-Manager}}
+\subsubsection[{m\-\_\-sz\-Load\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Plugin\-Manager\-::m\-\_\-sz\-Load\-Dir\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_plugin_manager_ad76c45e41d41eac52be4ba19e4ae11fb}
+Path to load plugins from. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{pluginmanager_8h}{pluginmanager.\-h}\item 
+app/pluginmanager.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,166 @@
+\hypertarget{class_w_string_property}{\section{W\-String\-Property Class Reference}
+\label{class_w_string_property}\index{W\-String\-Property@{W\-String\-Property}}
+}
+
+
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_string_property}{I\-String\-Property} .  
+
+
+
+
+{\ttfamily \#include $<$property.\-h$>$}
+
+
+
+Inheritance diagram for W\-String\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_w_string_property__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for W\-String\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{class_w_string_property__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_w_string_property_a009c775b69f7365fac0e301ce7d88d2b}{set\-Value} (Q\-String value)
+\begin{DoxyCompactList}\small\item\em Sets the property's value as Q\-String . \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_w_string_property_a228ffc3c7c49e3964e0ed7d59d4e30dd}{W\-String\-Property} (Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. Pass the object which implements the interface as parent. \end{DoxyCompactList}\item 
+\hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_w_string_property_a33a58ae5da7f4e483101ea048b254700}{get\-Property\-Type} () const 
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_w_string_property_a4f31475a4b8cd8f7958bbfdaba6cca42}{get\-Value} (bool $\ast$success) const 
+\begin{DoxyCompactList}\small\item\em Gets this property's value as Q\-String . \end{DoxyCompactList}\item 
+bool \hyperlink{class_w_string_property_a6b52241cfefcea196a347bc90f57dc25}{can\-Convert} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_i_string_property}{I\-String\-Property} $\ast$ \hyperlink{class_w_string_property_a2a678d70f25fed457ee88e4b1ff85b68}{m\-\_\-\-Interface}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_string_property}{I\-String\-Property} . 
+
+Wrapper for the \hyperlink{class_i_string_property}{I\-String\-Property} interface that facilitates binding of slots to the main class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_w_string_property_a228ffc3c7c49e3964e0ed7d59d4e30dd}{\index{W\-String\-Property@{W\-String\-Property}!W\-String\-Property@{W\-String\-Property}}
+\index{W\-String\-Property@{W\-String\-Property}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{W\-String\-Property}]{\setlength{\rightskip}{0pt plus 5cm}W\-String\-Property\-::\-W\-String\-Property (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_w_string_property_a228ffc3c7c49e3964e0ed7d59d4e30dd}
+
+
+Constructor. Pass the object which implements the interface as parent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Object who implements \hyperlink{class_i_string_property}{I\-String\-Property} and whose functions this wrapper should bind slots to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_w_string_property_a6b52241cfefcea196a347bc90f57dc25}{\index{W\-String\-Property@{W\-String\-Property}!can\-Convert@{can\-Convert}}
+\index{can\-Convert@{can\-Convert}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{can\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}bool W\-String\-Property\-::can\-Convert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_string_property_a6b52241cfefcea196a347bc90f57dc25}
+
+
+Returns whether or not the property's value can be successfully converted. 
+
+\begin{DoxyReturn}{Returns}
+True if conversion is possible, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_string_property_a2fcab392710db1ae140e394c1db6739e}{I\-String\-Property}.
+
+\hypertarget{class_w_string_property_a33a58ae5da7f4e483101ea048b254700}{\index{W\-String\-Property@{W\-String\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Property\-\_\-t} W\-String\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_string_property_a33a58ae5da7f4e483101ea048b254700}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_string_property_a6746c253e1664d4282f3d614b0bb36fe}{I\-String\-Property}.
+
+\hypertarget{class_w_string_property_a4f31475a4b8cd8f7958bbfdaba6cca42}{\index{W\-String\-Property@{W\-String\-Property}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String W\-String\-Property\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{success}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_string_property_a4f31475a4b8cd8f7958bbfdaba6cca42}
+
+
+Gets this property's value as Q\-String . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & True if conversion was successful, false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property's value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_string_property_a0dbe79993973e018510325120762504f}{I\-String\-Property}.
+
+\hypertarget{class_w_string_property_a009c775b69f7365fac0e301ce7d88d2b}{\index{W\-String\-Property@{W\-String\-Property}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void W\-String\-Property\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_w_string_property_a009c775b69f7365fac0e301ce7d88d2b}
+
+
+Sets the property's value as Q\-String . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_w_string_property_a2a678d70f25fed457ee88e4b1ff85b68}{\index{W\-String\-Property@{W\-String\-Property}!m\-\_\-\-Interface@{m\-\_\-\-Interface}}
+\index{m\-\_\-\-Interface@{m\-\_\-\-Interface}!WStringProperty@{W\-String\-Property}}
+\subsubsection[{m\-\_\-\-Interface}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-String\-Property}$\ast$ W\-String\-Property\-::m\-\_\-\-Interface\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_w_string_property_a2a678d70f25fed457ee88e4b1ff85b68}
+The interface that represents the bound functions on the parent object. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{property_8h}{property.\-h}\end{DoxyCompactItemize}

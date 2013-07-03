@@ -1,0 +1,125 @@
+\hypertarget{class_i_long_long_property}{\section{I\-Long\-Long\-Property Class Reference}
+\label{class_i_long_long_property}\index{I\-Long\-Long\-Property@{I\-Long\-Long\-Property}}
+}
+
+
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R qlonglong .  
+
+
+
+
+{\ttfamily \#include $<$property.\-h$>$}
+
+
+
+Inheritance diagram for I\-Long\-Long\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{class_i_long_long_property__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_i_long_long_property_a799afb367a1ec4c8cf651d61abf782d6}{get\-Property\-Type} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
+virtual qlonglong \hyperlink{class_i_long_long_property_a4364152258a2b085fa660ae34d106fdf}{get\-Value} (bool $\ast$success) const =0
+\begin{DoxyCompactList}\small\item\em Gets this property's value as qlonglong . \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_i_long_long_property_a3ef096db3b5d53b1566148d9c78fcbbf}{set\-Value} (qlonglong value)=0
+\begin{DoxyCompactList}\small\item\em Sets the property's value as qlonglong . \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_i_long_long_property_a878b7753e3c53e966f9be8a3bd1e9b38}{can\-Convert} () const =0
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R qlonglong . 
+
+Interface for property that handles data of type qlonglong . 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_i_long_long_property_a878b7753e3c53e966f9be8a3bd1e9b38}{\index{I\-Long\-Long\-Property@{I\-Long\-Long\-Property}!can\-Convert@{can\-Convert}}
+\index{can\-Convert@{can\-Convert}!ILongLongProperty@{I\-Long\-Long\-Property}}
+\subsubsection[{can\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool I\-Long\-Long\-Property\-::can\-Convert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_long_long_property_a878b7753e3c53e966f9be8a3bd1e9b38}
+
+
+Returns whether or not the property's value can be successfully converted. 
+
+\begin{DoxyReturn}{Returns}
+True if conversion is possible, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_long_long_property_a2690f56d6b804d37eec1457250da4acb}{Long\-Long\-Property}, and \hyperlink{class_w_long_long_property_a5b553e3d82d48cb661ef6180fa8ed76e}{W\-Long\-Long\-Property}.
+
+\hypertarget{class_i_long_long_property_a799afb367a1ec4c8cf651d61abf782d6}{\index{I\-Long\-Long\-Property@{I\-Long\-Long\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!ILongLongProperty@{I\-Long\-Long\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Property\-\_\-t} I\-Long\-Long\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_long_long_property_a799afb367a1ec4c8cf651d61abf782d6}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_long_long_property_aef541867fa0047705e5ceb968da5073d}{Long\-Long\-Property}, and \hyperlink{class_w_long_long_property_ac301629b3dfc952f2de2f1eafd82b31c}{W\-Long\-Long\-Property}.
+
+\hypertarget{class_i_long_long_property_a4364152258a2b085fa660ae34d106fdf}{\index{I\-Long\-Long\-Property@{I\-Long\-Long\-Property}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!ILongLongProperty@{I\-Long\-Long\-Property}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual qlonglong I\-Long\-Long\-Property\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{success}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_long_long_property_a4364152258a2b085fa660ae34d106fdf}
+
+
+Gets this property's value as qlonglong . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & True if conversion was successful, false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property's value. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_long_long_property_a55da84c1e1c5db5431a3b5ddae6a72eb}{Long\-Long\-Property}, and \hyperlink{class_w_long_long_property_abae79b01d411ec7f44aa2d93289ad63f}{W\-Long\-Long\-Property}.
+
+\hypertarget{class_i_long_long_property_a3ef096db3b5d53b1566148d9c78fcbbf}{\index{I\-Long\-Long\-Property@{I\-Long\-Long\-Property}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ILongLongProperty@{I\-Long\-Long\-Property}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void I\-Long\-Long\-Property\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{qlonglong}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_long_long_property_a3ef096db3b5d53b1566148d9c78fcbbf}
+
+
+Sets the property's value as qlonglong . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_long_long_property_abff074961b681f08072260664b0221f6}{Long\-Long\-Property}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{property_8h}{property.\-h}\end{DoxyCompactItemize}

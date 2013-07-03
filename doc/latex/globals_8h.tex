@@ -1,0 +1,53 @@
+\hypertarget{globals_8h}{\section{app/globals.h File Reference}
+\label{globals_8h}\index{app/globals.\-h@{app/globals.\-h}}
+}
+
+
+Defines global variables and classes.  
+
+
+{\ttfamily \#include $<$Q\-List$>$}\\*
+Include dependency graph for globals.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=154pt]{globals_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___global_variables_ga7180786c98af534f76855fef6f1b97ab}{\#define \hyperlink{group___global_variables_ga7180786c98af534f76855fef6f1b97ab}{D\-E\-B\-U\-G\-G\-I\-N\-G}~\hyperlink{group___global_variables_ga270fc6d9322b018e011978d6376f43ba}{g\-\_\-p\-Cmd\-Line}-\/$>$Debugging()}\label{group___global_variables_ga7180786c98af534f76855fef6f1b97ab}
+
+\begin{DoxyCompactList}\small\item\em Convenience macro for gloabl \hyperlink{class_command_line_parser_ac50e9de49d6e16174f6d5cf3f89c76d7}{Command\-Line\-Parser\-::\-Debugging()} -\/ returns whether debug mode is enabled. \end{DoxyCompactList}\item 
+\hypertarget{group___global_variables_ga24a31f60b063af0e662125ea2427b140}{\#define \hyperlink{group___global_variables_ga24a31f60b063af0e662125ea2427b140}{L\-O\-G\-G\-I\-N\-G}~\hyperlink{group___global_variables_ga270fc6d9322b018e011978d6376f43ba}{g\-\_\-p\-Cmd\-Line}-\/$>$Logging()}\label{group___global_variables_ga24a31f60b063af0e662125ea2427b140}
+
+\begin{DoxyCompactList}\small\item\em Convenience macro for gloabl \hyperlink{class_command_line_parser_aaa2d8544c7841c33c560bb4410144154}{Command\-Line\-Parser\-::\-Logging()} -\/ returns whether logging is enabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}{void \hyperlink{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}{Show\-Message\-Box} (Q\-String)}\label{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}
+
+\begin{DoxyCompactList}\small\item\em Creates a basic one-\/time modal message box with simple message and an \char`\"{}\-O\-K\char`\"{} button. \end{DoxyCompactList}\item 
+void \hyperlink{group___global_variables_ga9bb2d01dee132ec096040ba459b4e2e4}{Log\-Message} (Q\-String message, bool newline=true)
+\begin{DoxyCompactList}\small\item\em Logs a message to the log window. \end{DoxyCompactList}\item 
+void \hyperlink{group___global_variables_ga577d74a77b480346d9aa74680d6e7020}{Log\-Tagged\-Message} (Q\-String tag, Q\-String message, bool newline=true)
+\begin{DoxyCompactList}\small\item\em Logs a tagged message. \end{DoxyCompactList}\item 
+void \hyperlink{group___global_variables_gabfd623074e3c2d311ca356321a5b839a}{Log\-Warning} (Q\-String message, bool newline=true)
+\begin{DoxyCompactList}\small\item\em Logs a warning to the log window. Log text is printed red and in bold. \end{DoxyCompactList}\item 
+void \hyperlink{group___global_variables_ga9765b2cee902fd2d265b2ddc307aecb2}{Log\-Tagged\-Warning} (Q\-String tag, Q\-String message, bool newline=true)
+\begin{DoxyCompactList}\small\item\em Logs a tagged warning to the log window. Log text is printed red and in bold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_line_parser}{Command\-Line\-Parser} $\ast$ \hyperlink{group___global_variables_ga270fc6d9322b018e011978d6376f43ba}{g\-\_\-p\-Cmd\-Line}
+\begin{DoxyCompactList}\small\item\em Global command-\/line parser object. \end{DoxyCompactList}\item 
+\hyperlink{class_log_window}{Log\-Window} $\ast$ \hyperlink{group___global_variables_gae7f290eef5ae2111832362dfb5c84af7}{g\-\_\-p\-Log}
+\begin{DoxyCompactList}\small\item\em Global log window object. \end{DoxyCompactList}\item 
+Q\-List$<$ \hyperlink{class_main_win}{Main\-Win} $\ast$ $>$ $\ast$ \hyperlink{group___global_variables_gab5d481b5087f9956e533067ad8001d78}{g\-\_\-p\-Window\-Tracker}
+\begin{DoxyCompactList}\small\item\em Global window tracker object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines global variables and classes. This file defines certain classes and variables which should be visible from anywhere in the application. Examples include the command-\/line parser, the log window and the window tracker. Some classes or properties have convenience macros defined. 

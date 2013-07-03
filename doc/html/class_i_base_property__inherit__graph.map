@@ -1,0 +1,13 @@
+<map id="IBaseProperty" name="IBaseProperty">
+<area shape="rect" id="node2" href="$class_base_property.html" title="Base property class. " alt="" coords="164,208,265,235"/>
+<area shape="rect" id="node12" href="$class_w_base_property.html" title="Base property interface wrapper. " alt="" coords="157,259,272,285"/>
+<area shape="rect" id="node3" href="$class_double_property.html" title="MACRO PROPERTY FOR double . " alt="" coords="333,5,443,32"/>
+<area shape="rect" id="node4" href="$class_float_property.html" title="MACRO PROPERTY FOR float . " alt="" coords="338,56,438,83"/>
+<area shape="rect" id="node5" href="$class_int_property.html" title="MACRO PROPERTY FOR int . " alt="" coords="345,107,431,133"/>
+<area shape="rect" id="node6" href="$class_long_long_property.html" title="MACRO PROPERTY FOR qlonglong . " alt="" coords="325,157,451,184"/>
+<area shape="rect" id="node7" href="$class_long_property.html" title="MACRO PROPERTY FOR long . " alt="" coords="339,208,437,235"/>
+<area shape="rect" id="node8" href="$class_string_property.html" title="The StringProperty class Class that handles string properties. " alt="" coords="335,259,441,285"/>
+<area shape="rect" id="node9" href="$class_u_int_property.html" title="MACRO PROPERTY FOR uint . " alt="" coords="341,309,435,336"/>
+<area shape="rect" id="node10" href="$class_u_long_long_property.html" title="MACRO PROPERTY FOR qulonglong . " alt="" coords="320,360,456,387"/>
+<area shape="rect" id="node11" href="$class_u_long_property.html" title="MACRO PROPERTY FOR ulong . " alt="" coords="334,411,442,437"/>
+</map>

@@ -1,0 +1,64 @@
+\hypertarget{baseproperty_8h}{\section{app/baseproperty.h File Reference}
+\label{baseproperty_8h}\index{app/baseproperty.\-h@{app/baseproperty.\-h}}
+}
+
+
+Defines the property base class and interfaces.  
+
+
+{\ttfamily \#include $<$Q\-Object$>$}\\*
+{\ttfamily \#include $<$Q\-Pair$>$}\\*
+Include dependency graph for baseproperty.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{baseproperty_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{baseproperty_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_i_base_property}{I\-Base\-Property}
+\begin{DoxyCompactList}\small\item\em Base property interface. \end{DoxyCompactList}\item 
+class \hyperlink{class_w_base_property}{W\-Base\-Property}
+\begin{DoxyCompactList}\small\item\em Base property interface wrapper. \end{DoxyCompactList}\item 
+class \hyperlink{class_base_property}{Base\-Property}
+\begin{DoxyCompactList}\small\item\em Base property class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___property_classes_gade3d7799947a250392e929b65d46f1d8}{\#define \hyperlink{group___property_classes_gade3d7799947a250392e929b65d46f1d8}{I\-Base\-Property\-\_\-iid}~\char`\"{}Crowbar.\-Interfaces.\-I\-Base\-Property\char`\"{}}\label{group___property_classes_gade3d7799947a250392e929b65d46f1d8}
+
+\begin{DoxyCompactList}\small\item\em Unique I\-D for \hyperlink{class_i_base_property}{I\-Base\-Property} interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \{ \\*
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260}{Prop\-\_\-\-String} = 0, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7}{Prop\-\_\-\-Int}, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37ac42814aa5ea34e3b019db068494eed4d}{Prop\-\_\-\-U\-Int}, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a48c7c9a2c7bf7b44ae8d4493b5122925}{Prop\-\_\-\-Long}, 
+\\*
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a19c6a4ad42555fcc0e2fac1d50fd2035}{Prop\-\_\-\-U\-Long}, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a002f0049641d4e6f52901f023ef44f0c}{Prop\-\_\-\-Float}, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a63a9d61b306c5306a47c5126ebd7200e}{Prop\-\_\-\-Double}, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a1a1448256ec42f662e39fe120b92073a}{Prop\-\_\-\-Long\-Long}, 
+\\*
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aeb9cf79aeea684f28a149fdcd0f593aa}{Prop\-\_\-\-U\-Long\-Long}
+ \}
+\begin{DoxyCompactList}\small\item\em Property type identifiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines the property base class and interfaces. The property classes hold a key and a value -\/ these are underlyingly represented as strings and \hyperlink{class_base_property}{Base\-Property} subclasses (defined in \hyperlink{property_8h}{property.\-h}) deal with binding these solidly to interfaces for a specific type. A property's key should endeavour to be unique (it is not defined which property will be selected if two properties have the same key). \par
+ \par
+ A technical note\-: due to the Qt limitation that only one inheritance of the Q\-Object class is allowed for any derived class (slots requiring an interface inherit from Q\-Object), slots on \hyperlink{class_base_property}{Base\-Property} classes are exposed through a wrapper returned by \hyperlink{class_base_property_a032130dea4bd72ee8dd80dcfa7d5f37a}{Base\-Property\-::slots\-Base()}. Connecting a signal to a slot on this wrapper will call the relevant non-\/slot function on the \hyperlink{class_base_property}{Base\-Property} class. 

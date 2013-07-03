@@ -34,11 +34,6 @@ MainWin::~MainWin()
 {
 }
 
-QSize MainWin::sizeHint() const
-{
-    return QSize(800, 600);
-}
-
 // Creates menu actions on startup.
 void MainWin::CreateMenuActions()
 {

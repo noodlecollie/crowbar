@@ -1,0 +1,166 @@
+\hypertarget{class_w_float_property}{\section{W\-Float\-Property Class Reference}
+\label{class_w_float_property}\index{W\-Float\-Property@{W\-Float\-Property}}
+}
+
+
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_float_property}{I\-Float\-Property} .  
+
+
+
+
+{\ttfamily \#include $<$property.\-h$>$}
+
+
+
+Inheritance diagram for W\-Float\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_w_float_property__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for W\-Float\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_w_float_property__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_w_float_property_addd5ab4fe5a6b75f12e604c994c4d096}{set\-Value} (float value)
+\begin{DoxyCompactList}\small\item\em Sets the property's value as float . \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_w_float_property_a0feb213835bd18827d230c8de6c8b788}{W\-Float\-Property} (Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. Pass the object which implements the interface as parent. \end{DoxyCompactList}\item 
+\hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_w_float_property_adbf6d34b27481c66c70379872eca1947}{get\-Property\-Type} () const 
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
+float \hyperlink{class_w_float_property_acdfaccfb44bff32042d5eecb377f406d}{get\-Value} (bool $\ast$success) const 
+\begin{DoxyCompactList}\small\item\em Gets this property's value as float . \end{DoxyCompactList}\item 
+bool \hyperlink{class_w_float_property_a7eee2964a782c7909b11f7621504fc11}{can\-Convert} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_i_float_property}{I\-Float\-Property} $\ast$ \hyperlink{class_w_float_property_aee5767ac1ab391a1da6f396ed334e98b}{m\-\_\-\-Interface}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_float_property}{I\-Float\-Property} . 
+
+Wrapper for the \hyperlink{class_i_float_property}{I\-Float\-Property} interface that facilitates binding of slots to the main class. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_w_float_property_a0feb213835bd18827d230c8de6c8b788}{\index{W\-Float\-Property@{W\-Float\-Property}!W\-Float\-Property@{W\-Float\-Property}}
+\index{W\-Float\-Property@{W\-Float\-Property}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{W\-Float\-Property}]{\setlength{\rightskip}{0pt plus 5cm}W\-Float\-Property\-::\-W\-Float\-Property (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_w_float_property_a0feb213835bd18827d230c8de6c8b788}
+
+
+Constructor. Pass the object which implements the interface as parent. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Object who implements \hyperlink{class_i_float_property}{I\-Float\-Property} and whose functions this wrapper should bind slots to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_w_float_property_a7eee2964a782c7909b11f7621504fc11}{\index{W\-Float\-Property@{W\-Float\-Property}!can\-Convert@{can\-Convert}}
+\index{can\-Convert@{can\-Convert}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{can\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}bool W\-Float\-Property\-::can\-Convert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_float_property_a7eee2964a782c7909b11f7621504fc11}
+
+
+Returns whether or not the property's value can be successfully converted. 
+
+\begin{DoxyReturn}{Returns}
+True if conversion is possible, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_float_property_a1e460fc2f90845794910bc74aabe5236}{I\-Float\-Property}.
+
+\hypertarget{class_w_float_property_adbf6d34b27481c66c70379872eca1947}{\index{W\-Float\-Property@{W\-Float\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Property\-\_\-t} W\-Float\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_float_property_adbf6d34b27481c66c70379872eca1947}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_float_property_a8d82006574891b63c2de22f9b49755a2}{I\-Float\-Property}.
+
+\hypertarget{class_w_float_property_acdfaccfb44bff32042d5eecb377f406d}{\index{W\-Float\-Property@{W\-Float\-Property}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float W\-Float\-Property\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{success}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_float_property_acdfaccfb44bff32042d5eecb377f406d}
+
+
+Gets this property's value as float . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & True if conversion was successful, false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property's value. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_float_property_a5f3b98066c898de66db9141b01253d60}{I\-Float\-Property}.
+
+\hypertarget{class_w_float_property_addd5ab4fe5a6b75f12e604c994c4d096}{\index{W\-Float\-Property@{W\-Float\-Property}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void W\-Float\-Property\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_w_float_property_addd5ab4fe5a6b75f12e604c994c4d096}
+
+
+Sets the property's value as float . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_w_float_property_aee5767ac1ab391a1da6f396ed334e98b}{\index{W\-Float\-Property@{W\-Float\-Property}!m\-\_\-\-Interface@{m\-\_\-\-Interface}}
+\index{m\-\_\-\-Interface@{m\-\_\-\-Interface}!WFloatProperty@{W\-Float\-Property}}
+\subsubsection[{m\-\_\-\-Interface}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\-Float\-Property}$\ast$ W\-Float\-Property\-::m\-\_\-\-Interface\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_w_float_property_aee5767ac1ab391a1da6f396ed334e98b}
+The interface that represents the bound functions on the parent object. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{property_8h}{property.\-h}\end{DoxyCompactItemize}

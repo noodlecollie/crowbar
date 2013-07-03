@@ -1,3 +1,9 @@
+/*! \file plugin.h
+ * \brief Defines interfaces for Crowbar extension plugins.
+ *
+ * At its core, every Crowbar plugin must implement the IPlugin interface to be loaded by the application.
+ */
+
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
@@ -5,44 +11,42 @@
 
 class QString;
 
-// Herbius: Was going to have a namespace here but it messes with Q_DECLARE_INTERFACE so I removed it.
-
-// Plugin version: Major|Minor|Revision|Build
+/*!
+ * \typedef PluginVersion
+ * \brief Typedef for int[4] - holds the plugin's major, minor, revision and build numbers.
+ */
 typedef int PluginVersion[4];
 
-enum PluginType
-{
-    // Invalid
-    TypeNone = -1,
-
-    // Tool plugin - defines tool(s) which are operation that can be applied to
-    // map objects. Implements IPluginTool.
-    TypeTool,
-
-    // Serialise protocol plugin - defines de/serialisations of map objects
-    // when importing or exporting. Implements IProtocolSerialise.
-    TypeProtocolSerialise
-};
-
-// Required core interface for a plugin.
+/**
+ * @brief Required core interface for a Crowbar plugin.
+ */
 class IPlugin
 {
 public:
     virtual ~IPlugin() {}
 
-    // Returns the plugin's unique ID string.
+    /**
+     * @brief Returns the plugin's unique ID string.
+     * @note If a loaded plugin with an ID string already exists, subsequent plugins with this ID will fail to load.
+     * @return ID string.
+     */
     virtual QString GetUniqueId() = 0;
 
-    // Returns the plugin's author.
+    /**
+     * @brief Returns the plugin's author.
+     * @return Plugin's author.
+     */
     virtual QString GetAuthor() = 0;
 
-    // Returns the plugin's type.
-    virtual PluginType GetType() = 0;
-
-    // Modifies the passed PluginVersion array to return this plugin's version.
-    virtual void GetVersion(PluginVersion &) = 0;
+    /**
+     * @brief Modifies the passed PluginVersion array to return this plugin's version.
+     * @param version Array to hold the plugin's version.
+     */
+    virtual void GetVersion(PluginVersion* version) = 0;
 };
 
+//! \def IPlugin_iid
+//! \brief Unique ID for IPlugin interface.
 #define IPlugin_iid "Crowbar.Interfaces.IPlugin"
 Q_DECLARE_INTERFACE(IPlugin, IPlugin_iid)
 

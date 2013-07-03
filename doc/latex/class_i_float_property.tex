@@ -1,0 +1,125 @@
+\hypertarget{class_i_float_property}{\section{I\-Float\-Property Class Reference}
+\label{class_i_float_property}\index{I\-Float\-Property@{I\-Float\-Property}}
+}
+
+
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R float .  
+
+
+
+
+{\ttfamily \#include $<$property.\-h$>$}
+
+
+
+Inheritance diagram for I\-Float\-Property\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_i_float_property__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_i_float_property_a8d82006574891b63c2de22f9b49755a2}{get\-Property\-Type} () const =0
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
+virtual float \hyperlink{class_i_float_property_a5f3b98066c898de66db9141b01253d60}{get\-Value} (bool $\ast$success) const =0
+\begin{DoxyCompactList}\small\item\em Gets this property's value as float . \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_i_float_property_a358077ee2ced41069d9990d93ce5ddfa}{set\-Value} (float value)=0
+\begin{DoxyCompactList}\small\item\em Sets the property's value as float . \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_i_float_property_a1e460fc2f90845794910bc74aabe5236}{can\-Convert} () const =0
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R float . 
+
+Interface for property that handles data of type float . 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_i_float_property_a1e460fc2f90845794910bc74aabe5236}{\index{I\-Float\-Property@{I\-Float\-Property}!can\-Convert@{can\-Convert}}
+\index{can\-Convert@{can\-Convert}!IFloatProperty@{I\-Float\-Property}}
+\subsubsection[{can\-Convert}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool I\-Float\-Property\-::can\-Convert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_float_property_a1e460fc2f90845794910bc74aabe5236}
+
+
+Returns whether or not the property's value can be successfully converted. 
+
+\begin{DoxyReturn}{Returns}
+True if conversion is possible, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_float_property_a38c95c8f0a4131f5fd8a4a09352ba984}{Float\-Property}, and \hyperlink{class_w_float_property_a7eee2964a782c7909b11f7621504fc11}{W\-Float\-Property}.
+
+\hypertarget{class_i_float_property_a8d82006574891b63c2de22f9b49755a2}{\index{I\-Float\-Property@{I\-Float\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!IFloatProperty@{I\-Float\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Property\-\_\-t} I\-Float\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_float_property_a8d82006574891b63c2de22f9b49755a2}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_float_property_ac224ce3448cbe08d9c1b28804233086b}{Float\-Property}, and \hyperlink{class_w_float_property_adbf6d34b27481c66c70379872eca1947}{W\-Float\-Property}.
+
+\hypertarget{class_i_float_property_a5f3b98066c898de66db9141b01253d60}{\index{I\-Float\-Property@{I\-Float\-Property}!get\-Value@{get\-Value}}
+\index{get\-Value@{get\-Value}!IFloatProperty@{I\-Float\-Property}}
+\subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual float I\-Float\-Property\-::get\-Value (
+\begin{DoxyParamCaption}
+\item[{bool $\ast$}]{success}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_float_property_a5f3b98066c898de66db9141b01253d60}
+
+
+Gets this property's value as float . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em success} & True if conversion was successful, false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The property's value. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_float_property_a91854af44926b14c2264d16d71c06f11}{Float\-Property}, and \hyperlink{class_w_float_property_acdfaccfb44bff32042d5eecb377f406d}{W\-Float\-Property}.
+
+\hypertarget{class_i_float_property_a358077ee2ced41069d9990d93ce5ddfa}{\index{I\-Float\-Property@{I\-Float\-Property}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!IFloatProperty@{I\-Float\-Property}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual void I\-Float\-Property\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_float_property_a358077ee2ced41069d9990d93ce5ddfa}
+
+
+Sets the property's value as float . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_float_property_a24ef985394b6273da923cf0165620568}{Float\-Property}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{property_8h}{property.\-h}\end{DoxyCompactItemize}
