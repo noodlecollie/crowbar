@@ -40,3 +40,27 @@ inline void BaseProperty::setComment(QString value)
 {
     m_Comment = value;
 }
+
+inline void BaseProperty::setVariant(PropertyVariant *variant)
+{
+    variant->setString(getValueRaw());
+}
+
+// ===== Variant ===== //
+PropertyVariant::PropertyVariant(QObject *parent) : QObject(parent)
+{
+    m_WInterface = new WPropertyVariant(this);
+}
+
+void PropertyVariant::clean()
+{
+    // List variant to clean here.
+    CLEAN_VARIANT_TYPE(int, 0)
+    CLEAN_VARIANT_TYPE(uint, 0)
+    CLEAN_VARIANT_TYPE(long, 0)
+    CLEAN_VARIANT_TYPE(ulong, 0)
+    CLEAN_VARIANT_TYPE(float, 0.0)
+    CLEAN_VARIANT_TYPE(double, 0.0)
+    CLEAN_VARIANT_TYPE(qlonglong, 0)
+    CLEAN_VARIANT_TYPE(qulonglong, 0)
+}

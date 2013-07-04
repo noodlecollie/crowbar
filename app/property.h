@@ -29,12 +29,13 @@
 //! \param _proptype The Property_t value used to classify the property (see baseproperty.h).
 //! \param _vnull The default value passed into the property's constructor if no value is specified (eg. 0.0 for float).
 
-//! \def IMPLEMENT_NUMPROP(_classname, _wrapper, _type, _cvtfunc)
+//! \def IMPLEMENT_NUMPROP(_classname, _wrapper, _type, _cvtfunc, _variantfunc)
 //! \brief Implements the functions for a property declared previously with DECLARE_NUMPROP.
 //! \param _classname Name of the property class.
 //! \param _wrapper Name of its interface wrapper.
 //! \param _type Type returned by getValue.
 //! \param _cvtfunc Name of QString function (without any associated parantheses) that returns the value string as a _type (eg. toInt).
+//! \param _variantfunc Name of function to call in variant to pass value over.
 
 // A NOTE ON THE FOLLOWING DOXYGEN COMMENTS
 // These comments must not be indented or have any characters between the end of the previous line and
@@ -56,11 +57,6 @@ class _classname \
 public: \
     virtual ~_classname() {} \
 /**
-@brief Returns the Property_t to classify this property.
-@return Property_t classifier.
-*/  \
-    virtual Property_t getPropertyType() const = 0; \
-/**
 @brief Gets this property's value as _type.
 @param success True if conversion was successful, false otherwise.
 @return The property's value.
@@ -76,6 +72,12 @@ public: \
 @return True if conversion is possible, false otherwise.
 */ \
     virtual bool canConvert() const = 0; \
+/**
+@brief Passes the property's value to the variant
+@param variant Variant to pass to.
+@return True if conversion succeeded, false otherwise.
+*/ \
+    virtual bool passTo(PropertyVariant* variant) = 0; \
 }; \
 Q_DECLARE_INTERFACE(_classname, "Crowbar.Interfaces._classname") \
 /**
@@ -98,11 +100,6 @@ public: \
         Q_ASSERT(m_Interface); \
     } \
 /**
-@brief Returns the Property_t to classify this property.
-@return Property_t classifier.
-*/  \
-    Property_t  getPropertyType() const { return m_Interface->getPropertyType(); } \
-/**
 @brief Gets this property's value as _type.
 @param success True if conversion was successful, false otherwise.
 @return The property's value.
@@ -118,7 +115,13 @@ public slots: \
 @brief Sets the property's value as _type.
 @param value Value to set.
 */ \
-    void setValue(_type value) { return m_Interface->setValue(value); } \
+    void setValue(_type value) { m_Interface->setValue(value); } \
+/**
+@brief Passes the property's value to the variant
+@param variant Variant to pass to.
+@return True if conversion succeeded, false otherwise.
+*/ \
+    bool passTo(PropertyVariant* variant) { return m_Interface->passTo(variant); } \
 protected: \
     _classname*  m_Interface; /**< The interface that represents the bound functions on the parent object. */ \
 };
@@ -147,6 +150,12 @@ public: \
 */  \
     virtual inline Property_t getPropertyType() const { return _proptype; } \
 /**
+@brief Passes the property's value to the variant
+@param variant Variant to pass to.
+@return True if conversion succeeded, false otherwise.
+*/ \
+    virtual bool passTo(PropertyVariant* variant); \
+/**
 @brief Gets this property's value as _type.
 @param success True if conversion was successful, false otherwise.
 @return The property's value.
@@ -171,7 +180,7 @@ private: \
     _wrapper*  m_WInterface; /**< Wrapper that exposes slots defined in this property's interface. */ \
 };
 
-#define IMPLEMENT_NUMPROP(_classname, _wrapper, _type, _cvtfunc) \
+#define IMPLEMENT_NUMPROP(_classname, _wrapper, _type, _cvtfunc, _variantfunc) \
 /**
 @brief Constructor. Parameters not passed are initialised to safe null values.
 @param parent Parent object for this property.
@@ -209,6 +218,16 @@ bool _classname::canConvert() const \
 { \
     bool success; \
     getValue(&success); \
+    return success; \
+} \
+/**
+@brief Passes the property's value to the variant
+@param variant Variant to pass to.
+*/ \
+bool _classname::passTo(PropertyVariant* variant) \
+{ \
+    bool success; \
+    variant->_variantfunc(getValue(&success)); \
     return success; \
 }
 

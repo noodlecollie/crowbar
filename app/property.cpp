@@ -23,11 +23,11 @@ inline bool StringProperty::canConvert() const
     return true;
 }
 
-IMPLEMENT_NUMPROP(IntProperty, WIntProperty, int, toInt)
-IMPLEMENT_NUMPROP(UIntProperty, WUIntProperty, uint, toUInt)
-IMPLEMENT_NUMPROP(LongProperty, WLongProperty, long, toLong)
-IMPLEMENT_NUMPROP(ULongProperty, WULongProperty, ulong, toULong)
-IMPLEMENT_NUMPROP(FloatProperty, WFloatProperty, float, toFloat)
-IMPLEMENT_NUMPROP(DoubleProperty, WDoubleProperty, double, toDouble)
-IMPLEMENT_NUMPROP(LongLongProperty, WLongLongProperty, qlonglong, toLongLong)
-IMPLEMENT_NUMPROP(ULongLongProperty, WULongLongProperty, qulonglong, toULongLong)
+IMPLEMENT_NUMPROP(IntProperty, WIntProperty, int, toInt, setInt)
+IMPLEMENT_NUMPROP(UIntProperty, WUIntProperty, uint, toUInt, setUInt)
+IMPLEMENT_NUMPROP(LongProperty, WLongProperty, long, toLong, setLong)
+IMPLEMENT_NUMPROP(ULongProperty, WULongProperty, ulong, toULong, setULong)
+IMPLEMENT_NUMPROP(FloatProperty, WFloatProperty, float, toFloat, setFloat)
+IMPLEMENT_NUMPROP(DoubleProperty, WDoubleProperty, double, toDouble, setDouble)
+IMPLEMENT_NUMPROP(LongLongProperty, WLongLongProperty, qlonglong, toLongLong, setLongLong)
+IMPLEMENT_NUMPROP(ULongLongProperty, WULongLongProperty, qulonglong, toULongLong, setULongLong)

@@ -26,7 +26,8 @@
 //! When subclassing a new property, define a new identifier here.
 enum Property_t
 {
-    Prop_String = 0,    /**< Property value holds a string. */
+    Prop_None = -1,     /**< Property is an instance of BaseProperty. */
+    Prop_String,        /**< Property value holds a string. */
     Prop_Int,           /**< Property value holds an int. */
     Prop_UInt,          /**< Property value holds an unsigned int. */
     Prop_Long,          /**< Property value holds a long. */
@@ -39,6 +40,7 @@ enum Property_t
 
 class QString;
 class WBaseProperty;
+class PropertyVariant;
 
 //! Base property interface.
 
@@ -84,6 +86,18 @@ public:
      * @param value Comment string to set.
      */
     virtual void        setComment(QString value) = 0;
+
+    /**
+    @brief Returns the Property_t to classify this property.
+    @return Property_t classifier.
+    */
+    virtual Property_t getPropertyType() const = 0;
+
+    /**
+     * @brief Sets the relevant value in the passed variant to this property's value.
+     * @param variant Variant in which to set the value.
+     */
+    virtual void setVariant(PropertyVariant* variant) = 0;
 };
 /*!
 \def IBaseProperty_iid
@@ -132,6 +146,12 @@ public:
      */
     QString getComment() const          { return m_Interface->getComment(); }
 
+    /**
+    @brief Returns the Property_t to classify this property.
+    @return Property_t classifier.
+    */
+    Property_t getPropertyType() const { return m_Interface->getPropertyType(); }
+
 public slots:
     /**
      * @brief Sets the property key as a string. NOTE: Should be unique.
@@ -150,6 +170,12 @@ public slots:
      * @param value Comment string to set.
      */
     void    setComment(QString value)   { m_Interface->setComment(value); }
+
+    /**
+     * @brief Sets the relevant value in the passed variant to this property's value.
+     * @param variant Variant in which to set the value.
+     */
+    void setVariant(PropertyVariant* variant)   { m_Interface->setVariant(variant); }
 
 protected:
     IBaseProperty*  m_Interface;    /**< The interface whose functions we bind to. */
@@ -180,6 +206,12 @@ public:
      * @return WBaseProperty interface wrapper.
      */
     WBaseProperty* slotsBase() const { return m_WInterface; }
+
+    /**
+    @brief Returns the Property_t to classify this property.
+    @return Property_t classifier.
+    */
+    virtual inline Property_t getPropertyType() const { return Prop_None; }
 
     /**
      * @brief Returns the property key as a string.
@@ -216,6 +248,12 @@ public:
      * @param value Comment string to set.
      */
     virtual void setComment(QString value);
+
+    /**
+     * @brief Sets the relevant value in the passed variant to this property's value.
+     * @param variant Variant in which to set the value.
+     */
+    virtual void setVariant(PropertyVariant* variant);
     
 protected:
     QPair<QString, QString> m_Property; /**< Property key and value. */
@@ -223,6 +261,174 @@ protected:
 
 private:
     WBaseProperty*  m_WInterface;       /**< Wrapper to IBaseProperty interface. */
+};
+
+/**
+ * @brief Interface implemented by PropertyVariant.
+ */
+class IPropertyVariant
+{
+public:
+    ~IPropertyVariant() {}
+
+    /**
+     * @brief Resets all values in the variant to null values.
+     */
+    virtual void clean() = 0;
+
+    /**
+     * @brief Sets the string value in the variant.
+     * @param value Value.
+     */
+    virtual void setString(QString value) = 0;
+
+    /**
+     * @brief Gets the string value from the variant.
+     * @return String value.
+     */
+    virtual QString getString() = 0;
+};
+/*!
+    \def IPropertyVariant_iid
+    \brief Unique ID for IPropertyVariant interface.
+*/
+#define IPropertyVariant_iid "Crowbar.Interfaces.IPropertyVariant"
+Q_DECLARE_INTERFACE(IPropertyVariant, IPropertyVariant_iid)
+
+/**
+ * @brief PropertyVariant interface wrapper.
+ */
+class WPropertyVariant : public QObject, public virtual IPropertyVariant
+{
+    Q_OBJECT
+    Q_INTERFACES(IPropertyVariant)
+public:
+    /**
+     * @brief Constructor. Pass the BaseProperty we are becoming a wrapper for.
+     * @param parent BaseProperty to wrap (object, not the interface).
+     */
+    WPropertyVariant(QObject* parent = 0) : QObject(parent)
+    {
+        Q_ASSERT(parent);
+        m_Interface = qobject_cast<IPropertyVariant*>(parent);
+        Q_ASSERT(m_Interface);
+    }
+
+    /**
+     * @brief Gets the string value from the variant.
+     * @return String value.
+     */
+    QString getString() { return m_Interface->getString(); }
+
+public slots:
+    /**
+     * @brief Resets all values in the variant to null values.
+     */
+    virtual void clean()    { m_Interface->clean(); }
+
+    /**
+     * @brief Sets the string value in the variant.
+     * @param value Value.
+     */
+    void setString(QString value)   { m_Interface->setString(value); }
+
+private:
+    IPropertyVariant* m_Interface;
+};
+
+#define DECLARE_VARIANT_GETMETHOD(_methodname, _type) \
+/**
+@brief MACRO METHOD: Gets variant _type value.
+@return Value as _type.
+*/ \
+_type _methodname() const { return m_##_type; }
+
+#define DECLARE_VARIANT_SETMETHOD(_methodname, _type) \
+/**
+@brief MACRO METHOD: Sets variant _type value.
+@param value Value as _type.
+*/ \
+void _methodname(_type value) { m_##_type = value; }
+
+#define DECLARE_VARIANT_TYPE(_type) \
+_type m_##_type; /**< _type value. */
+
+#define CLEAN_VARIANT_TYPE(_type, _value) \
+m_##_type = _value;
+
+/**
+ * @brief Allows fetching of subclassed properties from a list of BaseProperty pointers.
+ *
+ * The PropertyVariant allows for an implementation of the visitor design pattern: given a list of BaseProperty pointers,
+ * passing the variant to a property will allow that property to record its data value in the variant as a specific data type
+ * (as opposed to simply a string). This means a typed property can have its data returned as that type without a cast from a
+ * BaseProperty pointer to the derived pointer.
+ */
+class PropertyVariant : public QObject, public virtual IPropertyVariant
+{
+    Q_OBJECT
+    Q_INTERFACES(IPropertyVariant)
+public:
+    /**
+     * @brief Constructor.
+     * @param parent Parent object (usually NULL).
+     */
+    explicit PropertyVariant(QObject *parent = 0);
+
+    /**
+     * @brief Returns the interface wrapper to allow binding to slots on this property.
+     * @return WPropertyVariant interface wrapper.
+     */
+    WPropertyVariant* slotsBaseVariant() const  { return m_WInterface; }
+
+    /**
+     * @brief Resets all values in the variant to null values.
+     */
+    virtual void clean();
+
+    /**
+     * @brief Sets the string value in the variant.
+     * @param value Value.
+     */
+    void setString(QString value) = 0;
+
+    /**
+     * @brief Gets the string value from the variant.
+     * @return String value.
+     */
+    QString getString() = 0;
+
+    DECLARE_VARIANT_GETMETHOD(getInt, int)
+    DECLARE_VARIANT_GETMETHOD(getUInt, uint)
+    DECLARE_VARIANT_GETMETHOD(getLong, long)
+    DECLARE_VARIANT_GETMETHOD(getULong, ulong)
+    DECLARE_VARIANT_GETMETHOD(getFloat, float)
+    DECLARE_VARIANT_GETMETHOD(getDouble, double)
+    DECLARE_VARIANT_GETMETHOD(getLongLong, qlonglong)
+    DECLARE_VARIANT_GETMETHOD(getULongLong, qulonglong)
+
+public slots:
+    DECLARE_VARIANT_SETMETHOD(setInt, int)
+    DECLARE_VARIANT_SETMETHOD(setUInt, uint)
+    DECLARE_VARIANT_SETMETHOD(setLong, long)
+    DECLARE_VARIANT_SETMETHOD(setULong, ulong)
+    DECLARE_VARIANT_SETMETHOD(setFloat, float)
+    DECLARE_VARIANT_SETMETHOD(setDouble, double)
+    DECLARE_VARIANT_SETMETHOD(setLongLong, qlonglong)
+    DECLARE_VARIANT_SETMETHOD(setULongLong, qulonglong)
+
+protected:
+    WPropertyVariant* m_WInterface;
+
+private:
+    DECLARE_VARIANT_TYPE(int)
+    DECLARE_VARIANT_TYPE(uint)
+    DECLARE_VARIANT_TYPE(long)
+    DECLARE_VARIANT_TYPE(ulong)
+    DECLARE_VARIANT_TYPE(float)
+    DECLARE_VARIANT_TYPE(double)
+    DECLARE_VARIANT_TYPE(qlonglong)
+    DECLARE_VARIANT_TYPE(qulonglong)
 };
 
 /**@}*/
