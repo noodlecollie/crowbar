@@ -23,14 +23,14 @@ Inheritance diagram for I\-Double\-Property\-:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_i_double_property_af14b72afdd37a35b626a71caa7ada8b4}{get\-Property\-Type} () const =0
-\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
 virtual double \hyperlink{class_i_double_property_af9143d685793a22249eb50b2515260ac}{get\-Value} (bool $\ast$success) const =0
 \begin{DoxyCompactList}\small\item\em Gets this property's value as double . \end{DoxyCompactList}\item 
 virtual void \hyperlink{class_i_double_property_a900dcb23ea5981475417e3cdfee001e3}{set\-Value} (double value)=0
 \begin{DoxyCompactList}\small\item\em Sets the property's value as double . \end{DoxyCompactList}\item 
 virtual bool \hyperlink{class_i_double_property_afe5368913e955ec08c2797521d43d24a}{can\-Convert} () const =0
-\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_i_double_property_a84794c76ff8b48f676d9ca3fef8c22c5}{pass\-To} (\hyperlink{class_property_variant}{Property\-Variant} $\ast$variant)=0
+\begin{DoxyCompactList}\small\item\em Passes the property's value to the variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -57,24 +57,6 @@ True if conversion is possible, false otherwise.
 
 Implemented in \hyperlink{class_double_property_a9ce3240555af31c5d4fbe9be33624637}{Double\-Property}, and \hyperlink{class_w_double_property_acf72db76ced6c2dc50027bc2714be73b}{W\-Double\-Property}.
 
-\hypertarget{class_i_double_property_af14b72afdd37a35b626a71caa7ada8b4}{\index{I\-Double\-Property@{I\-Double\-Property}!get\-Property\-Type@{get\-Property\-Type}}
-\index{get\-Property\-Type@{get\-Property\-Type}!IDoubleProperty@{I\-Double\-Property}}
-\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Property\-\_\-t} I\-Double\-Property\-::get\-Property\-Type (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_double_property_af14b72afdd37a35b626a71caa7ada8b4}
-
-
-Returns the Property\-\_\-t to classify this property. 
-
-\begin{DoxyReturn}{Returns}
-Property\-\_\-t classifier. 
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{class_double_property_a161c45cff47e246a6d27133562af064d}{Double\-Property}, and \hyperlink{class_w_double_property_a494eec753c15d18604dc4323f2acdd91}{W\-Double\-Property}.
-
 \hypertarget{class_i_double_property_af9143d685793a22249eb50b2515260ac}{\index{I\-Double\-Property@{I\-Double\-Property}!get\-Value@{get\-Value}}
 \index{get\-Value@{get\-Value}!IDoubleProperty@{I\-Double\-Property}}
 \subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual double I\-Double\-Property\-::get\-Value (
@@ -97,6 +79,29 @@ The property's value.
 
 
 Implemented in \hyperlink{class_double_property_a9e196465f85c5fba581dc207dfd60eee}{Double\-Property}, and \hyperlink{class_w_double_property_ac771c45522b2682056081700effc7930}{W\-Double\-Property}.
+
+\hypertarget{class_i_double_property_a84794c76ff8b48f676d9ca3fef8c22c5}{\index{I\-Double\-Property@{I\-Double\-Property}!pass\-To@{pass\-To}}
+\index{pass\-To@{pass\-To}!IDoubleProperty@{I\-Double\-Property}}
+\subsubsection[{pass\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool I\-Double\-Property\-::pass\-To (
+\begin{DoxyParamCaption}
+\item[{{\bf Property\-Variant} $\ast$}]{variant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_double_property_a84794c76ff8b48f676d9ca3fef8c22c5}
+
+
+Passes the property's value to the variant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variant} & Variant to pass to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if conversion succeeded, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_double_property_a1c82626c933039cb28619e3723f16e6c}{Double\-Property}.
 
 \hypertarget{class_i_double_property_a900dcb23ea5981475417e3cdfee001e3}{\index{I\-Double\-Property@{I\-Double\-Property}!set\-Value@{set\-Value}}
 \index{set\-Value@{set\-Value}!IDoubleProperty@{I\-Double\-Property}}

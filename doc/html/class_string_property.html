@@ -179,6 +179,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_property.html#ac882e4b94451ae00ab78d79afde84de5">setComment</a> (QString value)</td></tr>
 <tr class="memdesc:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the comment value as a raw string (without "//").  <a href="#ac882e4b94451ae00ab78d79afde84de5">More...</a><br/></td></tr>
 <tr class="separator:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_property.html#ac326a09444274213c2a4ca1315ca37e5">setVariant</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)</td></tr>
+<tr class="memdesc:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relevant value in the passed variant to this property's value.  <a href="#ac326a09444274213c2a4ca1315ca37e5">More...</a><br/></td></tr>
+<tr class="separator:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_i_string_property"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_string_property')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_i_string_property.html">IStringProperty</a></td></tr>
+<tr class="memitem:a52c49ca31b5250fcc7914a453443b4e7 inherit pub_methods_class_i_string_property"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html#a52c49ca31b5250fcc7914a453443b4e7">passTo</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)=0</td></tr>
+<tr class="memdesc:a52c49ca31b5250fcc7914a453443b4e7 inherit pub_methods_class_i_string_property"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes the property's value to the variant.  <a href="#a52c49ca31b5250fcc7914a453443b4e7">More...</a><br/></td></tr>
+<tr class="separator:a52c49ca31b5250fcc7914a453443b4e7 inherit pub_methods_class_i_string_property"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -301,7 +308,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the Property_t to classify this property. </p>
 <dl class="section return"><dt>Returns</dt><dd>Property_t classifier. </dd></dl>
 
-<p>Implements <a class="el" href="class_i_string_property.html#a6746c253e1664d4282f3d614b0bb36fe">IStringProperty</a>.</p>
+<p>Reimplemented from <a class="el" href="class_base_property.html#a85239fb7297edb01c3176e4ce1b11132">BaseProperty</a>.</p>
 
 </div>
 </div>
@@ -410,7 +417,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_string_property.html">StringProperty</a></li>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:27 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

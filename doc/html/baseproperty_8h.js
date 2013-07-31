@@ -1,7 +1,13 @@
 var baseproperty_8h =
 [
+    [ "CLEAN_VARIANT_TYPE", "baseproperty_8h.html#ga336b645c5f84965e75abdf9213c0957e", null ],
+    [ "DECLARE_VARIANT_GETMETHOD", "baseproperty_8h.html#ga8621ccbce057779b93b54f2f06440126", null ],
+    [ "DECLARE_VARIANT_SETMETHOD", "baseproperty_8h.html#gab10c17d63104a3b2b6e8c26baeb1548b", null ],
+    [ "DECLARE_VARIANT_TYPE", "baseproperty_8h.html#ga6ceaa3b2a99aaa90a1ea66489d2bcc86", null ],
     [ "IBaseProperty_iid", "baseproperty_8h.html#gade3d7799947a250392e929b65d46f1d8", null ],
+    [ "IPropertyVariant_iid", "baseproperty_8h.html#ga2f1443d00c2aa858e3321a7cdc6f5e4a", null ],
     [ "Property_t", "baseproperty_8h.html#ga38f1ccddda12c7cb50b868c9f789ee37", [
+      [ "Prop_None", "baseproperty_8h.html#gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29", null ],
       [ "Prop_String", "baseproperty_8h.html#gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260", null ],
       [ "Prop_Int", "baseproperty_8h.html#gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7", null ],
       [ "Prop_UInt", "baseproperty_8h.html#gga38f1ccddda12c7cb50b868c9f789ee37ac42814aa5ea34e3b019db068494eed4d", null ],

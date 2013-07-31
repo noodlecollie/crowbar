@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$struct_g_l_x_hyperpipe_network_s_g_i_x.html" title="GLXHyperpipeNetworkSGIX" alt="" coords="6,5,186,32"/>
+<area shape="rect" id="node2" href="$class_open_g_l_widget.html" title="Defines an OpenGL widget. " alt="" coords="145,5,255,32"/>
+<area shape="rect" id="node3" href="$class_viewport2_d.html" title="Viewport designed to render 2D orthographic content. " alt="" coords="304,5,392,32"/>
 </map>

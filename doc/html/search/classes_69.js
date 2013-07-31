@@ -8,6 +8,7 @@ var searchData=
   ['ilongproperty',['ILongProperty',['../class_i_long_property.html',1,'']]],
   ['intproperty',['IntProperty',['../class_int_property.html',1,'']]],
   ['iplugin',['IPlugin',['../class_i_plugin.html',1,'']]],
+  ['ipropertyvariant',['IPropertyVariant',['../class_i_property_variant.html',1,'']]],
   ['istringproperty',['IStringProperty',['../class_i_string_property.html',1,'']]],
   ['iuintproperty',['IUIntProperty',['../class_i_u_int_property.html',1,'']]],
   ['iulonglongproperty',['IULongLongProperty',['../class_i_u_long_long_property.html',1,'']]],

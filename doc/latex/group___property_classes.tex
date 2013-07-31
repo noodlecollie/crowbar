@@ -10,6 +10,12 @@ class \hyperlink{class_w_base_property}{W\-Base\-Property}
 \begin{DoxyCompactList}\small\item\em Base property interface wrapper. \end{DoxyCompactList}\item 
 class \hyperlink{class_base_property}{Base\-Property}
 \begin{DoxyCompactList}\small\item\em Base property class. \end{DoxyCompactList}\item 
+class \hyperlink{class_i_property_variant}{I\-Property\-Variant}
+\begin{DoxyCompactList}\small\item\em Interface implemented by \hyperlink{class_property_variant}{Property\-Variant}. \end{DoxyCompactList}\item 
+class \hyperlink{class_w_property_variant}{W\-Property\-Variant}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_property_variant}{Property\-Variant} interface wrapper. \end{DoxyCompactList}\item 
+class \hyperlink{class_property_variant}{Property\-Variant}
+\begin{DoxyCompactList}\small\item\em Allows fetching of subclassed properties from a list of \hyperlink{class_base_property}{Base\-Property} pointers. \end{DoxyCompactList}\item 
 class \hyperlink{class_i_string_property}{I\-String\-Property}
 \begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R Q\-String . \end{DoxyCompactList}\item 
 class \hyperlink{class_w_string_property}{W\-String\-Property}
@@ -70,26 +76,38 @@ class \hyperlink{class_u_long_long_property}{U\-Long\-Long\-Property}
 \hypertarget{group___property_classes_gade3d7799947a250392e929b65d46f1d8}{\#define \hyperlink{group___property_classes_gade3d7799947a250392e929b65d46f1d8}{I\-Base\-Property\-\_\-iid}~\char`\"{}Crowbar.\-Interfaces.\-I\-Base\-Property\char`\"{}}\label{group___property_classes_gade3d7799947a250392e929b65d46f1d8}
 
 \begin{DoxyCompactList}\small\item\em Unique I\-D for \hyperlink{class_i_base_property}{I\-Base\-Property} interface. \end{DoxyCompactList}\item 
+\hypertarget{group___property_classes_ga2f1443d00c2aa858e3321a7cdc6f5e4a}{\#define \hyperlink{group___property_classes_ga2f1443d00c2aa858e3321a7cdc6f5e4a}{I\-Property\-Variant\-\_\-iid}~\char`\"{}Crowbar.\-Interfaces.\-I\-Property\-Variant\char`\"{}}\label{group___property_classes_ga2f1443d00c2aa858e3321a7cdc6f5e4a}
+
+\begin{DoxyCompactList}\small\item\em Unique I\-D for \hyperlink{class_i_property_variant}{I\-Property\-Variant} interface. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___property_classes_ga8621ccbce057779b93b54f2f06440126}{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D}(\-\_\-methodname, \-\_\-type)~\-\_\-type \-\_\-methodname() const \{ return m\-\_\-\#\#\-\_\-type; \}
+\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Gets variant \-\_\-type value. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___property_classes_gab10c17d63104a3b2b6e8c26baeb1548b}{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D}(\-\_\-methodname, \-\_\-type)~void \-\_\-methodname(\-\_\-type value) \{ m\-\_\-\#\#\-\_\-type = value; \}
+\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Sets variant \-\_\-type value. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___property_classes_ga6ceaa3b2a99aaa90a1ea66489d2bcc86}{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}(\-\_\-type)~\-\_\-type m\-\_\-\#\#\-\_\-type;
+\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Declares a member variable of the specified type, to be used with get and set methods. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___property_classes_ga336b645c5f84965e75abdf9213c0957e}{C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}(\-\_\-type, \-\_\-value)~m\-\_\-\#\#\-\_\-type = \-\_\-value;
+\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Specifies the safe default value to set a data member to when the variant is cleaned. The type should have been declared with D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E. \end{DoxyCompactList}\item 
 \#define \hyperlink{group___property_classes_gaac09fb32e07282e79330aeb7cfc9e5eb}{D\-E\-C\-L\-A\-R\-E\-\_\-\-P\-R\-O\-P\-E\-R\-T\-Y\-\_\-\-I\-N\-T\-E\-R\-F\-A\-C\-E}(\-\_\-classname, \-\_\-wrapper, \-\_\-type)
 \begin{DoxyCompactList}\small\item\em Declares a property interface with an interface classname, wrapper classname and data type (such as int). \end{DoxyCompactList}\item 
 \#define \hyperlink{group___property_classes_ga9b75216621cf38585610f12ce907d01c}{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P}(\-\_\-classname, \-\_\-interface, \-\_\-wrapper, \-\_\-type, \-\_\-proptype, \-\_\-vnull)
 \begin{DoxyCompactList}\small\item\em Declares a number-\/type property which Q\-String has the capability to convert to and from, in macro form for convenience. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___property_classes_ga7a2a3856f997e7131ea7607b284b56b7}{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}(\-\_\-classname, \-\_\-wrapper, \-\_\-type, \-\_\-cvtfunc)
+\#define \hyperlink{group___property_classes_gae16b8183fbdf59c5bf8809835a2617e5}{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}(\-\_\-classname, \-\_\-wrapper, \-\_\-type, \-\_\-cvtfunc, \-\_\-variantfunc)
 \begin{DoxyCompactList}\small\item\em Implements the functions for a property declared previously with D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \{ \\*
-\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260}{Prop\-\_\-\-String} = 0, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29}{Prop\-\_\-\-None} = -\/1, 
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260}{Prop\-\_\-\-String}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7}{Prop\-\_\-\-Int}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37ac42814aa5ea34e3b019db068494eed4d}{Prop\-\_\-\-U\-Int}, 
-\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a48c7c9a2c7bf7b44ae8d4493b5122925}{Prop\-\_\-\-Long}, 
 \\*
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a48c7c9a2c7bf7b44ae8d4493b5122925}{Prop\-\_\-\-Long}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a19c6a4ad42555fcc0e2fac1d50fd2035}{Prop\-\_\-\-U\-Long}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a002f0049641d4e6f52901f023ef44f0c}{Prop\-\_\-\-Float}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a63a9d61b306c5306a47c5126ebd7200e}{Prop\-\_\-\-Double}, 
-\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a1a1448256ec42f662e39fe120b92073a}{Prop\-\_\-\-Long\-Long}, 
 \\*
+\hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a1a1448256ec42f662e39fe120b92073a}{Prop\-\_\-\-Long\-Long}, 
 \hyperlink{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aeb9cf79aeea684f28a149fdcd0f593aa}{Prop\-\_\-\-U\-Long\-Long}
  \}
 \begin{DoxyCompactList}\small\item\em Property type identifiers. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -99,6 +117,25 @@ enum \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Pro
 
 
 \subsection{Macro Definition Documentation}
+\hypertarget{group___property_classes_ga336b645c5f84965e75abdf9213c0957e}{\index{Property classess@{Property classess}!C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E@{C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}}
+\index{C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E@{C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}!Property classess@{Property classess}}
+\subsubsection[{C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-L\-E\-A\-N\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-type, }
+\item[{}]{\-\_\-value}
+\end{DoxyParamCaption}
+)~m\-\_\-\#\#\-\_\-type = \-\_\-value;}}\label{group___property_classes_ga336b645c5f84965e75abdf9213c0957e}
+
+
+M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Specifies the safe default value to set a data member to when the variant is cleaned. The type should have been declared with D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-type} & Data type to clean. \\
+\hline
+{\em \-\_\-value} & Value to set the data member to. \\
+\hline
+\end{DoxyParams}
 \hypertarget{group___property_classes_ga9b75216621cf38585610f12ce907d01c}{\index{Property classess@{Property classess}!D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P@{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P}}
 \index{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P@{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P}!Property classess@{Property classess}}
 \subsubsection[{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P(
@@ -152,16 +189,77 @@ Declares a property interface with an interface classname, wrapper classname and
 {\em \-\_\-type} & Variable type get\-Value returns. \\
 \hline
 \end{DoxyParams}
-\hypertarget{group___property_classes_ga7a2a3856f997e7131ea7607b284b56b7}{\index{Property classess@{Property classess}!I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P@{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}}
+\hypertarget{group___property_classes_ga8621ccbce057779b93b54f2f06440126}{\index{Property classess@{Property classess}!D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D}}
+\index{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D}!Property classess@{Property classess}}
+\subsubsection[{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-G\-E\-T\-M\-E\-T\-H\-O\-D(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-methodname, }
+\item[{}]{\-\_\-type}
+\end{DoxyParamCaption}
+)~\-\_\-type \-\_\-methodname() const \{ return m\-\_\-\#\#\-\_\-type; \}}}\label{group___property_classes_ga8621ccbce057779b93b54f2f06440126}
+
+
+M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Gets variant \-\_\-type value. 
+
+When declaring this method, be sure to use D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E inside the class for the desired data type. 
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-methodname} & Name of the function that will be available to call in code. \\
+\hline
+{\em \-\_\-type} & Data type that the method returns. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Value as \-\_\-type. 
+\end{DoxyReturn}
+\hypertarget{group___property_classes_gab10c17d63104a3b2b6e8c26baeb1548b}{\index{Property classess@{Property classess}!D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D}}
+\index{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D}!Property classess@{Property classess}}
+\subsubsection[{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-S\-E\-T\-M\-E\-T\-H\-O\-D(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-methodname, }
+\item[{}]{\-\_\-type}
+\end{DoxyParamCaption}
+)~void \-\_\-methodname(\-\_\-type value) \{ m\-\_\-\#\#\-\_\-type = value; \}}}\label{group___property_classes_gab10c17d63104a3b2b6e8c26baeb1548b}
+
+
+M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Sets variant \-\_\-type value. 
+
+When declaring this method, be sure to use D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E inside the class for the desired data type. 
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-methodname} & Name of the function that will be available to call in code. \\
+\hline
+{\em \-\_\-type} & Data type that the method passes. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___property_classes_ga6ceaa3b2a99aaa90a1ea66489d2bcc86}{\index{Property classess@{Property classess}!D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}}
+\index{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E@{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}!Property classess@{Property classess}}
+\subsubsection[{D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-C\-L\-A\-R\-E\-\_\-\-V\-A\-R\-I\-A\-N\-T\-\_\-\-T\-Y\-P\-E(
+\begin{DoxyParamCaption}
+\item[{}]{\-\_\-type}
+\end{DoxyParamCaption}
+)~\-\_\-type m\-\_\-\#\#\-\_\-type;}}\label{group___property_classes_ga6ceaa3b2a99aaa90a1ea66489d2bcc86}
+
+
+M\-A\-C\-R\-O M\-E\-T\-H\-O\-D\-: Declares a member variable of the specified type, to be used with get and set methods. 
+
+\begin{DoxyNote}{Note}
+It is only possible to declare one member for any specific data type. Further declarations will simply re-\/declare the same member. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em \-\_\-type} & Data type to declare.\\
+\hline
+\end{DoxyParams}
+\-\_\-type value. \hypertarget{group___property_classes_gae16b8183fbdf59c5bf8809835a2617e5}{\index{Property classess@{Property classess}!I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P@{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}}
 \index{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P@{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}!Property classess@{Property classess}}
 \subsubsection[{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P(
 \begin{DoxyParamCaption}
 \item[{}]{\-\_\-classname, }
 \item[{}]{\-\_\-wrapper, }
 \item[{}]{\-\_\-type, }
-\item[{}]{\-\_\-cvtfunc}
+\item[{}]{\-\_\-cvtfunc, }
+\item[{}]{\-\_\-variantfunc}
 \end{DoxyParamCaption}
-)}}\label{group___property_classes_ga7a2a3856f997e7131ea7607b284b56b7}
+)}}\label{group___property_classes_gae16b8183fbdf59c5bf8809835a2617e5}
 
 
 Implements the functions for a property declared previously with D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P. 
@@ -175,6 +273,8 @@ Implements the functions for a property declared previously with D\-E\-C\-L\-A\-
 {\em \-\_\-type} & Type returned by get\-Value. \\
 \hline
 {\em \-\_\-cvtfunc} & Name of Q\-String function (without any associated parantheses) that returns the value string as a \-\_\-type (eg. to\-Int). \\
+\hline
+{\em \-\_\-variantfunc} & Name of function to call in variant to pass value over. \\
 \hline
 \end{DoxyParams}
 
@@ -190,7 +290,9 @@ Property type identifiers.
 Used to classify what data type a property holds. When subclassing a new property, define a new identifier here. \begin{Desc}
 \item[Enumerator]\par
 \begin{description}
-\index{Prop\-\_\-\-String@{Prop\-\_\-\-String}!Property classess@{Property classess}}\index{Property classess@{Property classess}!Prop\-\_\-\-String@{Prop\-\_\-\-String}}\item[{\em 
+\index{Prop\-\_\-\-None@{Prop\-\_\-\-None}!Property classess@{Property classess}}\index{Property classess@{Property classess}!Prop\-\_\-\-None@{Prop\-\_\-\-None}}\item[{\em 
+\hypertarget{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29}{Prop\-\_\-\-None}\label{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29}
+}]Property is an instance of \hyperlink{class_base_property}{Base\-Property}. \index{Prop\-\_\-\-String@{Prop\-\_\-\-String}!Property classess@{Property classess}}\index{Property classess@{Property classess}!Prop\-\_\-\-String@{Prop\-\_\-\-String}}\item[{\em 
 \hypertarget{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260}{Prop\-\_\-\-String}\label{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260}
 }]Property value holds a string. \index{Prop\-\_\-\-Int@{Prop\-\_\-\-Int}!Property classess@{Property classess}}\index{Property classess@{Property classess}!Prop\-\_\-\-Int@{Prop\-\_\-\-Int}}\item[{\em 
 \hypertarget{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7}{Prop\-\_\-\-Int}\label{group___property_classes_gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7}

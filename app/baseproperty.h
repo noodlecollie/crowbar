@@ -336,23 +336,40 @@ private:
     IPropertyVariant* m_Interface;
 };
 
+//! \def DECLARE_VARIANT_GETMETHOD(_methodname, _type)
+//! \brief MACRO METHOD: Gets variant _type value.
+//!
+//! When declaring this method, be sure to use DECLARE_VARIANT_TYPE inside the class for the
+//! desired data type.
+//! \param _methodname Name of the function that will be available to call in code.
+//! \param _type Data type that the method returns.
+//! \return Value as _type.
 #define DECLARE_VARIANT_GETMETHOD(_methodname, _type) \
-/**
-@brief MACRO METHOD: Gets variant _type value.
-@return Value as _type.
-*/ \
 _type _methodname() const { return m_##_type; }
 
+//! \def DECLARE_VARIANT_SETMETHOD(_methodname, _type)
+//! \brief MACRO METHOD: Sets variant _type value.
+//!
+//! When declaring this method, be sure to use DECLARE_VARIANT_TYPE inside the class for the
+//! desired data type.
+//! \param _methodname Name of the function that will be available to call in code.
+//! \param _type Data type that the method passes.
 #define DECLARE_VARIANT_SETMETHOD(_methodname, _type) \
-/**
-@brief MACRO METHOD: Sets variant _type value.
-@param value Value as _type.
-*/ \
 void _methodname(_type value) { m_##_type = value; }
 
+//! \def DECLARE_VARIANT_TYPE(_type)
+//! \brief MACRO METHOD: Declares a member variable of the specified type, to be used with
+//! get and set methods.
+//! \note It is only possible to declare one member for any specific data type. Further declarations will simply re-declare the same member.
+//! \param _type Data type to declare.
 #define DECLARE_VARIANT_TYPE(_type) \
-_type m_##_type; /**< _type value. */
+_type m_##_type;
 
+//! \def CLEAN_VARIANT_TYPE(_type, _value)
+//! \brief MACRO METHOD: Specifies the safe default value to set a data member to when the variant is cleaned. The type should have been
+//! declared with DECLARE_VARIANT_TYPE.
+//! \param _type Data type to clean.
+//! \param _value Value to set the data member to.
 #define CLEAN_VARIANT_TYPE(_type, _value) \
 m_##_type = _value;
 
@@ -418,7 +435,7 @@ public slots:
     DECLARE_VARIANT_SETMETHOD(setULongLong, qulonglong)
 
 protected:
-    WPropertyVariant* m_WInterface;
+    WPropertyVariant* m_WInterface; /**< Interface wrapper. */
 
 private:
     DECLARE_VARIANT_TYPE(int)

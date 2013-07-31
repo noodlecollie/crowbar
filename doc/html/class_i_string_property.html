@@ -129,9 +129,6 @@ Inheritance diagram for IStringProperty:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6746c253e1664d4282f3d614b0bb36fe"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html#a6746c253e1664d4282f3d614b0bb36fe">getPropertyType</a> () const =0</td></tr>
-<tr class="memdesc:a6746c253e1664d4282f3d614b0bb36fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Property_t to classify this property.  <a href="#a6746c253e1664d4282f3d614b0bb36fe">More...</a><br/></td></tr>
-<tr class="separator:a6746c253e1664d4282f3d614b0bb36fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dbe79993973e018510325120762504f"><td class="memItemLeft" align="right" valign="top">virtual QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html#a0dbe79993973e018510325120762504f">getValue</a> (bool *success) const =0</td></tr>
 <tr class="memdesc:a0dbe79993973e018510325120762504f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this property's value as QString .  <a href="#a0dbe79993973e018510325120762504f">More...</a><br/></td></tr>
 <tr class="separator:a0dbe79993973e018510325120762504f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +138,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2fcab392710db1ae140e394c1db6739e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html#a2fcab392710db1ae140e394c1db6739e">canConvert</a> () const =0</td></tr>
 <tr class="memdesc:a2fcab392710db1ae140e394c1db6739e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not the property's value can be successfully converted.  <a href="#a2fcab392710db1ae140e394c1db6739e">More...</a><br/></td></tr>
 <tr class="separator:a2fcab392710db1ae140e394c1db6739e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c49ca31b5250fcc7914a453443b4e7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html#a52c49ca31b5250fcc7914a453443b4e7">passTo</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)=0</td></tr>
+<tr class="memdesc:a52c49ca31b5250fcc7914a453443b4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes the property's value to the variant.  <a href="#a52c49ca31b5250fcc7914a453443b4e7">More...</a><br/></td></tr>
+<tr class="separator:a52c49ca31b5250fcc7914a453443b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>MACRO PROPERTY INTERFACE FOR QString . </p>
@@ -171,34 +171,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if conversion is possible, false otherwise. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_string_property.html#aa080538ba6c8ed9cfde97781dfc416cc">StringProperty</a>, and <a class="el" href="class_w_string_property.html#a6b52241cfefcea196a347bc90f57dc25">WStringProperty</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6746c253e1664d4282f3d614b0bb36fe"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a> IStringProperty::getPropertyType </td>
-          <td>(</td>
-          <td class="paramname">)</td><td></td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the Property_t to classify this property. </p>
-<dl class="section return"><dt>Returns</dt><dd>Property_t classifier. </dd></dl>
-
-<p>Implemented in <a class="el" href="class_string_property.html#aa9a92e89f0076598d9651bc3269dbace">StringProperty</a>, and <a class="el" href="class_w_string_property.html#a33a58ae5da7f4e483101ea048b254700">WStringProperty</a>.</p>
 
 </div>
 </div>
@@ -234,6 +206,39 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The property's value. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_string_property.html#a7130232ef2d861bf098e25f47deb12cb">StringProperty</a>, and <a class="el" href="class_w_string_property.html#a4f31475a4b8cd8f7958bbfdaba6cca42">WStringProperty</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a52c49ca31b5250fcc7914a453443b4e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IStringProperty::passTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_property_variant.html">PropertyVariant</a> *&#160;</td>
+          <td class="paramname"><em>variant</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes the property's value to the variant. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variant</td><td>Variant to pass to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if conversion succeeded, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -280,7 +285,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_i_string_property.html">IStringProperty</a></li>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:26 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

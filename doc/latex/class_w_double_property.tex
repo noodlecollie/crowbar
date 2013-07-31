@@ -34,14 +34,14 @@ Collaboration diagram for W\-Double\-Property\-:
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_w_double_property_a710f9b1c3c4a12682e9fa257b832ae89}{set\-Value} (double value)
-\begin{DoxyCompactList}\small\item\em Sets the property's value as double . \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the property's value as double . \end{DoxyCompactList}\item 
+bool \hyperlink{class_w_double_property_a11a0a8b257e291fe896848a772e0505b}{pass\-To} (\hyperlink{class_property_variant}{Property\-Variant} $\ast$variant)
+\begin{DoxyCompactList}\small\item\em Passes the property's value to the variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_w_double_property_a7af52228cc8bbd608ef0df519f079533}{W\-Double\-Property} (Q\-Object $\ast$parent=0)
 \begin{DoxyCompactList}\small\item\em Constructor. Pass the object which implements the interface as parent. \end{DoxyCompactList}\item 
-\hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_w_double_property_a494eec753c15d18604dc4323f2acdd91}{get\-Property\-Type} () const 
-\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
 double \hyperlink{class_w_double_property_ac771c45522b2682056081700effc7930}{get\-Value} (bool $\ast$success) const 
 \begin{DoxyCompactList}\small\item\em Gets this property's value as double . \end{DoxyCompactList}\item 
 bool \hyperlink{class_w_double_property_acf72db76ced6c2dc50027bc2714be73b}{can\-Convert} () const 
@@ -96,24 +96,6 @@ True if conversion is possible, false otherwise.
 
 Implements \hyperlink{class_i_double_property_afe5368913e955ec08c2797521d43d24a}{I\-Double\-Property}.
 
-\hypertarget{class_w_double_property_a494eec753c15d18604dc4323f2acdd91}{\index{W\-Double\-Property@{W\-Double\-Property}!get\-Property\-Type@{get\-Property\-Type}}
-\index{get\-Property\-Type@{get\-Property\-Type}!WDoubleProperty@{W\-Double\-Property}}
-\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Property\-\_\-t} W\-Double\-Property\-::get\-Property\-Type (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_double_property_a494eec753c15d18604dc4323f2acdd91}
-
-
-Returns the Property\-\_\-t to classify this property. 
-
-\begin{DoxyReturn}{Returns}
-Property\-\_\-t classifier. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{class_i_double_property_af14b72afdd37a35b626a71caa7ada8b4}{I\-Double\-Property}.
-
 \hypertarget{class_w_double_property_ac771c45522b2682056081700effc7930}{\index{W\-Double\-Property@{W\-Double\-Property}!get\-Value@{get\-Value}}
 \index{get\-Value@{get\-Value}!WDoubleProperty@{W\-Double\-Property}}
 \subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}double W\-Double\-Property\-::get\-Value (
@@ -137,6 +119,25 @@ The property's value.
 
 Implements \hyperlink{class_i_double_property_af9143d685793a22249eb50b2515260ac}{I\-Double\-Property}.
 
+\hypertarget{class_w_double_property_a11a0a8b257e291fe896848a772e0505b}{\index{W\-Double\-Property@{W\-Double\-Property}!pass\-To@{pass\-To}}
+\index{pass\-To@{pass\-To}!WDoubleProperty@{W\-Double\-Property}}
+\subsubsection[{pass\-To}]{\setlength{\rightskip}{0pt plus 5cm}bool W\-Double\-Property\-::pass\-To (
+\begin{DoxyParamCaption}
+\item[{{\bf Property\-Variant} $\ast$}]{variant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_w_double_property_a11a0a8b257e291fe896848a772e0505b}
+
+
+Passes the property's value to the variant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variant} & Variant to pass to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if conversion succeeded, false otherwise. 
+\end{DoxyReturn}
 \hypertarget{class_w_double_property_a710f9b1c3c4a12682e9fa257b832ae89}{\index{W\-Double\-Property@{W\-Double\-Property}!set\-Value@{set\-Value}}
 \index{set\-Value@{set\-Value}!WDoubleProperty@{W\-Double\-Property}}
 \subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void W\-Double\-Property\-::set\-Value (

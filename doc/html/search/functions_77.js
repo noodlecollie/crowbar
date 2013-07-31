@@ -6,6 +6,7 @@ var searchData=
   ['wintproperty',['WIntProperty',['../class_w_int_property.html#a5d3ce207add6e3a5f3868010cf9f37e1',1,'WIntProperty']]],
   ['wlonglongproperty',['WLongLongProperty',['../class_w_long_long_property.html#a9005bf9802f0368cacd6d81e77abb514',1,'WLongLongProperty']]],
   ['wlongproperty',['WLongProperty',['../class_w_long_property.html#af8f2e6601d3bfd7a70a9f061bdb19fb3',1,'WLongProperty']]],
+  ['wpropertyvariant',['WPropertyVariant',['../class_w_property_variant.html#a6f8f1388b5544955cadabf31d11ae3c2',1,'WPropertyVariant']]],
   ['wstringproperty',['WStringProperty',['../class_w_string_property.html#a228ffc3c7c49e3964e0ed7d59d4e30dd',1,'WStringProperty']]],
   ['wuintproperty',['WUIntProperty',['../class_w_u_int_property.html#a7bd95ff163ad1bf9fcd995aff49919f5',1,'WUIntProperty']]],
   ['wulonglongproperty',['WULongLongProperty',['../class_w_u_long_long_property.html#a6f66a9a2fb1b6157a7dab9e721511235',1,'WULongLongProperty']]],

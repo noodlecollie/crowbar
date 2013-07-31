@@ -1,0 +1,31 @@
+\hypertarget{viewport2d_8h}{\section{app/viewport2d.h File Reference}
+\label{viewport2d_8h}\index{app/viewport2d.\-h@{app/viewport2d.\-h}}
+}
+
+
+Defines the basic 2\-D Open\-G\-L viewport class.  
+
+
+{\ttfamily \#include \char`\"{}openglwidget.\-h\char`\"{}}\\*
+Include dependency graph for viewport2d.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{viewport2d_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_ortho_projection}{Ortho\-Projection}
+\begin{DoxyCompactList}\small\item\em Convenience struct to hold four clipping plane values. \end{DoxyCompactList}\item 
+class \hyperlink{class_viewport2_d}{Viewport2\-D}
+\begin{DoxyCompactList}\small\item\em Viewport designed to render 2\-D orthographic content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines the basic 2\-D Open\-G\-L viewport class. The 2\-D viewport is used for displaying orthographic content as opposed to perspective-\/rendered 3\-D scenes. This is mostly used for top or side views of objects in the same way as Hammer's 2\-D viewports. \par
+
+
+Each 2\-D viewport has a zoom level. A zoom level of 1.\-0 means that each pixel in the viewport corresponds to an integer 2\-D co-\/ordinate in the scene (ie. a line from (0, 0) to (100, 0) would be 100 pixels long). Higher zoom levels mean that this separation is increased (objects appear larger) and lower zoom levels mean it is decreased (objects appear smaller). 

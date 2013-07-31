@@ -142,6 +142,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac224ce3448cbe08d9c1b28804233086b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_float_property.html#ac224ce3448cbe08d9c1b28804233086b">getPropertyType</a> () const </td></tr>
 <tr class="memdesc:ac224ce3448cbe08d9c1b28804233086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Property_t to classify this property.  <a href="#ac224ce3448cbe08d9c1b28804233086b">More...</a><br/></td></tr>
 <tr class="separator:ac224ce3448cbe08d9c1b28804233086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a811c6ebe512a45d4fba73cbfd486c8f6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_float_property.html#a811c6ebe512a45d4fba73cbfd486c8f6">passTo</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)</td></tr>
+<tr class="memdesc:a811c6ebe512a45d4fba73cbfd486c8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes the property's value to the variant.  <a href="#a811c6ebe512a45d4fba73cbfd486c8f6">More...</a><br/></td></tr>
+<tr class="separator:a811c6ebe512a45d4fba73cbfd486c8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91854af44926b14c2264d16d71c06f11"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_float_property.html#a91854af44926b14c2264d16d71c06f11">getValue</a> (bool *success) const </td></tr>
 <tr class="memdesc:a91854af44926b14c2264d16d71c06f11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this property's value as float .  <a href="#a91854af44926b14c2264d16d71c06f11">More...</a><br/></td></tr>
 <tr class="separator:a91854af44926b14c2264d16d71c06f11"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +182,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_property.html#ac882e4b94451ae00ab78d79afde84de5">setComment</a> (QString value)</td></tr>
 <tr class="memdesc:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the comment value as a raw string (without "//").  <a href="#ac882e4b94451ae00ab78d79afde84de5">More...</a><br/></td></tr>
 <tr class="separator:ac882e4b94451ae00ab78d79afde84de5 inherit pub_methods_class_base_property"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_property.html#ac326a09444274213c2a4ca1315ca37e5">setVariant</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)</td></tr>
+<tr class="memdesc:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relevant value in the passed variant to this property's value.  <a href="#ac326a09444274213c2a4ca1315ca37e5">More...</a><br/></td></tr>
+<tr class="separator:ac326a09444274213c2a4ca1315ca37e5 inherit pub_methods_class_base_property"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -302,7 +308,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the Property_t to classify this property. </p>
 <dl class="section return"><dt>Returns</dt><dd>Property_t classifier. </dd></dl>
 
-<p>Implements <a class="el" href="class_i_float_property.html#a8d82006574891b63c2de22f9b49755a2">IFloatProperty</a>.</p>
+<p>Reimplemented from <a class="el" href="class_base_property.html#a85239fb7297edb01c3176e4ce1b11132">BaseProperty</a>.</p>
 
 </div>
 </div>
@@ -338,6 +344,47 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The property's value. </dd></dl>
 
 <p>Implements <a class="el" href="class_i_float_property.html#a5f3b98066c898de66db9141b01253d60">IFloatProperty</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a811c6ebe512a45d4fba73cbfd486c8f6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FloatProperty::passTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_property_variant.html">PropertyVariant</a> *&#160;</td>
+          <td class="paramname"><em>variant</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes the property's value to the variant. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variant</td><td>Variant to pass to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if conversion succeeded, false otherwise.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variant</td><td>Variant to pass to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_i_float_property.html#ab2c6d31035b4a5385545740a337be706">IFloatProperty</a>.</p>
 
 </div>
 </div>
@@ -411,7 +458,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_float_property.html">FloatProperty</a></li>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:26 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

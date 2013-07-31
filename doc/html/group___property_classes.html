@@ -119,6 +119,15 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_base_property.html">BaseProperty</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base property class.  <a href="class_base_property.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_property_variant.html">IPropertyVariant</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface implemented by <a class="el" href="class_property_variant.html" title="Allows fetching of subclassed properties from a list of BaseProperty pointers. ">PropertyVariant</a>.  <a href="class_i_property_variant.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_w_property_variant.html">WPropertyVariant</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_property_variant.html" title="Allows fetching of subclassed properties from a list of BaseProperty pointers. ">PropertyVariant</a> interface wrapper.  <a href="class_w_property_variant.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_property_variant.html">PropertyVariant</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows fetching of subclassed properties from a list of <a class="el" href="class_base_property.html" title="Base property class. ">BaseProperty</a> pointers.  <a href="class_property_variant.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_string_property.html">IStringProperty</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MACRO PROPERTY INTERFACE FOR QString .  <a href="class_i_string_property.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,30 +216,47 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#gade3d7799947a250392e929b65d46f1d8">IBaseProperty_iid</a>&#160;&#160;&#160;&quot;Crowbar.Interfaces.IBaseProperty&quot;</td></tr>
 <tr class="memdesc:gade3d7799947a250392e929b65d46f1d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID for <a class="el" href="class_i_base_property.html" title="Base property interface. ">IBaseProperty</a> interface. <br/></td></tr>
 <tr class="separator:gade3d7799947a250392e929b65d46f1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f1443d00c2aa858e3321a7cdc6f5e4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2f1443d00c2aa858e3321a7cdc6f5e4a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga2f1443d00c2aa858e3321a7cdc6f5e4a">IPropertyVariant_iid</a>&#160;&#160;&#160;&quot;Crowbar.Interfaces.IPropertyVariant&quot;</td></tr>
+<tr class="memdesc:ga2f1443d00c2aa858e3321a7cdc6f5e4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique ID for <a class="el" href="class_i_property_variant.html" title="Interface implemented by PropertyVariant. ">IPropertyVariant</a> interface. <br/></td></tr>
+<tr class="separator:ga2f1443d00c2aa858e3321a7cdc6f5e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8621ccbce057779b93b54f2f06440126"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga8621ccbce057779b93b54f2f06440126">DECLARE_VARIANT_GETMETHOD</a>(_methodname, _type)&#160;&#160;&#160;_type _methodname() const { return m_##_type; }</td></tr>
+<tr class="memdesc:ga8621ccbce057779b93b54f2f06440126"><td class="mdescLeft">&#160;</td><td class="mdescRight">MACRO METHOD: Gets variant _type value.  <a href="#ga8621ccbce057779b93b54f2f06440126">More...</a><br/></td></tr>
+<tr class="separator:ga8621ccbce057779b93b54f2f06440126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab10c17d63104a3b2b6e8c26baeb1548b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#gab10c17d63104a3b2b6e8c26baeb1548b">DECLARE_VARIANT_SETMETHOD</a>(_methodname, _type)&#160;&#160;&#160;void _methodname(_type value) { m_##_type = value; }</td></tr>
+<tr class="memdesc:gab10c17d63104a3b2b6e8c26baeb1548b"><td class="mdescLeft">&#160;</td><td class="mdescRight">MACRO METHOD: Sets variant _type value.  <a href="#gab10c17d63104a3b2b6e8c26baeb1548b">More...</a><br/></td></tr>
+<tr class="separator:gab10c17d63104a3b2b6e8c26baeb1548b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ceaa3b2a99aaa90a1ea66489d2bcc86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga6ceaa3b2a99aaa90a1ea66489d2bcc86">DECLARE_VARIANT_TYPE</a>(_type)&#160;&#160;&#160;_type m_##_type;</td></tr>
+<tr class="memdesc:ga6ceaa3b2a99aaa90a1ea66489d2bcc86"><td class="mdescLeft">&#160;</td><td class="mdescRight">MACRO METHOD: Declares a member variable of the specified type, to be used with get and set methods.  <a href="#ga6ceaa3b2a99aaa90a1ea66489d2bcc86">More...</a><br/></td></tr>
+<tr class="separator:ga6ceaa3b2a99aaa90a1ea66489d2bcc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga336b645c5f84965e75abdf9213c0957e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga336b645c5f84965e75abdf9213c0957e">CLEAN_VARIANT_TYPE</a>(_type, _value)&#160;&#160;&#160;m_##_type = _value;</td></tr>
+<tr class="memdesc:ga336b645c5f84965e75abdf9213c0957e"><td class="mdescLeft">&#160;</td><td class="mdescRight">MACRO METHOD: Specifies the safe default value to set a data member to when the variant is cleaned. The type should have been declared with DECLARE_VARIANT_TYPE.  <a href="#ga336b645c5f84965e75abdf9213c0957e">More...</a><br/></td></tr>
+<tr class="separator:ga336b645c5f84965e75abdf9213c0957e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaac09fb32e07282e79330aeb7cfc9e5eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#gaac09fb32e07282e79330aeb7cfc9e5eb">DECLARE_PROPERTY_INTERFACE</a>(_classname, _wrapper, _type)</td></tr>
 <tr class="memdesc:gaac09fb32e07282e79330aeb7cfc9e5eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares a property interface with an interface classname, wrapper classname and data type (such as int).  <a href="#gaac09fb32e07282e79330aeb7cfc9e5eb">More...</a><br/></td></tr>
 <tr class="separator:gaac09fb32e07282e79330aeb7cfc9e5eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9b75216621cf38585610f12ce907d01c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga9b75216621cf38585610f12ce907d01c">DECLARE_NUMPROP</a>(_classname, _interface, _wrapper, _type, _proptype, _vnull)</td></tr>
 <tr class="memdesc:ga9b75216621cf38585610f12ce907d01c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares a number-type property which QString has the capability to convert to and from, in macro form for convenience.  <a href="#ga9b75216621cf38585610f12ce907d01c">More...</a><br/></td></tr>
 <tr class="separator:ga9b75216621cf38585610f12ce907d01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7a2a3856f997e7131ea7607b284b56b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga7a2a3856f997e7131ea7607b284b56b7">IMPLEMENT_NUMPROP</a>(_classname, _wrapper, _type, _cvtfunc)</td></tr>
-<tr class="memdesc:ga7a2a3856f997e7131ea7607b284b56b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the functions for a property declared previously with DECLARE_NUMPROP.  <a href="#ga7a2a3856f997e7131ea7607b284b56b7">More...</a><br/></td></tr>
-<tr class="separator:ga7a2a3856f997e7131ea7607b284b56b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae16b8183fbdf59c5bf8809835a2617e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#gae16b8183fbdf59c5bf8809835a2617e5">IMPLEMENT_NUMPROP</a>(_classname, _wrapper, _type, _cvtfunc, _variantfunc)</td></tr>
+<tr class="memdesc:gae16b8183fbdf59c5bf8809835a2617e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the functions for a property declared previously with DECLARE_NUMPROP.  <a href="#gae16b8183fbdf59c5bf8809835a2617e5">More...</a><br/></td></tr>
+<tr class="separator:gae16b8183fbdf59c5bf8809835a2617e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga38f1ccddda12c7cb50b868c9f789ee37"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a> { <br/>
-&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260">Prop_String</a> = 0, 
+&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29">Prop_None</a> = -1, 
+<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260">Prop_String</a>, 
 <a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7">Prop_Int</a>, 
 <a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37ac42814aa5ea34e3b019db068494eed4d">Prop_UInt</a>, 
-<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a48c7c9a2c7bf7b44ae8d4493b5122925">Prop_Long</a>, 
 <br/>
-&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a19c6a4ad42555fcc0e2fac1d50fd2035">Prop_ULong</a>, 
+&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a48c7c9a2c7bf7b44ae8d4493b5122925">Prop_Long</a>, 
+<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a19c6a4ad42555fcc0e2fac1d50fd2035">Prop_ULong</a>, 
 <a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a002f0049641d4e6f52901f023ef44f0c">Prop_Float</a>, 
 <a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a63a9d61b306c5306a47c5126ebd7200e">Prop_Double</a>, 
-<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a1a1448256ec42f662e39fe120b92073a">Prop_LongLong</a>, 
 <br/>
-&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37aeb9cf79aeea684f28a149fdcd0f593aa">Prop_ULongLong</a>
+&#160;&#160;<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37a1a1448256ec42f662e39fe120b92073a">Prop_LongLong</a>, 
+<a class="el" href="group___property_classes.html#gga38f1ccddda12c7cb50b868c9f789ee37aeb9cf79aeea684f28a149fdcd0f593aa">Prop_ULongLong</a>
 <br/>
  }</td></tr>
 <tr class="memdesc:ga38f1ccddda12c7cb50b868c9f789ee37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Property type identifiers.  <a href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">More...</a><br/></td></tr>
@@ -238,6 +264,41 @@ Enumerations</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="ga336b645c5f84965e75abdf9213c0957e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CLEAN_VARIANT_TYPE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;m_##_type = _value;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MACRO METHOD: Specifies the safe default value to set a data member to when the variant is cleaned. The type should have been declared with DECLARE_VARIANT_TYPE. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_type</td><td>Data type to clean. </td></tr>
+    <tr><td class="paramname">_value</td><td>Value to set the data member to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ga9b75216621cf38585610f12ce907d01c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +404,106 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga7a2a3856f997e7131ea7607b284b56b7"></a>
+<a class="anchor" id="ga8621ccbce057779b93b54f2f06440126"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECLARE_VARIANT_GETMETHOD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_methodname, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;_type _methodname() const { return m_##_type; }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MACRO METHOD: Gets variant _type value. </p>
+<p>When declaring this method, be sure to use DECLARE_VARIANT_TYPE inside the class for the desired data type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_methodname</td><td>Name of the function that will be available to call in code. </td></tr>
+    <tr><td class="paramname">_type</td><td>Data type that the method returns. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value as _type. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="gab10c17d63104a3b2b6e8c26baeb1548b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECLARE_VARIANT_SETMETHOD</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_methodname, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_type&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;void _methodname(_type value) { m_##_type = value; }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MACRO METHOD: Sets variant _type value. </p>
+<p>When declaring this method, be sure to use DECLARE_VARIANT_TYPE inside the class for the desired data type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_methodname</td><td>Name of the function that will be available to call in code. </td></tr>
+    <tr><td class="paramname">_type</td><td>Data type that the method passes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga6ceaa3b2a99aaa90a1ea66489d2bcc86"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECLARE_VARIANT_TYPE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_type)</td><td></td>
+          <td>&#160;&#160;&#160;_type m_##_type;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MACRO METHOD: Declares a member variable of the specified type, to be used with get and set methods. </p>
+<dl class="section note"><dt>Note</dt><dd>It is only possible to declare one member for any specific data type. Further declarations will simply re-declare the same member. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_type</td><td>Data type to declare.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>_type value. </p>
+
+</div>
+</div>
+<a class="anchor" id="gae16b8183fbdf59c5bf8809835a2617e5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -369,7 +529,13 @@ Enumerations</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">_cvtfunc&#160;</td>
+          <td class="paramname">_cvtfunc, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_variantfunc&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -386,6 +552,7 @@ Enumerations</h2></td></tr>
     <tr><td class="paramname">_wrapper</td><td>Name of its interface wrapper. </td></tr>
     <tr><td class="paramname">_type</td><td>Type returned by getValue. </td></tr>
     <tr><td class="paramname">_cvtfunc</td><td>Name of QString function (without any associated parantheses) that returns the value string as a _type (eg. toInt). </td></tr>
+    <tr><td class="paramname">_variantfunc</td><td>Name of function to call in variant to pass value over. </td></tr>
   </table>
   </dd>
 </dl>
@@ -406,7 +573,10 @@ Enumerations</h2></td></tr>
 <p>Property type identifiers. </p>
 <p>Used to classify what data type a property holds. When subclassing a new property, define a new identifier here. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260"></a>Prop_String</em>&nbsp;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="gga38f1ccddda12c7cb50b868c9f789ee37a14429bef1f04b883474e765ca0c3ae29"></a>Prop_None</em>&nbsp;</td><td class="fielddoc">
+<p>Property is an instance of <a class="el" href="class_base_property.html" title="Base property class. ">BaseProperty</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="gga38f1ccddda12c7cb50b868c9f789ee37a54096075ee9bf1c6f2e44ad7cea76260"></a>Prop_String</em>&nbsp;</td><td class="fielddoc">
 <p>Property value holds a string. </p>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="gga38f1ccddda12c7cb50b868c9f789ee37aebb523c385feb37fcde4c6d7073224b7"></a>Prop_Int</em>&nbsp;</td><td class="fielddoc">
@@ -442,7 +612,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:26 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

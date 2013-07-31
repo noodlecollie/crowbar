@@ -129,9 +129,6 @@ Inheritance diagram for IUIntProperty:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a64bce0a1e93666424d3252e78216fa33"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_u_int_property.html#a64bce0a1e93666424d3252e78216fa33">getPropertyType</a> () const =0</td></tr>
-<tr class="memdesc:a64bce0a1e93666424d3252e78216fa33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Property_t to classify this property.  <a href="#a64bce0a1e93666424d3252e78216fa33">More...</a><br/></td></tr>
-<tr class="separator:a64bce0a1e93666424d3252e78216fa33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3c17d292a74241f1d80b10be434edde"><td class="memItemLeft" align="right" valign="top">virtual uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_u_int_property.html#af3c17d292a74241f1d80b10be434edde">getValue</a> (bool *success) const =0</td></tr>
 <tr class="memdesc:af3c17d292a74241f1d80b10be434edde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this property's value as uint .  <a href="#af3c17d292a74241f1d80b10be434edde">More...</a><br/></td></tr>
 <tr class="separator:af3c17d292a74241f1d80b10be434edde"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +138,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4fa6fa9ef5663109772bf51123323c87"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_u_int_property.html#a4fa6fa9ef5663109772bf51123323c87">canConvert</a> () const =0</td></tr>
 <tr class="memdesc:a4fa6fa9ef5663109772bf51123323c87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not the property's value can be successfully converted.  <a href="#a4fa6fa9ef5663109772bf51123323c87">More...</a><br/></td></tr>
 <tr class="separator:a4fa6fa9ef5663109772bf51123323c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1d04eae6cfa51bdd17157aa5dc348c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_u_int_property.html#a1f1d04eae6cfa51bdd17157aa5dc348c">passTo</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)=0</td></tr>
+<tr class="memdesc:a1f1d04eae6cfa51bdd17157aa5dc348c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes the property's value to the variant.  <a href="#a1f1d04eae6cfa51bdd17157aa5dc348c">More...</a><br/></td></tr>
+<tr class="separator:a1f1d04eae6cfa51bdd17157aa5dc348c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>MACRO PROPERTY INTERFACE FOR uint . </p>
@@ -171,34 +171,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if conversion is possible, false otherwise. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_u_int_property.html#a3f9986864fcd8cbfefd69245dc7aadfe">UIntProperty</a>, and <a class="el" href="class_w_u_int_property.html#a27a4e53bf0702e796c6eecfbe9803221">WUIntProperty</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a64bce0a1e93666424d3252e78216fa33"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a> IUIntProperty::getPropertyType </td>
-          <td>(</td>
-          <td class="paramname">)</td><td></td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the Property_t to classify this property. </p>
-<dl class="section return"><dt>Returns</dt><dd>Property_t classifier. </dd></dl>
-
-<p>Implemented in <a class="el" href="class_u_int_property.html#a3c42cb68115d9ac7fec4887de32d867e">UIntProperty</a>, and <a class="el" href="class_w_u_int_property.html#aca0e744b443199cc75c68bf4f4a3e67b">WUIntProperty</a>.</p>
 
 </div>
 </div>
@@ -234,6 +206,41 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The property's value. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_u_int_property.html#a9f1ce8733358de31a642990168f3f61d">UIntProperty</a>, and <a class="el" href="class_w_u_int_property.html#af79534aa085135c8c642a1e929119147">WUIntProperty</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f1d04eae6cfa51bdd17157aa5dc348c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool IUIntProperty::passTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_property_variant.html">PropertyVariant</a> *&#160;</td>
+          <td class="paramname"><em>variant</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes the property's value to the variant. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variant</td><td>Variant to pass to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if conversion succeeded, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_u_int_property.html#a05bc135083b0c2aa2ced87c2bff1ec19">UIntProperty</a>.</p>
 
 </div>
 </div>
@@ -280,7 +287,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_i_u_int_property.html">IUIntProperty</a></li>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:26 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

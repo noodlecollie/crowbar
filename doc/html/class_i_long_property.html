@@ -129,9 +129,6 @@ Inheritance diagram for ILongProperty:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aff0812e50e088884a74f646f3fb3c3e7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_long_property.html#aff0812e50e088884a74f646f3fb3c3e7">getPropertyType</a> () const =0</td></tr>
-<tr class="memdesc:aff0812e50e088884a74f646f3fb3c3e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Property_t to classify this property.  <a href="#aff0812e50e088884a74f646f3fb3c3e7">More...</a><br/></td></tr>
-<tr class="separator:aff0812e50e088884a74f646f3fb3c3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52a9796a321b4453f1162fe46746bbcd"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_long_property.html#a52a9796a321b4453f1162fe46746bbcd">getValue</a> (bool *success) const =0</td></tr>
 <tr class="memdesc:a52a9796a321b4453f1162fe46746bbcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets this property's value as long .  <a href="#a52a9796a321b4453f1162fe46746bbcd">More...</a><br/></td></tr>
 <tr class="separator:a52a9796a321b4453f1162fe46746bbcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +138,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad6eb15873636142deab4423de11e1ef8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_long_property.html#ad6eb15873636142deab4423de11e1ef8">canConvert</a> () const =0</td></tr>
 <tr class="memdesc:ad6eb15873636142deab4423de11e1ef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not the property's value can be successfully converted.  <a href="#ad6eb15873636142deab4423de11e1ef8">More...</a><br/></td></tr>
 <tr class="separator:ad6eb15873636142deab4423de11e1ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8484a6655a0b12268f8cb88bda1a357f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_long_property.html#a8484a6655a0b12268f8cb88bda1a357f">passTo</a> (<a class="el" href="class_property_variant.html">PropertyVariant</a> *variant)=0</td></tr>
+<tr class="memdesc:a8484a6655a0b12268f8cb88bda1a357f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes the property's value to the variant.  <a href="#a8484a6655a0b12268f8cb88bda1a357f">More...</a><br/></td></tr>
+<tr class="separator:a8484a6655a0b12268f8cb88bda1a357f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>MACRO PROPERTY INTERFACE FOR long . </p>
@@ -171,34 +171,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if conversion is possible, false otherwise. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_long_property.html#a0ae32c7376a8a19ac6ac3010c7143f75">LongProperty</a>, and <a class="el" href="class_w_long_property.html#af0761e534c58bf6b41776dc1298daf8a">WLongProperty</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aff0812e50e088884a74f646f3fb3c3e7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="group___property_classes.html#ga38f1ccddda12c7cb50b868c9f789ee37">Property_t</a> ILongProperty::getPropertyType </td>
-          <td>(</td>
-          <td class="paramname">)</td><td></td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Returns the Property_t to classify this property. </p>
-<dl class="section return"><dt>Returns</dt><dd>Property_t classifier. </dd></dl>
-
-<p>Implemented in <a class="el" href="class_long_property.html#a896acbfd359960cf26185c278b6ed85a">LongProperty</a>, and <a class="el" href="class_w_long_property.html#a0511fc3ecd73ac409337251d7f54b1d2">WLongProperty</a>.</p>
 
 </div>
 </div>
@@ -234,6 +206,41 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The property's value. </dd></dl>
 
 <p>Implemented in <a class="el" href="class_long_property.html#a6340f40f5db6887ecef15842faddbc58">LongProperty</a>, and <a class="el" href="class_w_long_property.html#a2832bb647a51aa6688d4323e44254314">WLongProperty</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8484a6655a0b12268f8cb88bda1a357f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ILongProperty::passTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_property_variant.html">PropertyVariant</a> *&#160;</td>
+          <td class="paramname"><em>variant</em>)</td><td></td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes the property's value to the variant. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">variant</td><td>Variant to pass to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if conversion succeeded, false otherwise. </dd></dl>
+
+<p>Implemented in <a class="el" href="class_long_property.html#ac74b939a16df760aaedd2057a58568d1">LongProperty</a>.</p>
 
 </div>
 </div>
@@ -280,7 +287,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_i_long_property.html">ILongProperty</a></li>
-    <li class="footer">Generated on Wed Jul 3 2013 17:39:26 for Crowbar by
+    <li class="footer">Generated on Wed Jul 31 2013 17:59:06 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

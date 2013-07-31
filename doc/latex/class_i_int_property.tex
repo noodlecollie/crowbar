@@ -23,14 +23,14 @@ Inheritance diagram for I\-Int\-Property\-:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_i_int_property_a09151bc49652e07a8b616d192d2f0401}{get\-Property\-Type} () const =0
-\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\item 
 virtual int \hyperlink{class_i_int_property_a32bd5be46bee5c4a53180498767f51d0}{get\-Value} (bool $\ast$success) const =0
 \begin{DoxyCompactList}\small\item\em Gets this property's value as int . \end{DoxyCompactList}\item 
 virtual void \hyperlink{class_i_int_property_a6ba40997660af79851cbeaff5180e61d}{set\-Value} (int value)=0
 \begin{DoxyCompactList}\small\item\em Sets the property's value as int . \end{DoxyCompactList}\item 
 virtual bool \hyperlink{class_i_int_property_a25375f7c817ab7a1aeaef72a5bcfafdd}{can\-Convert} () const =0
-\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns whether or not the property's value can be successfully converted. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_i_int_property_a687991633f9155591842ac627cbc80f9}{pass\-To} (\hyperlink{class_property_variant}{Property\-Variant} $\ast$variant)=0
+\begin{DoxyCompactList}\small\item\em Passes the property's value to the variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -57,24 +57,6 @@ True if conversion is possible, false otherwise.
 
 Implemented in \hyperlink{class_int_property_a3ce0216893c32bae0bb469fe1f82f83c}{Int\-Property}, and \hyperlink{class_w_int_property_a2aadf339189421871abccd98b553ce6b}{W\-Int\-Property}.
 
-\hypertarget{class_i_int_property_a09151bc49652e07a8b616d192d2f0401}{\index{I\-Int\-Property@{I\-Int\-Property}!get\-Property\-Type@{get\-Property\-Type}}
-\index{get\-Property\-Type@{get\-Property\-Type}!IIntProperty@{I\-Int\-Property}}
-\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Property\-\_\-t} I\-Int\-Property\-::get\-Property\-Type (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_int_property_a09151bc49652e07a8b616d192d2f0401}
-
-
-Returns the Property\-\_\-t to classify this property. 
-
-\begin{DoxyReturn}{Returns}
-Property\-\_\-t classifier. 
-\end{DoxyReturn}
-
-
-Implemented in \hyperlink{class_int_property_a3747830573f747807d40a6cb201b2137}{Int\-Property}, and \hyperlink{class_w_int_property_a7881a1f19cf84fc5552188393cf5d7d9}{W\-Int\-Property}.
-
 \hypertarget{class_i_int_property_a32bd5be46bee5c4a53180498767f51d0}{\index{I\-Int\-Property@{I\-Int\-Property}!get\-Value@{get\-Value}}
 \index{get\-Value@{get\-Value}!IIntProperty@{I\-Int\-Property}}
 \subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}virtual int I\-Int\-Property\-::get\-Value (
@@ -97,6 +79,29 @@ The property's value.
 
 
 Implemented in \hyperlink{class_int_property_a721123bb68dd46f0d0247012b663d4ba}{Int\-Property}, and \hyperlink{class_w_int_property_aea678a96a398024ac3cdcdb31e5999de}{W\-Int\-Property}.
+
+\hypertarget{class_i_int_property_a687991633f9155591842ac627cbc80f9}{\index{I\-Int\-Property@{I\-Int\-Property}!pass\-To@{pass\-To}}
+\index{pass\-To@{pass\-To}!IIntProperty@{I\-Int\-Property}}
+\subsubsection[{pass\-To}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool I\-Int\-Property\-::pass\-To (
+\begin{DoxyParamCaption}
+\item[{{\bf Property\-Variant} $\ast$}]{variant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_i_int_property_a687991633f9155591842ac627cbc80f9}
+
+
+Passes the property's value to the variant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variant} & Variant to pass to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if conversion succeeded, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_int_property_af7c54a340e388a667f68b6ddbec68f6e}{Int\-Property}.
 
 \hypertarget{class_i_int_property_a6ba40997660af79851cbeaff5180e61d}{\index{I\-Int\-Property@{I\-Int\-Property}!set\-Value@{set\-Value}}
 \index{set\-Value@{set\-Value}!IIntProperty@{I\-Int\-Property}}

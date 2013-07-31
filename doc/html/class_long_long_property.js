@@ -4,6 +4,7 @@ var class_long_long_property =
     [ "canConvert", "class_long_long_property.html#a2690f56d6b804d37eec1457250da4acb", null ],
     [ "getPropertyType", "class_long_long_property.html#aef541867fa0047705e5ceb968da5073d", null ],
     [ "getValue", "class_long_long_property.html#a55da84c1e1c5db5431a3b5ddae6a72eb", null ],
+    [ "passTo", "class_long_long_property.html#a4954cdf7702dcefc7e072934b2b4e80c", null ],
     [ "setValue", "class_long_long_property.html#abff074961b681f08072260664b0221f6", null ],
     [ "slotsFor", "class_long_long_property.html#a1a835b6e035572c098c27b21931c3d7f", null ]
 ];

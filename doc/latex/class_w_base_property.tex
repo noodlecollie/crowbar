@@ -38,7 +38,9 @@ void \hyperlink{class_w_base_property_a8f799b2109e340ce459c34d3fba5ad7a}{set\-Ke
 void \hyperlink{class_w_base_property_a43fcf4605167b151729d051d37f3fd1d}{set\-Value\-Raw} (Q\-String value)
 \begin{DoxyCompactList}\small\item\em Sets the property value as a raw string, ignoring the intended property format. \end{DoxyCompactList}\item 
 void \hyperlink{class_w_base_property_ac3512628c101c5ba985eeae43d13521e}{set\-Comment} (Q\-String value)
-\begin{DoxyCompactList}\small\item\em Sets the comment value as a raw string (without \char`\"{}//\char`\"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the comment value as a raw string (without \char`\"{}//\char`\"{}). \end{DoxyCompactList}\item 
+void \hyperlink{class_w_base_property_ab8f5c0a4a0e0bc255930cac48269364a}{set\-Variant} (\hyperlink{class_property_variant}{Property\-Variant} $\ast$variant)
+\begin{DoxyCompactList}\small\item\em Sets the relevant value in the passed variant to this property's value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,7 +51,9 @@ Q\-String \hyperlink{class_w_base_property_a4c0e55c7b0a19a7685b30a985b72524a}{ge
 Q\-String \hyperlink{class_w_base_property_a49ba3186114cd7a0bb730a1a703af1eb}{get\-Value\-Raw} () const 
 \begin{DoxyCompactList}\small\item\em Returns the property value as a raw string. \end{DoxyCompactList}\item 
 Q\-String \hyperlink{class_w_base_property_a60750f9c78b6cbd7ec3fc1bfa9ae53fe}{get\-Comment} () const 
-\begin{DoxyCompactList}\small\item\em Returns the comment value as a raw string (without \char`\"{}//\char`\"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the comment value as a raw string (without \char`\"{}//\char`\"{}). \end{DoxyCompactList}\item 
+\hyperlink{group___property_classes_ga38f1ccddda12c7cb50b868c9f789ee37}{Property\-\_\-t} \hyperlink{class_w_base_property_a1c0ae01f0eab91bff49f497f0ceba0de}{get\-Property\-Type} () const 
+\begin{DoxyCompactList}\small\item\em Returns the Property\-\_\-t to classify this property. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -118,6 +122,24 @@ Q\-String representing the property's key.
 
 Implements \hyperlink{class_i_base_property_acbec936e956aa7fe59737af25e8b1962}{I\-Base\-Property}.
 
+\hypertarget{class_w_base_property_a1c0ae01f0eab91bff49f497f0ceba0de}{\index{W\-Base\-Property@{W\-Base\-Property}!get\-Property\-Type@{get\-Property\-Type}}
+\index{get\-Property\-Type@{get\-Property\-Type}!WBaseProperty@{W\-Base\-Property}}
+\subsubsection[{get\-Property\-Type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Property\-\_\-t} W\-Base\-Property\-::get\-Property\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_w_base_property_a1c0ae01f0eab91bff49f497f0ceba0de}
+
+
+Returns the Property\-\_\-t to classify this property. 
+
+\begin{DoxyReturn}{Returns}
+Property\-\_\-t classifier. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_base_property_a83c4556f10c671e727d856c3be11428c}{I\-Base\-Property}.
+
 \hypertarget{class_w_base_property_a49ba3186114cd7a0bb730a1a703af1eb}{\index{W\-Base\-Property@{W\-Base\-Property}!get\-Value\-Raw@{get\-Value\-Raw}}
 \index{get\-Value\-Raw@{get\-Value\-Raw}!WBaseProperty@{W\-Base\-Property}}
 \subsubsection[{get\-Value\-Raw}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String W\-Base\-Property\-::get\-Value\-Raw (
@@ -182,6 +204,22 @@ Sets the property value as a raw string, ignoring the intended property format.
 
 \begin{DoxyParams}{Parameters}
 {\em value} & String value to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_w_base_property_ab8f5c0a4a0e0bc255930cac48269364a}{\index{W\-Base\-Property@{W\-Base\-Property}!set\-Variant@{set\-Variant}}
+\index{set\-Variant@{set\-Variant}!WBaseProperty@{W\-Base\-Property}}
+\subsubsection[{set\-Variant}]{\setlength{\rightskip}{0pt plus 5cm}void W\-Base\-Property\-::set\-Variant (
+\begin{DoxyParamCaption}
+\item[{{\bf Property\-Variant} $\ast$}]{variant}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [slot]}}}\label{class_w_base_property_ab8f5c0a4a0e0bc255930cac48269364a}
+
+
+Sets the relevant value in the passed variant to this property's value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variant} & Variant in which to set the value. \\
 \hline
 \end{DoxyParams}
 

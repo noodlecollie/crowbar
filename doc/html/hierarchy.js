@@ -1,13 +1,5 @@
 var hierarchy =
 [
-    [ "__GLXEvent", "union_____g_l_x_event.html", null ],
-    [ "_GPU_DEVICE", "struct___g_p_u___d_e_v_i_c_e.html", null ],
-    [ "GLXBufferClobberEventSGIX", "struct_g_l_x_buffer_clobber_event_s_g_i_x.html", null ],
-    [ "GLXHyperpipeConfigSGIX", "struct_g_l_x_hyperpipe_config_s_g_i_x.html", null ],
-    [ "GLXHyperpipeNetworkSGIX", "struct_g_l_x_hyperpipe_network_s_g_i_x.html", null ],
-    [ "GLXPbufferClobberEvent", "struct_g_l_x_pbuffer_clobber_event.html", null ],
-    [ "GLXPipeRect", "struct_g_l_x_pipe_rect.html", null ],
-    [ "GLXPipeRectLimits", "struct_g_l_x_pipe_rect_limits.html", null ],
     [ "IBaseProperty", "class_i_base_property.html", [
       [ "BaseProperty", "class_base_property.html", [
         [ "DoubleProperty", "class_double_property.html", null ],
@@ -43,6 +35,10 @@ var hierarchy =
       [ "WLongProperty", "class_w_long_property.html", null ]
     ] ],
     [ "IPlugin", "class_i_plugin.html", null ],
+    [ "IPropertyVariant", "class_i_property_variant.html", [
+      [ "PropertyVariant", "class_property_variant.html", null ],
+      [ "WPropertyVariant", "class_w_property_variant.html", null ]
+    ] ],
     [ "IStringProperty", "class_i_string_property.html", [
       [ "StringProperty", "class_string_property.html", null ],
       [ "WStringProperty", "class_w_string_property.html", null ]
@@ -59,6 +55,13 @@ var hierarchy =
       [ "ULongProperty", "class_u_long_property.html", null ],
       [ "WULongProperty", "class_w_u_long_property.html", null ]
     ] ],
+    [ "OpenGLInitialiser", "struct_open_g_l_initialiser.html", null ],
+    [ "OrthoProjection", "struct_ortho_projection.html", null ],
+    [ "QGLWidget", null, [
+      [ "OpenGLWidget", "class_open_g_l_widget.html", [
+        [ "Viewport2D", "class_viewport2_d.html", null ]
+      ] ]
+    ] ],
     [ "QMainWindow", null, [
       [ "MainWin", "class_main_win.html", null ]
     ] ],
@@ -66,12 +69,14 @@ var hierarchy =
       [ "BaseProperty", "class_base_property.html", null ],
       [ "CommandLineParser", "class_command_line_parser.html", null ],
       [ "PluginManager", "class_plugin_manager.html", null ],
+      [ "PropertyVariant", "class_property_variant.html", null ],
       [ "WBaseProperty", "class_w_base_property.html", null ],
       [ "WDoubleProperty", "class_w_double_property.html", null ],
       [ "WFloatProperty", "class_w_float_property.html", null ],
       [ "WIntProperty", "class_w_int_property.html", null ],
       [ "WLongLongProperty", "class_w_long_long_property.html", null ],
       [ "WLongProperty", "class_w_long_property.html", null ],
+      [ "WPropertyVariant", "class_w_property_variant.html", null ],
       [ "WStringProperty", "class_w_string_property.html", null ],
       [ "WUIntProperty", "class_w_u_int_property.html", null ],
       [ "WULongLongProperty", "class_w_u_long_long_property.html", null ],
