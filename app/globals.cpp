@@ -11,10 +11,17 @@ QList<MainWin*>*    g_pWindowTracker;
 // Creates a simple QMessageBox with an OK button that shows the specified message.
 void ShowMessageBox(QString message)
 {
-    QMessageBox box;
-    box.setMinimumSize(300, 200);
-    box.setText(message);
-    box.exec();
+//    QMessageBox box;
+//    box.setMinimumSize(300, 200);
+//    box.setText(message);
+//    box.exec();
+    // Oops! Qt already had this as a static function.
+    QMessageBox::information(NULL, "Crowbar", message);
+}
+
+void ShowErrorBox(QString message)
+{
+    QMessageBox::critical(NULL, "Crowbar", message);
 }
 
 // Logs a message, optionally excluding the terminating '\n' character.

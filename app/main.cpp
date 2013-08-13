@@ -5,12 +5,22 @@
 #include "commandlineparser.h"
 #include "globals.h"
 #include <QString>
+#include <QGLFormat>
 
+#include "face.h" // TEMP
 #include "viewport2d.h" // TEMP
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
+
+    // Check for correct OpenGL version.
+    // Qt supports the OpenGL core profile from version 3.1 upwards.
+    if (!QGLFormat::openGLVersionFlags().testFlag(QGLFormat::OpenGL_Version_3_1))
+    {
+        ShowErrorBox("An OpenGL level of 3.1 or above is required but\nis not supported by the system.");
+        return 1;
+    }
 
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();
@@ -25,16 +35,7 @@ int main(int argc, char **argv)
     LogTaggedMessage("LOG", "Log Window Initialised.");
 
     MainWin win;
-
-    // TEMP
-    GLEnumList enables;
-    enables << GL_DEPTH_TEST /*<< GL_CULL_FACE*/ << GL_MULTISAMPLE;
-    GLenumPairList hints;
-    OpenGLInitialiser init = {GL_SMOOTH, QColor(0, 255, 0, 255), enables, GL_LEQUAL, hints};
-    Viewport2D* view = new Viewport2D();
-    view->setInitialiser(init);
-    win.setCentralWidget(view);
-    // TEMP
+    win.setCentralWidget(NULL);
 
     win.show();
     g_pLog->show(); // show() checks for debugging mode automatically.

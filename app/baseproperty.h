@@ -12,6 +12,7 @@
 #ifndef BASEPROPERTY_H
 #define BASEPROPERTY_H
 
+#if 0
 #include <QObject>
 #include <QPair>
 
@@ -450,4 +451,5 @@ private:
 
 /**@}*/
 
+#endif // IF_0
 #endif // BASEPROPERTY_H

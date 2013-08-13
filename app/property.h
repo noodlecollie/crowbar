@@ -1,6 +1,7 @@
 /*! \file property.h
- * \brief Defines more specific typed properties that inherit from BaseProperty.
+ * \brief DEPRECATED: Use QVariant() instead.
  *
+ * Defines more specific typed properties that inherit from BaseProperty. <br>
  * The property classes hold a key and a value - these are underlyingly represented as strings and BaseProperty subclasses
  * deal with binding these solidly to interfaces for a specific type. A property's key should endeavour to be unique
  * (it is not defined which property will be selected if two properties have the same key). <br> <br>
@@ -12,7 +13,10 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
+#if 0
 #include "baseproperty.h"
+
+#pragma deprecated(BaseProperty, IntProperty, UIntProperty, LongProperty, ULongProperty, FloatProperty, DoubleProperty, LongLongProperty, ULongLongProperty)
 
 //! \def DECLARE_PROPERTY_INTERFACE(_classname, _wrapper, _type)
 //! \brief Declares a property interface with an interface classname, wrapper classname and data type (such as int).
@@ -306,4 +310,5 @@ DECLARE_NUMPROP(ULongLongProperty, IULongLongProperty, WULongLongProperty, qulon
 
 /**@}*/
 
+#endif // IF_0
 #endif // PROPERTY_H

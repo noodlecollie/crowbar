@@ -1,6 +1,7 @@
 #include "baseproperty.h"
 #include <QString>
 
+#if 0
 // ===== Base Property ===== //
 BaseProperty::BaseProperty(QObject *parent, QString key, QString value, QString comment) :
     QObject(parent)
@@ -64,3 +65,5 @@ void PropertyVariant::clean()
     CLEAN_VARIANT_TYPE(qlonglong, 0)
     CLEAN_VARIANT_TYPE(qulonglong, 0)
 }
+
+#endif // IF_0

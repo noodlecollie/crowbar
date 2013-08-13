@@ -1,5 +1,6 @@
 #include "viewport2d.h"
 #include <QVector2D>
+#include "debugmodel2d.h"
 
 OrthoProjection Viewport2D::ProjectionForViewport(int width, int height, double zoomLevel, QVector2D translation)
 {
@@ -68,5 +69,11 @@ void Viewport2D::paintGL()
 //    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, indices);
 //    glDisableClientState(GL_VERTEX_ARRAY);
 //    glDisableClientState(GL_NORMAL_ARRAY);
+
+// ===
+
+//    DebugModel::DebugModel2D model;
+//    setZoomLevel(20.0);
+//    model.draw();
     // TEST
 }

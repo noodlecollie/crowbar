@@ -1,5 +1,6 @@
 #include "property.h"
 
+#if 0
 // ===== String Property ===== //
 StringProperty::StringProperty(QObject *parent, QString key, QString value, QString comment) :
     BaseProperty(parent, key, value, comment)
@@ -31,3 +32,4 @@ IMPLEMENT_NUMPROP(FloatProperty, WFloatProperty, float, toFloat, setFloat)
 IMPLEMENT_NUMPROP(DoubleProperty, WDoubleProperty, double, toDouble, setDouble)
 IMPLEMENT_NUMPROP(LongLongProperty, WLongLongProperty, qlonglong, toLongLong, setLongLong)
 IMPLEMENT_NUMPROP(ULongLongProperty, WULongLongProperty, qulonglong, toULongLong, setULongLong)
+#endif // IF_0

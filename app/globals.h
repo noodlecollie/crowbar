@@ -43,8 +43,15 @@ extern CommandLineParser* g_pCmdLine;
 
 /**
  * @brief Creates a basic one-time modal message box with simple message and an "OK" button.
+ * @param message Message to display.
  */
-extern void ShowMessageBox(QString);
+extern void ShowMessageBox(QString message);
+
+/**
+ * @brief Creates a basic one-time modal error box with simple message and an "OK" button.
+ * @param message Message to display.
+ */
+extern void ShowErrorBox(QString message);
 
 // ========== Logging/Debugging ==========
 /**
