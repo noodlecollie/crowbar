@@ -76,6 +76,24 @@ public:
      * @return Render colour.
      */
     inline QColor getColour() const { return m_Colour; }
+    
+    /**
+     * @brief Gets this vertex's normal.
+     * @return Normal vector.
+     */
+    inline QVector3D getNormal() const { return m_Normal; }
+    
+    /**
+     * @brief Gets this vertex's X texture co-ordinate.
+     * @return X co-ordinate.
+     */
+    inline float getTexCoordX() const { return m_flTexX; }
+    
+    /**
+     * @brief Gets this vertex's Y texture co-ordinate.
+     * @return Y co-ordinate.
+     */
+    inline float getTexCoordY() const { return m_flTexY; }
 
     // Set
     /**
@@ -103,6 +121,24 @@ public:
      * @param colour Colour to set.
      */
     inline void setColour(const QColor colour) { m_Colour = colour; }
+    
+    /**
+     * @brief Sets this vertex's normal.
+     * @param normal Normal to set.
+     */
+    inline void setNormal(const QVector3D normal) { m_Normal = normal; }
+    
+    /**
+     * @brief Sets this vertex's X texture co-ordinate.
+     * @param coord Co-ord to set.
+     */
+    inline void setTexCoordX(float coord) { m_flTexX = coord; }
+    
+    /**
+     * @brief Sets this vertex's Y texture co-ordinate.
+     * @param coord Co-ord to set.
+     */
+    inline void setTexCoordY(float coord) { m_flTexY = coord; }
 
     // IVertex3DRenderSpec
     /**
@@ -129,11 +165,19 @@ public:
      */
     virtual void V3RS_Normal(float normal[]) { normal[0] = m_Normal.x(); normal[1] = m_Normal.y(); normal[2] = m_Normal.z(); }
 
+    /**
+     * @brief Fills an array with the texture co-ordinate values for this vertex.
+     * @param coords Array to fill. Format is XY.
+     */
+    virtual void V3RS_Texture_Coords(float coords[]) { coords[0] = m_flTexX; coords[1] = m_flTexY; }
+
 private:
     QVector3D   m_Position; /**< Vector representing this vertex's position. */
     QVector3D   m_Normal;   /**< Vector representing this vertex's normal. */
     GEOMHANDLE  m_hID;      /**< Vertex's ID - 0 if unassigned. */
     QColor      m_Colour;   /**< Vertex's render colour. */
+    float       m_flTexX;   /**< X texture co-ordinate. */
+    float       m_flTexY;   /**< Y texture co-ordinate. */
 };
 
 #endif // VERTEX_H

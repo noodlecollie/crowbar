@@ -34,7 +34,19 @@ public:
      * @brief Fils an array with the normal vector values for this vertex.
      * @param normal Normal array to fill. Format is XYZ.
      */
-    virtual void V3RS_Normal(float normal[3]);
+    virtual void V3RS_Normal(float normal[3]) = 0;
+
+    /**
+     * @brief Fills an array with the texture co-ordinate values for this vertex.
+     * @param coords Array to fill. Format is XY.
+     */
+    virtual void V3RS_Texture_Coords(float coords[2]) = 0;
+
+    // 3x4 bytes for pos
+    // 4x1 byte for colour
+    // 3x4 bytes for normal
+    // 2x4 bytes for texture co-ords
+    enum { V3RS_TOTAL_DATA_TRANSFER = 36 };
 };
 
 //! \def IVertex3DRenderSpec_iid
