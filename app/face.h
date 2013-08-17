@@ -45,13 +45,8 @@ public:
         }
     }
 
-    // Get
-    /**
-     * @brief Gets this face's ID.
-     * @return ID of face, or 0 if unassigned.
-     */
-    inline GEOMHANDLE getId() const                                 { return m_hID; }
-
+    // ===== Begin get functions ===== \\
+    
     /**
      * @brief Returns the number of edges this face contains.
      * @return Number of edges.
@@ -88,13 +83,14 @@ public:
      * @return Face centre point.
      */
     inline QVector3D getCentrePoint() const                         { return m_Centre; }
-
-    // Set
-    /**
-     * @brief Sets the face's ID.
-     * @param id ID to set.
-     */
-    inline void setId(const GEOMHANDLE id)                          { m_hID = id; }
+    
+    inline GEOMHANDLE getGlobalHandle() const                       { return m_hGlobalHandle; }
+    
+    inline GEOMHANDLE getParentSolid() const                        { return m_hParentSolid; }
+    
+    // ===== End get functions ===== \\
+    
+    // ===== Begin set functions ===== \\
 
     /**
      * @brief Set's the face's plane.
@@ -107,17 +103,23 @@ public:
      * @param centre Centre point to set.
      */
     inline void setCentrePoint(const QVector3D centre)              { m_Centre = centre; }
+    
+    inline void setGlobalHandle(const GEOMHANDLE handle)            { m_hGlobalHandle = handle; }
+    
+    inline void setParentSolid(const GEOMHANDLE handle)             { m_hParentSolid = handle; }
+    
+    // ===== End set functions ===== \\
 
     /**
-     * @brief Adds an edge to the face's edge list.
-     * @note When checking for existence, this does not guarantee that only one instance of the specified edge
-     * is present as the function only looks for the first occurrence of an edge. Other subsequent edge clones
-     * could have been added without an existence check.
-     * @param edge Edge to add.
-     * @param checkForExistence If true, the edge will not be added if it is already found in the edge list.
-     * @return True if the edge was added, false if an existence check was run and the edge was already found.
+     * @brief Returns whether the face is composite. Composite faces contain more than
+     * just three edges (ie. they are composed of more than one triangle).
+     * @return True if face is composite, false otherwise.
      */
-    inline bool addEdge(const GEOMHANDLE edge, const bool checkForExistence = false);
+    inline bool isComposite()                                       { return m_hEdges->size() > 3; }
+
+    // TODO: Add function testing whether face is valid - no vertex must be used more than once
+    // per start/end in the face list apart from the beginning vertex, which must be v1 in the
+    // starting edge and v2 in the ending edge.
 
 private:
     inline void init()
@@ -145,7 +147,10 @@ private:
 
     // TODO: Add function to calculate centre point given vertices from a solid.
 
-    GEOMHANDLE          m_hID;
+    // Handles
+    GEOMHANDLE          m_hGlobalHandle;    /**< Handle representing the face's global unique ID. Must be unique but is not necessarily consecutive. */
+    GEOMHANDLE          m_hParentSolid;     /**< Global handle of parent solid this face belongs to. */
+    
     QList<GEOMHANDLE>*  m_hEdges;
     Plane               m_Plane;
     QVector3D           m_Centre;

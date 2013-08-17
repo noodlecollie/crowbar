@@ -51,13 +51,8 @@ public:
     {
     }
 
-    // Get
-    /**
-     * @brief Gets this face's ID.
-     * @return ID of face, or 0 if unassigned.
-     */
-    inline GEOMHANDLE getId() const                         { return m_hID; }
-
+    // ===== Begin get functions ===== \\
+    
     /**
      * @brief Returns the start vertex for this edge.
      * @return Start vertex ID.
@@ -87,14 +82,14 @@ public:
      * @return Co-ordinates of midpoint of edge.
      */
     inline QVector3D getMidpoint() const                    { return m_Centre; }
-
-    // Set
-    /**
-     * @brief Sets the edge's ID.
-     * @param id ID to set.
-     */
-    inline void setId(const GEOMHANDLE id)                  { m_hID = id; }
-
+    
+    inline GEOMHANDLE getGlobalHandle() const               { return m_hGlobalHandle; }
+    
+    inline GEOMHANDLE getParentSolid() const                { return m_hParentSolid; }
+    
+    // ===== End get functions ===== \\
+    
+    // ===== Begin set functions ===== \\
     /**
      * @brief Sets the edge's start vertex.
      * @param v Vertex ID to set.
@@ -124,17 +119,26 @@ public:
      * @param mid Co-ordinates of midpoint.
      */
     inline void setMidpoint(const QVector3D mid)            { m_Centre = mid; }
+    
+    inline void setGlobalHandle(const GEOMHANDLE handle)    { m_hGlobalHandle = handle; }
+    
+    inline void setParentSolid(const GEOMHANDLE handle)     { m_hParentSolid = handle; }
+    
+    // ===== End set functions ===== \\
 
     // TODO: Add a convenience function to change vertices, look up their IDs in a parent solid and
     // recalculate the midpoint (convenience function to do this too?) from the retrieved vector positions.
 
 private:
-    GEOMHANDLE m_hID;       /**< ID of edge. */
-    GEOMHANDLE m_hVStart;   /**< Start vertex of edge. */
-    GEOMHANDLE m_hVEnd;     /**< End vertex of edge. */
-    GEOMHANDLE m_hFRight;   /**< Right face of edge. */
-    GEOMHANDLE m_hFLeft;    /**< Left face of edge. */
-    QVector3D  m_Centre;    /**< Midpoint of edge. */
+    // Handles
+    GEOMHANDLE m_hGlobalHandle; /**< Handle representing the edge's global unique ID. Must be unique but is not necessarily consecutive. */
+    GEOMHANDLE m_hParentSolid;  /**< Global handle of parent solid this edge belongs to. */
+    
+    GEOMHANDLE m_hVStart;       /**< Start vertex of edge. */
+    GEOMHANDLE m_hVEnd;         /**< End vertex of edge. */
+    GEOMHANDLE m_hFRight;       /**< Right face of edge. */
+    GEOMHANDLE m_hFLeft;        /**< Left face of edge. */
+    QVector3D  m_Centre;        /**< Midpoint of edge. */
 };
 
 #endif // EDGE_H

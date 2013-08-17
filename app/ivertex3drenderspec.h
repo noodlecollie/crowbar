@@ -17,6 +17,13 @@ class IVertex3DRenderSpec
 {
 public:
     virtual ~IVertex3DRenderSpec() {}
+    
+    /**
+     * @brief Returns the offset of this vertex from the beginning of the VBO,
+     * in V3RS_TOTAL_DATA_TRANSFER steps.
+     * @return Offset for this vertex.
+     */
+    virtual unsigned long V3RS_Offset() = 0;
 
     /**
      * @brief Fills an array with the position values for this vertex.

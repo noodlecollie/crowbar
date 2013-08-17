@@ -14,6 +14,7 @@
 #include "ivertex3drenderspec.h"
 
 typedef unsigned long GEOMHANDLE;
+typedef unsigned long VBO_OFFSET;
 #define NULLHND 0
 
 class GeomMetaHandle
@@ -27,8 +28,10 @@ public:
 };
 
 /**
- * @brief Defines a vertex in 3D space. The vertex has a position and an integer ID that should be
- * unique amongst the elements of the pieceof geometry it belongs to.
+ * @brief Defines a vertex in 3D space. The vertex has an integer ID that should be
+ * unique amongst the elements of the pieceof geometry it belongs to. This ID does
+ * not have to be consecutive with the previous ID; the VBO offset, however, should
+ * be. TODO: Document this all better.
  */
 class Vertex3D : public GeomMetaHandle, public IVertex3DRenderSpec
 {
@@ -36,7 +39,8 @@ public:
     /**
      * @brief Constructor. Initialises position and ID to zero.
      */
-    Vertex3D() : m_Position(VEC3_ORIGIN), m_hID(NULLHND), m_Colour(255, 255, 255)
+    Vertex3D() : m_Position(VEC3_ORIGIN), m_Normal(VEC3_ORIGIN), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND), m_hVBOHandle(NULLHND),
+        m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0)
     {
     }
 
@@ -46,7 +50,8 @@ public:
      * @param y Y position.
      * @param z Z position.
      */
-    Vertex3D(const float x, const float y, const float z) : m_Position(QVector3D(x, y, z)), m_hID(NULLHND), m_Colour(255, 255, 255)
+    Vertex3D(const float x, const float y, const float z) : m_Position(QVector3D(x, y, z)), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND),
+        m_hVBOHandle(NULLHND), m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN)
     {
     }
 
@@ -54,16 +59,12 @@ public:
      * @brief Constructor specifying vertex position.
      * @param vec Vector representing position.
      */
-    Vertex3D(const QVector3D vec) : m_Position(vec), m_hID(NULLHND), m_Colour(255, 255, 255)
+    Vertex3D(const QVector3D vec) : m_Position(vec), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND), m_Colour(255, 255, 255),
+        m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN), m_hVBOHandle(NULLHND)
     {
     }
 
-    // Get
-    /**
-     * @brief Gets the vertex's ID.
-     * @return ID (0 if unassigned).
-     */
-    inline GEOMHANDLE getId() const { return m_hID; }
+    // ===== Begin get functions ===== \\
 
     /**
      * @brief Gets the vertex's position local to its parent geometry object.
@@ -94,13 +95,16 @@ public:
      * @return Y co-ordinate.
      */
     inline float getTexCoordY() const { return m_flTexY; }
+    
+    inline GEOMHANDLE getGlobalHandle() const { return m_hGlobalHandle; }
+    
+    inline VBO_OFFSET getVBOHandle() const { return m_hVBOHandle; }
+    
+    inline GEOMHANDLE getParentSolid() const { return m_hParentSolid; }
+    
+    // ===== End get functions ===== \\
 
-    // Set
-    /**
-     * @brief Sets the vertex's ID.
-     * @param id ID to set.
-     */
-    inline void setId(const GEOMHANDLE id) { m_hID = id; }
+    // ===== Begin set functions ===== \\
 
     /**
      * @brief Sets the vertex's position.
@@ -132,15 +136,23 @@ public:
      * @brief Sets this vertex's X texture co-ordinate.
      * @param coord Co-ord to set.
      */
-    inline void setTexCoordX(float coord) { m_flTexX = coord; }
+    inline void setTexCoordX(const float coord) { m_flTexX = coord; }
     
     /**
      * @brief Sets this vertex's Y texture co-ordinate.
      * @param coord Co-ord to set.
      */
-    inline void setTexCoordY(float coord) { m_flTexY = coord; }
+    inline void setTexCoordY(const float coord) { m_flTexY = coord; }
+    
+    inline void setGlobalHandle(const GEOMHANDLE handle) { m_hGlobalHandle = handle; }
+    
+    inline void setVBOHandle(const VBO_OFFSET handle) { m_hVBOHandle = handle; }
+    
+    inline void setParentSolid(const GEOMHANDLE handle) { m_hParentSolid = handle; }
+    
+    // ===== End set functions ===== \\
 
-    // IVertex3DRenderSpec
+    // ===== Begin IVertex3DRenderSpec ===== \\
     /**
      * @brief Fills an array with the position values for this vertex.
      * @param position Array to fill. Format is XYZ.
@@ -171,13 +183,26 @@ public:
      */
     virtual void V3RS_Texture_Coords(float coords[]) { coords[0] = m_flTexX; coords[1] = m_flTexY; }
 
+    /**
+     * @brief Returns the offset of this vertex from the beginning of the VBO,
+     * in V3RS_TOTAL_DATA_TRANSFER strides.
+     * @return Offset for this vertex.
+     */
+    virtual unsigned long V3RS_Offset() { return getVBOHandle; }
+    
+    // ===== End IVertex3DRenderSpec ===== \\
+    
 private:
-    QVector3D   m_Position; /**< Vector representing this vertex's position. */
-    QVector3D   m_Normal;   /**< Vector representing this vertex's normal. */
-    GEOMHANDLE  m_hID;      /**< Vertex's ID - 0 if unassigned. */
-    QColor      m_Colour;   /**< Vertex's render colour. */
-    float       m_flTexX;   /**< X texture co-ordinate. */
-    float       m_flTexY;   /**< Y texture co-ordinate. */
+    // Handles
+    GEOMHANDLE  m_hGlobalHandle;    /**< Handle representing the vertex's global unique ID. Must be unique but is not necessarily consecutive. */
+    VBO_OFFSET  m_hVBOHandle;       /**< Offset from the beginning of the parent solid's VBO sector to find this vertex. Not valid if parent solid is 0. */
+    GEOMHANDLE  m_hParentSolid;     /**< Global handle of parent solid this vertex belongs to. */
+    
+    QVector3D   m_Position;         /**< Vector representing this vertex's position. */
+    QVector3D   m_Normal;           /**< Vector representing this vertex's normal. */
+    QColor      m_Colour;           /**< Vertex's render colour. */
+    float       m_flTexX;           /**< X texture co-ordinate. */
+    float       m_flTexY;           /**< Y texture co-ordinate. */
 };
 
 #endif // VERTEX_H
