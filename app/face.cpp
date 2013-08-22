@@ -1,23 +1,35 @@
 #include "face.h"
 
-bool Face3D::addEdge(const GEOMHANDLE edge, const bool checkForExistence)
+// Does NOT check for edge existence.
+void Face3D::addEdge(GEOMHANDLE edge)
 {
-    int index = -1;
+    m_hEdges->append(edge);
+}
 
-    // Check whether the edge ID already exists.
-    if ( checkForExistence )
+bool Face3D::containsEdge(const GEOMHANDLE edge) const
+{
+    for ( int i = 0; i < m_hEdges->size(); i++ )
     {
-        index = m_hEdges->indexOf(edge);
+        if ( m_hEdges->at(i) == edge ) return true;
     }
+    
+    return false;
+}
 
-    // If we checked and no edge existed, or we didn't check at all,
-    // we should append to the end of the list.
-    if ( index == -1 )
+bool Face3D::containsAnyEdge(const QList<GEOMHANDLE> &edges) const
+{
+    for ( int i = 0; i < m_hEdges->size(); i++ )
     {
-        m_hEdges->append(edge);
-        return true;
+        GEOMHANDLE edge = m_hEdges->at(i);
+        
+        foreach(GEOMHANDLE h, edges)
+        {
+            if ( edge == h )
+            {
+                return true;
+            }
+        }
     }
-
-    // If the edge does already exist, don't add.
+    
     return false;
 }

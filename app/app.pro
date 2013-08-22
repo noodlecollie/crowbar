@@ -15,13 +15,13 @@ SOURCES += \
     baseproperty.cpp \
     property.cpp \
     openglwidget.cpp \
-    viewport2d.cpp \
-    debugmodel2d.cpp \
     octree/octree.tcc \
     mapdoc.cpp \
     face.cpp \
     plane.cpp \
-    solid.cpp
+    solid.cpp \
+    indexpool.cpp \
+    edge.cpp
 
 HEADERS += \
     mainwin.h \
@@ -33,8 +33,6 @@ HEADERS += \
     baseproperty.h \
     property.h \
     openglwidget.h \
-    viewport2d.h \
-    debugmodel2d.h \
     octree/tinyvector.h \
     octree/shareddata.h \
     octree/point3d.h \
@@ -49,7 +47,9 @@ HEADERS += \
     plane.h \
     matlib.h \
     ivertex3drenderspec.h \
-    solid.h
+    solid.h \
+    indexpool.h \
+    heap/binaryheap.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 #LIBS           = -Llib -lcbp_docmanager

@@ -7,8 +7,7 @@
 #include <QString>
 #include <QGLFormat>
 
-#include "face.h" // TEMP
-#include "viewport2d.h" // TEMP
+#include "solid.h" // TEMP
 
 int main(int argc, char **argv)
 {

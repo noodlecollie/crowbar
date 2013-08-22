@@ -1,6 +1,8 @@
 #ifndef OPENGLWIDGET_H
 #define OPENGLWIDGET_H
 
+// OLD CODE
+#if 0
 #include <QtOpenGL>
 #include <QGLWidget>
 #include <QList>
@@ -71,3 +73,4 @@ private:
 };
 
 #endif // OPENGLWIDGET_H
+#endif // 0

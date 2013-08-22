@@ -1,8 +1,5 @@
 /*! \file vertex.h
- * \brief Defines 3D vertex class used by geometry.
- *
- * A vertex has a position and an ID that is unique to the piece of geometry is is part of. The ID is unsigned.
- * If the vertex has no ID, getId() will return 0 (NULLHND).
+ * \brief TODO
  */
 
 #ifndef VERTEX_H
@@ -39,7 +36,7 @@ public:
     /**
      * @brief Constructor. Initialises position and ID to zero.
      */
-    Vertex3D() : m_Position(VEC3_ORIGIN), m_Normal(VEC3_ORIGIN), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND), m_hVBOHandle(NULLHND),
+    Vertex3D() : m_Position(VEC3_ORIGIN), m_Normal(VEC3_ORIGIN), m_hParentSolid(NULLHND), m_hVBOOffset(NULLHND),
         m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0)
     {
     }
@@ -50,8 +47,8 @@ public:
      * @param y Y position.
      * @param z Z position.
      */
-    Vertex3D(const float x, const float y, const float z) : m_Position(QVector3D(x, y, z)), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND),
-        m_hVBOHandle(NULLHND), m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN)
+    Vertex3D(const float x, const float y, const float z) : m_Position(QVector3D(x, y, z)), m_hParentSolid(NULLHND),
+        m_hVBOOffset(NULLHND), m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN)
     {
     }
 
@@ -59,12 +56,12 @@ public:
      * @brief Constructor specifying vertex position.
      * @param vec Vector representing position.
      */
-    Vertex3D(const QVector3D vec) : m_Position(vec), m_hGlobalHandle(NULLHND), m_hParentSolid(NULLHND), m_Colour(255, 255, 255),
-        m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN), m_hVBOHandle(NULLHND)
+    Vertex3D(const QVector3D vec) : m_Position(vec), m_hParentSolid(NULLHND), m_Colour(255, 255, 255),
+        m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN), m_hVBOOffset(NULLHND)
     {
     }
 
-    // ===== Begin get functions ===== \\
+    // ===== Begin get functions =====
 
     /**
      * @brief Gets the vertex's position local to its parent geometry object.
@@ -96,15 +93,15 @@ public:
      */
     inline float getTexCoordY() const { return m_flTexY; }
     
-    inline GEOMHANDLE getGlobalHandle() const { return m_hGlobalHandle; }
-    
-    inline VBO_OFFSET getVBOHandle() const { return m_hVBOHandle; }
+    inline VBO_OFFSET getVBOOffset() const { return m_hVBOOffset; }
     
     inline GEOMHANDLE getParentSolid() const { return m_hParentSolid; }
     
-    // ===== End get functions ===== \\
+    inline GEOMHANDLE getHandle() const { return m_hHandle; }
+    
+    // ===== End get functions =====
 
-    // ===== Begin set functions ===== \\
+    // ===== Begin set functions =====
 
     /**
      * @brief Sets the vertex's position.
@@ -144,15 +141,15 @@ public:
      */
     inline void setTexCoordY(const float coord) { m_flTexY = coord; }
     
-    inline void setGlobalHandle(const GEOMHANDLE handle) { m_hGlobalHandle = handle; }
-    
-    inline void setVBOHandle(const VBO_OFFSET handle) { m_hVBOHandle = handle; }
+    inline void setVBOHandle(const VBO_OFFSET handle) { m_hVBOOffset = handle; }
     
     inline void setParentSolid(const GEOMHANDLE handle) { m_hParentSolid = handle; }
     
-    // ===== End set functions ===== \\
+    inline void setHandle(const GEOMHANDLE handle) { m_hHandle = handle; }
+    
+    // ===== End set functions =====
 
-    // ===== Begin IVertex3DRenderSpec ===== \\
+    // ===== Begin IVertex3DRenderSpec =====
     /**
      * @brief Fills an array with the position values for this vertex.
      * @param position Array to fill. Format is XYZ.
@@ -188,15 +185,15 @@ public:
      * in V3RS_TOTAL_DATA_TRANSFER strides.
      * @return Offset for this vertex.
      */
-    virtual unsigned long V3RS_Offset() { return getVBOHandle; }
+    virtual unsigned long V3RS_Offset() { return getVBOOffset(); }
     
-    // ===== End IVertex3DRenderSpec ===== \\
+    // ===== End IVertex3DRenderSpec =====
     
 private:
     // Handles
-    GEOMHANDLE  m_hGlobalHandle;    /**< Handle representing the vertex's global unique ID. Must be unique but is not necessarily consecutive. */
-    VBO_OFFSET  m_hVBOHandle;       /**< Offset from the beginning of the parent solid's VBO sector to find this vertex. Not valid if parent solid is 0. */
+    VBO_OFFSET  m_hVBOOffset;       /**< Offset from the beginning of the parent solid's VBO sector to find this vertex. Not valid if parent solid is 0. */
     GEOMHANDLE  m_hParentSolid;     /**< Global handle of parent solid this vertex belongs to. */
+    GEOMHANDLE  m_hHandle;
     
     QVector3D   m_Position;         /**< Vector representing this vertex's position. */
     QVector3D   m_Normal;           /**< Vector representing this vertex's normal. */

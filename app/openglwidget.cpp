@@ -1,5 +1,7 @@
 #include "openglwidget.h"
 
+// OLD CODE
+#if 0
 OpenGLWidget::OpenGLWidget(QWidget *parent) :
     QGLWidget(parent)
 {
@@ -39,3 +41,4 @@ void OpenGLWidget::resizeGL(int width, int height)
     // orthographic/perspective).
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 }
+#endif // 0

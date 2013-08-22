@@ -1,5 +1,5 @@
 /*! \file face.h
- * \brief Defines a face with a collection of edges and a plane specifier.
+ * \brief TODO
  */
 
 #ifndef FACE_H
@@ -18,7 +18,7 @@ public:
     /**
      * @brief Constructor. Sets member variables to default values.
      */
-    Face3D() : m_hID(NULLHND), m_hEdges(NULL), m_Plane(), m_Centre(VEC3_ORIGIN)
+    Face3D() : m_hEdges(NULL), m_Plane(), m_Centre(VEC3_ORIGIN), m_hParentSolid(NULLHND), m_hHandle(NULLHND)
     {
         init();
     }
@@ -28,7 +28,7 @@ public:
      * @param p
      * @param centre
      */
-    Face3D(const Plane p, const QVector3D centre = VEC3_ORIGIN) : m_hID(NULLHND), m_Plane(p), m_Centre(centre)
+    Face3D(const Plane p, const QVector3D centre = VEC3_ORIGIN) : m_Plane(p), m_Centre(centre), m_hParentSolid(NULLHND), m_hHandle(NULLHND)
     {
         init();
     }
@@ -45,7 +45,7 @@ public:
         }
     }
 
-    // ===== Begin get functions ===== \\
+    // ===== Begin get functions =====
     
     /**
      * @brief Returns the number of edges this face contains.
@@ -54,7 +54,7 @@ public:
     inline int getEdgeCount() const                                 { return m_hEdges->size(); }
 
     /**
-     * @brief Returns the handle to the edge at a specif index in the edge list. Index must be within range.
+     * @brief Returns the handle to the edge at a specific index in the edge list. Index must be within range.
      * @param index Index of edge to retrieve.
      * @return Edge at this index.
      */
@@ -84,13 +84,17 @@ public:
      */
     inline QVector3D getCentrePoint() const                         { return m_Centre; }
     
-    inline GEOMHANDLE getGlobalHandle() const                       { return m_hGlobalHandle; }
-    
     inline GEOMHANDLE getParentSolid() const                        { return m_hParentSolid; }
     
-    // ===== End get functions ===== \\
+    inline GEOMHANDLE getHandle() const                             { return m_hHandle; }
     
-    // ===== Begin set functions ===== \\
+    bool containsEdge(const GEOMHANDLE edge) const;
+    
+    bool containsAnyEdge(const QList<GEOMHANDLE>& edges) const;
+    
+    // ===== End get functions =====
+    
+    // ===== Begin set functions =====
 
     /**
      * @brief Set's the face's plane.
@@ -104,11 +108,13 @@ public:
      */
     inline void setCentrePoint(const QVector3D centre)              { m_Centre = centre; }
     
-    inline void setGlobalHandle(const GEOMHANDLE handle)            { m_hGlobalHandle = handle; }
-    
     inline void setParentSolid(const GEOMHANDLE handle)             { m_hParentSolid = handle; }
     
-    // ===== End set functions ===== \\
+    inline void setHandle(const GEOMHANDLE handle)                  { m_hHandle = handle; }
+    
+    inline void addEdge(GEOMHANDLE edge);
+    
+    // ===== End set functions =====
 
     /**
      * @brief Returns whether the face is composite. Composite faces contain more than
@@ -148,8 +154,8 @@ private:
     // TODO: Add function to calculate centre point given vertices from a solid.
 
     // Handles
-    GEOMHANDLE          m_hGlobalHandle;    /**< Handle representing the face's global unique ID. Must be unique but is not necessarily consecutive. */
     GEOMHANDLE          m_hParentSolid;     /**< Global handle of parent solid this face belongs to. */
+    GEOMHANDLE          m_hHandle;
     
     QList<GEOMHANDLE>*  m_hEdges;
     Plane               m_Plane;

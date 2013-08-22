@@ -1,5 +1,5 @@
 /*! \file edge.h
- * \brief Defines an edge that connects two vertices.
+ * \brief TODO - UPDATE. Defines an edge that connects two vertices.
  *
  * The edge stores the vertices it connects via their geometry handles which are unique to the current piece of geometry.
  * The faces either side of the edge are also stored.<br>When considering travelling along the edge from the beginning to end vertex,
@@ -14,6 +14,8 @@
 
 #include "vertex.h"
 
+class Solid3D;
+
 /**
  * @brief Class to represent an edge connecting two 3D vertices.
  */
@@ -23,7 +25,8 @@ public:
     /**
      * @brief Constructor. Member variables are set to zero values.
      */
-    Edge3D() : m_hID(NULLHND), m_hVStart(NULLHND), m_hVEnd(NULLHND), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(VEC3_ORIGIN)
+    Edge3D() : m_hVStart(NULLHND), m_hVEnd(NULLHND), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(VEC3_ORIGIN),
+        m_hParentSolid(NULLHND), m_hHandle(NULLHND)
     {
     }
 
@@ -34,7 +37,8 @@ public:
      * @param midpoint Co-ordinates of the edge's midpoint.
      */
     Edge3D(const GEOMHANDLE start, const GEOMHANDLE end, const QVector3D midpoint)
-        : m_hID(NULLHND), m_hVStart(start), m_hVEnd(end), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(midpoint)
+        : m_hVStart(start), m_hVEnd(end), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(midpoint),
+          m_hParentSolid(NULLHND), m_hHandle(NULLHND)
     {
     }
 
@@ -47,11 +51,12 @@ public:
      * @param midpoint Co-ordinates of the edge's midpoint.
      */
     Edge3D(const GEOMHANDLE start, const GEOMHANDLE end, const GEOMHANDLE rightface, const GEOMHANDLE leftface, const QVector3D midpoint)
-        : m_hID(NULLHND), m_hVStart(start), m_hVEnd(end), m_hFRight(rightface), m_hFLeft(leftface), m_Centre(midpoint)
+        : m_hVStart(start), m_hVEnd(end), m_hFRight(rightface), m_hFLeft(leftface), m_Centre(midpoint),
+          m_hParentSolid(NULLHND), m_hHandle(NULLHND)
     {
     }
 
-    // ===== Begin get functions ===== \\
+    // ===== Begin get functions =====
     
     /**
      * @brief Returns the start vertex for this edge.
@@ -83,13 +88,13 @@ public:
      */
     inline QVector3D getMidpoint() const                    { return m_Centre; }
     
-    inline GEOMHANDLE getGlobalHandle() const               { return m_hGlobalHandle; }
-    
     inline GEOMHANDLE getParentSolid() const                { return m_hParentSolid; }
+
+    inline GEOMHANDLE getHandle() const                     { return m_hHandle; }
     
-    // ===== End get functions ===== \\
+    // ===== End get functions =====
     
-    // ===== Begin set functions ===== \\
+    // ===== Begin set functions =====
     /**
      * @brief Sets the edge's start vertex.
      * @param v Vertex ID to set.
@@ -120,19 +125,21 @@ public:
      */
     inline void setMidpoint(const QVector3D mid)            { m_Centre = mid; }
     
-    inline void setGlobalHandle(const GEOMHANDLE handle)    { m_hGlobalHandle = handle; }
-    
     inline void setParentSolid(const GEOMHANDLE handle)     { m_hParentSolid = handle; }
     
-    // ===== End set functions ===== \\
-
-    // TODO: Add a convenience function to change vertices, look up their IDs in a parent solid and
-    // recalculate the midpoint (convenience function to do this too?) from the retrieved vector positions.
+    inline void setHandle(const GEOMHANDLE handle)          { m_hHandle = handle; }
+    
+    // ===== End set functions =====
+    
+    // Calculates mid-point between the two vertices when a parent solid is provided.
+    bool calcMidpoint(Solid3D& parent);
+    
+    // TODO: Change this to find the parent from the global brush list.
 
 private:
     // Handles
-    GEOMHANDLE m_hGlobalHandle; /**< Handle representing the edge's global unique ID. Must be unique but is not necessarily consecutive. */
     GEOMHANDLE m_hParentSolid;  /**< Global handle of parent solid this edge belongs to. */
+    GEOMHANDLE m_hHandle;
     
     GEOMHANDLE m_hVStart;       /**< Start vertex of edge. */
     GEOMHANDLE m_hVEnd;         /**< End vertex of edge. */
