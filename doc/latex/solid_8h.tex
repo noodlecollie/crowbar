@@ -1,0 +1,31 @@
+\hypertarget{solid_8h}{\section{app/solid.h File Reference}
+\label{solid_8h}\index{app/solid.\-h@{app/solid.\-h}}
+}
+
+
+Defines a solid class.  
+
+
+{\ttfamily \#include $<$Q\-Vector$>$}\\*
+{\ttfamily \#include \char`\"{}face.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}indexpool.\-h\char`\"{}}\\*
+Include dependency graph for solid.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{solid_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_geom_info}{Geom\-Info}
+\begin{DoxyCompactList}\small\item\em Struct to hold and pass information about geometry objects. \end{DoxyCompactList}\item 
+class \hyperlink{class_solid3_d}{Solid3\-D}
+\begin{DoxyCompactList}\small\item\em Class representing a 3\-D solid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines a solid class. Solids are the programmatical implementation of brushes and are made up of sets of vertices, edges and faces. Each edge references the vertices it links, and each face is built from multiple edges. As opposed to Hammer's implementation, solids are mesh-\/based (ie. they are defined by vertex positions and links rather than planes and intersections) to allow for easier manipulation, and are exported as plane-\/based objects when serialised as a V\-M\-F.\par
+ It is recommended to work {\bfseries bottom-\/up} (ie. add any required vertices before edges, and edges before faces) rather than {\bfseries top-\/down} (creating all of a face's edges and vertices as the face itself is created) as the former method is less prone to errors. 

@@ -1,6 +1,6 @@
 #include "plane.h"
 
-void Plane::getPoints(QVector3D points[]) const
+void Plane::getPoints(QVector3D points[3]) const
 {
     for ( int i = 0; i < 3; i++ )
     {
@@ -16,7 +16,7 @@ void Plane::getPoints(QList<QVector3D> &points) const
     }
 }
 
-void Plane::setPoints(const QVector3D points[])
+void Plane::setPoints(const QVector3D points[3])
 {
     for ( int i = 0; i < 3; i++ )
     {
@@ -48,7 +48,7 @@ void Plane::setPoints(const QVector3D p1, const QVector3D p2, const QVector3D p3
     setPoints(points);
 }
 
-bool Plane::checkValid(const QVector3D points[])
+bool Plane::checkValid(const QVector3D points[3])
 {
     return Plane::checkValid(points[0], points[1], points[2]);
 }

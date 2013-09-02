@@ -1,0 +1,203 @@
+\hypertarget{class_plane}{\section{Plane Class Reference}
+\label{class_plane}\index{Plane@{Plane}}
+}
+
+
+Defines a plane in 3\-D space.  
+
+
+
+
+{\ttfamily \#include $<$plane.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_plane_acac0d9c003e0ab10d07b146c3566a0c7}{\hyperlink{class_plane_acac0d9c003e0ab10d07b146c3566a0c7}{Plane} ()}\label{class_plane_acac0d9c003e0ab10d07b146c3566a0c7}
+
+\begin{DoxyCompactList}\small\item\em Constructor. Member variables are set to zero values. \end{DoxyCompactList}\item 
+\hyperlink{class_plane_a044f4c5015112c8c5148ae28b41b8637}{Plane} (const Q\-Vector3\-D points\mbox{[}3\mbox{]})
+\begin{DoxyCompactList}\small\item\em Constructor specifying an array of plane points. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{class_plane_affc3a1de45dcac9b65569eef3635eba4}{Plane} (const Q\-Vector3\-D p1, const Q\-Vector3\-D p2, const Q\-Vector3\-D p3)
+\begin{DoxyCompactList}\small\item\em Constructor specifying plane points. The normal is calculated with vectors p2-\/p1, p3-\/p1. \end{DoxyCompactList}\item 
+void \hyperlink{class_plane_af04d6d582cfc6bb3fdebfb7d2711c0b8}{get\-Points} (Q\-Vector3\-D points\mbox{[}3\mbox{]}) const 
+\begin{DoxyCompactList}\small\item\em Gets an array of the three points on the plane. \end{DoxyCompactList}\item 
+void \hyperlink{class_plane_ad8ca5183fed9db77a2cbb552d780aa9d}{get\-Points} (Q\-List$<$ Q\-Vector3\-D $>$ \&points) const 
+\begin{DoxyCompactList}\small\item\em Fills a Q\-List with the three points on the plane. \end{DoxyCompactList}\item 
+bool \hyperlink{class_plane_a9324f303beccf7ec9c6d3a5e371b7ca7}{is\-Valid} () const 
+\begin{DoxyCompactList}\small\item\em Specifies whether the plane is valid. Invalid planes contain two or more identical plane points. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_plane_aeaae7bd417894c587423251818f16197}{get\-Normal} () const 
+\begin{DoxyCompactList}\small\item\em Returns the plane's normal, specifying the forward-\/facing direction of the plane. \end{DoxyCompactList}\item 
+void \hyperlink{class_plane_a3a9fd7ef1b74fad45bf0b18b93922813}{set\-Points} (const Q\-Vector3\-D points\mbox{[}3\mbox{]})
+\begin{DoxyCompactList}\small\item\em Sets the plane's points via an array. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{class_plane_ae4c5f7cda6d296b3cfccaac102471098}{set\-Points} (const Q\-List$<$ Q\-Vector3\-D $>$ \&points)
+\begin{DoxyCompactList}\small\item\em Sets the plane's points via a Q\-List. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{class_plane_a99ba0636ee74ea4cd8e5da15145b7c42}{set\-Points} (const Q\-Vector3\-D p1, const Q\-Vector3\-D p2, const Q\-Vector3\-D p3)
+\begin{DoxyCompactList}\small\item\em Sets the plane's points. The normal is calculated with vectors p2-\/p1, p3-\/p1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines a plane in 3\-D space. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_plane_a044f4c5015112c8c5148ae28b41b8637}{\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}Plane\-::\-Plane (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{points\mbox{[}3\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_a044f4c5015112c8c5148ae28b41b8637}
+
+
+Constructor specifying an array of plane points. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & 3 points on the plane. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_plane_affc3a1de45dcac9b65569eef3635eba4}{\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\subsubsection[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}Plane\-::\-Plane (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{p1, }
+\item[{const Q\-Vector3\-D}]{p2, }
+\item[{const Q\-Vector3\-D}]{p3}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_affc3a1de45dcac9b65569eef3635eba4}
+
+
+Constructor specifying plane points. The normal is calculated with vectors p2-\/p1, p3-\/p1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & Point 1. \\
+\hline
+{\em p2} & Point 2. \\
+\hline
+{\em p3} & Point 3. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_plane_aeaae7bd417894c587423251818f16197}{\index{Plane@{Plane}!get\-Normal@{get\-Normal}}
+\index{get\-Normal@{get\-Normal}!Plane@{Plane}}
+\subsubsection[{get\-Normal}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Plane\-::get\-Normal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_aeaae7bd417894c587423251818f16197}
+
+
+Returns the plane's normal, specifying the forward-\/facing direction of the plane. 
+
+\begin{DoxyReturn}{Returns}
+Normalised direction vector representing the plane's normal. 
+\end{DoxyReturn}
+\hypertarget{class_plane_af04d6d582cfc6bb3fdebfb7d2711c0b8}{\index{Plane@{Plane}!get\-Points@{get\-Points}}
+\index{get\-Points@{get\-Points}!Plane@{Plane}}
+\subsubsection[{get\-Points}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\-::get\-Points (
+\begin{DoxyParamCaption}
+\item[{Q\-Vector3\-D}]{points\mbox{[}3\mbox{]}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_af04d6d582cfc6bb3fdebfb7d2711c0b8}
+
+
+Gets an array of the three points on the plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & Array to fill with points. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_plane_ad8ca5183fed9db77a2cbb552d780aa9d}{\index{Plane@{Plane}!get\-Points@{get\-Points}}
+\index{get\-Points@{get\-Points}!Plane@{Plane}}
+\subsubsection[{get\-Points}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\-::get\-Points (
+\begin{DoxyParamCaption}
+\item[{Q\-List$<$ Q\-Vector3\-D $>$ \&}]{points}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_ad8ca5183fed9db77a2cbb552d780aa9d}
+
+
+Fills a Q\-List with the three points on the plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & List to fill. Points are appended to the list. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_plane_a9324f303beccf7ec9c6d3a5e371b7ca7}{\index{Plane@{Plane}!is\-Valid@{is\-Valid}}
+\index{is\-Valid@{is\-Valid}!Plane@{Plane}}
+\subsubsection[{is\-Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool Plane\-::is\-Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_plane_a9324f303beccf7ec9c6d3a5e371b7ca7}
+
+
+Specifies whether the plane is valid. Invalid planes contain two or more identical plane points. 
+
+\begin{DoxyReturn}{Returns}
+True if valid, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_plane_a3a9fd7ef1b74fad45bf0b18b93922813}{\index{Plane@{Plane}!set\-Points@{set\-Points}}
+\index{set\-Points@{set\-Points}!Plane@{Plane}}
+\subsubsection[{set\-Points}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\-::set\-Points (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{points\mbox{[}3\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_plane_a3a9fd7ef1b74fad45bf0b18b93922813}
+
+
+Sets the plane's points via an array. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & Array of points to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_plane_ae4c5f7cda6d296b3cfccaac102471098}{\index{Plane@{Plane}!set\-Points@{set\-Points}}
+\index{set\-Points@{set\-Points}!Plane@{Plane}}
+\subsubsection[{set\-Points}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\-::set\-Points (
+\begin{DoxyParamCaption}
+\item[{const Q\-List$<$ Q\-Vector3\-D $>$ \&}]{points}
+\end{DoxyParamCaption}
+)}}\label{class_plane_ae4c5f7cda6d296b3cfccaac102471098}
+
+
+Sets the plane's points via a Q\-List. The normal is calculated with vectors \mbox{[}1\mbox{]}-\/\mbox{[}0\mbox{]}, \mbox{[}2\mbox{]}-\/\mbox{[}0\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & List of points to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_plane_a99ba0636ee74ea4cd8e5da15145b7c42}{\index{Plane@{Plane}!set\-Points@{set\-Points}}
+\index{set\-Points@{set\-Points}!Plane@{Plane}}
+\subsubsection[{set\-Points}]{\setlength{\rightskip}{0pt plus 5cm}void Plane\-::set\-Points (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{p1, }
+\item[{const Q\-Vector3\-D}]{p2, }
+\item[{const Q\-Vector3\-D}]{p3}
+\end{DoxyParamCaption}
+)}}\label{class_plane_a99ba0636ee74ea4cd8e5da15145b7c42}
+
+
+Sets the plane's points. The normal is calculated with vectors p2-\/p1, p3-\/p1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & First point. \\
+\hline
+{\em p2} & Second point. \\
+\hline
+{\em p3} & Third point. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{plane_8h}{plane.\-h}\item 
+app/plane.\-cpp\end{DoxyCompactItemize}

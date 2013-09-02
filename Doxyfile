@@ -712,7 +712,8 @@ FILE_PATTERNS          = *.c \
                          *.f \
                          *.for \
                          *.vhd \
-                         *.vhdl
+                         *.vhdl \
+                         *.tcc
 
 # The RECURSIVE tag can be used to turn specify whether or not subdirectories 
 # should be searched for input files as well. Possible values are YES and NO. 
@@ -726,7 +727,14 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is 
 # run.
 
-EXCLUDE                = glew-1.9.0/*
+EXCLUDE                = app/octree/array.h \
+                         app/octree/array2d.h \
+                         app/octree/numtraits.h \
+                         app/octree/octree.h \
+                         app/octree/point3d.h \
+                         app/octree/shareddata.h \
+                         app/octree/tinyvector.h \
+                         app/octree/octree.tcc
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or 
 # directories that are symbolic links (a Unix file system feature) are excluded 

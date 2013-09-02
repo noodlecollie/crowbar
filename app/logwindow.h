@@ -28,7 +28,7 @@ class QTextStream;
  * @brief Logging window.
  *
  * If the application is started in debug mode, the logging window will be shown as well as any application windows.
- * Part of the application can send log messages which will be printed to this window and logged into a file.
+ * Parts of the application can send log messages which will be printed to this window and logged into a file.
  * The log window can be re-opened from the Debug menu in an application window if it is closed.
  * If logging is enabled without debug mode, any messages will be sent to a log file but the log window and the Debug
  * menu will not be shown.

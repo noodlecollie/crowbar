@@ -1,0 +1,6 @@
+<map id="app/vertex.h" name="app/vertex.h">
+<area shape="rect" id="node2" href="$edge_8h.html" title="Defines an edge which links two vertices. " alt="" coords="14,80,100,107"/>
+<area shape="rect" id="node5" href="$indexpool_8h.html" title="Defines the IndexPool class which manages non&#45;consecutive array indices. " alt="" coords="113,155,225,181"/>
+<area shape="rect" id="node3" href="$face_8h.html" title="Defines a 3D face. Solids are built up of these faces. Faces reference edges, which in turn reference..." alt="" coords="5,155,88,181"/>
+<area shape="rect" id="node4" href="$solid_8h.html" title="Defines a solid class. " alt="" coords="65,229,151,256"/>
+</map>

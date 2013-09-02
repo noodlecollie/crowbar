@@ -1,5 +1,5 @@
 /*! \file face.h
- * \brief TODO
+ * \brief Defines a 3D face. Solids are built up of these faces. Faces reference edges, which in turn reference vertices.
  */
 
 #ifndef FACE_H
@@ -10,7 +10,13 @@
 #include "plane.h"
 
 /**
- * @brief Class representing a face with a collection of edges and face plane information.
+ * @brief Class representing a 3D face.
+ * 
+ * Solids are made up of faces, which are built up from lists of member edges. Faces also contain plane information (for
+ * easy conversion to/from VMFs). The direction of the face's edges according to their start/end vertices does not necessarily
+ * have to be clockwise (this would be impractical) but the edges do have to form a closed, contiguous loop from the beginning
+ * to the end of the list, the last vertex of the last edge being the first vertex of the first edge. The loop should form a
+ * convex 2D polygon.
  */
 class Face3D : public GeomMetaHandle
 {
@@ -84,12 +90,30 @@ public:
      */
     inline QVector3D getCentrePoint() const                         { return m_Centre; }
     
+	/**
+	 * @brief Gets the hand of the parent solid of this face.
+	 * @return Parent solid handle.
+	 */
     inline GEOMHANDLE getParentSolid() const                        { return m_hParentSolid; }
     
+	/**
+	 * @brief Gets this face's handle.
+	 * @return Handle of the face.
+	 */
     inline GEOMHANDLE getHandle() const                             { return m_hHandle; }
     
+	/**
+	 * @brief Returns whether this face contains an edge with the specified handle.
+	 * @param edge Handle to check.
+	 * @return True if the edge is contained within the face, false if not.
+	 */
     bool containsEdge(const GEOMHANDLE edge) const;
     
+	/**
+	 * @brief Returns whether this face contains any of the edges in the list provided.
+	 * @param edges List of edge handles to check.
+	 * @return True if the face contains any edge, false if the face contains none of the edges.
+	 */
     bool containsAnyEdge(const QList<GEOMHANDLE>& edges) const;
     
     // ===== End get functions =====
@@ -108,10 +132,23 @@ public:
      */
     inline void setCentrePoint(const QVector3D centre)              { m_Centre = centre; }
     
+	/**
+	 * @brief Sets the parent solid handle for this face.
+	 * @param handle Handle to set.
+	 */
     inline void setParentSolid(const GEOMHANDLE handle)             { m_hParentSolid = handle; }
     
+	/**
+	 * @brief Sets the handle of this face.
+	 * @param handle Handle to set.
+	 */
     inline void setHandle(const GEOMHANDLE handle)                  { m_hHandle = handle; }
     
+	/**
+	 * @brief Adds an edge to this face. The edge must already exist in the face's parent solid.
+	 * @note Does NOT check whether the edge already exists in the face.
+	 * @param edge Handle of the edge to add.
+	 */
     inline void addEdge(GEOMHANDLE edge);
     
     // ===== End set functions =====
@@ -128,6 +165,9 @@ public:
     // starting edge and v2 in the ending edge.
 
 private:
+	/**
+	 * @brief Performs initialisation when the face is created.
+	 */
     inline void init()
     {
         if ( m_hEdges )
@@ -139,6 +179,14 @@ private:
         m_hEdges = new QList<GEOMHANDLE>();
     }
 
+	/**
+	 * @brief Compresses the memory required by the edge list, if possible.
+	 *
+	 * When edges are deleted from the edge list, the list shrinks. The memory allocated for the list object, however, does not.
+	 * This function will delete and recreate the edge list so that it uses only the currently required amount of memory.
+	 * It is unlikely that this function will need to be used much, however, as: A. Faces shouldn't really ever contain a large
+	 * number of edges, and B. edges are not removed from faces that often.
+	 */
     void compressEdgeMemory()
     {
         if ( !m_hEdges ) return;
@@ -155,11 +203,11 @@ private:
 
     // Handles
     GEOMHANDLE          m_hParentSolid;     /**< Global handle of parent solid this face belongs to. */
-    GEOMHANDLE          m_hHandle;
+    GEOMHANDLE          m_hHandle;			/**< Handle of this face within the parent solid. */
     
-    QList<GEOMHANDLE>*  m_hEdges;
-    Plane               m_Plane;
-    QVector3D           m_Centre;
+    QList<GEOMHANDLE>*  m_hEdges;			/**< List of handles of edges that this face contains. */
+    Plane               m_Plane;			/**< Plane representing the plane of this face. */
+    QVector3D           m_Centre;			/**< The mid-point of this face. */
 };
 
 #endif // FACE_H

@@ -1,3 +1,7 @@
+/** \file octree.h
+ * \brief Defines the octree class. Code (C) 2007  Simon Perreault.
+ */
+
 /*
  *  Copyright (C) 2007  Simon Perreault
  *
@@ -26,44 +30,235 @@
 #include <istream>
 #include <ostream>
 
+/**
+ * \class Octree
+ * \brief Generic octree template
+ *
+ * \author Simon Perreault <nomis80@nomis80.org>
+ * \date April 2007
+ *
+ * This class template represents an octree, often used for manipulating 3-D
+ * scattered data efficiently. The type of the contained data is supplied as a
+ * template parameter.
+ *
+ * \param T Type of the contained data. Requirements on type: must be copyable
+ * and default-constructible.
+ *
+ * \param AS Short for "aggregate size." As an optimization, leaves can be
+ * aggregated so that the relative size of pointers is diminished. This is 1 by
+ * default, but should be set higher when the size of \a T is small. <b>Must be
+ * a power of two.</b>
+ */
 template< typename T, int AS = 1 >
 class Octree
 {
 public:
+    /**
+     * \brief Constructor.
+     * \param size Size of octree, in nodes. Should be a power of two. For example,
+     * an octree with \a size = 256 will represent a cube divided into 256x256x256
+     * nodes. <b>Must be a power of two.</b>
+     *
+     * \param emptyValue This is the value that will be returned when accessing
+     * regions of the 3-D volume where no node has been allocated. In other words,
+     * instead of following a null node pointer, this value is returned. Since the
+     * octree root is initially a null pointer, the whole volume is initialized to
+     * this value.
+     */
     Octree( int size, const T& emptyValue = T(0) );
+    
+    /**
+     * \brief Performs a deep copy of an octree. All branch pointers will be followed
+     * recursively and new nodes will be allocated.
+     *
+     * \param o Octree to be copied.
+     */
     Octree( const Octree<T,AS>& o );
+    
+    /**
+     * \brief Recursively deletes all nodes by following branch pointers.
+     */
     ~Octree();
 
     // Accessors
+    /**
+     * \brief Returns size of octree.
+     * \return Size of octree, in nodes, as specified in the constructor.
+     */
     int size() const;
+    
+    /**
+     * \brief Returns the empty value this octree uses.
+     * \return Value of empty nodes, as specified in the constructor.
+     * \see setEmptyValue()
+     */
     const T& emptyValue() const;
 
+    /**
+     * \brief Returns bytes occpuied by a branch node.
+     * \return Number of bytes a branch node occupies.
+     */
     static unsigned long branchBytes();
+    
+    /**
+     * \brief Returns bytes occpuied by an aggregate node.
+     * \return Number of bytes an aggregate node occupies.
+     */
     static unsigned long aggregateBytes();
+    
+    /**
+     * \brief Returns bytes occpuied by a leaf node.
+     * \return Number of bytes a leaf node occupies.
+     */
     static unsigned long leafBytes();
+    
+    /**
+     * \brief Returns the number of bytes the octree occupies.
+     * \return Total number of bytes the octree occupies.
+     *
+     * \remarks Memory fragmentation may make the actual memory usage significantly
+     * higher.
+     */
     unsigned long bytes() const;
 
+    /**
+     * Returns the number of nodes in the octree.
+     * \return Total number of nodes in the octree.
+     */
     int nodes() const;
+    
+    /**
+     * \brief Returns the number of nodes at a given size.
+     * \return Number of nodes at size \a size. For example, the root (if
+     * allocated) is the single node of size 1. At size <i>n</i> there may be a
+     * maximum of 2<sup><i>n</i></sup> nodes.
+     *
+     * For sizes lower than the aggregate size, this function will always return
+     * zero.
+     */
     int nodesAtSize( int size ) const;
 
     // Mutators
+    /**
+     * \brief Sets the empty value this oscree uses.
+     * \brief Sets the value of empty nodes to \a emptyValue.
+     * \see setEmptyValue()
+     */
     void setEmptyValue( const T& emptyValue );
 
+    /**
+     * \brief Swaps the octree's contents with another's. This is a cheap operation as only
+     * the root pointers are swapped, not the whole structure.
+     */
     void swap( Octree<T,AS>& o );
+    
+    /**
+     * \brief Assigns to this octree the contents of octree \a o.
+     */
     Octree<T,AS>& operator= ( Octree<T,AS> o );
 
     // Indexing operators
+    /**
+     * \brief Returns the value at a specific index.
+     * \return Reference to value at index (\a x,\a y,\a z). If no node exists at
+     * this index, a new one is created (along with the necessary ancestry),
+     * initialized to the value returned by emptyValue(), and returned.
+     *
+     * \remarks Be careful when calling this function. If you do not want to
+     * inadvertently create new nodes, use the at() function.
+     *
+     * \see at()
+     */
     T& operator() ( int x, int y, int z );
+    
+    /**
+     * \brief Synonym of at().
+     */
     const T& operator() ( int x, int y, int z ) const;
+    
+    /**
+     * \brief Returns the value at a specified index in the octree.
+     * \return Value at index (\a x,\a y,\a z). If no node exists at this index, the
+     * value returned by emptyValue() is returned.
+     *
+     * \remarks Memory access is faster when \a x varies the quickest, followed by
+     * \a y and then by \a z. Therefore you should write nested loops in this order
+     * for faster access:
+     *
+     * \code
+     * for ( int z = 0; z < ...; ++z ) {
+     *     for ( int y = 0; y < ...; ++y ) {
+     *         for ( int x = 0; x < ...; ++x ) {
+     *             ... = octree.at(x,y,z);
+     *         }
+     *     }
+     * }
+     * \endcode
+     *
+     * However, zSlice() provides an even faster way.
+     */
     const T& at( int x, int y, int z ) const;
 
+    /**
+     * \brief Sets the value of the node at (\a x, \a y, \a z) to \a value. If \a value is
+     * the empty value, the node is erased. Otherwise, the node is created if it did
+     * not already exist and its value is set to \a value.
+     */
     void set( int x, int y, int z, const T& value );
+    
+    /**
+     * \brief Erases the node at index (\a x,\a y,\a z). After the call,
+     * <code>at(x,y,z)</code> will return the value returned by emptyValue().
+     *
+     * This function will free as much memory as possible. For example, when erasing
+     * the single child of a branch node, the branch node itself will be erased and
+     * replaced by a null pointer in its parent. This will percolate to the top of
+     * the tree if necessary.
+     */
     void erase( int x, int y, int z );
 
+    /**
+     * \brief Returns a slice of the octree.
+     * \return A slice of the octree, perpendicular to the Z axis. The content of
+     * all nodes for which the Z index is \a z will be copied into the returned
+     * array. If no node exists for a given index, the value returned by
+     * emptyValue() will be written instead.
+     *
+     * \remarks This method ought to be relatively fast as long the the time
+     * required to copy values does not dwarf the time for indexing into the octree
+     * (this should be the case for built-in C++ types such as int and double).
+     * As a result, using this function is an easy way to accelerate the infamous
+     * three-level nested loops. For example:
+     *
+     * \code
+     * for ( int z = 0; z < ...; ++z ) {
+     *     tmp = octree.zSlice(z);
+     *     for ( int y = 0; y < ...; ++y ) {
+     *         for ( int x = 0; x < ...; ++x ) {
+     *             ... = tmp(y,x);
+     *         }
+     *     }
+     * }
+     * \endcode
+     */
     Array2D<T> zSlice( int z ) const;
 
     // I/O functions
+    /**
+     * \brief Writes the octree to an output stream.
+     *
+     * Writes the octree in binary form to the output stream \a out. This should be
+     * fast, but note that the type \a T will be written as it appears in memory.
+     * That is, if it is a complex type containing pointers, the pointer addresses
+     * will be written instead of the data pointed at. For complex types, you should
+     * roll your own function.
+     */
     void writeBinary( std::ostream& out ) const;
+    
+    /**
+     * \brief Reads the octree from \a in. It must previously have been written using
+     * writeBinary().
+     */
     void readBinary( std::istream& in );
 
 protected:
@@ -75,20 +270,59 @@ protected:
     class Leaf;
     enum NodeType { BranchNode, AggregateNode, LeafNode };
 
+    /**
+     * \brief Gets the octree's root.
+     * \return Pointer to octree's root node.
+     */
     Node*& root();
+    
+    /**
+     * \brief Const version of root().
+     */
     const Node* root() const;
 
+    /**
+     * \brief Deletes a node polymorphically. If the node is a branch node, it will delete
+     * all its subtree recursively.
+     */
     static void deleteNode( Node** node );
 
 private:
     // Recursive helper functions
+    /**
+     * \brief Helper function for erase() method.
+     */
     void eraseRecursive( Node** node, int size, int x, int y, int z );
+    
+    /**
+     * \brief Helper function for bytes() method.
+     */
     static unsigned long bytesRecursive( const Node* node );
+    
+    /**
+     * \brief Helper function for nodes() method.
+     */
     static int nodesRecursive( const Node* node );
+    
+    /**
+     * \brief Helper function for nodesAtSize() method.
+     */
     static int nodesAtSizeRecursive( int targetSize, int size, Node* node );
+    
+    /**
+     * \brief Helper function for zSlice() method.
+     */
     void zSliceRecursive( Array2D<T> slice, const Node* node, int size,
             int x, int y, int z, int targetZ ) const;
+    
+    /**
+     * \brief Helper function for writeBinaryRecursive() method.
+     */
     static void writeBinaryRecursive( std::ostream& out, const Node* node );
+    
+    /**
+     * \brief Helper function for readBinaryRecursive() method.
+     */
     static void readBinaryRecursive( std::istream& in, Node** node );
 
 protected:
@@ -101,7 +335,7 @@ protected:
 
     protected:
         Node( NodeType type );
-        ~Node() {};
+        ~Node() {}
 
     private:
         NodeType type_ : 2;
@@ -144,7 +378,7 @@ protected:
         friend void Octree<T,AS>::deleteNode( Node** node );
 
     private:
-        ~Aggregate() {};
+        ~Aggregate() {}
 
     private:
         T value_[AS][AS][AS];
@@ -162,7 +396,7 @@ protected:
         friend void Octree<T,AS>::deleteNode( Node** node );
 
     private:
-        ~Leaf() {};
+        ~Leaf() {}
 
     private:
         T value_;

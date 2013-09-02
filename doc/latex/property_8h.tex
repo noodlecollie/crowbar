@@ -3,87 +3,13 @@
 }
 
 
-Defines more specific typed properties that inherit from \hyperlink{class_base_property}{Base\-Property}.  
+D\-E\-P\-R\-E\-C\-A\-T\-E\-D\-: Use Q\-Variant() instead.  
 
 
-{\ttfamily \#include \char`\"{}baseproperty.\-h\char`\"{}}\\*
-Include dependency graph for property.\-h\-:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=191pt]{property_8h__incl}
-\end{center}
-\end{figure}
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-class \hyperlink{class_i_string_property}{I\-String\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R Q\-String . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_string_property}{W\-String\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_string_property}{I\-String\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_int_property}{I\-Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R int . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_int_property}{W\-Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_int_property}{I\-Int\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_u_int_property}{I\-U\-Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R uint . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_u_int_property}{W\-U\-Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_u_int_property}{I\-U\-Int\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_long_property}{I\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R long . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_long_property}{W\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_long_property}{I\-Long\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_u_long_property}{I\-U\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R ulong . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_u_long_property}{W\-U\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_u_long_property}{I\-U\-Long\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_float_property}{I\-Float\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R float . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_float_property}{W\-Float\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_float_property}{I\-Float\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_double_property}{I\-Double\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R double . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_double_property}{W\-Double\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_double_property}{I\-Double\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_long_long_property}{I\-Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R qlonglong . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_long_long_property}{W\-Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_long_long_property}{I\-Long\-Long\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_i_u_long_long_property}{I\-U\-Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E F\-O\-R qulonglong . \end{DoxyCompactList}\item 
-class \hyperlink{class_w_u_long_long_property}{W\-U\-Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y I\-N\-T\-E\-R\-F\-A\-C\-E W\-R\-A\-P\-P\-E\-R F\-O\-R \hyperlink{class_i_u_long_long_property}{I\-U\-Long\-Long\-Property} . \end{DoxyCompactList}\item 
-class \hyperlink{class_string_property}{String\-Property}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{class_string_property}{String\-Property} class Class that handles string properties. \end{DoxyCompactList}\item 
-class \hyperlink{class_int_property}{Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R int . \end{DoxyCompactList}\item 
-class \hyperlink{class_u_int_property}{U\-Int\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R uint . \end{DoxyCompactList}\item 
-class \hyperlink{class_long_property}{Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R long . \end{DoxyCompactList}\item 
-class \hyperlink{class_u_long_property}{U\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R ulong . \end{DoxyCompactList}\item 
-class \hyperlink{class_float_property}{Float\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R float . \end{DoxyCompactList}\item 
-class \hyperlink{class_double_property}{Double\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R double . \end{DoxyCompactList}\item 
-class \hyperlink{class_long_long_property}{Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R qlonglong . \end{DoxyCompactList}\item 
-class \hyperlink{class_u_long_long_property}{U\-Long\-Long\-Property}
-\begin{DoxyCompactList}\small\item\em M\-A\-C\-R\-O P\-R\-O\-P\-E\-R\-T\-Y F\-O\-R qulonglong . \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{group___property_classes_gaac09fb32e07282e79330aeb7cfc9e5eb}{D\-E\-C\-L\-A\-R\-E\-\_\-\-P\-R\-O\-P\-E\-R\-T\-Y\-\_\-\-I\-N\-T\-E\-R\-F\-A\-C\-E}(\-\_\-classname, \-\_\-wrapper, \-\_\-type)
-\begin{DoxyCompactList}\small\item\em Declares a property interface with an interface classname, wrapper classname and data type (such as int). \end{DoxyCompactList}\item 
-\#define \hyperlink{group___property_classes_ga9b75216621cf38585610f12ce907d01c}{D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P}(\-\_\-classname, \-\_\-interface, \-\_\-wrapper, \-\_\-type, \-\_\-proptype, \-\_\-vnull)
-\begin{DoxyCompactList}\small\item\em Declares a number-\/type property which Q\-String has the capability to convert to and from, in macro form for convenience. \end{DoxyCompactList}\item 
-\#define \hyperlink{group___property_classes_gae16b8183fbdf59c5bf8809835a2617e5}{I\-M\-P\-L\-E\-M\-E\-N\-T\-\_\-\-N\-U\-M\-P\-R\-O\-P}(\-\_\-classname, \-\_\-wrapper, \-\_\-type, \-\_\-cvtfunc, \-\_\-variantfunc)
-\begin{DoxyCompactList}\small\item\em Implements the functions for a property declared previously with D\-E\-C\-L\-A\-R\-E\-\_\-\-N\-U\-M\-P\-R\-O\-P. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Defines more specific typed properties that inherit from \hyperlink{class_base_property}{Base\-Property}. The property classes hold a key and a value -\/ these are underlyingly represented as strings and \hyperlink{class_base_property}{Base\-Property} subclasses deal with binding these solidly to interfaces for a specific type. A property's key should endeavour to be unique (it is not defined which property will be selected if two properties have the same key). \par
+D\-E\-P\-R\-E\-C\-A\-T\-E\-D\-: Use Q\-Variant() instead. Defines more specific typed properties that inherit from Base\-Property. \par
+ The property classes hold a key and a value -\/ these are underlyingly represented as strings and Base\-Property subclasses deal with binding these solidly to interfaces for a specific type. A property's key should endeavour to be unique (it is not defined which property will be selected if two properties have the same key). \par
  \par
  A technical note\-: due to the Qt limitation that only one inheritance of the Q\-Object class is allowed for any derived class (slots requiring an interface inherit from Q\-Object), slots on property classes are exposed through a wrapper returned by calling slots\-For() on the property. Connecting a signal to a slot on this wrapper will call the relevant non-\/slot function on the property class. 

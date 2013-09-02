@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stringproperty',['StringProperty',['../class_string_property.html',1,'']]]
+  ['solid3d',['Solid3D',['../class_solid3_d.html',1,'']]]
 ];

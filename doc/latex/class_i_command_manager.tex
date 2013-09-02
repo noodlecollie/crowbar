@@ -1,0 +1,35 @@
+\hypertarget{class_i_command_manager}{\section{I\-Command\-Manager Class Reference}
+\label{class_i_command_manager}\index{I\-Command\-Manager@{I\-Command\-Manager}}
+}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_i_command_manager_aad93f45962c23c66dbb643b2a437a6b5}{typedef int($\ast$ {\bfseries Cmd\-Callback} )(const Q\-String \&, const Q\-String\-List \&)}\label{class_i_command_manager_aad93f45962c23c66dbb643b2a437a6b5}
+
+\item 
+\hypertarget{class_i_command_manager_a8ca7fae732c3682aa0d0120b81570eb4}{typedef void($\ast$ {\bfseries Var\-Callback} )(const Q\-String \&, Q\-String \&)}\label{class_i_command_manager_a8ca7fae732c3682aa0d0120b81570eb4}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_i_command_manager_a04ad1ccf7336d550c9bb46d38417196c}{virtual bool {\bfseries register\-Command} (Q\-String \&name, Cmd\-Callback callback, Q\-String \&description=\char`\"{}\char`\"{}, unsigned int flags=0)=0}\label{class_i_command_manager_a04ad1ccf7336d550c9bb46d38417196c}
+
+\item 
+\hypertarget{class_i_command_manager_af2642fcd4711e203d6caadc48e147492}{virtual bool {\bfseries register\-Variable} (Q\-String \&name, Var\-Callback callback=N\-U\-L\-L, Q\-String \&description=\char`\"{}\char`\"{}, unsigned int flags=0, bool has\-Min=false, float min=0.\-0, bool has\-Max=false, float max=0.\-0)=0}\label{class_i_command_manager_af2642fcd4711e203d6caadc48e147492}
+
+\item 
+\hypertarget{class_i_command_manager_a8ea6c917b51e564a937ded9ac40cd265}{virtual void {\bfseries unregister} (Q\-String \&name)=0}\label{class_i_command_manager_a8ea6c917b51e564a937ded9ac40cd265}
+
+\item 
+\hypertarget{class_i_command_manager_a6f32752cbd34de65d4194fabd3d4ff22}{virtual int {\bfseries exec} (Q\-String \&name, Q\-Variant $\ast$const variable=N\-U\-L\-L)=0}\label{class_i_command_manager_a6f32752cbd34de65d4194fabd3d4ff22}
+
+\item 
+\hypertarget{class_i_command_manager_a883397692f50a33c1442ad743b599b9a}{virtual void {\bfseries suggest} (const Q\-String \&partial\-Cmd, Q\-String\-List \&suggestions)=0}\label{class_i_command_manager_a883397692f50a33c1442ad743b599b9a}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/interfaces/\hyperlink{icommandmanager_8h}{icommandmanager.\-h}\end{DoxyCompactItemize}

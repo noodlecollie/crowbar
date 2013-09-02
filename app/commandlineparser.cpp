@@ -17,7 +17,7 @@ void CommandLineParser::ParseArguments(int argc, char **argv)
 
         if ( arg.compare(CLA_DEBUGGING) == 0 )
         {
-            // Debugging automatically enabled logging too.
+            // Debugging automatically enables logging too.
             m_bDebugging = true;
             m_bLogging = true;
         }

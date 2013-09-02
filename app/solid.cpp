@@ -40,7 +40,7 @@ bool Solid3D::addVertex(Vertex3D *vertex)
 {
     Q_ASSERT(vertex);
     // If we've hit the vertex limit, don't add.
-    if ( m_Vertices.size() >= MAX_VERTICES ) return false;
+    if ( !canAddVertex() ) return false;
     
     // Make sure we can get an index.
     GEOMHANDLE vertHandle = m_IndexPool.allocateIndex();
@@ -49,7 +49,7 @@ bool Solid3D::addVertex(Vertex3D *vertex)
     
     vertex->setHandle(vertHandle);
     vertex->setParentSolid(getHandle());
-    vertex->setVBOHandle(m_Vertices.size());
+    vertex->setVBOOffset(m_Vertices.size());
     m_Vertices.append(vertex);
     return true;
 }
@@ -69,7 +69,7 @@ Vertex3D* Solid3D::removeVertexHandle(const GEOMHANDLE vertex)
             // vertices that will be shifted down.
             for ( int j = i+1; j < m_Vertices.size(); j++ )
             {
-                m_Vertices.at(j)->setVBOHandle(j);
+                m_Vertices.at(j)->setVBOOffset(j);
             }
             
             // Remove the old vertex.

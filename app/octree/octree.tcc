@@ -17,37 +17,6 @@
 
 #include <cstring>
 
-/**
- * \class Octree
- * \brief Generic octree template
- *
- * \author Simon Perreault <nomis80@nomis80.org>
- * \date April 2007
- *
- * This class template represents an octree, often used for manipulating 3-D
- * scattered data efficiently. The type of the contained data is supplied as a
- * template parameter.
- *
- * \param T Type of the contained data. Requirements on type: must be copyable
- * and default-constructible.
- *
- * \param AS Short for "aggregate size." As an optimization, leaves can be
- * aggregated so that the relative size of pointers is diminished. This is 1 by
- * default, but should be set higher when the size of \a T is small. <b>Must be
- * a power of two.</b>
- */
-
-/**
- * \param size Size of octree, in nodes. Should be a power of two. For example,
- * an octree with \a size = 256 will represent a cube divided into 256x256x256
- * nodes. <b>Must be a power of two.</b>
- *
- * \param emptyValue This is the value that will be returned when accessing
- * regions of the 3-D volume where no node has been allocated. In other words,
- * instead of following a null node pointer, this value is returned. Since the
- * octree root is initially a null pointer, the whole volume is initialized to
- * this value.
- */
 template< typename T, int AS >
 Octree<T,AS>::Octree( int size, const T& emptyValue )
     : root_(0)
@@ -59,12 +28,6 @@ Octree<T,AS>::Octree( int size, const T& emptyValue )
     assert( ((AS - 1) & AS) == 0 );
 }
 
-/**
- * Performs a deep copy of an octree. All branch pointers will be followed
- * recursively and new nodes will be allocated.
- *
- * \param o Octree to be copied.
- */
 template< typename T, int AS >
 Octree<T,AS>::Octree( const Octree<T,AS>& o )
     : emptyValue_( o.emptyValue_ )
@@ -87,19 +50,12 @@ Octree<T,AS>::Octree( const Octree<T,AS>& o )
     }
 }
 
-/**
- * Recursively deletes all nodes by following branch pointers.
- */
 template< typename T, int AS >
 Octree<T,AS>::~Octree()
 {
     deleteNode(&root_);
 }
 
-/**
- * Swaps the octree's contents with another's. This is a cheap operation as only
- * the root pointers are swapped, not the whole structure.
- */
 template< typename T, int AS >
 void Octree<T,AS>::swap( Octree<T,AS>& o )
 {
@@ -110,9 +66,6 @@ void Octree<T,AS>::swap( Octree<T,AS>& o )
     std::swap( size_, o.size_ );
 }
 
-/**
- * Assigns to this octree the contents of octree \a o.
- */
 template< typename T, int AS >
 Octree<T,AS>& Octree<T,AS>::operator= ( Octree<T,AS> o )
 {
@@ -120,39 +73,24 @@ Octree<T,AS>& Octree<T,AS>::operator= ( Octree<T,AS> o )
     return *this;
 }
 
-/**
- * \return Size of octree, in nodes, as specified in the constructor.
- */
 template< typename T, int AS >
 int Octree<T,AS>::size() const
 {
     return size_;
 }
 
-/**
- * \return Value of empty nodes, as specified in the constructor.
- * \see setEmptyValue()
- */
 template< typename T, int AS >
 const T& Octree<T,AS>::emptyValue() const
 {
     return emptyValue_;
 }
 
-/**
- * Sets the value of empty nodes to \a emptyValue.
- * \see setEmptyValue()
- */
 template< typename T, int AS >
 void Octree<T,AS>::setEmptyValue( const T& emptyValue )
 {
     emptyValue_ = emptyValue;
 }
 
-/**
- * Deletes a node polymorphically. If the node is a branch node, it will delete
- * all its subtree recursively.
- */
 template< typename T, int AS >
 void Octree<T,AS>::deleteNode( Node** node )
 {
@@ -172,44 +110,18 @@ void Octree<T,AS>::deleteNode( Node** node )
     }
 }
 
-/**
- * \return Pointer to octree's root node.
- */
 template< typename T, int AS >
 typename Octree<T,AS>::Node*& Octree<T,AS>::root()
 {
     return root_;
 }
 
-/**
- * Const version of above.
- */
 template< typename T, int AS >
 const typename Octree<T,AS>::Node* Octree<T,AS>::root() const
 {
     return root_;
 }
 
-/**
- * \return Value at index (\a x,\a y,\a z). If no node exists at this index, the
- * value returned by emptyValue() is returned.
- *
- * \remarks Memory access is faster when \a x varies the quickest, followed by
- * \a y and then by \a z. Therefore you should write nested loops in this order
- * for faster access:
- *
- * \code
- * for ( int z = 0; z < ...; ++z ) {
- *     for ( int y = 0; y < ...; ++y ) {
- *         for ( int x = 0; x < ...; ++x ) {
- *             ... = octree.at(x,y,z);
- *         }
- *     }
- * }
- * \endcode
- *
- * However, zSlice() provides an even faster way.
- */
 template< typename T, int AS >
 const T& Octree<T,AS>::at( int x, int y, int z ) const
 {
@@ -244,25 +156,12 @@ const T& Octree<T,AS>::at( int x, int y, int z ) const
             x & size, y & size, z & size );
 }
 
-/**
- * Synonym of at().
- */
 template< typename T, int AS >
 const T& Octree<T,AS>::operator() ( int x, int y, int z ) const
 {
     return at(x,y,z);
 }
 
-/**
- * \return Reference to value at index (\a x,\a y,\a z). If no node exists at
- * this index, a new one is created (along with the necessary ancestry),
- * initialized to the value returned by emptyValue(), and returned.
- *
- * \remarks Be careful when calling this function. If you do not want to
- * inadvertently create new nodes, use the at() function.
- *
- * \see at()
- */
 template< typename T, int AS >
 T& Octree<T,AS>::operator() ( int x, int y, int z )
 {
@@ -296,11 +195,6 @@ T& Octree<T,AS>::operator() ( int x, int y, int z )
             x & size, y & size, z & size );
 }
 
-/**
- * Sets the value of the node at (\a x, \a y, \a z) to \a value. If \a value is
- * the empty value, the node is erased. Otherwise, the node is created if it did
- * not already exist and its value is set to \a value.
- */
 template< typename T, int AS >
 void Octree<T,AS>::set( int x, int y, int z, const T& value )
 {
@@ -312,15 +206,6 @@ void Octree<T,AS>::set( int x, int y, int z, const T& value )
     }
 }
 
-/**
- * Erases the node at index (\a x,\a y,\a z). After the call,
- * <code>at(x,y,z)</code> will return the value returned by emptyValue().
- *
- * This function will free as much memory as possible. For example, when erasing
- * the single child of a branch node, the branch node itself will be erased and
- * replaced by a null pointer in its parent. This will percolate to the top of
- * the tree if necessary.
- */
 template< typename T, int AS >
 void Octree<T,AS>::erase( int x, int y, int z )
 {
@@ -331,9 +216,6 @@ void Octree<T,AS>::erase( int x, int y, int z )
     eraseRecursive( &root_, size_, x, y, z );
 }
 
-/**
- * Helper function for erase() method.
- */
 template< typename T, int AS >
 void Octree<T,AS>::eraseRecursive( Node** node, int size, int x, int y, int z )
 {
@@ -405,45 +287,30 @@ void Octree<T,AS>::eraseRecursive( Node** node, int size, int x, int y, int z )
     }
 }
 
-/**
- * \return Number of bytes a branch node occupies.
- */
 template< typename T, int AS >
 unsigned long Octree<T,AS>::branchBytes()
 {
     return sizeof(Branch);
 }
 
-/**
- * \return Number of bytes an aggregate node occupies.
- */
 template< typename T, int AS >
 unsigned long Octree<T,AS>::aggregateBytes()
 {
     return sizeof(Aggregate);
 }
 
-/**
- * \return Number of bytes a leaf node occupies.
- */
 template< typename T, int AS >
 unsigned long Octree<T,AS>::leafBytes()
 {
     return sizeof(Leaf);
 }
 
-/**
- * \return Total number of nodes in the octree.
- */
 template< typename T, int AS >
 int Octree<T,AS>::nodes() const
 {
     return nodesRecursive(root_);
 }
 
-/**
- * Helper function for nodes() method.
- */
 template< typename T, int AS >
 int Octree<T,AS>::nodesRecursive( const Node* node )
 {
@@ -462,21 +329,12 @@ int Octree<T,AS>::nodesRecursive( const Node* node )
     return n;
 }
 
-/**
- * \return Total number of bytes the octree occupies.
- *
- * \remarks Memory fragmentation may make the actual memory usage significantly
- * higher.
- */
 template< typename T, int AS >
 unsigned long Octree<T,AS>::bytes() const
 {
     return bytesRecursive(root_) + sizeof(*this);
 }
 
-/**
- * Helper function for bytes() method.
- */
 template< typename T, int AS >
 unsigned long Octree<T,AS>::bytesRecursive( const Node* node )
 {
@@ -506,23 +364,12 @@ unsigned long Octree<T,AS>::bytesRecursive( const Node* node )
     return b;
 }
 
-/**
- * \return Number of nodes of at size \a size. For example, the root (if
- * allocated) is the single node of size 1. At size <i>n</i> there may be a
- * maximum of 2<sup><i>n</i></sup> nodes.
- *
- * For sizes lower than the aggregate size, this function will always return
- * zero.
- */
 template< typename T, int AS >
 int Octree<T,AS>::nodesAtSize( int size ) const
 {
     return nodesAtSizeRecursive( size, size_, root_ );
 }
 
-/**
- * Helper function for nodesAtSize() method.
- */
 template< typename T, int AS >
 int Octree<T,AS>::nodesAtSizeRecursive( int targetSize, int size, Node* node )
 {
@@ -733,29 +580,6 @@ void Octree<T,AS>::Leaf::setValue( const T& v )
     value_ = v;
 }
 
-/**
- * \return A slice of the octree, perpendicular to the Z axis. The content of
- * all nodes for which the Z index is \a z will be copied into the returned
- * array. If no node exists for a given index, the value returned by
- * emptyValue() will be written instead.
- *
- * \remarks This method ought to be relatively fast as long the the time
- * required to copy values does not dwarf the time for indexing into the octree
- * (this should be the case for built-in C++ types such as int and double).
- * As a result, using this function is an easy way to accelerate the infamous
- * three-level nested loops. For example:
- *
- * \code
- * for ( int z = 0; z < ...; ++z ) {
- *     tmp = octree.zSlice(z);
- *     for ( int y = 0; y < ...; ++y ) {
- *         for ( int x = 0; x < ...; ++x ) {
- *             ... = tmp(y,x);
- *         }
- *     }
- * }
- * \endcode
- */
 template< typename T, int AS >
 Array2D<T> Octree<T,AS>::zSlice( int z ) const
 {
@@ -811,13 +635,6 @@ void Octree<T,AS>::zSliceRecursive( Array2D<T> slice, const Node* node,
     }
 }
 
-/**
- * Writes the octree in binary form to the output stream \a out. This should be
- * fast, but note that the type \a T will be written as it appears in memory.
- * That is, if it is a complex type containing pointers, the pointer addresses
- * will be written instead of the data pointed at. For complex types, you should
- * roll your own function.
- */
 template< typename T, int AS >
 void Octree<T,AS>::writeBinary( std::ostream& out ) const
 {
@@ -883,10 +700,6 @@ void Octree<T,AS>::writeBinaryRecursive( std::ostream& out, const Node* node )
     }
 }
 
-/**
- * Reads the octree from \a in. It must previously have been written using
- * writeBinary().
- */
 template< typename T, int AS >
 void Octree<T,AS>::readBinary( std::istream& in )
 {

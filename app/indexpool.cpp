@@ -1,8 +1,10 @@
 #include "indexpool.h"
 
 IndexPool::IndexPool(QObject *parent, GEOMHANDLE highestIndex) :
-    QObject(parent), m_iMaxIndex(1), m_UnusedIndices(), m_iHighestAllowedIndex(highestIndex)
+    QObject(parent), m_iMaxIndex(1), m_UnusedIndices()
 {
+    Q_ASSERT(highestIndex > 0 && highestIndex <= INDEX_LIMIT);
+    m_iHighestAllowedIndex = highestIndex;
 }
 
 GEOMHANDLE IndexPool::allocateIndex()

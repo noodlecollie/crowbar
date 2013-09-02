@@ -82,6 +82,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_type.html"><span>Typedefs</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -115,59 +118,23 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
-<li>bottom
-: <a class="el" href="struct_ortho_projection.html#ae2a5eb9c806d61f26cbce67639880915">OrthoProjection</a>
+<li>m_bSelected
+: <a class="el" href="class_geom_meta_handle.html#a545e915bdbffcafcf5cd9381b404874c">GeomMetaHandle</a>
 </li>
-<li>left
-: <a class="el" href="struct_ortho_projection.html#a4cacc486e79687686061e32cf8eaeb2a">OrthoProjection</a>
+<li>m_hHandle
+: <a class="el" href="struct_geom_info.html#a38fdd8d03050ce8b279b313eb53a7862">GeomInfo</a>
 </li>
-<li>m_ClearColour
-: <a class="el" href="struct_open_g_l_initialiser.html#a65011f15005795684b97f8900ab39bf6">OpenGLInitialiser</a>
+<li>m_hParentSolid
+: <a class="el" href="struct_geom_info.html#aa929dea8b11f72ae4489e73ef8f60f7a">GeomInfo</a>
 </li>
-<li>m_Comment
-: <a class="el" href="class_base_property.html#a2a08935cf352cb274575be32188e8acd">BaseProperty</a>
-</li>
-<li>m_Hints
-: <a class="el" href="struct_open_g_l_initialiser.html#a52aff5a3c02a0b30274f95e9d899039d">OpenGLInitialiser</a>
-</li>
-<li>m_iDepthFunc
-: <a class="el" href="struct_open_g_l_initialiser.html#a57861877fcf98b47179a46e4800cf0db">OpenGLInitialiser</a>
-</li>
-<li>m_iEnables
-: <a class="el" href="struct_open_g_l_initialiser.html#a4b84e53b0545039933e2428b5a902d2d">OpenGLInitialiser</a>
-</li>
-<li>m_Interface
-: <a class="el" href="class_w_int_property.html#a7c4faa1f37d022fe9bc1bd2da01c2213">WIntProperty</a>
-, <a class="el" href="class_w_u_long_long_property.html#af84b2abd75425a2173ed9450c2a65ce6">WULongLongProperty</a>
-, <a class="el" href="class_w_long_long_property.html#ae6b2b015e81593744f2ef962aa7c04b6">WLongLongProperty</a>
-, <a class="el" href="class_w_double_property.html#aa40ee58413b2eb1431bcc98962e59c64">WDoubleProperty</a>
-, <a class="el" href="class_w_u_int_property.html#aef61d929eea5c2e11c3ccf7e5921f564">WUIntProperty</a>
-, <a class="el" href="class_w_long_property.html#aa2f15d5d8e88e1410664fec29b18dea6">WLongProperty</a>
-, <a class="el" href="class_w_u_long_property.html#ae67a466defe432cdd559c753dc02a5a0">WULongProperty</a>
-, <a class="el" href="class_w_base_property.html#a8c25b5b13019cf65037147da7b03c643">WBaseProperty</a>
-, <a class="el" href="class_w_float_property.html#aee5767ac1ab391a1da6f396ed334e98b">WFloatProperty</a>
-, <a class="el" href="class_w_string_property.html#a2a678d70f25fed457ee88e4b1ff85b68">WStringProperty</a>
-</li>
-<li>m_iShadeModel
-: <a class="el" href="struct_open_g_l_initialiser.html#ad2ad4d011d3d4a57faeae733fd065549">OpenGLInitialiser</a>
+<li>m_iType
+: <a class="el" href="struct_geom_info.html#a39b0270c2fa75ee91a7b43349440974d">GeomInfo</a>
 </li>
 <li>m_PluginList
 : <a class="el" href="class_plugin_manager.html#af65cae6069dfdb469aee42c4d2ec94d2">PluginManager</a>
 </li>
-<li>m_Property
-: <a class="el" href="class_base_property.html#a2338fecdc198936259809444e93e93df">BaseProperty</a>
-</li>
 <li>m_szLoadDir
 : <a class="el" href="class_plugin_manager.html#ad76c45e41d41eac52be4ba19e4ae11fb">PluginManager</a>
-</li>
-<li>m_WInterface
-: <a class="el" href="class_property_variant.html#a1e4df466c54f47349130ca4c3cb0bf93">PropertyVariant</a>
-</li>
-<li>right
-: <a class="el" href="struct_ortho_projection.html#a140ce0f7bca9b77c1c511e711836c4cc">OrthoProjection</a>
-</li>
-<li>top
-: <a class="el" href="struct_ortho_projection.html#a6cb9f21197e582876b5d1dba5d83333a">OrthoProjection</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -175,7 +142,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Jul 31 2013 17:59:07 for Crowbar by
+    <li class="footer">Generated on Mon Sep 2 2013 22:28:57 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

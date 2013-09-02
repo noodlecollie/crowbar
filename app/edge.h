@@ -1,12 +1,5 @@
 /*! \file edge.h
- * \brief TODO - UPDATE. Defines an edge that connects two vertices.
- *
- * The edge stores the vertices it connects via their geometry handles which are unique to the current piece of geometry.
- * The faces either side of the edge are also stored.<br>When considering travelling along the edge from the beginning to end vertex,
- * the normals of the faces either side of the edge can be considered to point clockwise or anticlockwise around the edge. The face
- * with an anticlockwise-pointing normal is denoted the "right" face (if the normal were pointing upwards the face would be positioned
- * to the right of the edge) and the face with the clockwise-pointing normal is denoted the "left" face. If both normals are pointing
- * in the same direction (either clockwise or anticlockwise) it is not defined which face is denoted left and which right.
+ * \brief Defines an edge which links two vertices.
  */
 
 #ifndef EDGE_H
@@ -17,7 +10,12 @@
 class Solid3D;
 
 /**
- * @brief Class to represent an edge connecting two 3D vertices.
+ * @brief An edge links two vertices and two faces, referenced by their geometry handles.<br/>
+ * When considering travelling along the edge from the beginning to end vertex,
+ * the normals of the faces either side of the edge can be considered to point clockwise or anticlockwise around the edge. The face
+ * with an anticlockwise-pointing normal is denoted the "right" face (if the normal were pointing upwards the face would be positioned
+ * to the right of the edge) and the face with the clockwise-pointing normal is denoted the "left" face. If both normals are pointing
+ * in the same direction (either clockwise or anticlockwise) it is not defined which face is denoted left and which right.
  */
 class Edge3D : public GeomMetaHandle
 {
@@ -88,8 +86,16 @@ public:
      */
     inline QVector3D getMidpoint() const                    { return m_Centre; }
     
+	/**
+	 * @brief Returns the handle of the parent solid of this edge.
+	 * @return Parent solid handle.
+	 */
     inline GEOMHANDLE getParentSolid() const                { return m_hParentSolid; }
 
+	/**
+	 * @brief Returns this edge's geometry handle.
+	 * @return Handle for this edge.
+	 */
     inline GEOMHANDLE getHandle() const                     { return m_hHandle; }
     
     // ===== End get functions =====
@@ -125,13 +131,25 @@ public:
      */
     inline void setMidpoint(const QVector3D mid)            { m_Centre = mid; }
     
+	/**
+	 * @brief Sets the parent solid handle for this edge.
+	 * @param handle Handle to set.
+	 */
     inline void setParentSolid(const GEOMHANDLE handle)     { m_hParentSolid = handle; }
     
+	/**
+	 * @brief Sets this edge's handle.
+	 * @param handle Handle to set.
+	 */
     inline void setHandle(const GEOMHANDLE handle)          { m_hHandle = handle; }
     
     // ===== End set functions =====
     
     // Calculates mid-point between the two vertices when a parent solid is provided.
+	/**
+	 * @brief Given a parent solid, calculates the mid-point of the edge by looking up the vertices it references.
+	 * @param parent Parent solid of this edge.
+	 */
     bool calcMidpoint(Solid3D& parent);
     
     // TODO: Change this to find the parent from the global brush list.

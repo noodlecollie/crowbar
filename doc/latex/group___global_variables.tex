@@ -13,9 +13,10 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}{void \hyperlink{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}{Show\-Message\-Box} (Q\-String)}\label{group___global_variables_ga656b53cad22b27c5acd1f7aea9f49c48}
-
+void \hyperlink{group___global_variables_ga9551f73a6927861d0b6f5d7901c90888}{Show\-Message\-Box} (Q\-String message)
 \begin{DoxyCompactList}\small\item\em Creates a basic one-\/time modal message box with simple message and an \char`\"{}\-O\-K\char`\"{} button. \end{DoxyCompactList}\item 
+void \hyperlink{group___global_variables_gadf8a13f3d23660f424828d7f559addd3}{Show\-Error\-Box} (Q\-String message)
+\begin{DoxyCompactList}\small\item\em Creates a basic one-\/time modal error box with simple message and an \char`\"{}\-O\-K\char`\"{} button. \end{DoxyCompactList}\item 
 void \hyperlink{group___global_variables_ga9bb2d01dee132ec096040ba459b4e2e4}{Log\-Message} (Q\-String message, bool newline=true)
 \begin{DoxyCompactList}\small\item\em Logs a message to the log window. \end{DoxyCompactList}\item 
 void \hyperlink{group___global_variables_ga577d74a77b480346d9aa74680d6e7020}{Log\-Tagged\-Message} (Q\-String tag, Q\-String message, bool newline=true)
@@ -121,6 +122,38 @@ Messages can be formatted by passing Q\-String(\char`\"{}\%0 \%1 ...\char`\"{}).
 {\em message} & Message to write. \\
 \hline
 {\em newline} & Whether a newline should follow the message. Defaults to true. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___global_variables_gadf8a13f3d23660f424828d7f559addd3}{\index{Global variables@{Global variables}!Show\-Error\-Box@{Show\-Error\-Box}}
+\index{Show\-Error\-Box@{Show\-Error\-Box}!Global variables@{Global variables}}
+\subsubsection[{Show\-Error\-Box}]{\setlength{\rightskip}{0pt plus 5cm}void Show\-Error\-Box (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{message}
+\end{DoxyParamCaption}
+)}}\label{group___global_variables_gadf8a13f3d23660f424828d7f559addd3}
+
+
+Creates a basic one-\/time modal error box with simple message and an \char`\"{}\-O\-K\char`\"{} button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Message to display. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___global_variables_ga9551f73a6927861d0b6f5d7901c90888}{\index{Global variables@{Global variables}!Show\-Message\-Box@{Show\-Message\-Box}}
+\index{Show\-Message\-Box@{Show\-Message\-Box}!Global variables@{Global variables}}
+\subsubsection[{Show\-Message\-Box}]{\setlength{\rightskip}{0pt plus 5cm}void Show\-Message\-Box (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{message}
+\end{DoxyParamCaption}
+)}}\label{group___global_variables_ga9551f73a6927861d0b6f5d7901c90888}
+
+
+Creates a basic one-\/time modal message box with simple message and an \char`\"{}\-O\-K\char`\"{} button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Message to display. \\
 \hline
 \end{DoxyParams}
 

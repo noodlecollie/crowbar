@@ -1,0 +1,35 @@
+\hypertarget{edge_8h}{\section{app/edge.h File Reference}
+\label{edge_8h}\index{app/edge.\-h@{app/edge.\-h}}
+}
+
+
+Defines an edge which links two vertices.  
+
+
+{\ttfamily \#include \char`\"{}vertex.\-h\char`\"{}}\\*
+Include dependency graph for edge.\-h\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{edge_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{edge_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_edge3_d}{Edge3\-D}
+\begin{DoxyCompactList}\small\item\em An edge links two vertices and two faces, referenced by their geometry handles.\par
+ When considering travelling along the edge from the beginning to end vertex, the normals of the faces either side of the edge can be considered to point clockwise or anticlockwise around the edge. The face with an anticlockwise-\/pointing normal is denoted the \char`\"{}right\char`\"{} face (if the normal were pointing upwards the face would be positioned to the right of the edge) and the face with the clockwise-\/pointing normal is denoted the \char`\"{}left\char`\"{} face. If both normals are pointing in the same direction (either clockwise or anticlockwise) it is not defined which face is denoted left and which right. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines an edge which links two vertices. 

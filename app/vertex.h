@@ -10,27 +10,43 @@
 #include <QColor>
 #include "ivertex3drenderspec.h"
 
+//! \typedef GEOMHANDLE
+//! \brief Handle for a geometry component.
 typedef unsigned long GEOMHANDLE;
+
+//! \typedef VBO_OFFSET
+//! \brief Value for specifying an offset in the graphics VBO.
 typedef unsigned long VBO_OFFSET;
+
+//! \def NULLHND
+//! \brief Value of a null GEOMHANDLE.
 #define NULLHND 0
 
+/**
+ * @brief Metaclass which all geometry components subclass from. Contains useful metadata relevant to geometry components.
+ */
 class GeomMetaHandle
 {
 public:
+	/**
+	 * @brief Default constructor. Initialises values to null.
+	 */
     GeomMetaHandle() : m_bSelected(false)
     {
     }
 
-    bool m_bSelected;
+    bool m_bSelected;	/**< Whether the component is currently selected. */
 };
 
 /**
- * @brief Defines a vertex in 3D space. The vertex has an integer ID that should be
- * unique amongst the elements of the pieceof geometry it belongs to. This ID does
- * not have to be consecutive with the previous ID; the VBO offset, however, should
- * be. TODO: Document this all better.
+ * @brief Defines a vertex in 3D space.
+ *
+ * The vertex contains a VBO offset which, when combined with the parent solid's offset,
+ * defines where in the VBO this vertex's render data is found. The vertex also contains colour
+ * information and texture co-ordinates. Normals are not stored per vertex as when faces are rendered,
+ * the face's stored normal is used to calculate the shading required.
  */
-class Vertex3D : public GeomMetaHandle, public IVertex3DRenderSpec
+class Vertex3D : public GeomMetaHandle, public IVertex3DRenderSpec	// TODO: Implement the "Q Implements Interface" macro
 {
 public:
     /**
@@ -93,10 +109,23 @@ public:
      */
     inline float getTexCoordY() const { return m_flTexY; }
     
+	/**
+	 * @brief Gets this vertex's VBO offset from the beginning of the parent solid. This offset it
+	 * not valid if the parent solid is NULLHND.
+	 * @return Vertex's VBO offset.
+	 */
     inline VBO_OFFSET getVBOOffset() const { return m_hVBOOffset; }
     
+	/**
+	 * @brief Gets the handle of this vertex's parent solid.
+	 * @return Parent solid's handle, or NULLHND if no parent solid exists.
+	 */
     inline GEOMHANDLE getParentSolid() const { return m_hParentSolid; }
     
+	/**
+	 * @brief Returns this vertex's handle, which is unique within its parent solid.
+	 * @return This vertex's handle.
+	 */
     inline GEOMHANDLE getHandle() const { return m_hHandle; }
     
     // ===== End get functions =====
@@ -141,10 +170,22 @@ public:
      */
     inline void setTexCoordY(const float coord) { m_flTexY = coord; }
     
-    inline void setVBOHandle(const VBO_OFFSET handle) { m_hVBOOffset = handle; }
+	/**
+	 * @brief Sets this vertex's VBO offset.
+	 * @param offset Offset to set.
+	 */
+    inline void setVBOOffset(const VBO_OFFSET offset) { m_hVBOOffset = offset; }
     
+	/**
+	 * @brief Sets this vertex's parent solid handle.
+	 * @param handle Handle to set.
+	 */
     inline void setParentSolid(const GEOMHANDLE handle) { m_hParentSolid = handle; }
     
+	/**
+	 * @brief Sets this vertex's handle.
+	 * @param handle Handle to set.
+	 */
     inline void setHandle(const GEOMHANDLE handle) { m_hHandle = handle; }
     
     // ===== End set functions =====
@@ -167,12 +208,6 @@ public:
         colour[2] = (unsigned char)m_Colour.blue();
         colour[3] = (unsigned char)m_Colour.alpha();
     }
-
-    /**
-     * @brief Fils an array with the normal vector values for this vertex.
-     * @param normal Normal array to fill. Format is XYZ.
-     */
-    virtual void V3RS_Normal(float normal[]) { normal[0] = m_Normal.x(); normal[1] = m_Normal.y(); normal[2] = m_Normal.z(); }
 
     /**
      * @brief Fills an array with the texture co-ordinate values for this vertex.

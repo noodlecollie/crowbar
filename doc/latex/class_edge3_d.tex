@@ -1,0 +1,366 @@
+\hypertarget{class_edge3_d}{\section{Edge3\-D Class Reference}
+\label{class_edge3_d}\index{Edge3\-D@{Edge3\-D}}
+}
+
+
+An edge links two vertices and two faces, referenced by their geometry handles.\par
+ When considering travelling along the edge from the beginning to end vertex, the normals of the faces either side of the edge can be considered to point clockwise or anticlockwise around the edge. The face with an anticlockwise-\/pointing normal is denoted the \char`\"{}right\char`\"{} face (if the normal were pointing upwards the face would be positioned to the right of the edge) and the face with the clockwise-\/pointing normal is denoted the \char`\"{}left\char`\"{} face. If both normals are pointing in the same direction (either clockwise or anticlockwise) it is not defined which face is denoted left and which right.  
+
+
+
+
+{\ttfamily \#include $<$edge.\-h$>$}
+
+
+
+Inheritance diagram for Edge3\-D\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{class_edge3_d__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Edge3\-D\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{class_edge3_d__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_edge3_d_a6f25535dfee47bf06832243b11207ba6}{\hyperlink{class_edge3_d_a6f25535dfee47bf06832243b11207ba6}{Edge3\-D} ()}\label{class_edge3_d_a6f25535dfee47bf06832243b11207ba6}
+
+\begin{DoxyCompactList}\small\item\em Constructor. Member variables are set to zero values. \end{DoxyCompactList}\item 
+\hyperlink{class_edge3_d_a2c4d543fd8a4ffe272539547800c712c}{Edge3\-D} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} start, const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} end, const Q\-Vector3\-D midpoint)
+\begin{DoxyCompactList}\small\item\em Constructor specifying start and end vertices and the midpoint of the edge. \end{DoxyCompactList}\item 
+\hyperlink{class_edge3_d_af04a433a585de58702f3586d8a52219d}{Edge3\-D} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} start, const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} end, const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} rightface, const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} leftface, const Q\-Vector3\-D midpoint)
+\begin{DoxyCompactList}\small\item\em Constructor specifying faces as well as vertices. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_a061cf7a8c3324e564d42283702454e69}{get\-Start\-Vertex} () const 
+\begin{DoxyCompactList}\small\item\em Returns the start vertex for this edge. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_aa845b1590748b1606697afafb9b33c73}{get\-End\-Vertex} () const 
+\begin{DoxyCompactList}\small\item\em Returns the end vertex of this edge. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_a7dd9278b01fed4abf702c17eeb5c7d8b}{get\-Right\-Face} () const 
+\begin{DoxyCompactList}\small\item\em Returns the edge's right face. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_aaa398af751fda9e8b2192efef0810dc0}{get\-Left\-Face} () const 
+\begin{DoxyCompactList}\small\item\em Returns the edge's left face. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_edge3_d_a2b97448e7bb66cf25e4bcdcff315ab5e}{get\-Midpoint} () const 
+\begin{DoxyCompactList}\small\item\em Returns the edge's midpoint. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_a34d681aaa672935753f2619ebace572b}{get\-Parent\-Solid} () const 
+\begin{DoxyCompactList}\small\item\em Returns the handle of the parent solid of this edge. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_edge3_d_a890650509dd10950ebaa358a349df4c7}{get\-Handle} () const 
+\begin{DoxyCompactList}\small\item\em Returns this edge's geometry handle. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a0533442646913ae69832e3178fa72f9a}{set\-Start\-Vertex} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} v)
+\begin{DoxyCompactList}\small\item\em Sets the edge's start vertex. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a32ff76ad3559822c44c8faa8519fdf74}{set\-End\-Vertex} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} v)
+\begin{DoxyCompactList}\small\item\em Sets the edge's end vertex. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a9960f64e5fceb5a6dc828893fe704cb6}{set\-Right\-Face} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} f)
+\begin{DoxyCompactList}\small\item\em Sets the edge's right face. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a1d87d3eed968ddce326ac07cc7c98e34}{set\-Left\-Face} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} f)
+\begin{DoxyCompactList}\small\item\em Sets the edge's left face. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a5b5e77a0d19f391cf987510111bc32f6}{set\-Midpoint} (const Q\-Vector3\-D mid)
+\begin{DoxyCompactList}\small\item\em Sets the edge's midpoint. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_ad905287b0350a41fcf82c638e247255c}{set\-Parent\-Solid} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets the parent solid handle for this edge. \end{DoxyCompactList}\item 
+void \hyperlink{class_edge3_d_a7ad6b919f69ee151ce78a3d5d2b41096}{set\-Handle} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets this edge's handle. \end{DoxyCompactList}\item 
+bool \hyperlink{class_edge3_d_a9cd240bf4c0f68b3085777935e11fb85}{calc\-Midpoint} (\hyperlink{class_solid3_d}{Solid3\-D} \&parent)
+\begin{DoxyCompactList}\small\item\em Given a parent solid, calculates the mid-\/point of the edge by looking up the vertices it references. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An edge links two vertices and two faces, referenced by their geometry handles.\par
+ When considering travelling along the edge from the beginning to end vertex, the normals of the faces either side of the edge can be considered to point clockwise or anticlockwise around the edge. The face with an anticlockwise-\/pointing normal is denoted the \char`\"{}right\char`\"{} face (if the normal were pointing upwards the face would be positioned to the right of the edge) and the face with the clockwise-\/pointing normal is denoted the \char`\"{}left\char`\"{} face. If both normals are pointing in the same direction (either clockwise or anticlockwise) it is not defined which face is denoted left and which right. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_edge3_d_a2c4d543fd8a4ffe272539547800c712c}{\index{Edge3\-D@{Edge3\-D}!Edge3\-D@{Edge3\-D}}
+\index{Edge3\-D@{Edge3\-D}!Edge3D@{Edge3\-D}}
+\subsubsection[{Edge3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Edge3\-D\-::\-Edge3\-D (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{start, }
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{end, }
+\item[{const Q\-Vector3\-D}]{midpoint}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a2c4d543fd8a4ffe272539547800c712c}
+
+
+Constructor specifying start and end vertices and the midpoint of the edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & I\-D of vertex this edge starts at. \\
+\hline
+{\em end} & I\-D of vertex this edge ends at. \\
+\hline
+{\em midpoint} & Co-\/ordinates of the edge's midpoint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_af04a433a585de58702f3586d8a52219d}{\index{Edge3\-D@{Edge3\-D}!Edge3\-D@{Edge3\-D}}
+\index{Edge3\-D@{Edge3\-D}!Edge3D@{Edge3\-D}}
+\subsubsection[{Edge3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Edge3\-D\-::\-Edge3\-D (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{start, }
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{end, }
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{rightface, }
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{leftface, }
+\item[{const Q\-Vector3\-D}]{midpoint}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_af04a433a585de58702f3586d8a52219d}
+
+
+Constructor specifying faces as well as vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & I\-D of vertex this edge starts at. \\
+\hline
+{\em end} & I\-D of vertex this edge ends at. \\
+\hline
+{\em rightface} & Face to the right of this edge (see page description). \\
+\hline
+{\em leftface} & Face to the left of this edge (see page description). \\
+\hline
+{\em midpoint} & Co-\/ordinates of the edge's midpoint. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_edge3_d_a9cd240bf4c0f68b3085777935e11fb85}{\index{Edge3\-D@{Edge3\-D}!calc\-Midpoint@{calc\-Midpoint}}
+\index{calc\-Midpoint@{calc\-Midpoint}!Edge3D@{Edge3\-D}}
+\subsubsection[{calc\-Midpoint}]{\setlength{\rightskip}{0pt plus 5cm}bool Edge3\-D\-::calc\-Midpoint (
+\begin{DoxyParamCaption}
+\item[{{\bf Solid3\-D} \&}]{parent}
+\end{DoxyParamCaption}
+)}}\label{class_edge3_d_a9cd240bf4c0f68b3085777935e11fb85}
+
+
+Given a parent solid, calculates the mid-\/point of the edge by looking up the vertices it references. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Parent solid of this edge. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_aa845b1590748b1606697afafb9b33c73}{\index{Edge3\-D@{Edge3\-D}!get\-End\-Vertex@{get\-End\-Vertex}}
+\index{get\-End\-Vertex@{get\-End\-Vertex}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-End\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-End\-Vertex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_aa845b1590748b1606697afafb9b33c73}
+
+
+Returns the end vertex of this edge. 
+
+\begin{DoxyReturn}{Returns}
+End vertex I\-D. 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a890650509dd10950ebaa358a349df4c7}{\index{Edge3\-D@{Edge3\-D}!get\-Handle@{get\-Handle}}
+\index{get\-Handle@{get\-Handle}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-Handle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a890650509dd10950ebaa358a349df4c7}
+
+
+Returns this edge's geometry handle. 
+
+\begin{DoxyReturn}{Returns}
+Handle for this edge. 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_aaa398af751fda9e8b2192efef0810dc0}{\index{Edge3\-D@{Edge3\-D}!get\-Left\-Face@{get\-Left\-Face}}
+\index{get\-Left\-Face@{get\-Left\-Face}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Left\-Face}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-Left\-Face (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_aaa398af751fda9e8b2192efef0810dc0}
+
+
+Returns the edge's left face. 
+
+\begin{DoxyReturn}{Returns}
+Left face I\-D (see page description). 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a2b97448e7bb66cf25e4bcdcff315ab5e}{\index{Edge3\-D@{Edge3\-D}!get\-Midpoint@{get\-Midpoint}}
+\index{get\-Midpoint@{get\-Midpoint}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Midpoint}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Edge3\-D\-::get\-Midpoint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a2b97448e7bb66cf25e4bcdcff315ab5e}
+
+
+Returns the edge's midpoint. 
+
+\begin{DoxyReturn}{Returns}
+Co-\/ordinates of midpoint of edge. 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a34d681aaa672935753f2619ebace572b}{\index{Edge3\-D@{Edge3\-D}!get\-Parent\-Solid@{get\-Parent\-Solid}}
+\index{get\-Parent\-Solid@{get\-Parent\-Solid}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-Parent\-Solid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a34d681aaa672935753f2619ebace572b}
+
+
+Returns the handle of the parent solid of this edge. 
+
+\begin{DoxyReturn}{Returns}
+Parent solid handle. 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a7dd9278b01fed4abf702c17eeb5c7d8b}{\index{Edge3\-D@{Edge3\-D}!get\-Right\-Face@{get\-Right\-Face}}
+\index{get\-Right\-Face@{get\-Right\-Face}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Right\-Face}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-Right\-Face (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a7dd9278b01fed4abf702c17eeb5c7d8b}
+
+
+Returns the edge's right face. 
+
+\begin{DoxyReturn}{Returns}
+Right face I\-D (see page description). 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a061cf7a8c3324e564d42283702454e69}{\index{Edge3\-D@{Edge3\-D}!get\-Start\-Vertex@{get\-Start\-Vertex}}
+\index{get\-Start\-Vertex@{get\-Start\-Vertex}!Edge3D@{Edge3\-D}}
+\subsubsection[{get\-Start\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Edge3\-D\-::get\-Start\-Vertex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a061cf7a8c3324e564d42283702454e69}
+
+
+Returns the start vertex for this edge. 
+
+\begin{DoxyReturn}{Returns}
+Start vertex I\-D. 
+\end{DoxyReturn}
+\hypertarget{class_edge3_d_a32ff76ad3559822c44c8faa8519fdf74}{\index{Edge3\-D@{Edge3\-D}!set\-End\-Vertex@{set\-End\-Vertex}}
+\index{set\-End\-Vertex@{set\-End\-Vertex}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-End\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-End\-Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a32ff76ad3559822c44c8faa8519fdf74}
+
+
+Sets the edge's end vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Vertex I\-D to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_a7ad6b919f69ee151ce78a3d5d2b41096}{\index{Edge3\-D@{Edge3\-D}!set\-Handle@{set\-Handle}}
+\index{set\-Handle@{set\-Handle}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Handle (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a7ad6b919f69ee151ce78a3d5d2b41096}
+
+
+Sets this edge's handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_a1d87d3eed968ddce326ac07cc7c98e34}{\index{Edge3\-D@{Edge3\-D}!set\-Left\-Face@{set\-Left\-Face}}
+\index{set\-Left\-Face@{set\-Left\-Face}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Left\-Face}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Left\-Face (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a1d87d3eed968ddce326ac07cc7c98e34}
+
+
+Sets the edge's left face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Face I\-D to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_a5b5e77a0d19f391cf987510111bc32f6}{\index{Edge3\-D@{Edge3\-D}!set\-Midpoint@{set\-Midpoint}}
+\index{set\-Midpoint@{set\-Midpoint}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Midpoint}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Midpoint (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{mid}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a5b5e77a0d19f391cf987510111bc32f6}
+
+
+Sets the edge's midpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mid} & Co-\/ordinates of midpoint. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_ad905287b0350a41fcf82c638e247255c}{\index{Edge3\-D@{Edge3\-D}!set\-Parent\-Solid@{set\-Parent\-Solid}}
+\index{set\-Parent\-Solid@{set\-Parent\-Solid}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Parent\-Solid (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_ad905287b0350a41fcf82c638e247255c}
+
+
+Sets the parent solid handle for this edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_a9960f64e5fceb5a6dc828893fe704cb6}{\index{Edge3\-D@{Edge3\-D}!set\-Right\-Face@{set\-Right\-Face}}
+\index{set\-Right\-Face@{set\-Right\-Face}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Right\-Face}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Right\-Face (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a9960f64e5fceb5a6dc828893fe704cb6}
+
+
+Sets the edge's right face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Face I\-D to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_edge3_d_a0533442646913ae69832e3178fa72f9a}{\index{Edge3\-D@{Edge3\-D}!set\-Start\-Vertex@{set\-Start\-Vertex}}
+\index{set\-Start\-Vertex@{set\-Start\-Vertex}!Edge3D@{Edge3\-D}}
+\subsubsection[{set\-Start\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}void Edge3\-D\-::set\-Start\-Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_edge3_d_a0533442646913ae69832e3178fa72f9a}
+
+
+Sets the edge's start vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Vertex I\-D to set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{edge_8h}{edge.\-h}\item 
+app/edge.\-cpp\end{DoxyCompactItemize}

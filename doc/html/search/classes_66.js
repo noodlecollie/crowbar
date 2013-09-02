@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['floatproperty',['FloatProperty',['../class_float_property.html',1,'']]]
+  ['face3d',['Face3D',['../class_face3_d.html',1,'']]]
 ];
