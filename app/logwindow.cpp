@@ -175,6 +175,7 @@ void LogWindow::newLogFile()
 {
     CloseLogFile();
 
+    // TODO: THIS IS A COMPILE-TIME MACRO YOU IDIOT
     QString date(__DATE__);
     date.remove(QChar(' '), Qt::CaseInsensitive);
 

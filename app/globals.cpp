@@ -24,7 +24,7 @@ void ShowErrorBox(QString message)
     QMessageBox::critical(NULL, "Crowbar", message);
 }
 
-// Logs a message, optionally excluding the terminating '\n' character.
+// Logs a message, optionally excluding the terminating newline.
 void LogMessage(QString message, bool newline)
 {
     if ( !g_pLog || !LOGGING ) return;

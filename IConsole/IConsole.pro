@@ -11,18 +11,18 @@ TEMPLATE = lib
 
 DEFINES += ICONSOLE_LIBRARY
 
-SOURCES += \
-    consolewindow.cpp \
-    completionlist.cpp
-
-HEADERS +=\
-        iconsole_global.h \
-    consolewindow.h \
-    completionlist.h \
-    interfaces/iconsolewindow.h \
-    interfaces/icompletionwidget.h \
-    interfaces/icommandmanager.h \
-    interfaces/icommandbox.h
+HEADERS += \
+    inc/nglobalcmd.h \
+    inc/iconsole_global.h \
+    inc/baseconsolecommand.h \
+    inc/listedconsolecommand.h \
+    inc/commandmanager.h \
+    inc/concommand.h \
+    inc/convar.h \
+    inc/wr_commandmanager.h \
+    inc/wr_concommand.h \
+    inc/wr_convar.h \
+    inc/wr_listedconsolecommand.h
 
 unix:!symbian {
     maemo5 {
@@ -32,3 +32,15 @@ unix:!symbian {
     }
     INSTALLS += target
 }
+
+OTHER_FILES +=
+
+SOURCES += \  
+    src/baseconsolecommand.cpp \
+    src/listedconsolecommand.cpp \
+    src/commandmanager.cpp \
+    src/concommand.cpp \
+    src/convar.cpp
+
+INCLUDEPATH += \
+    inc

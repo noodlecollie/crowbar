@@ -15,6 +15,8 @@
 
 #include <QObject>
 
+// TODO: Change this to set console variables instead.
+
 /**
  * @brief Deals with arguments passed to the application on the command-line.
  *

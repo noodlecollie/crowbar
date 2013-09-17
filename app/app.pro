@@ -8,12 +8,9 @@ TEMPLATE = app
 SOURCES += \
     main.cpp \
     mainwin.cpp \
-    pluginmanager.cpp \
     logwindow.cpp \
     commandlineparser.cpp \
     globals.cpp \
-    baseproperty.cpp \
-    property.cpp \
     openglwidget.cpp \
     octree/octree.tcc \
     mapdoc.cpp \
@@ -25,13 +22,9 @@ SOURCES += \
 
 HEADERS += \
     mainwin.h \
-    pluginmanager.h \
-    plugin.h \
     logwindow.h \
     commandlineparser.h \
     globals.h \
-    baseproperty.h \
-    property.h \
     openglwidget.h \
     octree/tinyvector.h \
     octree/shareddata.h \

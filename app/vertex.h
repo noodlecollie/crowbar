@@ -53,7 +53,7 @@ public:
      * @brief Constructor. Initialises position and ID to zero.
      */
     Vertex3D() : m_Position(VEC3_ORIGIN), m_Normal(VEC3_ORIGIN), m_hParentSolid(NULLHND), m_hVBOOffset(NULLHND),
-        m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0)
+        m_Colour(255, 255, 255), m_flTexX(0.0f), m_flTexY(0.0f)
     {
     }
 
@@ -64,7 +64,7 @@ public:
      * @param z Z position.
      */
     Vertex3D(const float x, const float y, const float z) : m_Position(QVector3D(x, y, z)), m_hParentSolid(NULLHND),
-        m_hVBOOffset(NULLHND), m_Colour(255, 255, 255), m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN)
+        m_hVBOOffset(NULLHND), m_Colour(255, 255, 255), m_flTexX(0.0f), m_flTexY(0.0f), m_Normal(VEC3_ORIGIN)
     {
     }
 
@@ -73,7 +73,7 @@ public:
      * @param vec Vector representing position.
      */
     Vertex3D(const QVector3D vec) : m_Position(vec), m_hParentSolid(NULLHND), m_Colour(255, 255, 255),
-        m_flTexX(0.0), m_flTexY(0.0), m_Normal(VEC3_ORIGIN), m_hVBOOffset(NULLHND)
+        m_flTexX(0.0f), m_flTexY(0.0f), m_Normal(VEC3_ORIGIN), m_hVBOOffset(NULLHND)
     {
     }
 

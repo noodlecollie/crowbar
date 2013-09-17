@@ -9,6 +9,9 @@
 #include <QList>
 #include "plane.h"
 
+// TODO: Change this to only allow three edges. We'll create a meta-face which can list multiple faces.
+// TODO: Add modules for documentation so that geometry is in its own group.
+
 /**
  * @brief Class representing a 3D face.
  * 

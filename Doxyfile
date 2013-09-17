@@ -32,7 +32,7 @@ PROJECT_NAME           = Crowbar
 # This could be handy for archiving the generated documentation or 
 # if some version control system is used.
 
-PROJECT_NUMBER         = 1a9bd335b9
+PROJECT_NUMBER         = TODO
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description 
 # for a project that appears at the top of each page and should give viewer 

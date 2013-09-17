@@ -10,6 +10,8 @@
 
 #include <QObject>
 
+// TODO: Move to render module when we create this.
+
 /**
  * @brief Defines the properties required to be exposed by renderable vertices.
  */
