@@ -27,7 +27,7 @@ public:
     /**
      * @brief Constructor. Sets member variables to default values.
      */
-    Face3D() : m_hEdges(NULL), m_Plane(), m_Centre(VEC3_ORIGIN), m_hParentSolid(NULLHND), m_hHandle(NULLHND)
+    Face3D() : m_hParentSolid(NULLHND), m_hHandle(NULLHND), m_hEdges(NULL), m_Plane(), m_Centre(VEC3_ORIGIN)
     {
         init();
     }
@@ -37,7 +37,8 @@ public:
      * @param p
      * @param centre
      */
-    Face3D(const Plane p, const QVector3D centre = VEC3_ORIGIN) : m_Plane(p), m_Centre(centre), m_hParentSolid(NULLHND), m_hHandle(NULLHND)
+    Face3D(const Plane p, const QVector3D centre = VEC3_ORIGIN) :
+        m_hParentSolid(NULLHND), m_hHandle(NULLHND), m_hEdges(NULL), m_Plane(p), m_Centre(centre)
     {
         init();
     }

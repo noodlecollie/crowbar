@@ -29,7 +29,7 @@ namespace NGlobalCmd
     typedef unsigned int CMDFLAGS;
     
     typedef int (*CmdCallback) (const QString &name, const QStringList &args, QVariant &output);
-    typedef QString& (*VarCallback) (const QString &oldValue, QString &newValue);
+    typedef void (*VarCallback) (const QString &oldValue, QString &newValue);
 }
 
 #endif // NGLOBALCMD_H

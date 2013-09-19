@@ -44,12 +44,22 @@ HEADERS += \
     indexpool.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
-#LIBS           = -Llib -lcbp_docmanager
+win32 {
+    # Windows build
+    LIBS    += -L../IConsole/debug/ -lIConsole
+}
+unix {
+    # Unix build - for some reason the -L/-l syntax doesn't work...
+    LIBS    += ../IConsole/libIConsole.so
+}
 
-#if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
-#   mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
-#   win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
-#}
+# Extra includes for libraries.
+INCLUDEPATH += 
+
+if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
+   mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
+   win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
+}
 
 # NOTE: These paths assume your build directory is in the same directory as the root Crowbar folder (within which is Crowbar.pro).
 # For VS at least, the folder hierarchy seems to be <build directory>/app/ to get to the Makefile.

@@ -9,18 +9,19 @@
 
 class CommandManager;
 
-class ConVar : public ListedConsoleCommand
+class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 {
 public:
     explicit ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback = NULL, const QString &desc = "",
                     NGlobalCmd::CMDFLAGS flags = 0, bool hasMin = false, float min = 0.0, bool hasMax = false, float max = 0.0, QObject *parent = 0);
     
-    explicit ConVar(const QString &name, const QString &def, CommandManager* manager, ListedConsoleCommand* list,
+    explicit ConVar(const QString &name, const QString &def, CommandManager* manager, ListedConsoleCommand** list,
                     NGlobalCmd::VarCallback callback = NULL, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0,
                     bool hasMin = false, float min = 0.0f, bool hasMax = false, float max = 0.0f, QObject* parent = 0);
     
     virtual ~ConVar() {}
     
+    virtual NGlobalCmd::CmdIdent identify() const;
     void setCallback(NGlobalCmd::VarCallback callback);
     NGlobalCmd::VarCallback getCallback() const;
     QString get() const;
@@ -36,6 +37,7 @@ public:
     
     QString getConVarString() const;
     QString setConVar(const QString &val);
+    QString setConVar(const char* val);
     int getConVarInt() const;
     int setConVar(int val);
     float getConVarFloat() const;

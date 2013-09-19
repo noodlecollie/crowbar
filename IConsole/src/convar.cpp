@@ -2,16 +2,16 @@
 
 ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags,
                bool hasMin, float min, bool hasMax, float max, QObject *parent) :
-    ListedConsoleCommand(name, desc, flags, parent), m_bHasMax(hasMax), m_bHasMin(hasMin), m_flMaxVal(max), m_flMinVal(min), m_pVarCallback(callback),
-    m_Default(def), m_Variable(def)
+    ListedConsoleCommand(name, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
+    m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
 {
     validateBounds(m_flMinVal, m_flMaxVal);
 }
 
-ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager, ListedConsoleCommand *list, NGlobalCmd::VarCallback callback,
+ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager, ListedConsoleCommand **list, NGlobalCmd::VarCallback callback,
                const QString &desc, NGlobalCmd::CMDFLAGS flags, bool hasMin, float min, bool hasMax, float max, QObject *parent) :
-    ListedConsoleCommand(name, manager, list, desc, flags, parent), m_bHasMax(hasMax), m_bHasMin(hasMin), m_flMaxVal(max), m_flMinVal(min),
-    m_pVarCallback(callback), m_Default(def), m_Variable(def)
+    ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
+    m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
 {
     validateBounds(m_flMinVal, m_flMaxVal);
 }
@@ -106,6 +106,11 @@ QString ConVar::setConVar(const QString &val)
     return set(val);
 }
 
+QString ConVar::setConVar(const char *val)
+{
+    return set(val);
+}
+
 int ConVar::getConVarInt() const
 {
     return m_Variable.toInt();
@@ -143,4 +148,9 @@ bool ConVar::setConVar(bool val)
 {
     // Anything other than zero should be true!
     return (set(QString::number(val)).toInt() != 0);
+}
+
+NGlobalCmd::CmdIdent ConVar::identify() const
+{
+    return NGlobalCmd::CIVariable;
 }

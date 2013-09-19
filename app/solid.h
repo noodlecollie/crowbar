@@ -83,7 +83,7 @@ public:
      */
     ~Solid3D();
     
-    // ===== Begin vertex functions ===== \\
+    // ===== Begin vertex functions =====
     
     /**
      * @brief Adds the specified vertex.
@@ -140,9 +140,9 @@ public:
      */
     void findRelatedFacesForVertex(QList<GEOMHANDLE>& outFaces, QList<GEOMHANDLE>& vertices);
     
-    // ===== End vertex functions ===== \\
+    // ===== End vertex functions =====
     
-    // ===== Begin edge functions ===== \\
+    // ===== Begin edge functions =====
     
     /**
      * @brief Adds the specified edge.
@@ -183,9 +183,9 @@ public:
      */
     void findRelatedFacesForEdge(QList<GEOMHANDLE>& outFaces, QList<GEOMHANDLE>& edges);
     
-    // ===== End edge functions ===== \\
+    // ===== End edge functions =====
     
-    // ===== Begin face functions ===== \\
+    // ===== Begin face functions =====
     
     /**
      * @brief Adds the specified face.
@@ -212,7 +212,7 @@ public:
      */
     Face3D* findFace(const GEOMHANDLE face) const;
     
-    // ===== End face functions ===== \\
+    // ===== End face functions =====
 
     // TODO: condenseFaces function: should check all faces to see whether any
     // adjacent faces are coplanar, and output a list of faces where the coplanar

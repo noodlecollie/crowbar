@@ -1,7 +1,6 @@
 #include "solid.h"
 
-Solid3D::Solid3D() : m_Vertices(), m_Edges(), m_Faces(),
-    m_hVBOHandle(NULLHND), m_IndexPool(), m_hHandle(NULLHND)
+Solid3D::Solid3D() : m_hVBOHandle(NULLHND), m_hHandle(NULLHND), m_IndexPool(), m_Vertices(), m_Edges(), m_Faces()
 {
 }
 

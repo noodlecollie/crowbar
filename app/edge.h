@@ -23,8 +23,8 @@ public:
     /**
      * @brief Constructor. Member variables are set to zero values.
      */
-    Edge3D() : m_hVStart(NULLHND), m_hVEnd(NULLHND), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(VEC3_ORIGIN),
-        m_hParentSolid(NULLHND), m_hHandle(NULLHND)
+    Edge3D() : m_hParentSolid(NULLHND), m_hHandle(NULLHND), m_hVStart(NULLHND), m_hVEnd(NULLHND), m_hFRight(NULLHND),
+        m_hFLeft(NULLHND), m_Centre(VEC3_ORIGIN)
     {
     }
 
@@ -35,8 +35,8 @@ public:
      * @param midpoint Co-ordinates of the edge's midpoint.
      */
     Edge3D(const GEOMHANDLE start, const GEOMHANDLE end, const QVector3D midpoint)
-        : m_hVStart(start), m_hVEnd(end), m_hFRight(NULLHND), m_hFLeft(NULLHND), m_Centre(midpoint),
-          m_hParentSolid(NULLHND), m_hHandle(NULLHND)
+        : m_hParentSolid(NULLHND), m_hHandle(NULLHND), m_hVStart(start), m_hVEnd(end), m_hFRight(NULLHND),
+          m_hFLeft(NULLHND), m_Centre(midpoint)
     {
     }
 
@@ -49,8 +49,8 @@ public:
      * @param midpoint Co-ordinates of the edge's midpoint.
      */
     Edge3D(const GEOMHANDLE start, const GEOMHANDLE end, const GEOMHANDLE rightface, const GEOMHANDLE leftface, const QVector3D midpoint)
-        : m_hVStart(start), m_hVEnd(end), m_hFRight(rightface), m_hFLeft(leftface), m_Centre(midpoint),
-          m_hParentSolid(NULLHND), m_hHandle(NULLHND)
+        : m_hParentSolid(NULLHND), m_hHandle(NULLHND), m_hVStart(start), m_hVEnd(end), m_hFRight(rightface),
+          m_hFLeft(leftface), m_Centre(midpoint)
     {
     }
 

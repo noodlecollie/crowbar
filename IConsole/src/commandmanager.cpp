@@ -65,7 +65,10 @@ ConCommand* CommandManager::getCommand(const QString &name) const
     BaseConsoleCommand* cmd = get(name);
 
     // If we are not a ConCommand, return NULL.
-    if ( cmd->identify() != NGlobalCmd::CICommand ) return NULL;
+    if ( !cmd || cmd->identify() != NGlobalCmd::CICommand )
+    {
+        return NULL;
+    }
     
     // Return a cast to ConCommand.
     return (ConCommand*) cmd;
@@ -76,7 +79,7 @@ ConVar* CommandManager::getVariable(const QString &name) const
     BaseConsoleCommand* cmd = get(name);
 
     // If we are not a ConVar, return NULL.
-    if ( cmd->identify() != NGlobalCmd::CIVariable ) return NULL;
+    if ( !cmd || cmd->identify() != NGlobalCmd::CIVariable ) return NULL;
     
     // Return a cast to ConVar.
     return (ConVar*) cmd;

@@ -17,10 +17,11 @@ public:
                             NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
     
     explicit ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, CommandManager* manager,
-                            ListedConsoleCommand* list, const QString &desc = "", const NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
+                            ListedConsoleCommand** list, const QString &desc = "", const NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
     
     virtual ~ConCommand() {}
     
+    virtual NGlobalCmd::CmdIdent identify() const;
     int exec(const QString &cmd, const QStringList &args, QVariant &output);
     NGlobalCmd::CmdCallback getExec() const;
     void setExec(NGlobalCmd::CmdCallback cmd);

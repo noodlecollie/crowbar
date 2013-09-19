@@ -6,7 +6,19 @@
 
 QT       += widgets
 
-TARGET = IConsole
+#TARGET = IConsole
+
+CONFIG(debug) {
+    win32 {
+        TARGET = IConsoled
+    }
+    mac {
+        TARGET = IConsole_debug
+    }
+} else {
+    TARGET = IConsole
+}
+
 TEMPLATE = lib
 
 DEFINES += ICONSOLE_LIBRARY
@@ -22,7 +34,10 @@ HEADERS += \
     inc/wr_commandmanager.h \
     inc/wr_concommand.h \
     inc/wr_convar.h \
-    inc/wr_listedconsolecommand.h
+    inc/wr_listedconsolecommand.h \
+    inc/consolewindow.h \
+    inc/listedcommandmanager.h \
+    inc/wr_listedcommandmanager.h
 
 unix:!symbian {
     maemo5 {
@@ -40,7 +55,9 @@ SOURCES += \
     src/listedconsolecommand.cpp \
     src/commandmanager.cpp \
     src/concommand.cpp \
-    src/convar.cpp
+    src/convar.cpp \
+    src/consolewindow.cpp \
+    src/listedcommandmanager.cpp
 
 INCLUDEPATH += \
     inc

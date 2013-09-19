@@ -1,4 +1,4 @@
-#include "baseconsolecommand.h"
+#include "wr_listedcommandmanager.h"
 
 BaseConsoleCommand::BaseConsoleCommand(const QString &name, const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
     QObject(parent), m_szName(name), m_szDescription(desc), m_iFlags(flags)

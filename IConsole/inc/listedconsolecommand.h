@@ -11,7 +11,7 @@ class CommandManager;
 class ICONSOLESHARED_EXPORT ListedConsoleCommand : public BaseConsoleCommand
 {
 public:
-    explicit ListedConsoleCommand(const QString &name, CommandManager* manager, ListedConsoleCommand* listHead,
+    explicit ListedConsoleCommand(const QString &name, CommandManager* manager, ListedConsoleCommand** listHead,
                                   const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
     
     explicit ListedConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
@@ -19,7 +19,7 @@ public:
     
     ListedConsoleCommand* getListNext() const;
     void setListNext(ListedConsoleCommand *next);
-    void tryRegister(CommandManager *manager, ListedConsoleCommand *listHead);
+    void tryRegister(CommandManager *manager, ListedConsoleCommand **listHead);
     
 signals:
     

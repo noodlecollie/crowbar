@@ -15,7 +15,7 @@ public:
     explicit BaseConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
     virtual ~BaseConsoleCommand() {}
     
-    NGlobalCmd::CmdIdent identify() const;
+    virtual NGlobalCmd::CmdIdent identify() const;
     const QString& getName() const;
     const QString& getDescription() const;
     NGlobalCmd::CMDFLAGS getFlags() const;

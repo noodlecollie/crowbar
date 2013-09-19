@@ -21,7 +21,7 @@ public:
     /**
      * @brief Constructor. Member variables are set to zero values.
      */
-    Plane() : m_Normal(VEC3_ORIGIN), m_bIsValid(false), m_Points()
+    Plane() : m_Points(), m_Normal(VEC3_ORIGIN), m_bIsValid(false)
     {
         m_Points[0] = VEC3_ORIGIN;
         m_Points[1] = VEC3_ORIGIN;
@@ -32,7 +32,7 @@ public:
      * @brief Constructor specifying an array of plane points. The normal is calculated with vectors [1]-[0], [2]-[0].
      * @param points 3 points on the plane.
      */
-    Plane(const QVector3D points[3])
+    Plane(const QVector3D points[3]) : m_Points(), m_Normal(VEC3_ORIGIN), m_bIsValid(false)
     {
         setPoints(points);
     }
@@ -43,7 +43,8 @@ public:
      * @param p2 Point 2.
      * @param p3 Point 3.
      */
-    Plane(const QVector3D p1, const QVector3D p2, const QVector3D p3)
+    Plane(const QVector3D p1, const QVector3D p2, const QVector3D p3) :
+        m_Points(), m_Normal(VEC3_ORIGIN), m_bIsValid(false)
     {
         setPoints(p1, p2, p3);
     }

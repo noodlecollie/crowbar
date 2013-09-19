@@ -7,7 +7,15 @@
 #include <QString>
 #include <QGLFormat>
 
-#include "solid.h" // TEMP
+// TEMP THINGS
+#include "../IConsole/inc/wr_concommand.h"
+#include "../IConsole/inc/wr_convar.h"
+#include "../IConsole/inc/wr_listedcommandmanager.h"
+#include <QVariant>
+#include <QtDebug>
+ListedConsoleCommand* g_pConCommandList = NULL;
+ListedCommandManager* g_pGlobalManager = NULL;
+// TEMP THINGS
 
 int main(int argc, char **argv)
 {
@@ -44,6 +52,7 @@ int main(int argc, char **argv)
     if ( g_pCmdLine ) delete g_pCmdLine;
     if ( g_pLog ) delete g_pLog;
 
+    if ( g_pGlobalManager ) delete g_pGlobalManager;
     return ret;
 }
 

@@ -5,7 +5,7 @@ ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, co
 {
 }
 
-ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, CommandManager *manager, ListedConsoleCommand *list,
+ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, CommandManager *manager, ListedConsoleCommand **list,
                        const QString &desc, const NGlobalCmd::CMDFLAGS flags, QObject *parent) :
     ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pCallback(callback)
 {
@@ -28,4 +28,9 @@ NGlobalCmd::CmdCallback ConCommand::getExec() const
 void ConCommand::setExec(NGlobalCmd::CmdCallback cmd)
 {
     m_pCallback = cmd;
+}
+
+NGlobalCmd::CmdIdent ConCommand::identify() const
+{
+    return NGlobalCmd::CICommand;
 }
