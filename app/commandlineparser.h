@@ -5,17 +5,7 @@
 #ifndef COMMANDLINEPARSER_H
 #define COMMANDLINEPARSER_H
 
-//! \def CLA_DEBUGGING
-//! \brief Command-line option string to enable debugging.
-#define CLA_DEBUGGING   "-debug"
-
-//! \def CLA_LOGGING
-//! \brief Command-line option string to enable logging.
-#define CLA_LOGGING     "-log"
-
 #include <QObject>
-
-// TODO: Change this to set console variables instead.
 
 /**
  * @brief Deals with arguments passed to the application on the command-line.
@@ -34,24 +24,6 @@ public:
      * @param parent Parent object (usually NULL).
      */
     explicit CommandLineParser(QObject *parent = 0);
-
-    /**
-     * @brief Is the application in debug mode?
-     * @note If enabled, the log window is available from the main application Debug menu.
-     *
-     * @note If not specified, debugging mode defaults to false.
-     * @return True if in debug mode, false otherwise.
-     */
-    bool Debugging();
-
-    /**
-     * @brief Is logging mode enabled?
-     * @note If enabled, logging messsages are written to a log file. If in debug mode, logging mode is also enabled.
-     *
-     * @note If not specified, logging mode defaults to false.
-     * @return True if enabled, false otherwise.
-     */
-    bool Logging();
     
 signals:
     
@@ -65,8 +37,6 @@ public slots:
     void ParseArguments(int argc, char **argv);
 
 private:
-    bool m_bDebugging;  /**< Whether debug mode is enabled. Defaults to false. */
-    bool m_bLogging;    /**< Whether logging mode is enabled. Defaults to false. */
 };
 
 #endif // COMMANDLINEPARSER_H

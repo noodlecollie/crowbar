@@ -20,12 +20,32 @@ const QString& BaseConsoleCommand::getDescription() const
     return m_szDescription;
 }
 
-NGlobalCmd::CMDFLAGS BaseConsoleCommand::getFlags() const
+NGlobalCmd::CMDFLAGS BaseConsoleCommand::getFlagsRaw() const
 {
     return m_iFlags;
 }
 
-void BaseConsoleCommand::setFlags(NGlobalCmd::CMDFLAGS flags)
+void BaseConsoleCommand::setFlagsRaw(NGlobalCmd::CMDFLAGS flags)
 {
     m_iFlags = flags;
+}
+
+void BaseConsoleCommand::setFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    m_iFlags |= flag;
+}
+
+bool BaseConsoleCommand::flagSet(NGlobalCmd::CMDFLAGS flag) const
+{
+    return ( m_iFlags & flag ) == flag;
+}
+
+void BaseConsoleCommand::removeFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    m_iFlags &= ~flag;
+}
+
+void BaseConsoleCommand::toggleFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    m_iFlags ^= flag;
 }

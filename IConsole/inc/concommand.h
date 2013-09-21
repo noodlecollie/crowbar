@@ -22,7 +22,7 @@ public:
     virtual ~ConCommand() {}
     
     virtual NGlobalCmd::CmdIdent identify() const;
-    int exec(const QString &cmd, const QStringList &args, QVariant &output);
+    int exec(const QStringList &args, QVariant &output);
     NGlobalCmd::CmdCallback getExec() const;
     void setExec(NGlobalCmd::CmdCallback cmd);
     

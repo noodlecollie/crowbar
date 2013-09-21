@@ -47,12 +47,6 @@ public:
       @brief Destructor.
       */
     ~LogWindow();
-
-    /**
-     * @brief Returns the name of the current log file.
-     * @return Name of the log file, or "" if no file is currently open.
-     */
-    QString GetLogFileName() const;
     
 signals:
     
@@ -74,74 +68,15 @@ public slots:
     void printMessage(QString message);
 
     /**
-     * @brief Writes a message to a log file (but does not print to the log window).
-     * @param message Message to print.
-     */
-    void logMessage(QString message);
-
-    /**
      * @brief Prints a warning to the log window (but not to a log file).
      * @param message Message to print.
      */
     void printWarning(QString message);
 
-    /**
-     * @brief Writes a warning to a log file (but does not print to the log window).
-     * @param message Message to print.
-     */
-    void logWarning(QString message);
-
-    /**
-     * @brief Makes the log window text larger.
-     */
-    void zoomIn();
-
-    /**
-     * @brief Makes the log window text smaller.
-     */
-    void zoomOut();
-
-    /**
-     * @brief Creates a new log file whose name is based on the current date and time.
-     */
-    void newLogFile();
-
-    /**
-     * @brief Creates a new log file.
-     * @param filename Name of file to create.
-     */
-    void newLogFile(QString filename);
-
 private:
     QTextEdit*      m_pText;            /**< Main text window */
-    QBoxLayout*     m_pLayout;          /**< Widhet layout */
+    QBoxLayout*     m_pLayout;          /**< Widget layout */
     QToolBar*       m_pToolBar;         /**< Toolbar */
-    QAction*        m_pActLargeText;    /**< Zoom in */
-    QAction*        m_pActSmallText;    /**< Zoom out */
-    QFile*          m_pLogFile;         /**< Current log file */
-    QTextStream*    m_pLogStream;       /**< Log file text stream */
-
-    /**
-     * @brief Opens a log file with the specified name and returns whether the operation was successful.
-     * @param filename Name of file to open.
-     * @return True if opening was successful, otherwise false.
-     */
-    bool OpenLogFile(QString filename);
-
-    /**
-     * @brief Closes the log file if it is open (wrapper for KillLogStream() + KillLogFile()).
-     */
-    void CloseLogFile();
-
-    /**
-     * @brief Kills the file stream for the current log file.
-     */
-    void KillLogStream();
-
-    /**
-     * @brief Kills the log file object for the current log file.
-     */
-    void KillLogFile();
 };
 
 #endif // LOGWINDOW_H

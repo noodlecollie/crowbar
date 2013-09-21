@@ -11,13 +11,13 @@ ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, Co
 {
 }
 
-int ConCommand::exec(const QString &cmd, const QStringList &args, QVariant &output)
+int ConCommand::exec(const QStringList &args, QVariant &output)
 {
     // If we have no callback, return this error.
         if ( m_pCallback == NULL ) return NGlobalCmd::CCR_NoCallback;
     
     // Otherwise return the results of the callback.
-    return (m_pCallback)(cmd, args, output);
+    return (m_pCallback)(getName(), args, output);
 }
 
 NGlobalCmd::CmdCallback ConCommand::getExec() const

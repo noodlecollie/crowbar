@@ -11,12 +11,6 @@
  * @{
  */
 
-//! \def DEBUGGING
-//! \brief Convenience macro for gloabl CommandLineParser::Debugging() - returns whether debug mode is enabled.
-
-//! \def LOGGING
-//! \brief Convenience macro for gloabl CommandLineParser::Logging() - returns whether logging is enabled.
-
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
@@ -24,14 +18,23 @@
 
 // See globals.cpp for implementations.
 
-// Convnience macros for checking debug states - should be called after app.exec()!
-#define DEBUGGING       g_pCmdLine->Debugging()
-#define LOGGING         g_pCmdLine->Logging()
+#define DEFINE_CONVAR( szName_NoQuote, szDefVal, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax) \
+ConVar szName_NoQuote(#szName_NoQuote, szDefVal, g_pCommandManager, &g_pCommandList, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax);
+
+#define DEFINE_CONCOMMAND( szName_NoQuote, pCallback, szDesc, iFlags ) \
+ConCommand szName_NoQuote(#szName_NoQuote, pCallback, g_pCommandManager, &g_pCommandList, szDesc, iFlags);
 
 class LogWindow;
 class QString;
 class CommandLineParser;
 class MainWin;
+class ListedCommandManager;
+class ListedConsoleCommand;
+class ConCommand;
+class ConVar;
+
+extern ConVar g_debugging;
+extern ConVar g_logging;
 
 // =============== General ===============
 /**
@@ -113,6 +116,23 @@ extern void LogTaggedWarning(QString tag, QString message, bool newline = true);
  * If the closed window was the last in the list and the log window is still open, it is closed as well.
  */
 extern QList<MainWin*>* g_pWindowTracker;
+
+// =============== Console ===============
+
+/**
+ * @brief Global console command manager, created in main.cpp.
+ *
+ * Console command and variables should register to this manager.
+ */
+extern ListedCommandManager* g_pCommandManager;
+
+/**
+ * @brief Global console command list pointer.
+ *
+ * Any console commands or variables should register to this pointer, to be picked
+ * up by the global manager on creation.
+ */
+extern ListedConsoleCommand* g_pCommandList;
 
 /**@}*/
 

@@ -47,9 +47,9 @@ void MainWin::CreateMenuActions()
     connect(m_pActHelpAbout, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
     // Set log window action to bring up the log window.
-    m_pActShowLogWindow = new QAction(tr("&Log window"), this);
+    m_pActShowConsole = new QAction(tr("&Console"), this);
     //m_pActShowLogWindow->setShortcuts(*m_keyShowLogWindow);   // TODO: Get custom shortcut working for this (shift-tab?)
-    connect(m_pActShowLogWindow, SIGNAL(triggered()), g_pLog, SLOT(showAndRaise()));
+    connect(m_pActShowConsole, SIGNAL(triggered()), g_pLog, SLOT(showAndRaise()));
 }
 
 // Creates menu bar on startup.
@@ -60,10 +60,8 @@ void MainWin::CreateMenuBar()
     m_pFileMenu->addAction(m_pActFileExit);
 
     // Debug menu
-    m_pDebugMenu = menuBar()->addMenu(tr("&Debug"));
-    m_pDebugMenu->addAction(m_pActShowLogWindow);
-    //m_pDebugMenu->setVisible(g_pCmdLine->Debugging());
-    m_pDebugMenu->menuAction()->setVisible(DEBUGGING);
+    m_pDeveloperMenu = menuBar()->addMenu(tr("&Developer"));
+    m_pDeveloperMenu->addAction(m_pActShowConsole);
 
     // Help menu
     m_pHelpMenu = menuBar()->addMenu(tr("&Help"));

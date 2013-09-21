@@ -28,6 +28,11 @@ namespace NGlobalCmd
     // Command flags
     typedef unsigned int CMDFLAGS;
     
+    enum
+    {
+        CMDFLAG_READONLY = 0x1  // ConVar is not allowed to be changed from the default, only read.
+    };  
+    
     typedef int (*CmdCallback) (const QString &name, const QStringList &args, QVariant &output);
     typedef void (*VarCallback) (const QString &oldValue, QString &newValue);
 }

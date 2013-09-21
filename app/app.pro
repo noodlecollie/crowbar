@@ -54,7 +54,7 @@ unix {
 }
 
 # Extra includes for libraries.
-INCLUDEPATH += 
+INCLUDEPATH += ../IConsole/inc
 
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug

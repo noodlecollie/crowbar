@@ -25,11 +25,15 @@ public:
     bool isRegistered(const QString &name) const;
     BaseConsoleCommand* get(const QString &name) const;
     void findRegex(const QRegularExpression &regex, QList<BaseConsoleCommand *> &outList) const;
+    void findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList) const;
     void findPrefix(const QString &prefix, QList<BaseConsoleCommand *> &outList) const;
     
     ConCommand* getCommand(const QString &name) const;
     ConVar* getVariable(const QString &name) const;
     NGlobalCmd::CmdIdent exec(const QString &name, const QStringList &args, int &retVal, QVariant &output);
+    
+    BaseCommandMap::const_iterator constBegin();
+    BaseCommandMap::const_iterator constEnd();
     
 signals:
     

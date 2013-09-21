@@ -10,9 +10,9 @@ class ICONSOLESHARED_EXPORT ListedCommandManager : public CommandManager
 {
 public:
     explicit ListedCommandManager(QObject* parent = 0);
-    explicit ListedCommandManager(ListedConsoleCommand* const listHead, QObject* parent = 0);
+    explicit ListedCommandManager(ListedConsoleCommand* listHead, QObject* parent = 0);
     
-    void traverse(ListedConsoleCommand* const listHead);
+    void traverse(ListedConsoleCommand* listHead);
 };
 
 #endif // LISTEDCOMMANDMANAGER_H

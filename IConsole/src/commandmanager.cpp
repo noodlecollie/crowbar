@@ -49,6 +49,11 @@ void CommandManager::findRegex(const QRegularExpression &regex, QList<BaseConsol
     }
 }
 
+void CommandManager::findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList) const
+{
+    findRegex(QRegularExpression(regex), outList);
+}
+
 void CommandManager::findPrefix(const QString &prefix, QList<BaseConsoleCommand*> &commands) const
 {
     // Wrapper for the RegEx matcher, but checks for prefixes only.
@@ -56,8 +61,7 @@ void CommandManager::findPrefix(const QString &prefix, QList<BaseConsoleCommand*
 
     // <start>[prefix](any char any number of times...)<end>
     QString regStr = "^" + QRegularExpression::escape(prefix) + ".*$";
-    QRegularExpression regex(regStr);
-    findRegex(regex, commands);
+    findRegex(regStr, commands);
 }
 
 ConCommand* CommandManager::getCommand(const QString &name) const
@@ -101,7 +105,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             ConCommand* con = (ConCommand*) cmd;
             
             // Execute the command.
-            retVal = con->exec(name, args, output);
+            retVal = con->exec(args, output);
     
             return NGlobalCmd::CICommand;
         }
@@ -121,4 +125,14 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             return NGlobalCmd::CINull;
         }
     }
+}
+
+CommandManager::BaseCommandMap::const_iterator CommandManager::constBegin()
+{
+    return m_CommandMap.constBegin();
+}
+
+CommandManager::BaseCommandMap::const_iterator CommandManager::constEnd()
+{
+    return m_CommandMap.constEnd();
 }

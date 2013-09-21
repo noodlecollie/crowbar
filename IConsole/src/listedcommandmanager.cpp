@@ -1,6 +1,6 @@
 #include "wr_listedcommandmanager.h"
 
-ListedCommandManager::ListedCommandManager(ListedConsoleCommand * const listHead, QObject *parent) :
+ListedCommandManager::ListedCommandManager(ListedConsoleCommand * listHead, QObject *parent) :
     CommandManager(parent)
 {
     traverse(listHead);
@@ -10,14 +10,14 @@ ListedCommandManager::ListedCommandManager(QObject *parent) : CommandManager(par
 {
 }
 
-void ListedCommandManager::traverse(ListedConsoleCommand * const listHead)
+void ListedCommandManager::traverse(ListedConsoleCommand * listHead)
 {
-    ListedConsoleCommand* list = listHead;
-    
+    // NOTE: Changed this function sig so the pointer is no longer const.
+    // This means that it will always be left NULL at the end of the process.
     // Traverse the list while it's not null.
-    while ( list )
+    while ( listHead )
     {
-        registerCommand(list);
-        list = list->getListNext();
+        registerCommand(listHead);
+        listHead = listHead->getListNext();
     }
 }

@@ -18,8 +18,12 @@ public:
     virtual NGlobalCmd::CmdIdent identify() const;
     const QString& getName() const;
     const QString& getDescription() const;
-    NGlobalCmd::CMDFLAGS getFlags() const;
-    void setFlags(NGlobalCmd::CMDFLAGS flags);
+    NGlobalCmd::CMDFLAGS getFlagsRaw() const;
+    void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
+    bool flagSet(NGlobalCmd::CMDFLAGS flag) const;
+    void setFlag(NGlobalCmd::CMDFLAGS flag);
+    void removeFlag(NGlobalCmd::CMDFLAGS flag);
+    void toggleFlag(NGlobalCmd::CMDFLAGS flag);
     
 signals:
     

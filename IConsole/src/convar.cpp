@@ -18,6 +18,9 @@ ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager,
 
 QString ConVar::set(const QString &value)
 {
+    // Don't change if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return m_Variable.toString();
+    
     // Call our callback (if it exists) before setting the eventual value.
     QString toSet = value;
 

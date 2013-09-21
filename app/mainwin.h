@@ -9,22 +9,6 @@
 #include <QApplication>
 #include <QCloseEvent>
 
-#if defined Q_OS_WIN
-
-//! \def PLUGIN_DIRECTORY
-//! \brief Depending on the platform, this holds the path to the directory in which plugins are held,
-//! relative to the application directory.
-#define PLUGIN_DIRECTORY "\\plugins"
-
-#elif defined Q_OS_MAC || defined Q_OS_LINUX
-
-//! \def PLUGIN_DIRECTORY
-//! \brief Depending on the platform, this holds the path to the directory in which plugins are held,
-//! relative to the application directory.
-#define PLUGIN_DIRECTORY "/plugins"
-
-#endif
-
 class QMenu;
 class QAction;
 class QSize;
@@ -93,8 +77,8 @@ private:
     QMenu*          m_pHelpMenu;            /**< Help menu. */
     QAction*        m_pActHelpAbout;        /**< About action. */
 
-    QMenu*          m_pDebugMenu;           /**< Debug menu (shown only if debugging). */
-    QAction*        m_pActShowLogWindow;    /**< Shows logging window. */
+    QMenu*          m_pDeveloperMenu;       /**< Debug menu (shown only if debugging). */
+    QAction*        m_pActShowConsole;      /**< Shows logging window. */
 };
 
 #endif // MAINWIN_H
