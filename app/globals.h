@@ -33,8 +33,8 @@ class ListedConsoleCommand;
 class ConCommand;
 class ConVar;
 
-extern ConVar g_debugging;
-extern ConVar g_logging;
+//extern ConVar g_debugging;
+//extern ConVar g_logging;
 
 // =============== General ===============
 /**

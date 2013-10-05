@@ -1,15 +1,15 @@
-#ifndef CONSOLEWINDOW_H
-#define CONSOLEWINDOW_H
+#ifndef CONSOLEWIDGET_H
+#define CONSOLEWIDGET_H
 
 #include <QTextEdit>
 #include <QColor>
 #include "iconsole_global.h"
 
-class ICONSOLESHARED_EXPORT ConsoleWindow : public QTextEdit
+class ICONSOLESHARED_EXPORT ConsoleWidget : public QTextEdit
 {
     Q_OBJECT
 public:
-    explicit ConsoleWindow(QWidget *parent = 0);
+    explicit ConsoleWidget(QWidget *parent = 0);
 
     void setWarningColour(const QColor &col);
     QColor getWarningColour() const;
@@ -27,4 +27,4 @@ private:
     QColor m_colStd;
 };
 
-#endif // CONSOLEWINDOW_H
+#endif // CONSOLEWIDGET_H

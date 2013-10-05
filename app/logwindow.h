@@ -7,17 +7,8 @@
 
 #include <QWidget>
 
-//! \def LOG_ZOOM_INCREMENT
-//! \brief Increment with which to zoom in or out on LogWindow::zoomIn() or LogWindow::zoomOut().
-
-//! \def LOG_WARNING_WEIGHT
-//! \brief Text weight of warning messages printed to the log window.
-
-#define LOG_ZOOM_INCREMENT  2
-#define LOG_WARNING_WEIGHT  75
-
-class QTextEdit;
-class QBoxLayout;
+class ConsoleWidget;
+class QVBoxLayout;
 class QCloseEvent;
 class QToolBar;
 class QAction;
@@ -27,6 +18,7 @@ class QTextStream;
 /**
  * @brief Logging window.
  *
+ * TODO: Rewrite this documentation.
  * If the application is started in debug mode, the logging window will be shown as well as any application windows.
  * Parts of the application can send log messages which will be printed to this window and logged into a file.
  * The log window can be re-opened from the Debug menu in an application window if it is closed.
@@ -74,9 +66,8 @@ public slots:
     void printWarning(QString message);
 
 private:
-    QTextEdit*      m_pText;            /**< Main text window */
-    QBoxLayout*     m_pLayout;          /**< Widget layout */
-    QToolBar*       m_pToolBar;         /**< Toolbar */
+    ConsoleWidget*  m_pText;            /**< Main text window */
+    QVBoxLayout*    m_pLayout;          /**< Widget layout */
 };
 
 #endif // LOGWINDOW_H

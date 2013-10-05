@@ -10,6 +10,7 @@
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
+void debugTests();
 
 int main(int argc, char **argv)
 {
@@ -24,6 +25,8 @@ int main(int argc, char **argv)
     }
     
     initSystems(argc, argv);
+    
+    debugTests();
 
     MainWin win;
     win.setCentralWidget(NULL);
@@ -52,7 +55,6 @@ void initSystems(int argc, char **argv)
     // (not shown if not debugging).
     g_pLog = new LogWindow();
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
-    LogTaggedMessage("LOG", "Log Window Initialised.");
 }
 
 void shutdownSystems()
@@ -61,4 +63,8 @@ void shutdownSystems()
     if ( g_pWindowTracker ) delete g_pWindowTracker;
     if ( g_pCmdLine ) delete g_pCmdLine;
     if ( g_pCommandManager ) delete g_pCommandManager;
+}
+
+void debugTests()
+{
 }

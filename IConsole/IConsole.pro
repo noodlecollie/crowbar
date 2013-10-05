@@ -35,9 +35,11 @@ HEADERS += \
     inc/wr_concommand.h \
     inc/wr_convar.h \
     inc/wr_listedconsolecommand.h \
-    inc/consolewindow.h \
     inc/listedcommandmanager.h \
-    inc/wr_listedcommandmanager.h
+    inc/wr_listedcommandmanager.h \
+    inc/consolewidget.h \
+    inc/commandinterpreter.h \
+    inc/wr_commandinterpreter.h
 
 unix:!symbian {
     maemo5 {
@@ -56,8 +58,9 @@ SOURCES += \
     src/commandmanager.cpp \
     src/concommand.cpp \
     src/convar.cpp \
-    src/consolewindow.cpp \
-    src/listedcommandmanager.cpp
+    src/listedcommandmanager.cpp \
+    src/consolewidget.cpp \
+    src/commandinterpreter.cpp
 
 INCLUDEPATH += \
     inc

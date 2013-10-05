@@ -8,7 +8,7 @@ CommandLineParser::CommandLineParser(QObject *parent) :
 {
 }
 
-void CommandLineParser::ParseArguments(int argc, char **argv)
+void CommandLineParser::ParseArguments(int /*argc*/, char ** /*argv*/)
 {
     // Begin at i = 1 because arg 0 is the executable path.
 //    for (int i = 1; i < argc; i++)
