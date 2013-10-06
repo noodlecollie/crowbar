@@ -1,5 +1,12 @@
 #include "wr_commandentrybox.h"
 #include <QWheelEvent>
+#include <QListWidgetItem>
+#include <QIcon>
+#include <QApplication>
+#include <QDir>
+
+const QString CommandEntryBox::command_img = QString("command_symbol.svg");
+const QString CommandEntryBox::variable_img = QString("variable_symbol.svg");
 
 CommandEntryBox::CommandEntryBox(QWidget *parent) :
     QLineEdit(parent), m_pSuggestions(NULL)
@@ -179,9 +186,42 @@ void CommandEntryBox::keyPressEvent(QKeyEvent *e)
     }
     
     // Add the suggestions to the list.
-    // TODO: Have each entry contain an item specifying whether it's a command or a variable.
     foreach(CommandInterpreter::CommandIdentPair p, suggestions)
     {
+        QDir dir(qApp->applicationDirPath());
+        if ( dir.cd("resource") )
+        {
+            QIcon* icon = NULL;
+
+            switch (p.first)
+            {
+                case NGlobalCmd::CICommand:
+                {
+                    if ( dir.exists(command_img) )
+                    {
+                        icon = new QIcon(dir.filePath(command_img));
+                        break;
+                    }
+                }
+                
+                case NGlobalCmd::CIVariable:
+                {
+                    if ( dir.exists(variable_img) )
+                    {
+                        icon = new QIcon(dir.filePath(variable_img));
+                        break;
+                    }
+                }
+            }
+            
+            if ( icon )
+            {
+                QListWidgetItem* i = new QListWidgetItem(*icon, p.second);
+                m_pSuggestions->addItem(i);
+                continue;
+            }
+        }
+        
         m_pSuggestions->addItem(p.second);
     }
     

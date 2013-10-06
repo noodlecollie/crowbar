@@ -21,6 +21,9 @@ public:
     void setSuggestionList(CommandSuggestionList* list);
     CommandSuggestionList* getSuggestionList() const;
     
+    static const QString command_img;
+    static const QString variable_img;
+    
 signals:
     void commandString(const QString&);
     void getSuggestions(const QString&,QList<CommandInterpreter::CommandIdentPair>&, int count = -1);

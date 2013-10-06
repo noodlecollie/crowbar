@@ -42,7 +42,7 @@ LogWindow::LogWindow(QWidget *parent) :
     m_pBottomLayout->addWidget(m_pEntry);
     m_pEntry->setFocusPolicy(Qt::NoFocus);
     m_pEntry->connect(m_pEntry, SIGNAL(commandString(QString)), this, SIGNAL(commandString(QString)));
-    m_pEntry->connect(m_pEntry, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), this, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
+    m_pEntry->connect(m_pEntry, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), this, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
     // Exec button.
     m_pExecButton = new QPushButton("Submit");
