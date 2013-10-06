@@ -13,7 +13,7 @@
 #include "commandsuggestionlist.h"
 #include "wr_commandinterpreter.h"
 
-LogWindow::LogWindow(CommandInterpreter* interpreter, QWidget *parent) :
+LogWindow::LogWindow(QWidget *parent) :
     QWidget(parent)
 {
     // Set up window.
@@ -41,8 +41,8 @@ LogWindow::LogWindow(CommandInterpreter* interpreter, QWidget *parent) :
     m_pEntry = new CommandEntryBox();
     m_pBottomLayout->addWidget(m_pEntry);
     m_pEntry->setFocusPolicy(Qt::NoFocus);
-    m_pEntry->connect(m_pEntry, SIGNAL(commandString(QString)), interpreter, SLOT(parse(QString)));
-    m_pEntry->connect(m_pEntry, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), interpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
+    m_pEntry->connect(m_pEntry, SIGNAL(commandString(QString)), this, SIGNAL(commandString(QString)));
+    m_pEntry->connect(m_pEntry, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), this, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
     // Exec button.
     m_pExecButton = new QPushButton("Submit");
@@ -52,7 +52,7 @@ LogWindow::LogWindow(CommandInterpreter* interpreter, QWidget *parent) :
     
     // Suggestion list.
     m_pSgList = new CommandSuggestionList(this);
-    m_pSgList->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool /*| Qt::WindowStaysOnTopHint*/);
+    m_pSgList->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
     m_pSgList->setMaximumHeight(200);
     m_pSgList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pSgList->setUniformItemSizes(true);
@@ -89,29 +89,7 @@ void LogWindow::showEvent(QShowEvent *e)
     if ( m_pEntry ) m_pEntry->setFocus(Qt::OtherFocusReason);
 }
 
-//void LogWindow::printMessage(QString message)
-//{
-//    m_pText->printMessage(message);
-//}
-
-//void LogWindow::printWarning(QString message)
-//{
-//    m_pText->printWarning(message);
-//}
-
 void LogWindow::printMessage(CommandSenderInfo::OutputType type, const QString &message)
 {
-    switch (type)
-    {
-        case CommandSenderInfo::OutputWarning:
-        {
-            m_pText->printWarning(message);
-            break;
-        }
-        default:
-        {
-            m_pText->printMessage(message);
-            break;
-        }
-    }
+    if ( m_pText ) m_pText->printMessage(type, message);
 }

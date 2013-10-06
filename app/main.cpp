@@ -55,10 +55,6 @@ void initSystems(int argc, char **argv)
     // Create global interpreter and hook up to the manager.
     g_pCommandInterpreter = new CommandInterpreter(g_pCommandManager);
     
-    // Create global output redirector.
-    //g_pOutputRedirect = new GlobalOutputRedirector();
-    //g_pCommandManager->connect(g_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pOutputRedirect, SLOT(redirectMessage(QString&)));
-    
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();
     g_pCmdLine->ParseArguments(argc, argv);
@@ -67,8 +63,16 @@ void initSystems(int argc, char **argv)
     g_pWindowTracker = new QList<MainWin*>();
     
     // Create console window.
-    g_pLog = new LogWindow(g_pCommandInterpreter);
-    g_pLog->connect(g_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
+    g_pLog = new LogWindow();
+    
+    // Connect manager's output to console window.
+    g_pLog->connect(g_pCommandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
+    
+    // Connect command box's command string to interpreter's parse function.
+    g_pLog->connect(g_pLog, SIGNAL(commandString(QString)), g_pCommandInterpreter, SLOT(parse(QString)));
+    
+    // Connect command box's suggestion request to interpreter's suggestion retrieval function.
+    g_pLog->connect(g_pLog, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), g_pCommandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 }
@@ -82,7 +86,6 @@ void shutdownSystems()
     }
     if ( g_pWindowTracker ) delete g_pWindowTracker;
     if ( g_pCmdLine ) delete g_pCmdLine;
-    //if ( g_pOutputRedirect ) delete g_pOutputRedirect;
     if ( g_pCommandInterpreter ) delete g_pCommandInterpreter;
     if ( g_pCommandManager ) delete g_pCommandManager;
 }

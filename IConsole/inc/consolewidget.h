@@ -4,6 +4,7 @@
 #include <QTextEdit>
 #include <QColor>
 #include "iconsole_global.h"
+#include "commandsenderinfo.h"
 
 class ICONSOLESHARED_EXPORT ConsoleWidget : public QTextEdit
 {
@@ -23,6 +24,7 @@ signals:
 public slots:
     void printMessage(const QString &message);
     void printWarning(const QString &message);
+    void printMessage(CommandSenderInfo::OutputType type, const QString &message);
 private:
     QColor m_colWarning;
     QColor m_colStd;

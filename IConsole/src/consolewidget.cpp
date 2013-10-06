@@ -45,3 +45,18 @@ void ConsoleWidget::printMessage(const QString &message)
     insertPlainText(message);
     ensureCursorVisible();
 }
+
+void ConsoleWidget::printMessage(CommandSenderInfo::OutputType type, const QString &message)
+{
+    switch (type)
+    {
+        case CommandSenderInfo::OutputWarning:
+        {
+            printWarning(message);
+        }
+        default:
+        {
+            printMessage(message);
+        }
+    }
+}

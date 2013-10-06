@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include "commandsenderinfo.h"
+#include "commandinterpreter.h"
 
 class ConsoleWidget;
 class QVBoxLayout;
@@ -19,7 +20,6 @@ class QTextStream;
 class CommandEntryBox;
 class QPushButton;
 class CommandSuggestionList;
-class CommandInterpreter;
 
 /**
  * @brief Logging window.
@@ -39,7 +39,7 @@ public:
      * @brief Constructor.
      * @param parent Parent object (usually NULL).
      */
-    explicit LogWindow(CommandInterpreter* interpreter, QWidget *parent = 0);
+    explicit LogWindow(QWidget *parent = 0);
 
     /**
       @brief Destructor.
@@ -47,6 +47,8 @@ public:
     virtual ~LogWindow();
     
 signals:
+    void commandString(const QString&);
+    void getSuggestions(const QString&,QList<CommandInterpreter::CommandIdentPair>&,int);
     
 public slots:
 
@@ -54,20 +56,8 @@ public slots:
      * @brief Shows the logging window and raises it to be on top of any other windows.
      */
     void showAndRaise();
-
-//    /**
-//     * @brief Prints a message to the log window (but not to a log file).
-//     * @param message Message to print.
-//     */
-//    void printMessage(QString message);
-
-//    /**
-//     * @brief Prints a warning to the log window (but not to a log file).
-//     * @param message Message to print.
-//     */
-//    void printWarning(QString message);
     
-    void printMessage(CommandSenderInfo::OutputType, const QString&);
+    void printMessage(CommandSenderInfo::OutputType type, const QString &message);
 
 private:
     virtual void moveEvent(QMoveEvent *e);

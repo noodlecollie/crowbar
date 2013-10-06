@@ -42,8 +42,10 @@ void LogMessage(const QString &message, bool newline)
 // Logs a tagged message in the format: "[tag] message"
 void LogTaggedMessage(const QString &tag, const QString &message, bool newline)
 {
-    const QString str("[" + tag + "] " + message);
-    LogMessage(str, newline);
+    //const QString str("[" + tag + "] " + message);
+    //LogMessage(str, newline);
+    
+    LogMessage("[" + tag + "]" + message, newline);
 }
 
 // Logs a warning. Text is printed red and in bold.
@@ -58,6 +60,7 @@ void LogWarning(const QString &message, bool newline)
 // Logs a tagged warning in the format: "[tag] message"
 void LogTaggedWarning(const QString &tag, const QString &message, bool newline)
 {
-    const QString str("[" + tag + "] " + message);
-    LogWarning(str, newline);
+    //const QString str("[" + tag + "] " + message);
+    //LogWarning(str, newline);
+    LogMessage("[" + tag + "]" + message, newline);
 }

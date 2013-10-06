@@ -16,11 +16,13 @@ CommandInterpreter::CommandInterpreter(QObject *parent) :
 CommandInterpreter::CommandInterpreter(CommandManager *manager, QObject *parent) :
     QObject(parent), m_pCommandManager(manager)
 {
+    connectSignals();
 }
 
 void CommandInterpreter::setManager(CommandManager *manager)
 {
     m_pCommandManager = manager;
+    connectSignals();
 }
 
 CommandManager* CommandInterpreter::getManager() const
@@ -267,4 +269,9 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
         // Add the list of pairs to the main list.
         masterList.append(pipeList);
     }
+}
+
+void CommandInterpreter::connectSignals()
+{
+    if ( m_pCommandManager ) connect(m_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), this, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)));
 }

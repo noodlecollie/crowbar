@@ -37,6 +37,7 @@ public:
     static const QRegularExpression delimSemicolons;
     
 signals:
+    void outputMessage(CommandSenderInfo::OutputType, const QString&);
     
 public slots:
     // Parses command string - separates command name and arguments, and determines command pipes.
@@ -46,6 +47,7 @@ public slots:
     
 private:
     void parseCommandString(const QString &cmdString, CommandEntryList &masterList);
+    void connectSignals();
     
     CommandManager*     m_pCommandManager;
 };
