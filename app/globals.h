@@ -74,7 +74,7 @@ extern LogWindow* g_pLog;
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogMessage(QString message, bool newline = true);
+extern void LogMessage(const QString &message, bool newline = true);
 
 /**
  * @brief Logs a tagged message
@@ -86,7 +86,7 @@ extern void LogMessage(QString message, bool newline = true);
  * @param message Message to display.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogTaggedMessage(QString tag, QString message, bool newline = true);
+extern void LogTaggedMessage(const QString &tag, const QString &message, bool newline = true);
 
 /**
  * @brief Logs a warning to the log window. Log text is printed red and in bold.
@@ -95,7 +95,7 @@ extern void LogTaggedMessage(QString tag, QString message, bool newline = true);
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogWarning(QString message, bool newline = true);
+extern void LogWarning(const QString &message, bool newline = true);
 
 /**
  * @brief Logs a tagged warning to the log window. Log text is printed red and in bold.
@@ -107,7 +107,7 @@ extern void LogWarning(QString message, bool newline = true);
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogTaggedWarning(QString tag, QString message, bool newline = true);
+extern void LogTaggedWarning(const QString &tag, const QString &message, bool newline = true);
 
 // =========== Window tracking ===========
 /**
@@ -141,7 +141,7 @@ extern CommandInterpreter*  g_pCommandInterpreter;
  */
 extern ListedConsoleCommand* g_pCommandList;
 
-extern GlobalOutputRedirector* g_pOutputRedirect;
+//extern GlobalOutputRedirector* g_pOutputRedirect;
 
 /**@}*/
 

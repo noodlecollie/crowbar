@@ -28,12 +28,8 @@ public:
     void setManager(CommandManager* manager);
     CommandManager* getManager() const;
     
-    // Parses command string - separates command name and arguments, and determines command pipes.
-    // When piping, the output variant is converted to a QStringList to be used as the arguments for the next command.
-    void parse(const QString &cmdString);
-    
     // Suggestions are returned as a pair containing the ident and the command name.
-    void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count = -1);
+    //void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count = -1);
     
     static const QRegularExpression matchArgs;
     static const QRegularExpression matchArgsStrict;
@@ -43,6 +39,10 @@ public:
 signals:
     
 public slots:
+    // Parses command string - separates command name and arguments, and determines command pipes.
+    // When piping, the output variant is converted to a QStringList to be used as the arguments for the next command.
+    void parse(const QString &cmdString);
+    void getSuggestions(const QString&, QList<CommandInterpreter::CommandIdentPair> &, int);
     
 private:
     void parseCommandString(const QString &cmdString, CommandEntryList &masterList);

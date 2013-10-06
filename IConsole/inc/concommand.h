@@ -8,6 +8,8 @@
 #include "nglobalcmd.h"
 #include "listedconsolecommand.h"
 
+class CommandSenderInfo;
+
 class CommandManager;
 
 class ICONSOLESHARED_EXPORT ConCommand : public ListedConsoleCommand
@@ -22,7 +24,7 @@ public:
     virtual ~ConCommand() {}
     
     virtual NGlobalCmd::CmdIdent identify() const;
-    int exec(const QStringList &args, QVariant &output);
+    int exec(const CommandSenderInfo &info, const QStringList &args, QVariant &output);
     NGlobalCmd::CmdCallback getExec() const;
     void setExec(NGlobalCmd::CmdCallback cmd);
     

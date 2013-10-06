@@ -3,8 +3,8 @@
 
 #include "iconsole_global.h"
 #include <QLineEdit>
+#include "commandinterpreter.h"
 
-class CommandInterpreter;
 class CommandSuggestionList;
 
 class ICONSOLESHARED_EXPORT CommandEntryBox : public QLineEdit
@@ -12,16 +12,18 @@ class ICONSOLESHARED_EXPORT CommandEntryBox : public QLineEdit
     Q_OBJECT
 public:
     explicit CommandEntryBox(QWidget *parent = 0);
-    explicit CommandEntryBox(CommandInterpreter* interp, QWidget *parent = 0);
+    //explicit CommandEntryBox(CommandInterpreter* interp, QWidget *parent = 0);
     virtual ~CommandEntryBox() {}
     
-    void setInterpreter(CommandInterpreter* interp);
-    CommandInterpreter* getInterpreter() const;
+    //void setInterpreter(CommandInterpreter* interp);
+    //CommandInterpreter* getInterpreter() const;
     
     void setSuggestionList(CommandSuggestionList* list);
     CommandSuggestionList* getSuggestionList() const;
     
 signals:
+    void commandString(const QString&);
+    void getSuggestions(const QString&,QList<CommandInterpreter::CommandIdentPair>&, int count = -1);
     
 public slots:
     void sendCommandString();
@@ -37,7 +39,7 @@ private:
     bool suggestionsValid();
     bool replaceWithSuggestion();
     
-    CommandInterpreter*     m_pInterpreter;
+    //CommandInterpreter*     m_pInterpreter;
     CommandSuggestionList*  m_pSuggestions;
 };
 

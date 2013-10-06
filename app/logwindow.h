@@ -6,6 +6,7 @@
 #define LOGWINDOW_H
 
 #include <QWidget>
+#include "commandsenderinfo.h"
 
 class ConsoleWidget;
 class QVBoxLayout;
@@ -18,6 +19,7 @@ class QTextStream;
 class CommandEntryBox;
 class QPushButton;
 class CommandSuggestionList;
+class CommandInterpreter;
 
 /**
  * @brief Logging window.
@@ -37,7 +39,7 @@ public:
      * @brief Constructor.
      * @param parent Parent object (usually NULL).
      */
-    explicit LogWindow(QWidget *parent = 0);
+    explicit LogWindow(CommandInterpreter* interpreter, QWidget *parent = 0);
 
     /**
       @brief Destructor.
@@ -53,17 +55,19 @@ public slots:
      */
     void showAndRaise();
 
-    /**
-     * @brief Prints a message to the log window (but not to a log file).
-     * @param message Message to print.
-     */
-    void printMessage(QString message);
+//    /**
+//     * @brief Prints a message to the log window (but not to a log file).
+//     * @param message Message to print.
+//     */
+//    void printMessage(QString message);
 
-    /**
-     * @brief Prints a warning to the log window (but not to a log file).
-     * @param message Message to print.
-     */
-    void printWarning(QString message);
+//    /**
+//     * @brief Prints a warning to the log window (but not to a log file).
+//     * @param message Message to print.
+//     */
+//    void printWarning(QString message);
+    
+    void printMessage(CommandSenderInfo::OutputType, const QString&);
 
 private:
     virtual void moveEvent(QMoveEvent *e);

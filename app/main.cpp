@@ -9,7 +9,6 @@
 #include "commandlineparser.h"
 #include "wr_listedcommandmanager.h"
 #include "wr_commandinterpreter.h"
-#include "globaloutputredirector.h"
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
@@ -57,9 +56,8 @@ void initSystems(int argc, char **argv)
     g_pCommandInterpreter = new CommandInterpreter(g_pCommandManager);
     
     // Create global output redirector.
-    g_pOutputRedirect = new GlobalOutputRedirector();
-    g_pCommandManager->connect(g_pCommandManager, SIGNAL(printMessage(QString&)), g_pOutputRedirect, SLOT(redirectMessage(QString&)));
-    g_pCommandManager->connect(g_pCommandManager, SIGNAL(printWarning(QString&)), g_pOutputRedirect, SLOT(redirectWarning(QString&)));
+    //g_pOutputRedirect = new GlobalOutputRedirector();
+    //g_pCommandManager->connect(g_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pOutputRedirect, SLOT(redirectMessage(QString&)));
     
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();
@@ -69,7 +67,9 @@ void initSystems(int argc, char **argv)
     g_pWindowTracker = new QList<MainWin*>();
     
     // Create console window.
-    g_pLog = new LogWindow();
+    g_pLog = new LogWindow(g_pCommandInterpreter);
+    g_pLog->connect(g_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
+    
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 }
 
@@ -82,7 +82,7 @@ void shutdownSystems()
     }
     if ( g_pWindowTracker ) delete g_pWindowTracker;
     if ( g_pCmdLine ) delete g_pCmdLine;
-    if ( g_pOutputRedirect ) delete g_pOutputRedirect;
+    //if ( g_pOutputRedirect ) delete g_pOutputRedirect;
     if ( g_pCommandInterpreter ) delete g_pCommandInterpreter;
     if ( g_pCommandManager ) delete g_pCommandManager;
 }

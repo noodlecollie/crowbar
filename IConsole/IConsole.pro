@@ -42,7 +42,8 @@ HEADERS += \
     inc/wr_commandinterpreter.h \
     inc/commandentrybox.h \
     inc/commandsuggestionlist.h \
-    inc/wr_commandentrybox.h
+    inc/wr_commandentrybox.h \
+    inc/commandsenderinfo.h
 
 unix:!symbian {
     maemo5 {
@@ -65,7 +66,8 @@ SOURCES += \
     src/consolewidget.cpp \
     src/commandinterpreter.cpp \
     src/commandentrybox.cpp \
-    src/commandsuggestionlist.cpp
+    src/commandsuggestionlist.cpp \
+    src/commandsenderinfo.cpp
 
 INCLUDEPATH += \
     inc

@@ -102,16 +102,6 @@ ConVar* CommandManager::getVariable(const QString &name) const
 
 NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList &args, int &retVal, QVariant &output)
 {
-    // Find the command in the manager.
-    BaseConsoleCommand* cmd = get(name);
-
-    // If the command does not exist, return null.
-    if ( !cmd )
-    {
-        emit printWarning(QString("%0: command not found").arg(name));
-        return NGlobalCmd::CINull;
-    }
-    
     // Print the command we're going to execute.
     QString argList;
     foreach(QString s, args)
@@ -120,7 +110,28 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     }
     argList = argList.trimmed();
     
-    emit printMessage(QString("] %0 %1").arg(name).arg(argList));
+    //emit printMessage(QString("] %0 %1").arg(name).arg(argList));
+    message(QString("] %0 %1\n").arg(name).arg(argList));
+    
+    // If we have no command, return here.
+    if ( name.trimmed() == QString("") )
+    {
+        return NGlobalCmd::CINull;
+    }
+    
+    // Find the command in the manager.
+    BaseConsoleCommand* cmd = get(name);
+
+    // If the command does not exist, return null.
+    if ( !cmd )
+    {
+        //emit printWarning(QString("%0: command not found").arg(name));
+        warning(QString("%0: Command not found.\n").arg(name));
+        return NGlobalCmd::CINull;
+    }
+    
+    // Crete sender info.
+    CommandSenderInfo info(cmd->getName(), this, &CommandManager::emitMessage);
 
     // Deal with ident.
     switch ( cmd->identify() )
@@ -130,7 +141,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             ConCommand* con = (ConCommand*) cmd;
             
             // Execute the command.
-            retVal = con->exec(args, output);
+            retVal = con->exec(info, args, output);
     
             return NGlobalCmd::CICommand;
         }
@@ -145,12 +156,14 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
                 output.setValue(var->get());
                 
                 // Send an output signal with the value.
-                emit printWarning(QString("\"%0\" = \"%1\" (def. \"%2\")").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
-                emit printMessage(QString("- %0\n").arg(var->getDescription()));
+                //emit printWarning(QString("\"%0\" = \"%1\" (def. \"%2\")").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
+                //emit printMessage(QString("- %0\n").arg(var->getDescription()));
+                warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
+                message(QString("- %0\n").arg(var->getDescription()));
             }
             else                        // Set
             {
-                output.setValue(var->set(args.at(0)));
+                output.setValue(var->set(info, args.at(0)));
             }
             
             return NGlobalCmd::CIVariable;
@@ -171,4 +184,9 @@ CommandManager::BaseCommandMap::const_iterator CommandManager::constBegin()
 CommandManager::BaseCommandMap::const_iterator CommandManager::constEnd()
 {
     return m_CommandMap.constEnd();
+}
+
+void CommandManager::emitMessage(CommandSenderInfo::OutputType type, const QString &message)
+{
+    emit outputMessage(type, message);
 }

@@ -11,8 +11,9 @@
 #include "consolewidget.h"
 #include "wr_commandentrybox.h"
 #include "commandsuggestionlist.h"
+#include "wr_commandinterpreter.h"
 
-LogWindow::LogWindow(QWidget *parent) :
+LogWindow::LogWindow(CommandInterpreter* interpreter, QWidget *parent) :
     QWidget(parent)
 {
     // Set up window.
@@ -38,9 +39,10 @@ LogWindow::LogWindow(QWidget *parent) :
     
     // Entry box.
     m_pEntry = new CommandEntryBox();
-    m_pEntry->setInterpreter(g_pCommandInterpreter);
     m_pBottomLayout->addWidget(m_pEntry);
     m_pEntry->setFocusPolicy(Qt::NoFocus);
+    m_pEntry->connect(m_pEntry, SIGNAL(commandString(QString)), interpreter, SLOT(parse(QString)));
+    m_pEntry->connect(m_pEntry, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), interpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
     // Exec button.
     m_pExecButton = new QPushButton("Submit");
@@ -87,12 +89,29 @@ void LogWindow::showEvent(QShowEvent *e)
     if ( m_pEntry ) m_pEntry->setFocus(Qt::OtherFocusReason);
 }
 
-void LogWindow::printMessage(QString message)
-{
-    m_pText->printMessage(message);
-}
+//void LogWindow::printMessage(QString message)
+//{
+//    m_pText->printMessage(message);
+//}
 
-void LogWindow::printWarning(QString message)
+//void LogWindow::printWarning(QString message)
+//{
+//    m_pText->printWarning(message);
+//}
+
+void LogWindow::printMessage(CommandSenderInfo::OutputType type, const QString &message)
 {
-    m_pText->printWarning(message);
+    switch (type)
+    {
+        case CommandSenderInfo::OutputWarning:
+        {
+            m_pText->printWarning(message);
+            break;
+        }
+        default:
+        {
+            m_pText->printMessage(message);
+            break;
+        }
+    }
 }

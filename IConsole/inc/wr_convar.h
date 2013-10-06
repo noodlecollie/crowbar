@@ -3,5 +3,6 @@
 
 #include "commandmanager.h"
 #include "convar.h"
+#include "commandsenderinfo.h"
 
 #endif // WR_CONVAR_H

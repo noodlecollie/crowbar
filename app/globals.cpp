@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include "mainwin.h"
 #include "wr_listedcommandmanager.h"
-#include "globaloutputredirector.h"
+#include "commandsenderinfo.h"
 
 LogWindow*              g_pLog;
 CommandLineParser*      g_pCmdLine;
@@ -12,7 +12,7 @@ QList<MainWin*>*        g_pWindowTracker;
 ListedConsoleCommand*   g_pCommandList = NULL;
 ListedCommandManager*   g_pCommandManager = NULL;
 CommandInterpreter*     g_pCommandInterpreter = NULL;
-GlobalOutputRedirector* g_pOutputRedirect = NULL;
+//GlobalOutputRedirector* g_pOutputRedirect = NULL;
 
 // Creates a simple QMessageBox with an OK button that shows the specified message.
 void ShowMessageBox(QString message)
@@ -31,31 +31,33 @@ void ShowErrorBox(QString message)
 }
 
 // Logs a message, optionally excluding the terminating newline.
-void LogMessage(QString message, bool newline)
+void LogMessage(const QString &message, bool newline)
 {
     // Append a newline if we need to.
-    if ( newline ) message.append("\r\n");
-    g_pLog->printMessage(message);
+    //if ( newline ) message.append("\r\n");
+    const QString &m = newline ? QString(message + "\r\n") : message;
+    g_pLog->printMessage(CommandSenderInfo::OutputGeneral, m);
 }
 
 // Logs a tagged message in the format: "[tag] message"
-void LogTaggedMessage(QString tag, QString message, bool newline)
+void LogTaggedMessage(const QString &tag, const QString &message, bool newline)
 {
-    QString str("[" + tag + "] " + message);
+    const QString str("[" + tag + "] " + message);
     LogMessage(str, newline);
 }
 
 // Logs a warning. Text is printed red and in bold.
-void LogWarning(QString message, bool newline)
+void LogWarning(const QString &message, bool newline)
 {
     // Append a newline if we need to.
-    if ( newline ) message.append("\r\n");
-    g_pLog->printWarning(message);
+    //if ( newline ) message.append("\r\n");
+    const QString &m = newline ? QString(message + "\r\n") : message;
+    g_pLog->printMessage(CommandSenderInfo::OutputWarning, m);
 }
 
 // Logs a tagged warning in the format: "[tag] message"
-void LogTaggedWarning(QString tag, QString message, bool newline)
+void LogTaggedWarning(const QString &tag, const QString &message, bool newline)
 {
-    QString str("[" + tag + "] " + message);
+    const QString str("[" + tag + "] " + message);
     LogWarning(str, newline);
 }

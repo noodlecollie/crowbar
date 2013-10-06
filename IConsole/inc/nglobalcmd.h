@@ -7,6 +7,7 @@
 
 #include <QString>
 #include <QVariant>
+#include "commandsenderinfo.h"
 
 // Global command properties.
 namespace NGlobalCmd
@@ -33,8 +34,8 @@ namespace NGlobalCmd
         CMDFLAG_READONLY = 0x1  // ConVar is not allowed to be changed from the default, only read.
     };  
     
-    typedef int (*CmdCallback) (const QString &name, const QStringList &args, QVariant &output);
-    typedef void (*VarCallback) (const QString &oldValue, QString &newValue);
+    typedef int (*CmdCallback) (const CommandSenderInfo &info, const QStringList &args, QVariant &output);
+    typedef void (*VarCallback) (const CommandSenderInfo &info, const QString &oldValue, QString &newValue);
 }
 
 #endif // NGLOBALCMD_H

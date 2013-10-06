@@ -2,22 +2,23 @@
 #include <QWheelEvent>
 
 CommandEntryBox::CommandEntryBox(QWidget *parent) :
-    QLineEdit(parent), m_pInterpreter(NULL), m_pSuggestions(NULL)
+    QLineEdit(parent), m_pSuggestions(NULL)
 {
 }
 
-CommandEntryBox::CommandEntryBox(CommandInterpreter *interp, QWidget *parent) :
-    QLineEdit(parent), m_pInterpreter(interp), m_pSuggestions(NULL)
-{
-}
+//CommandEntryBox::CommandEntryBox(CommandInterpreter *interp, QWidget *parent) :
+//    QLineEdit(parent), m_pInterpreter(interp), m_pSuggestions(NULL)
+//{
+//}
 
 void CommandEntryBox::sendCommandString()
 {
-    if ( !m_pInterpreter ) return;
+    //if ( !m_pInterpreter ) return;
     
     // Strip any preceding or succeeding whitespace from the content
     // and send it to the interpreter.
-    m_pInterpreter->parse(text().trimmed());
+    //m_pInterpreter->parse(text().trimmed());
+    emit commandString(text().trimmed());
     
     // Clear the text box.
     clear();
@@ -30,15 +31,15 @@ void CommandEntryBox::sendCommandString()
     }
 }
 
-void CommandEntryBox::setInterpreter(CommandInterpreter *interp)
-{
-    m_pInterpreter = interp;
-}
+//void CommandEntryBox::setInterpreter(CommandInterpreter *interp)
+//{
+//    m_pInterpreter = interp;
+//}
 
-CommandInterpreter* CommandEntryBox::getInterpreter() const
-{
-    return m_pInterpreter;
-}
+//CommandInterpreter* CommandEntryBox::getInterpreter() const
+//{
+//    return m_pInterpreter;
+//}
 
 CommandSuggestionList* CommandEntryBox::getSuggestionList() const
 {
@@ -97,21 +98,25 @@ bool CommandEntryBox::suggestionsValid()
 void CommandEntryBox::keyPressEvent(QKeyEvent *e)
 {
     // Handle key presses which should complete the current command.
-    if ( e->key() == Qt::Key_Tab || e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter )
+    if ( e->key() == Qt::Key_Tab )
     {
-        // If we're unable to access the suggestions list, submit the command.
-        if ( !suggestionsValid() )
-        {
-            sendCommandString();
-        }
+//        // If we're unable to access the suggestions list, submit the command.
+//        if ( !suggestionsValid() && (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) )
+//        {
+//            sendCommandString();
+//        }
         // If the insertion was successful, accept the key press as handled and return.
-        else if ( insertSuggestion() )
+        if ( insertSuggestion() )
         {
             m_pSuggestions->clear();
             m_pSuggestions->hide();
             e->accept();
             return;
         }
+    }
+    else if ( e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter )
+    {
+        sendCommandString();
     }
     else if ( e->key() == Qt::Key_Up )
     {
@@ -139,8 +144,8 @@ void CommandEntryBox::keyPressEvent(QKeyEvent *e)
     // Base event first.
     QLineEdit::keyPressEvent(e);
     
-    // Only continue if we are linked to a suggestions list and command interpreter.
-    if ( !m_pSuggestions || !m_pInterpreter ) return;
+    // Only continue if we are linked to a suggestions list.
+    if ( !m_pSuggestions ) return;
     
     // If there is more than one argument, don't do a suggestions list for now.
     // We should probably advance this later to search for possible valid args, etc.
@@ -160,7 +165,8 @@ void CommandEntryBox::keyPressEvent(QKeyEvent *e)
     
     // Get suggestions for the current prefix.
     QList<CommandInterpreter::CommandIdentPair> suggestions;
-    m_pInterpreter->getSuggestions(list.at(0), suggestions);
+    //m_pInterpreter->getSuggestions(list.at(0), suggestions);
+    emit getSuggestions(list.at(0), suggestions, -1);
     
     // Clear the current suggestions list.
     m_pSuggestions->clear();

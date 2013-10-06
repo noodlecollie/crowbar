@@ -18,6 +18,13 @@ ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager,
 
 QString ConVar::set(const QString &value)
 {
+    // Construct a null sender info.
+    CommandSenderInfo info(getName(), NULL, NULL);
+    return set(info, value);
+}
+
+QString ConVar::set(const CommandSenderInfo &info, const QString &value)
+{
     // Don't change if we are read-only.
     if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return m_Variable.toString();
     
@@ -26,7 +33,7 @@ QString ConVar::set(const QString &value)
 
     if ( m_pVarCallback )
     {
-        (m_pVarCallback)(m_Variable.toString(), toSet);
+        (m_pVarCallback)(info, m_Variable.toString(), toSet);
     }
 
     m_Variable.setValue(toSet);

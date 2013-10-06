@@ -41,8 +41,7 @@ HEADERS += \
     matlib.h \
     ivertex3drenderspec.h \
     solid.h \
-    indexpool.h \
-    globaloutputredirector.h
+    indexpool.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 win32 {

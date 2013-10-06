@@ -8,6 +8,7 @@
 #include "listedconsolecommand.h"
 
 class CommandManager;
+class CommandSenderInfo;
 
 class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 {
@@ -26,6 +27,7 @@ public:
     NGlobalCmd::VarCallback getCallback() const;
     QString get() const;
     QString set(const QString &value);
+    QString set(const CommandSenderInfo &info, const QString &value);
     bool hasMin() const;
     float getMin() const;
     void setMin(float value);

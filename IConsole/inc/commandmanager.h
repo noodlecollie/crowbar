@@ -6,6 +6,7 @@
 #include <QString>
 #include <QRegularExpression>
 #include "nglobalcmd.h"
+#include "commandsenderinfo.h"
 
 class BaseConsoleCommand;
 class ConCommand;
@@ -36,12 +37,17 @@ public:
     BaseCommandMap::const_iterator constEnd();
     
 signals:
-    void printMessage(QString &output);
-    void printWarning(QString &output);
+    void outputMessage(CommandSenderInfo::OutputType, const QString&);
     
 public slots:
     
 private:
+    inline void emitMessage(CommandSenderInfo::OutputType type, const QString &message);
+    
+    // Convenience functions.
+    inline void message(const QString &message) { emit outputMessage(CommandSenderInfo::OutputGeneral, message); }
+    inline void warning(const QString &warning) { emit outputMessage(CommandSenderInfo::OutputWarning, warning); }
+    
     BaseCommandMap     m_CommandMap;
 };
 
