@@ -30,8 +30,10 @@ class CommandLineParser;
 class MainWin;
 class ListedCommandManager;
 class ListedConsoleCommand;
+class CommandInterpreter;
 class ConCommand;
 class ConVar;
+class GlobalOutputRedirector;
 
 //extern ConVar g_debugging;
 //extern ConVar g_logging;
@@ -127,12 +129,19 @@ extern QList<MainWin*>* g_pWindowTracker;
 extern ListedCommandManager* g_pCommandManager;
 
 /**
+ * @brief Global console command interpreter, created in main.cpp.
+ */
+extern CommandInterpreter*  g_pCommandInterpreter;
+
+/**
  * @brief Global console command list pointer.
  *
  * Any console commands or variables should register to this pointer, to be picked
  * up by the global manager on creation.
  */
 extern ListedConsoleCommand* g_pCommandList;
+
+extern GlobalOutputRedirector* g_pOutputRedirect;
 
 /**@}*/
 

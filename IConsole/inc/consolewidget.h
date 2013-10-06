@@ -10,6 +10,7 @@ class ICONSOLESHARED_EXPORT ConsoleWidget : public QTextEdit
     Q_OBJECT
 public:
     explicit ConsoleWidget(QWidget *parent = 0);
+    virtual ~ConsoleWidget() {}
 
     void setWarningColour(const QColor &col);
     QColor getWarningColour() const;

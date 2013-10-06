@@ -9,11 +9,15 @@
 
 class ConsoleWidget;
 class QVBoxLayout;
+class QHBoxLayout;
 class QCloseEvent;
 class QToolBar;
 class QAction;
 class QFile;
 class QTextStream;
+class CommandEntryBox;
+class QPushButton;
+class CommandSuggestionList;
 
 /**
  * @brief Logging window.
@@ -38,15 +42,11 @@ public:
     /**
       @brief Destructor.
       */
-    ~LogWindow();
+    virtual ~LogWindow();
     
 signals:
     
 public slots:
-    /**
-     * @brief Shows the logging window.
-     */
-    void show();
 
     /**
      * @brief Shows the logging window and raises it to be on top of any other windows.
@@ -66,8 +66,15 @@ public slots:
     void printWarning(QString message);
 
 private:
-    ConsoleWidget*  m_pText;            /**< Main text window */
-    QVBoxLayout*    m_pLayout;          /**< Widget layout */
+    virtual void moveEvent(QMoveEvent *e);
+    virtual void showEvent(QShowEvent *e);
+    
+    ConsoleWidget*          m_pText;            /**< Main text window */
+    CommandEntryBox*        m_pEntry;
+    QVBoxLayout*            m_pLayout;          /**< Widget layout */
+    QHBoxLayout*            m_pBottomLayout;
+    QPushButton*            m_pExecButton;
+    CommandSuggestionList*  m_pSgList;
 };
 
 #endif // LOGWINDOW_H

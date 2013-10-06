@@ -76,6 +76,8 @@ public:
         m_Position(vec), m_Normal(VEC3_ORIGIN), m_Colour(255, 255, 255), m_flTexX(0.0f), m_flTexY(0.0f)
     {
     }
+    
+    virtual ~Vertex3D() {}
 
     // ===== Begin get functions =====
 

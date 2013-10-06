@@ -30,10 +30,6 @@ MainWin::MainWin()
     SetUpStatusBar();
 }
 
-MainWin::~MainWin()
-{
-}
-
 // Creates menu actions on startup.
 void MainWin::CreateMenuActions()
 {

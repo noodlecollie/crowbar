@@ -7,6 +7,7 @@
 #include <QString>
 #include <QList>
 #include <QPair>
+#include <QRegularExpression>
 
 class CommandManager;
 
@@ -22,6 +23,7 @@ public:
     
     explicit CommandInterpreter(CommandManager* manager, QObject *parent = 0);
     explicit CommandInterpreter(QObject *parent = 0);
+    virtual ~CommandInterpreter() {}
     
     void setManager(CommandManager* manager);
     CommandManager* getManager() const;
@@ -31,7 +33,12 @@ public:
     void parse(const QString &cmdString);
     
     // Suggestions are returned as a pair containing the ident and the command name.
-    void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list);
+    void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count = -1);
+    
+    static const QRegularExpression matchArgs;
+    static const QRegularExpression matchArgsStrict;
+    static const QRegularExpression delimPipes;
+    static const QRegularExpression delimSemicolons;
     
 signals:
     

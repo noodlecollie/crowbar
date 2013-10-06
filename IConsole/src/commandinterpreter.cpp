@@ -1,7 +1,15 @@
 #include "wr_commandinterpreter.h"
 
+const QRegularExpression CommandInterpreter::matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
+
+// Strict matches spaces between arguments as well - used to tell whether we have finished typing one argument.
+const QRegularExpression CommandInterpreter::matchArgsStrict = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+|[\\s]+");
+
+const QRegularExpression CommandInterpreter::delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
+const QRegularExpression CommandInterpreter::delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
+
 CommandInterpreter::CommandInterpreter(QObject *parent) :
-    QObject(parent)
+    QObject(parent), m_pCommandManager(NULL)
 {
 }
 
@@ -20,14 +28,14 @@ CommandManager* CommandInterpreter::getManager() const
     return m_pCommandManager;
 }
 
-void CommandInterpreter::getSuggestions(const QString &prefix, QList<CommandIdentPair> &list)
+void CommandInterpreter::getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count)
 {
     // If manager is NULL, return.
     if ( !m_pCommandManager ) return;
     
     // Call findPrefix on the manager.
     QList<BaseConsoleCommand*> cmdList;
-    m_pCommandManager->findPrefix(prefix, cmdList);
+    m_pCommandManager->findPrefix(prefix, cmdList, count);
     
     // For each of the returned commands, create an entry in our output list.
     foreach (BaseConsoleCommand* cmd, cmdList)
@@ -172,12 +180,12 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
     // \s*(?<!\\)\|\s*
     // Searches for 0 or more whitespace characters, followed by a pipe which is not preceded by a backslash (using negative
     // lookbehind), followed by 0 or more whitespace characters.
-    QRegularExpression delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
+    //QRegularExpression delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
     
     // Unescaped regex to search a command string for semicolons.
     // \s*(?<!\\)\;\s*
     // Similar construction to above.
-    QRegularExpression delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
+    //QRegularExpression delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
     
     // Unescaped regex to search a command string for arguments.
     // Arguments are either space-delimited or enclosed in unescaped quotes.
@@ -193,7 +201,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
     // \"
     // test\"
     // "command \"string\""
-    QRegularExpression matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
+    //QRegularExpression matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
     
 //    qDebug() << "Original string to parse: " << cmdString;
     

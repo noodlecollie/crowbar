@@ -48,6 +48,8 @@ public:
     {
         setPoints(p1, p2, p3);
     }
+    
+    virtual ~Plane() {}
 
     // Get
     /**

@@ -25,6 +25,8 @@ public:
      */
     explicit CommandLineParser(QObject *parent = 0);
     
+    virtual ~CommandLineParser() {}
+    
 signals:
     
 public slots:

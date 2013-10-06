@@ -31,6 +31,8 @@ public:
      */
     explicit IndexPool(QObject *parent = 0, GEOMHANDLE highestIndex = INDEX_LIMIT);
     
+    virtual ~IndexPool() {}
+    
     enum
     {
         // 2^32 - 2,

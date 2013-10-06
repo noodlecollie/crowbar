@@ -39,29 +39,40 @@ BaseConsoleCommand* CommandManager::get(const QString &command) const
     return it.value();
 }
 
-void CommandManager::findRegex(const QRegularExpression &regex, QList<BaseConsoleCommand*> &commands) const
+void CommandManager::findRegex(const QRegularExpression &regex, QList<BaseConsoleCommand*> &commands, int count) const
 {
-    // Unfortunately we'll need to do a linear search here.
+    // Set the maximum number of entries we should append.
+    int maxEntries = m_CommandMap.count();
+    if ( count >= 0 && count < m_CommandMap.count() ) maxEntries = count;
+    
+    int numAdded = 0;
     foreach(BaseConsoleCommand* cmd, m_CommandMap)
     {
+        // If we've already added as many commands as we're allowed to, break here.
+        if ( numAdded >= maxEntries ) break;
+        
         // If the name matches the regex, add the command to the output list.
-        if ( regex.match(cmd->getName()).hasMatch() ) commands.append(cmd);
+        if ( regex.match(cmd->getName()).hasMatch() )
+        {
+            commands.append(cmd);
+            numAdded++;
+        }
     }
 }
 
-void CommandManager::findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList) const
+void CommandManager::findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList, int count) const
 {
-    findRegex(QRegularExpression(regex), outList);
+    findRegex(QRegularExpression(regex), outList, count);
 }
 
-void CommandManager::findPrefix(const QString &prefix, QList<BaseConsoleCommand*> &commands) const
+void CommandManager::findPrefix(const QString &prefix, QList<BaseConsoleCommand*> &commands, int count) const
 {
     // Wrapper for the RegEx matcher, but checks for prefixes only.
     // We'll need to use our prefix string to generate a regex to pass.
 
     // <start>[prefix](any char any number of times...)<end>
     QString regStr = "^" + QRegularExpression::escape(prefix) + ".*$";
-    findRegex(regStr, commands);
+    findRegex(regStr, commands, count);
 }
 
 ConCommand* CommandManager::getCommand(const QString &name) const
@@ -95,7 +106,21 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     BaseConsoleCommand* cmd = get(name);
 
     // If the command does not exist, return null.
-    if ( !cmd ) return NGlobalCmd::CINull;
+    if ( !cmd )
+    {
+        emit printWarning(QString("%0: command not found").arg(name));
+        return NGlobalCmd::CINull;
+    }
+    
+    // Print the command we're going to execute.
+    QString argList;
+    foreach(QString s, args)
+    {
+        argList.append(QString(" %0").arg(s));
+    }
+    argList = argList.trimmed();
+    
+    emit printMessage(QString("] %0 %1").arg(name).arg(argList));
 
     // Deal with ident.
     switch ( cmd->identify() )
@@ -115,8 +140,19 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             ConVar* var = (ConVar*) cmd;
             
             // Get or set the variable.
-            if ( args.count() < 1 ) output.setValue(var->get());
-            else output.setValue(var->set(args.at(0)));
+            if ( args.count() < 1 )     // Get
+            {
+                output.setValue(var->get());
+                
+                // Send an output signal with the value.
+                emit printWarning(QString("\"%0\" = \"%1\" (def. \"%2\")").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
+                emit printMessage(QString("- %0\n").arg(var->getDescription()));
+            }
+            else                        // Set
+            {
+                output.setValue(var->set(args.at(0)));
+            }
+            
             return NGlobalCmd::CIVariable;
         }
         

@@ -10,12 +10,12 @@ NGlobalCmd::CmdIdent BaseConsoleCommand::identify() const
     return NGlobalCmd::CINull;
 }
 
-const QString& BaseConsoleCommand::getName() const
+QString BaseConsoleCommand::getName() const
 {
     return m_szName;
 }
 
-const QString& BaseConsoleCommand::getDescription() const
+QString BaseConsoleCommand::getDescription() const
 {
     return m_szDescription;
 }

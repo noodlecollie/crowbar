@@ -1,7 +1,7 @@
 #include "consolewidget.h"
 
 ConsoleWidget::ConsoleWidget(QWidget *parent) :
-    QTextEdit(parent), m_colWarning(1.0,0.0,0.0), m_colStd(0.0,0.0,0.0)
+    QTextEdit(parent), m_colWarning(255,0,0), m_colStd(0,0,0)
 {
     setReadOnly(true);
     setUndoRedoEnabled(false);
@@ -33,6 +33,7 @@ QColor ConsoleWidget::getMessageColour() const
 void ConsoleWidget::printWarning(const QString &message)
 {
     setTextColor(m_colWarning);
+    QColor col = getWarningColour();
     printMessage(message);
     setTextColor(m_colStd);
 }

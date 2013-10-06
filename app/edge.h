@@ -53,6 +53,8 @@ public:
           m_hFLeft(leftface), m_Centre(midpoint)
     {
     }
+    
+    virtual ~Edge3D() {}
 
     // ===== Begin get functions =====
     

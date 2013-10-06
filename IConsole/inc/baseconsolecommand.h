@@ -16,8 +16,8 @@ public:
     virtual ~BaseConsoleCommand() {}
     
     virtual NGlobalCmd::CmdIdent identify() const;
-    const QString& getName() const;
-    const QString& getDescription() const;
+    QString getName() const;
+    QString getDescription() const;
     NGlobalCmd::CMDFLAGS getFlagsRaw() const;
     void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
     bool flagSet(NGlobalCmd::CMDFLAGS flag) const;

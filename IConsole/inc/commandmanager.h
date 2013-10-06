@@ -24,9 +24,9 @@ public:
     void unregisterCommand(const QString &name);
     bool isRegistered(const QString &name) const;
     BaseConsoleCommand* get(const QString &name) const;
-    void findRegex(const QRegularExpression &regex, QList<BaseConsoleCommand *> &outList) const;
-    void findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList) const;
-    void findPrefix(const QString &prefix, QList<BaseConsoleCommand *> &outList) const;
+    void findRegex(const QRegularExpression &regex, QList<BaseConsoleCommand *> &outList, int count = -1) const;
+    void findRegex(const QString &regex, QList<BaseConsoleCommand *> &outList, int count = -1) const;
+    void findPrefix(const QString &prefix, QList<BaseConsoleCommand *> &outList, int count = -1) const;
     
     ConCommand* getCommand(const QString &name) const;
     ConVar* getVariable(const QString &name) const;
@@ -36,6 +36,8 @@ public:
     BaseCommandMap::const_iterator constEnd();
     
 signals:
+    void printMessage(QString &output);
+    void printWarning(QString &output);
     
 public slots:
     

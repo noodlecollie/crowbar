@@ -4,15 +4,15 @@
 #include <QMessageBox>
 #include "mainwin.h"
 #include "wr_listedcommandmanager.h"
+#include "globaloutputredirector.h"
 
 LogWindow*              g_pLog;
 CommandLineParser*      g_pCmdLine;
 QList<MainWin*>*        g_pWindowTracker;
 ListedConsoleCommand*   g_pCommandList = NULL;
 ListedCommandManager*   g_pCommandManager = NULL;
-
-//DEFINE_CONVAR(g_debugging, "0", NULL, "Whether debugging is enabled or not.", 0, true, 0.0, true, 1.0)
-//DEFINE_CONVAR(g_logging, "0", NULL, "Whether logging is enabled or not.", 0, true, 0.0, true, 1.0)
+CommandInterpreter*     g_pCommandInterpreter = NULL;
+GlobalOutputRedirector* g_pOutputRedirect = NULL;
 
 // Creates a simple QMessageBox with an OK button that shows the specified message.
 void ShowMessageBox(QString message)

@@ -39,7 +39,10 @@ HEADERS += \
     inc/wr_listedcommandmanager.h \
     inc/consolewidget.h \
     inc/commandinterpreter.h \
-    inc/wr_commandinterpreter.h
+    inc/wr_commandinterpreter.h \
+    inc/commandentrybox.h \
+    inc/commandsuggestionlist.h \
+    inc/wr_commandentrybox.h
 
 unix:!symbian {
     maemo5 {
@@ -60,7 +63,9 @@ SOURCES += \
     src/convar.cpp \
     src/listedcommandmanager.cpp \
     src/consolewidget.cpp \
-    src/commandinterpreter.cpp
+    src/commandinterpreter.cpp \
+    src/commandentrybox.cpp \
+    src/commandsuggestionlist.cpp
 
 INCLUDEPATH += \
     inc

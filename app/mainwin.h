@@ -31,7 +31,7 @@ public:
     /**
     *  @brief Destructor.
     */
-    ~MainWin();
+    ~MainWin() {}
 
     /**
      * @brief Returns the desired size for when the window is created.

@@ -41,6 +41,8 @@ public:
      */
     explicit MapDoc(QObject *parent = 0);
     
+    virtual ~MapDoc() {}
+    
 signals:
     
 public slots:
