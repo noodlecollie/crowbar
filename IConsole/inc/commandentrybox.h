@@ -27,10 +27,21 @@ public:
 signals:
     void commandString(const QString&);
     void getSuggestions(const QString&,QList<CommandInterpreter::CommandIdentPair>&, int count = -1);
+    void tabPressed();
+    void upArrowPressed();
+    void downArrowPressed();
+    void mouseWheel(int);
     
 public slots:
     void sendCommandString();
     void repositionSuggestions();
+    void moveSuggestionSelectionUp();
+    void chooseAboveSuggestion();
+    void moveSuggestionSelectionDown();
+    void chooseBelowSuggestion();
+    void completeWithCurrentSuggestion();
+    void scrollSuggestionSelection(int);
+    void processForSuggestions(const QString&);
     
 private:
     virtual void keyPressEvent(QKeyEvent *e);
@@ -38,11 +49,11 @@ private:
     virtual void showEvent(QShowEvent *e);
     virtual void moveEvent(QMoveEvent *e);
     virtual void wheelEvent(QWheelEvent *e);
+    virtual void focusOutEvent(QFocusEvent *e);
     bool insertSuggestion();
     bool suggestionsValid();
     bool replaceWithSuggestion();
     
-    //CommandInterpreter*     m_pInterpreter;
     CommandSuggestionList*  m_pSuggestions;
 };
 

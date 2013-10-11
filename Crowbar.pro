@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     app \
-    IConsole
+    IConsole \
+    unit-test

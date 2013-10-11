@@ -12,6 +12,16 @@ void CommandSenderInfo::writeOutput(CommandSenderInfo::OutputType type, const QS
     if ( m_pManager && m_pOutput ) (m_pManager->*m_pOutput)(type, output);
 }
 
+void CommandSenderInfo::writeMessage(const QString &message) const
+{
+    writeOutput(OutputGeneral, message);
+}
+
+void CommandSenderInfo::writeWarning(const QString &message) const
+{
+    writeOutput(OutputWarning, message);
+}
+
 CommandSenderInfo::SendOutput CommandSenderInfo::getOutputPointer() const
 {
     return m_pOutput;

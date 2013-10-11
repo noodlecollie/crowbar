@@ -1,0 +1,7 @@
+ConsoleWidget
+{
+	background-color:		#000000;
+	font-family:			"Lucida console";
+	qproperty-warningColor:	#ff0000;
+	qproperty-messageColor:	#ffffff;
+}

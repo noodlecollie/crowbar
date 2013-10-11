@@ -64,32 +64,26 @@ void CommandInterpreter::parse(const QString &cmdString)
     // If we have no manager, don't bother running this.
     if ( !m_pCommandManager ) return;
     
+    QString newCmdString = cmdString.trimmed();
+    
+    // Echo back our command string.
+    m_pCommandManager->outputMessage(CommandSenderInfo::OutputGeneral, QString("] %0\n").arg(newCmdString));
+    
     // Create a command entry list.
     CommandEntryList masterList;
     
     // Parse our command string.
-    parseCommandString(cmdString, masterList);
-    
-//    qDebug() << "Number of pipe lists: " << masterList.count();
+    parseCommandString(newCmdString, masterList);
     
     // Iterate through the pipe lists:
     foreach(CommandEntryPipeList pipeList, masterList)
     {
-//        qDebug() << "Number of command pairs in this pipe list: " << pipeList.count();
-        
         // String list of arguments we need to pipe to the next command in the pipe list.
         QStringList pipeArgs;
         
         // For each of the commands:
         foreach(CommandEntryPair pair, pipeList)
         {
-//            qDebug() << "Command in this pair: " << pair.first;
-//            qDebug() << "Args for this pair: " << pair.second.count();
-//            foreach(QString s, pair.second)
-//            {
-//                qDebug() << s;
-//            }
-            
             int returnVal = NGlobalCmd::CCR_OK;
             QVariant output;
             
@@ -205,16 +199,8 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
     // "command \"string\""
     //QRegularExpression matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
     
-//    qDebug() << "Original string to parse: " << cmdString;
-    
     // Split the original string by semicolons.
     QStringList splitFirstPass = cmdString.split(delimSemicolons);
-    
-//    qDebug() << "Split strings, first pass: ";
-//    foreach(QString s, splitFirstPass)
-//    {
-//        qDebug() << s;
-//    }
     
     // Operate on each entry.
     foreach(QString str1, splitFirstPass)
@@ -224,12 +210,6 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
         
         // Split each new string by pipes.
         QStringList splitSecondPass = str1.split(delimPipes);
-        
-//        qDebug() << "Split strings, second pass: ";
-//        foreach(QString s, splitSecondPass)
-//        {
-//            qDebug() << s;
-//        }
         
         // Operate on each new entry.
         foreach (QString str2, splitSecondPass)
@@ -242,14 +222,22 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
             
             while ( m.hasNext() )
             {
-                pair.second.append(m.next().captured(0));
+                QString toAdd = m.next().captured(0);
+                
+                // If there are quotes at the start/end of the arg, remove them.
+                // We -shouldn't- need to worry about trailing whitespace because the regular expression should strip this out.
+                if ( toAdd.startsWith('"', Qt::CaseInsensitive) && toAdd.endsWith('"', Qt::CaseInsensitive) && toAdd.length() > 1 )
+                {
+                    toAdd.remove(toAdd.length() - 1, 1);
+                    toAdd.remove(0, 1);
+                }
+                
+                // Replace any escaped quotes with quotes.
+                // Original regex string is \\" but each of these three characters needs escaping!
+                toAdd.replace(QRegularExpression("\\\\\""), "\"");
+                
+                pair.second.append(toAdd);
             }
-            
-//            qDebug() << "Number of arguments matched from" << str2 << ":" << pair.second.count();
-//            foreach(QString s, pair.second)
-//            {
-//                qDebug() << s;
-//            }
             
             // If the number of arguments found is < 1, insert a blank command into the list.
             if ( pair.second.count() < 1 )

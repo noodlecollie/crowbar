@@ -1,12 +1,13 @@
 #ifndef COMMANDSENDERINFO_H
 #define COMMANDSENDERINFO_H
 
+#include "iconsole_global.h"
 #include <QObject>
 
 class QString;
 class CommandManager;
 
-class CommandSenderInfo : public QObject
+class ICONSOLESHARED_EXPORT CommandSenderInfo : public QObject
 {
     Q_OBJECT
 public:
@@ -21,6 +22,8 @@ public:
     explicit CommandSenderInfo(QString name, CommandManager* manager, SendOutput outputFunc, QObject *parent = 0);
     
     void writeOutput(CommandSenderInfo::OutputType type, const QString &output) const;
+    void writeMessage(const QString &message) const;
+    void writeWarning(const QString &message) const;
     
     CommandSenderInfo::SendOutput getOutputPointer() const;
     void setOutputPointer(CommandSenderInfo::SendOutput output);

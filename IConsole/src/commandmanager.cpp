@@ -102,16 +102,16 @@ ConVar* CommandManager::getVariable(const QString &name) const
 
 NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList &args, int &retVal, QVariant &output)
 {
-    // Print the command we're going to execute.
-    QString argList;
-    foreach(QString s, args)
-    {
-        argList.append(QString(" %0").arg(s));
-    }
-    argList = argList.trimmed();
+    // Handled in interpreter instead!
+//    // Print the command we're going to execute.
+//    QString argList;
+//    foreach(QString s, args)
+//    {
+//        argList.append(QString(" %0").arg(s));
+//    }
+//    argList = argList.trimmed();
     
-    //emit printMessage(QString("] %0 %1").arg(name).arg(argList));
-    message(QString("] %0 %1\n").arg(name).arg(argList));
+//    message(QString("] %0 %1\n").arg(name).arg(argList));
     
     // If we have no command, return here.
     if ( name.trimmed() == QString("") )
@@ -125,13 +125,25 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     // If the command does not exist, return null.
     if ( !cmd )
     {
-        //emit printWarning(QString("%0: command not found").arg(name));
         warning(QString("%0: Command not found.\n").arg(name));
         return NGlobalCmd::CINull;
     }
     
     // Crete sender info.
     CommandSenderInfo info(cmd->getName(), this, &CommandManager::emitMessage);
+    
+    // Process arguments to remove quotes.
+    // Unfortunately this means building a new argument list.
+//    QStringList newArgs;
+//    foreach(QString s, args)
+//    {
+//        // Replace any unescaped quotes with nothing.
+//        s.replace(QRegularExpression("(?<!\\\\)\"(?=[\\S]+)"), "");
+        
+//        // Replace any escaped quotes with unescaped quotes.
+//        s.replace(QRegularExpression("\\\\(?=\\\"[\\S]+)"), "");
+//        newArgs.append(s);
+//    }
 
     // Deal with ident.
     switch ( cmd->identify() )
@@ -156,8 +168,6 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
                 output.setValue(var->get());
                 
                 // Send an output signal with the value.
-                //emit printWarning(QString("\"%0\" = \"%1\" (def. \"%2\")").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
-                //emit printMessage(QString("- %0\n").arg(var->getDescription()));
                 warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
                 message(QString("- %0\n").arg(var->getDescription()));
             }
