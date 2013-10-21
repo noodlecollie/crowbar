@@ -6,11 +6,12 @@
 #include <QApplication>
 #include <QDir>
 
-const QString CommandEntryBox::command_img = QString("command_symbol.svg");
-const QString CommandEntryBox::variable_img = QString("variable_symbol.svg");
+const QString CommandEntryBox::LI_NAME_COMMAND = "CommandListItem";
+const QString CommandEntryBox::LI_NAME_VARIABLE = "VariableListItem";
 
 CommandEntryBox::CommandEntryBox(QWidget *parent) :
-    QLineEdit(parent), m_pSuggestions(new CommandSuggestionList(this))
+    QLineEdit(parent), m_pSuggestions(new CommandSuggestionList(this)), m_szIconConCommand(), m_szIconConVar()//, m_colBgCommand(), m_colBgVariable(),
+    //m_bHasCmdCol(false), m_bHasVarCol(false)
 {
     // Connect up our internal signals/slots.
     connect(this, SIGNAL(returnPressed()), SLOT(sendCommandString()));
@@ -29,6 +30,68 @@ CommandEntryBox::CommandEntryBox(QWidget *parent) :
         m_pSuggestions->hide();
     }
 }
+
+QString CommandEntryBox::iconConCommand() const
+{
+    return m_szIconConCommand;
+}
+
+void CommandEntryBox::setIconConCommand(QString icon)
+{
+    m_szIconConCommand = icon;
+}
+
+void CommandEntryBox::resetIconConCommand()
+{
+    m_szIconConCommand = QString("");
+}
+
+QString CommandEntryBox::iconConVar() const
+{
+    return m_szIconConVar;
+}
+
+void CommandEntryBox::setIconConVar(QString icon)
+{
+    m_szIconConVar = icon;
+}
+
+void CommandEntryBox::resetIconConVar()
+{
+    m_szIconConVar = QString("");
+}
+
+//QColor CommandEntryBox::bgcolorConCommand() const
+//{
+//    return m_bHasCmdCol ? m_colBgCommand : QColor(255,255,255,0);
+//}
+
+//void CommandEntryBox::setBgcolorConCommand(QColor col)
+//{
+//    m_colBgCommand = col;
+//    m_bHasCmdCol = true;
+//}
+
+//void CommandEntryBox::resetBgcolorConCommand()
+//{
+//    m_bHasCmdCol = false;
+//}
+
+//QColor CommandEntryBox::bgcolorConVar() const
+//{
+//    return m_bHasVarCol ? m_colBgVariable : QColor(255,255,255,0);
+//}
+
+//void CommandEntryBox::setBgcolorConVar(QColor col)
+//{
+//    m_colBgVariable = col;
+//    m_bHasVarCol = true;
+//}
+
+//void CommandEntryBox::resetBgcolorConVar()
+//{
+//    m_bHasVarCol = false;
+//}
 
 void CommandEntryBox::sendCommandString()
 {
@@ -284,40 +347,47 @@ void CommandEntryBox::processForSuggestions(const QString &str)
     foreach(CommandInterpreter::CommandIdentPair p, suggestions)
     {
         QDir dir(qApp->applicationDirPath());
-        if ( dir.cd("resource") )
-        {
-            QIcon* icon = NULL;
+        QString iconPath;
+        //QColor* bgcol = NULL;
 
-            switch (p.first)
+        switch (p.first)
+        {
+            case NGlobalCmd::CICommand:
             {
-                case NGlobalCmd::CICommand:
+                if ( !m_szIconConCommand.isEmpty() && dir.exists(m_szIconConCommand) )
                 {
-                    if ( dir.exists(command_img) )
-                    {
-                        icon = new QIcon(dir.filePath(command_img));
-                        break;
-                    }
+                    iconPath = dir.filePath(m_szIconConCommand);
                 }
                 
-                case NGlobalCmd::CIVariable:
-                {
-                    if ( dir.exists(variable_img) )
-                    {
-                        icon = new QIcon(dir.filePath(variable_img));
-                        break;
-                    }
-                }
+                //if ( m_bHasCmdCol ) bgcol = &m_colBgCommand;
+                break;
             }
             
-            if ( icon )
+            case NGlobalCmd::CIVariable:
             {
-                QListWidgetItem* i = new QListWidgetItem(*icon, p.second);
-                m_pSuggestions->addItem(i);
-                continue;
+                if ( !m_szIconConVar.isEmpty() && dir.exists(m_szIconConVar) )
+                {
+                    iconPath = dir.filePath(m_szIconConVar);
+                }
+                
+                //if ( m_bHasVarCol ) bgcol = &m_colBgVariable;
+                break;
             }
         }
         
-        m_pSuggestions->addItem(p.second);
+        QListWidgetItem* i = new QListWidgetItem(p.second);
+        
+        if ( !iconPath.isEmpty() )
+        {
+            i->setIcon(QIcon(iconPath));
+        }
+        
+//        if ( bgcol )
+//        {
+//            i->setBackgroundColor(*bgcol);
+//        }
+        
+        m_pSuggestions->addItem(i);
     }
     
     // Sort them alphabetically.
@@ -437,7 +507,7 @@ void CommandEntryBox::focusOutEvent(QFocusEvent *e)
     if ( e->reason() == Qt::TabFocusReason )
     {
         // If we have text and an active suggestion:
-        if ( text().trimmed() != QString("") && suggestionsValid() && m_pSuggestions->getCurrentSelection() != QString("") )
+        if ( !text().trimmed().isEmpty() && suggestionsValid() && !m_pSuggestions->getCurrentSelection().isEmpty() )
         {
             // Emit tab pressed.
             emit tabPressed();

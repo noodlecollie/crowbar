@@ -15,6 +15,8 @@
 
 int main(int, char**);
 void init();
+void myMessageOutput(QtMsgType, const QMessageLogContext &, const QString &);
+
 
 QWidget* mainWin = NULL;
 QVBoxLayout* mainLayout = NULL;
@@ -42,15 +44,18 @@ int aCallback(const CommandSenderInfo &info, const QStringList &args, QVariant &
 }
 ConCommand exampleCmd("example_cmd", &aCallback, commandManager, &listHead, "An example command");
 
-int callback_echo(const CommandSenderInfo &info, const QStringList &args, QVariant &)
+int callback_echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
 {
+    QString message;
     bool first = true;
     foreach(QString s, args)
     {
-        info.writeMessage(QString((first ? "" : " ") + s));
+        message.append(QString((first ? "" : " ") + s));
         first = false;
     }
-    info.writeMessage("\n");
+    info.writeMessage(message + QString("\n"));
+    
+    output.setValue(message);
     
     return NGlobalCmd::CCR_OK;
 }
@@ -70,6 +75,7 @@ int main(int argc, char **argv)
     
     init();
     mainWin->show();
+    qDebug("Test");
 
     return app.exec();
 }
@@ -102,4 +108,26 @@ void init()
     
     // Command interpreter connections.
     commandInterpreter->connect(commandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), consoleWindow, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
+    
+    // Message handler.
+    //qInstallMessageHandler(myMessageOutput);
+}
+
+void myMessageOutput(QtMsgType type, const QMessageLogContext &, const QString &msg)
+{
+    switch (type)
+    {
+    case QtDebugMsg:
+        if ( consoleWindow ) consoleWindow->printMessage(QString("QTDEBUG: %0\n").arg(msg));
+        break;
+    case QtWarningMsg:
+        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG WARNING: %0\n").arg(msg));
+        break;
+    case QtCriticalMsg:
+        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG CRITICAL: %0\n").arg(msg));
+        break;
+    case QtFatalMsg:
+        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG FATAL: %0\n").arg(msg));
+        abort();
+    }
 }

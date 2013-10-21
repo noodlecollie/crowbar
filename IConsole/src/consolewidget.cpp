@@ -46,6 +46,8 @@ void ConsoleWidget::resetMessageColor()
 
 void ConsoleWidget::printWarning(const QString &message)
 {
+    // BUG!! moveCursor resets text colour after moving, so it's here for now until this gets resolved.
+    moveCursor(QTextCursor::End);
     setTextColor(m_colWarning);
     print(message);
     setTextColor(m_colMessage);
@@ -53,6 +55,8 @@ void ConsoleWidget::printWarning(const QString &message)
 
 void ConsoleWidget::printMessage(const QString &message)
 {
+    // BUG!! moveCursor resets text colour after moving, so it's here for now until this gets resolved.
+    moveCursor(QTextCursor::End);
     setTextColor(m_colMessage);
     print(message);
 }
@@ -61,6 +65,14 @@ void ConsoleWidget::print(const QString &msg)
 {
     // Using insertPlainText as opposed to append since append automatically adds a newline
     // and we may not want this.
+    
+    // BUG!! moveCursor resets the text colour after execution.
+    // To demonstrate, uncomment the lines below.
+    // moveCursor has been moved to printMessage and printWarning so that they can set the respective text colour manually after moving.
+//    qDebug("Before: %d %d %d", textColor().red(), textColor().green(), textColor().blue());
+//    moveCursor(QTextCursor::End);
+//    qDebug("After: %d %d %d", textColor().red(), textColor().green(), textColor().blue());
+    
     insertPlainText(msg);
     ensureCursorVisible();
 }

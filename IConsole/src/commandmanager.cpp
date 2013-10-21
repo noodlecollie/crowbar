@@ -114,7 +114,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
 //    message(QString("] %0 %1\n").arg(name).arg(argList));
     
     // If we have no command, return here.
-    if ( name.trimmed() == QString("") )
+    if ( name.trimmed().isEmpty() )
     {
         return NGlobalCmd::CINull;
     }

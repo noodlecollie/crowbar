@@ -10,19 +10,35 @@ class CommandSuggestionList;
 class ICONSOLESHARED_EXPORT CommandEntryBox : public QLineEdit
 {
     Q_OBJECT
+    Q_PROPERTY(QString iconConCommand READ iconConCommand WRITE setIconConCommand RESET resetIconConCommand NOTIFY iconConCommandChanged)
+    Q_PROPERTY(QString iconConVar READ iconConVar WRITE setIconConVar RESET resetIconConVar NOTIFY iconConVarChanged)
+//    Q_PROPERTY(QColor bgcolorConCommand READ bgcolorConCommand WRITE setBgcolorConCommand RESET resetBgcolorConCommand NOTIFY bgcolorConCommandChanged)
+//    Q_PROPERTY(QColor bgcolorConVar READ bgcolorConVar WRITE setBgcolorConVar RESET resetBgcolorConVar NOTIFY bgcolorConVarChanged)
 public:
     explicit CommandEntryBox(QWidget *parent = 0);
-    //explicit CommandEntryBox(CommandInterpreter* interp, QWidget *parent = 0);
     virtual ~CommandEntryBox() {}
     
-    //void setInterpreter(CommandInterpreter* interp);
-    //CommandInterpreter* getInterpreter() const;
+    static const QString LI_NAME_COMMAND;
+    static const QString LI_NAME_VARIABLE;
     
     void setSuggestionList(CommandSuggestionList* list);
     CommandSuggestionList* getSuggestionList() const;
     
-    static const QString command_img;
-    static const QString variable_img;
+    QString iconConCommand() const;
+    void setIconConCommand(QString icon);
+    void resetIconConCommand();
+    
+    QString iconConVar() const;
+    void setIconConVar(QString icon);
+    void resetIconConVar();
+    
+//    QColor bgcolorConCommand() const;
+//    void setBgcolorConCommand(QColor col);
+//    void resetBgcolorConCommand();
+    
+//    QColor bgcolorConVar() const;
+//    void setBgcolorConVar(QColor col);
+//    void resetBgcolorConVar();
     
 signals:
     void commandString(const QString&);
@@ -31,6 +47,10 @@ signals:
     void upArrowPressed();
     void downArrowPressed();
     void mouseWheel(int);
+    void iconConCommandChanged();
+    void iconConVarChanged();
+//    void bgcolorConCommandChanged();
+//    void bgcolorConVarChanged();
     
 public slots:
     void sendCommandString();
@@ -55,6 +75,12 @@ private:
     bool replaceWithSuggestion();
     
     CommandSuggestionList*  m_pSuggestions;
+    QString                 m_szIconConCommand;
+    QString                 m_szIconConVar;
+//    QColor                  m_colBgCommand;
+//    QColor                  m_colBgVariable;
+//    bool                    m_bHasCmdCol;
+//    bool                    m_bHasVarCol;
 };
 
 #endif // COMMANDENTRYBOX_H
