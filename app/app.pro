@@ -8,7 +8,6 @@ TEMPLATE = app
 SOURCES += \
     main.cpp \
     mainwin.cpp \
-    logwindow.cpp \
     commandlineparser.cpp \
     globals.cpp \
     openglwidget.cpp \
@@ -18,11 +17,11 @@ SOURCES += \
     plane.cpp \
     solid.cpp \
     indexpool.cpp \
-    edge.cpp
+    edge.cpp \
+    consolewindow.cpp
 
 HEADERS += \
     mainwin.h \
-    logwindow.h \
     commandlineparser.h \
     globals.h \
     openglwidget.h \
@@ -41,7 +40,8 @@ HEADERS += \
     matlib.h \
     ivertex3drenderspec.h \
     solid.h \
-    indexpool.h
+    indexpool.h \
+    consolewindow.h
 
 # LIBS is from the main build directory (where debug/release folders are located)
 win32 {

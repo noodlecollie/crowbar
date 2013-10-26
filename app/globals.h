@@ -15,6 +15,7 @@
 #define GLOBAL_H
 
 #include <QList>
+#include "commandsenderinfo.h"
 
 // See globals.cpp for implementations.
 
@@ -24,7 +25,7 @@ ConVar szName_NoQuote(#szName_NoQuote, szDefVal, g_pCommandManager, &g_pCommandL
 #define DEFINE_CONCOMMAND( szName_NoQuote, pCallback, szDesc, iFlags ) \
 ConCommand szName_NoQuote(#szName_NoQuote, pCallback, g_pCommandManager, &g_pCommandList, szDesc, iFlags);
 
-class LogWindow;
+class ConsoleWindow;
 class QString;
 class CommandLineParser;
 class MainWin;
@@ -60,12 +61,11 @@ extern void ShowErrorBox(QString message);
 
 // ========== Logging/Debugging ==========
 /**
- * @brief Global log window object.
+ * @brief Global console window object.
  *
- * Shows debug output from application components. The window still exists if debugging mode is not enabled but does not display,
- * and the Debug menu will not be present in any main application windows.
+ * Shows debug output from application components.
  */
-extern LogWindow* g_pLog;
+extern ConsoleWindow* g_pLog;
 
 /**
  * @brief Logs a message to the log window.
@@ -108,6 +108,9 @@ extern void LogWarning(const QString &message, bool newline = true);
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
 extern void LogTaggedWarning(const QString &tag, const QString &message, bool newline = true);
+
+extern void LogOutput(CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
+extern void LogTaggedOutput(CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
 
 // =========== Window tracking ===========
 /**

@@ -3,7 +3,9 @@ defineTest(copyToResourceDir) {
 
     for(FILE, files) {
         
+    # TODO: Create these folders if they don't exist.
     CONFIG(debug):DDIR = $$OUT_PWD/debug/resource/
+    CONFIG(release):DDIR = $$OUT_PWD/release/resource
 
         # Replace slashes in paths with backslashes for Windows
         win32:FILE ~= s,/,\\,g
@@ -15,6 +17,7 @@ defineTest(copyToResourceDir) {
     export(QMAKE_POST_LINK)
 }
 
+# This doesn't work yet.
 defineTest(createDir) {
     directory = $$1
 
@@ -63,4 +66,4 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 SOURCES += \
     main.cpp
 
-copyToResourceDir($$PWD/../resource/manifest.qss $$PWD/../resource/command_symbol.svg $$PWD/../resource/variable_symbol.svg)
+copyToResourceDir($$PWD/../crowbar/resource/manifest.qss $$PWD/../crowbar/resource/command_symbol.svg $$PWD/../crowbar/resource/variable_symbol.svg)

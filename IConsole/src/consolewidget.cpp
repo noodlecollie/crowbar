@@ -1,8 +1,36 @@
 #include "consolewidget.h"
 #include <QStyle>
 
+#define IMPLEMENT_CUSTOM_COLOUR(_col) \
+QColor ConsoleWidget::customColor##_col() const \
+{ \
+    return m_colCustom##_col; \
+} \
+void ConsoleWidget::setCustomColor##_col(QColor col) \
+{ \
+    m_colCustom##_col = col; \
+} \
+void ConsoleWidget::resetCustomColor##_col() \
+{ \
+    m_colCustom##_col = DEFAULT_CUSTOM_COLOUR##_col; \
+}
+
 const QColor ConsoleWidget::DEFAULT_WARNING_COLOUR = QColor(255,0,0);
 const QColor ConsoleWidget::DEFAULT_MESSAGE_COLOUR = QColor(0,0,0);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR1 = QColor(51,181,48);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR2 = QColor(58,107,255);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR3 = QColor(255,106,43);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR4 = QColor(206,206,206);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR5 = QColor(0,255,255);
+const QColor ConsoleWidget::DEFAULT_CUSTOM_COLOUR6 = QColor(255,0,255);
+
+// Implement our custom colours.
+IMPLEMENT_CUSTOM_COLOUR(1)
+IMPLEMENT_CUSTOM_COLOUR(2)
+IMPLEMENT_CUSTOM_COLOUR(3)
+IMPLEMENT_CUSTOM_COLOUR(4)
+IMPLEMENT_CUSTOM_COLOUR(5)
+IMPLEMENT_CUSTOM_COLOUR(6)
 
 ConsoleWidget::ConsoleWidget(QWidget *parent) :
     QTextEdit(parent), m_colWarning(DEFAULT_WARNING_COLOUR), m_colMessage(DEFAULT_MESSAGE_COLOUR)
@@ -77,19 +105,36 @@ void ConsoleWidget::print(const QString &msg)
     ensureCursorVisible();
 }
 
+void ConsoleWidget::printCustom(CommandSenderInfo::OutputType type, const QString &msg)
+{
+    // BUG!! moveCursor resets text colour after moving, so it's here for now until this gets resolved.
+    moveCursor(QTextCursor::End);
+    
+    switch(type)
+    {
+        case CommandSenderInfo::OutputCustom1: setTextColor(m_colCustom1); break;
+        case CommandSenderInfo::OutputCustom2: setTextColor(m_colCustom2); break;
+        case CommandSenderInfo::OutputCustom3: setTextColor(m_colCustom3); break;
+        case CommandSenderInfo::OutputCustom4: setTextColor(m_colCustom4); break;
+        case CommandSenderInfo::OutputCustom5: setTextColor(m_colCustom5); break;
+        case CommandSenderInfo::OutputCustom6: setTextColor(m_colCustom6); break;
+        default:                               setTextColor(m_colMessage); break;
+    }
+    
+    print(msg);
+}
+
 void ConsoleWidget::printMessage(CommandSenderInfo::OutputType type, const QString &message)
 {
     switch (type)
     {
-        case CommandSenderInfo::OutputWarning:
-        {
-            printWarning(message);
-            break;
-        }
-        default:
-        {
-            printMessage(message);
-            break;
-        }
+        case CommandSenderInfo::OutputWarning: printWarning(message); break;
+        case CommandSenderInfo::OutputCustom1:
+        case CommandSenderInfo::OutputCustom2:
+        case CommandSenderInfo::OutputCustom3:
+        case CommandSenderInfo::OutputCustom4:
+        case CommandSenderInfo::OutputCustom5:
+        case CommandSenderInfo::OutputCustom6: printCustom(type, message); break;
+        default:                               printMessage(message); break;
     }
 }

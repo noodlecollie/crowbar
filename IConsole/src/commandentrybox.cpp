@@ -5,6 +5,7 @@
 #include <QIcon>
 #include <QApplication>
 #include <QDir>
+#include <QListWidgetItem>
 
 const QString CommandEntryBox::LI_NAME_COMMAND = "CommandListItem";
 const QString CommandEntryBox::LI_NAME_VARIABLE = "VariableListItem";
@@ -28,6 +29,7 @@ CommandEntryBox::CommandEntryBox(QWidget *parent) :
         m_pSuggestions->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_pSuggestions->setUniformItemSizes(true);
         m_pSuggestions->hide();
+        connect (m_pSuggestions, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(itemDoubleClicked(QListWidgetItem*)));
     }
 }
 
@@ -376,6 +378,7 @@ void CommandEntryBox::processForSuggestions(const QString &str)
         }
         
         QListWidgetItem* i = new QListWidgetItem(p.second);
+        //i->setSizeHint(QSize(100, 20));
         
         if ( !iconPath.isEmpty() )
         {
@@ -395,6 +398,8 @@ void CommandEntryBox::processForSuggestions(const QString &str)
     
     // Show the suggestions list.
     repositionSuggestions();
+    m_pSuggestions->autoWidth();
+    m_pSuggestions->autoHeight();
     m_pSuggestions->show();
     m_pSuggestions->selectFirst();
 }
@@ -516,4 +521,9 @@ void CommandEntryBox::focusOutEvent(QFocusEvent *e)
             setFocus(Qt::OtherFocusReason);
         }
     }
+}
+
+void CommandEntryBox::itemDoubleClicked(QListWidgetItem *)
+{
+    completeWithCurrentSuggestion();
 }

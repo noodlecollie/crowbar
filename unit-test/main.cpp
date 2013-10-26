@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QFile>
 #include <QDir>
+#include <QTextStream>
 #include "consolewidget.h"
 #include "wr_commandentrybox.h"
 #include "wr_listedcommandmanager.h"
@@ -110,24 +111,36 @@ void init()
     commandInterpreter->connect(commandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), consoleWindow, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
     
     // Message handler.
-    //qInstallMessageHandler(myMessageOutput);
+    qInstallMessageHandler(myMessageOutput);
 }
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
     switch (type)
     {
-    case QtDebugMsg:
-        if ( consoleWindow ) consoleWindow->printMessage(QString("QTDEBUG: %0\n").arg(msg));
-        break;
-    case QtWarningMsg:
-        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG WARNING: %0\n").arg(msg));
-        break;
-    case QtCriticalMsg:
-        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG CRITICAL: %0\n").arg(msg));
-        break;
-    case QtFatalMsg:
-        if ( consoleWindow ) consoleWindow->printWarning(QString("QTDEBUG FATAL: %0\n").arg(msg));
-        abort();
+        case QtDebugMsg:
+        {
+            if ( consoleWindow ) consoleWindow->printMessage(QString("]: %0\n").arg(msg));
+            QTextStream(stdout) << msg << endl;
+            break;
+        }
+        case QtWarningMsg:
+        {
+            if ( consoleWindow ) consoleWindow->printWarning(QString("]! %0\n").arg(msg));
+            QTextStream(stderr) << msg << endl;
+            break;
+        }
+        case QtCriticalMsg:
+        {
+            if ( consoleWindow ) consoleWindow->printWarning(QString("]!! %0\n").arg(msg));
+            QTextStream(stderr) << msg << endl;
+            break;
+        }
+        case QtFatalMsg:
+        {
+            if ( consoleWindow ) consoleWindow->printWarning(QString("]X %0\n").arg(msg));
+            QTextStream(stderr) << msg << endl;
+            abort();
+        }
     }
 }

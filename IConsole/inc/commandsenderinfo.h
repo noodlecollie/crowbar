@@ -14,7 +14,13 @@ public:
     enum OutputType
     {
         OutputGeneral = 0,
-        OutputWarning
+        OutputWarning,
+        OutputCustom1,
+        OutputCustom2,
+        OutputCustom3,
+        OutputCustom4,
+        OutputCustom5,
+        OutputCustom6
     };
     
     typedef void (CommandManager::*SendOutput) (CommandSenderInfo::OutputType, const QString &);

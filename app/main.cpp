@@ -2,17 +2,24 @@
 #include <QString>
 #include <QGLFormat>
 #include <QObject>
+#include <QTextStream>
 
 #include "globals.h"
 #include "mainwin.h"
-#include "logwindow.h"
 #include "commandlineparser.h"
 #include "wr_listedcommandmanager.h"
 #include "wr_commandinterpreter.h"
+#include "consolewindow.h"
+
+#define LOG_QDEBUG_TAG      " Q "
+#define LOG_QWARNING_TAG    " Q!"
+#define LOG_QCRITICAL_TAG   "!Q!"
+#define LOG_QFATAL_TAG      "XXX"
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
 void debugTests();
+void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg);
 
 DEFINE_CONVAR( test_var_1, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
 DEFINE_CONVAR( test_var_2, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
@@ -40,7 +47,9 @@ int main(int argc, char **argv)
     win.setCentralWidget(NULL);
 
     win.show();
-
+//    qDebug("Testing output.");
+//    qWarning("Testing warning.");
+//    qCritical("Testing critical.");
     int ret = app.exec();  // exec() starts the event loop. No user interaction should occur before this, but computation is fine.
 
     shutdownSystems();
@@ -63,18 +72,22 @@ void initSystems(int argc, char **argv)
     g_pWindowTracker = new QList<MainWin*>();
     
     // Create console window.
-    g_pLog = new LogWindow();
+    g_pLog = new ConsoleWindow(g_pCommandInterpreter);
     
+    // These are now handled from within the ConsoleWindow class.
     // Connect manager's output to console window.
-    g_pLog->connect(g_pCommandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
+    //g_pLog->connect(g_pCommandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
     
     // Connect command box's command string to interpreter's parse function.
-    g_pLog->connect(g_pLog, SIGNAL(commandString(QString)), g_pCommandInterpreter, SLOT(parse(QString)));
+    //g_pLog->connect(g_pLog, SIGNAL(commandString(QString)), g_pCommandInterpreter, SLOT(parse(QString)));
     
     // Connect command box's suggestion request to interpreter's suggestion retrieval function.
-    g_pLog->connect(g_pLog, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), g_pCommandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
+    //g_pLog->connect(g_pLog, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), g_pCommandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
+    
+    // Set up message handler to print qDebug messages to console as well.
+    qInstallMessageHandler(qDebugIntercept);
 }
 
 void shutdownSystems()
@@ -92,4 +105,35 @@ void shutdownSystems()
 
 void debugTests()
 {
+}
+
+void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg)
+{
+    switch (type)
+    {
+        case QtDebugMsg:
+        {
+            LogTaggedMessage(LOG_QDEBUG_TAG, msg);
+            QTextStream(stdout) << msg << endl;
+            break;
+        }
+        case QtWarningMsg:
+        {
+            LogTaggedWarning(LOG_QWARNING_TAG, msg);
+            QTextStream(stderr) << msg << endl;
+            break;
+        }
+        case QtCriticalMsg:
+        {
+            LogTaggedWarning(LOG_QCRITICAL_TAG, msg);
+            QTextStream(stderr) << msg << endl;
+            break;
+        }
+        case QtFatalMsg:
+        {
+            LogTaggedWarning(LOG_QFATAL_TAG, msg);
+            QTextStream(stderr) << msg << endl;
+            abort();
+        }
+    }
 }

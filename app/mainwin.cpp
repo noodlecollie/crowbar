@@ -11,7 +11,7 @@
 #include <QWindow>
 #include "globals.h"
 #include "commandlineparser.h"
-#include "logwindow.h"
+#include "consolewindow.h"
 #include <QList>
 #include <QSize>
 

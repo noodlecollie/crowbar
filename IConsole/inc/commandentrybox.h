@@ -6,6 +6,7 @@
 #include "commandinterpreter.h"
 
 class CommandSuggestionList;
+class QListWidgetItem;
 
 class ICONSOLESHARED_EXPORT CommandEntryBox : public QLineEdit
 {
@@ -62,6 +63,7 @@ public slots:
     void completeWithCurrentSuggestion();
     void scrollSuggestionSelection(int);
     void processForSuggestions(const QString&);
+    void itemDoubleClicked(QListWidgetItem* item);
     
 private:
     virtual void keyPressEvent(QKeyEvent *e);
