@@ -3,6 +3,7 @@
 #include <QGLFormat>
 #include <QObject>
 #include <QTextStream>
+#include <QDir>
 
 #include "globals.h"
 #include "mainwin.h"
@@ -58,6 +59,16 @@ int main(int argc, char **argv)
 
 void initSystems(int argc, char **argv)
 {
+    // Apply style sheet.
+    QDir dir(qApp->applicationDirPath());
+    if ( dir.cd("resource") && dir.exists("manifest.qss") )
+    {
+        QFile stylesheet(dir.filePath("manifest.qss"));
+        stylesheet.open(QFile::ReadOnly);
+        QString setSheet = QLatin1String(stylesheet.readAll());
+        qApp->setStyleSheet(setSheet);
+    }
+    
     // Create global console command manager.
     g_pCommandManager = new ListedCommandManager(g_pCommandList);
     
@@ -84,10 +95,13 @@ void initSystems(int argc, char **argv)
     // Connect command box's suggestion request to interpreter's suggestion retrieval function.
     //g_pLog->connect(g_pLog, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), g_pCommandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
     
-    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
-    
     // Set up message handler to print qDebug messages to console as well.
     qInstallMessageHandler(qDebugIntercept);
+    
+    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
+    qDebug("We need to change the colour system - make the test output into the window be surrounded by HTML tags or something\n");
+    qDebug("so that the colour is independent of the window text colour.");
+
 }
 
 void shutdownSystems()

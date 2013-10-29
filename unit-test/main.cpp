@@ -112,6 +112,7 @@ void init()
     
     // Message handler.
     qInstallMessageHandler(myMessageOutput);
+    //consoleWindow->printMessage("Test msg");
 }
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &, const QString &msg)

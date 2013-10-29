@@ -1,6 +1,10 @@
 #include "consolewidget.h"
 #include <QStyle>
 
+// TEMP
+#include <QtDebug>
+// TEMP
+
 #define IMPLEMENT_CUSTOM_COLOUR(_col) \
 QColor ConsoleWidget::customColor##_col() const \
 { \
@@ -126,6 +130,10 @@ void ConsoleWidget::printCustom(CommandSenderInfo::OutputType type, const QStrin
 
 void ConsoleWidget::printMessage(CommandSenderInfo::OutputType type, const QString &message)
 {
+//    QColor col1 = textColor();
+//    QColor col2 = messageColor();
+//    qDebug() << col1.red() << col1.green() << col1.blue() << col2.red() << col2.green() << col2.blue();
+    
     switch (type)
     {
         case CommandSenderInfo::OutputWarning: printWarning(message); break;
@@ -137,4 +145,6 @@ void ConsoleWidget::printMessage(CommandSenderInfo::OutputType type, const QStri
         case CommandSenderInfo::OutputCustom6: printCustom(type, message); break;
         default:                               printMessage(message); break;
     }
+    
+//    qDebug() << "After:" << col1.red() << col1.green() << col1.blue() << col2.red() << col2.green() << col2.blue();
 }

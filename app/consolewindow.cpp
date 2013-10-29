@@ -38,7 +38,13 @@ void ConsoleWindow::init(CommandInterpreter *interpreter)
 
 void ConsoleWindow::printToConsole(CommandSenderInfo::OutputType type, const QString &message)
 {
-    if ( m_pConsoleWidget ) m_pConsoleWidget->printMessage(type, message);
+    if ( m_pConsoleWidget )
+    {
+//        QColor col1 = m_pConsoleWidget->textColor();
+//        QColor col2 = m_pConsoleWidget->messageColor();
+//        m_pConsoleWidget->printMessage(type, QString("Colour: %0 %1 %2 %3 %4 %5\n").arg(col1.red()).arg(col1.green()).arg(col1.blue()).arg(col2.red()).arg(col2.green()).arg(col2.blue()));
+        m_pConsoleWidget->printMessage(type, message);
+    }
 }
 
 void ConsoleWindow::showAndRaise()
