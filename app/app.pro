@@ -56,9 +56,11 @@ unix {
 # Extra includes for libraries.
 INCLUDEPATH += ../IConsole/inc
 
+CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
-   mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
-   win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
+    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
+    win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
+    CONF_OUT=debug
 }
 
 # NOTE: These paths assume your build directory is in the same directory as the root Crowbar folder (within which is Crowbar.pro).
@@ -69,3 +71,19 @@ RC_FILE = crowbar.rc
 
 # For OS/X:
 ICON = crowbar.icns
+
+# Variable to hold path to output folder
+ORIG_FOLDER=$$quote($$PWD/..)
+#CONFIG(debug):CONF_OUT=debug
+#CONFIG(release):CONF_OUT=release
+
+# Replace slashes on Windows.
+win32:ORIG_FOLDER ~= s,/,\\,g
+
+# Set up string to exec post-build.
+win32:BATCH=$$quote($$PWD\build_post_windows.bat)
+unix:BATCH=$$quote($$PWD/build_post_unix.sh)
+
+# Set exec string.
+# Batch file expects arg 1 to be the source folder to copy from, and the second to be the configuration we're building with (debug/release).
+QMAKE_POST_LINK += $$BATCH $$ORIG_FOLDER $$CONF_OUT $$escape_expand(\\n\\t)

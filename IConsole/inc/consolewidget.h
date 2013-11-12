@@ -17,6 +17,7 @@ class ICONSOLESHARED_EXPORT ConsoleWidget : public QTextEdit
     Q_PROPERTY(QColor customColor4 READ customColor4 WRITE setCustomColor4 RESET resetCustomColor4 NOTIFY customColor4Changed)
     Q_PROPERTY(QColor customColor5 READ customColor5 WRITE setCustomColor5 RESET resetCustomColor5 NOTIFY customColor5Changed)
     Q_PROPERTY(QColor customColor6 READ customColor6 WRITE setCustomColor6 RESET resetCustomColor6 NOTIFY customColor6Changed)
+    Q_PROPERTY(int maxLines READ maxLines WRITE setMaxLines RESET resetMaxLines NOTIFY maxLinesChanged)
 public:
     explicit ConsoleWidget(QWidget *parent = 0);
     virtual ~ConsoleWidget() {}
@@ -29,6 +30,7 @@ public:
     static const QColor DEFAULT_CUSTOM_COLOUR4;
     static const QColor DEFAULT_CUSTOM_COLOUR5;
     static const QColor DEFAULT_CUSTOM_COLOUR6;
+    static const unsigned int DEFAULT_MAX_LINES;
     
     QColor warningColor() const;
     void setWarningColor(QColor warningColor);
@@ -59,6 +61,10 @@ public:
     void resetCustomColor5();
     void resetCustomColor6();
     
+    int maxLines();
+    void setMaxLines(int lines);
+    void resetMaxLines();
+    
 signals:
     void warningColorChanged();
     void messageColorChanged();
@@ -68,6 +74,7 @@ signals:
     void customColor4Changed();
     void customColor5Changed();
     void customColor6Changed();
+    void maxLinesChanged();
     
 public slots:
     void printMessage(const QString &message);
@@ -76,16 +83,18 @@ public slots:
     
 private:
     void print(const QString &msg);
-    void printCustom(CommandSenderInfo::OutputType type, const QString &msg);
+    void trimToLineLimit();
+    //void printCustom(CommandSenderInfo::OutputType type, const QString &msg);
+    
     QColor m_colWarning;
     QColor m_colMessage;
-    
     QColor m_colCustom1;
     QColor m_colCustom2;
     QColor m_colCustom3;
     QColor m_colCustom4;
     QColor m_colCustom5;
     QColor m_colCustom6;
+    int m_iMaxLines;
 };
 
 #endif // CONSOLEWIDGET_H

@@ -4,13 +4,12 @@ ConsoleWidget
 	font-family:			"Lucida console";
 	qproperty-warningColor:	#ff0000;
 	qproperty-messageColor:	#ffffff;
+	qproperty-maxLines:		300;
 }
 
 CommandEntryBox
 {
 	qproperty-iconConCommand:		"resource/command_symbol.svg";
 	qproperty-iconConVar:			"resource/variable_symbol.svg";
-	/*qproperty-bgcolorConCommand:	#B5C3F2;*/
-	/*qproperty-bgcolorConVar:		#E1B5F2;*/
 }
 
