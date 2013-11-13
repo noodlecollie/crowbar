@@ -54,7 +54,6 @@ ConsoleWidget::ConsoleWidget(QWidget *parent) : QTextEdit(parent),
     setLineWrapMode(QTextEdit::WidgetWidth);
 }
 
-
 void ConsoleWidget::setWarningColor(QColor warningColor)
 {
     m_colWarning = warningColor;
@@ -145,6 +144,8 @@ void ConsoleWidget::printMessage(CommandSenderInfo::OutputType type, const QStri
 //    QColor col1 = textColor();
 //    QColor col2 = messageColor();
 //    qDebug() << col1.red() << col1.green() << col1.blue() << col2.red() << col2.green() << col2.blue();
+    
+    moveCursor(QTextCursor::End);
     
     switch(type)
     {

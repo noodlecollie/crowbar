@@ -5,6 +5,10 @@
 #include <QTextStream>
 #include <QDir>
 
+// TEMP
+
+// TEMP
+
 #include "globals.h"
 #include "mainwin.h"
 #include "commandlineparser.h"
@@ -85,22 +89,13 @@ void initSystems(int argc, char **argv)
     // Create console window.
     g_pLog = new ConsoleWindow(g_pCommandInterpreter);
     
-    // These are now handled from within the ConsoleWindow class.
-    // Connect manager's output to console window.
-    //g_pLog->connect(g_pCommandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), g_pLog, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
-    
-    // Connect command box's command string to interpreter's parse function.
-    //g_pLog->connect(g_pLog, SIGNAL(commandString(QString)), g_pCommandInterpreter, SLOT(parse(QString)));
-    
-    // Connect command box's suggestion request to interpreter's suggestion retrieval function.
-    //g_pLog->connect(g_pLog, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), g_pCommandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
-    
     // Set up message handler to print qDebug messages to console as well.
     qInstallMessageHandler(qDebugIntercept);
-    
-    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
-    qDebug("We need to change the colour system - make the test output into the window be surrounded by HTML tags or something\n");
-    qDebug("so that the colour is independent of the window text colour.");
+
+    // Moving these to see if it affects the colour of the printed text.    
+//    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
+//    qDebug("We need to change the colour system - make the test output into the window be surrounded by HTML tags or something\n");
+//    qDebug("so that the colour is independent of the window text colour.");
 
 }
 

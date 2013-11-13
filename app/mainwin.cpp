@@ -1,4 +1,3 @@
-#include "mainwin.h"
 #include <QMessageBox>
 #include <QPluginLoader>
 #include <QMenuBar>
@@ -9,6 +8,8 @@
 #include <QApplication>
 #include <QWindowList>
 #include <QWindow>
+
+#include "mainwin.h"
 #include "globals.h"
 #include "commandlineparser.h"
 #include "consolewindow.h"
