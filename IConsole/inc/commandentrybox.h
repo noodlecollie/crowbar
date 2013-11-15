@@ -1,8 +1,9 @@
 #ifndef COMMANDENTRYBOX_H
 #define COMMANDENTRYBOX_H
 
-#include "iconsole_global.h"
 #include <QLineEdit>
+#include <QList>
+#include "iconsole_global.h"
 #include "commandinterpreter.h"
 
 class CommandSuggestionList;
@@ -13,14 +14,14 @@ class ICONSOLESHARED_EXPORT CommandEntryBox : public QLineEdit
     Q_OBJECT
     Q_PROPERTY(QString iconConCommand READ iconConCommand WRITE setIconConCommand RESET resetIconConCommand NOTIFY iconConCommandChanged)
     Q_PROPERTY(QString iconConVar READ iconConVar WRITE setIconConVar RESET resetIconConVar NOTIFY iconConVarChanged)
-//    Q_PROPERTY(QColor bgcolorConCommand READ bgcolorConCommand WRITE setBgcolorConCommand RESET resetBgcolorConCommand NOTIFY bgcolorConCommandChanged)
-//    Q_PROPERTY(QColor bgcolorConVar READ bgcolorConVar WRITE setBgcolorConVar RESET resetBgcolorConVar NOTIFY bgcolorConVarChanged)
+    Q_PROPERTY(int commandHistorySize READ commandHistorySize WRITE setCommandHistorySize RESET resetCommandHistorySize NOTIFY commandHistorySizeChanged)
 public:
     explicit CommandEntryBox(QWidget *parent = 0);
     virtual ~CommandEntryBox() {}
     
     static const QString LI_NAME_COMMAND;
     static const QString LI_NAME_VARIABLE;
+    static const int DEFAULT_COMMAND_HISTORY_SIZE;
     
     void setSuggestionList(CommandSuggestionList* list);
     CommandSuggestionList* getSuggestionList() const;
@@ -33,13 +34,9 @@ public:
     void setIconConVar(QString icon);
     void resetIconConVar();
     
-//    QColor bgcolorConCommand() const;
-//    void setBgcolorConCommand(QColor col);
-//    void resetBgcolorConCommand();
-    
-//    QColor bgcolorConVar() const;
-//    void setBgcolorConVar(QColor col);
-//    void resetBgcolorConVar();
+    int commandHistorySize() const;
+    void setCommandHistorySize(int size);
+    void resetCommandHistorySize();
     
 signals:
     void commandString(const QString&);
@@ -50,8 +47,7 @@ signals:
     void mouseWheel(int);
     void iconConCommandChanged();
     void iconConVarChanged();
-//    void bgcolorConCommandChanged();
-//    void bgcolorConVarChanged();
+    void commandHistorySizeChanged();
     
 public slots:
     void sendCommandString();
@@ -64,6 +60,7 @@ public slots:
     void scrollSuggestionSelection(int);
     void processForSuggestions(const QString&);
     void itemDoubleClicked(QListWidgetItem* item);
+    void clearCommandHistory();
     
 private:
     virtual void keyPressEvent(QKeyEvent *e);
@@ -72,17 +69,17 @@ private:
     virtual void moveEvent(QMoveEvent *e);
     virtual void wheelEvent(QWheelEvent *e);
     virtual void focusOutEvent(QFocusEvent *e);
-    bool insertSuggestion();
     bool suggestionsValid();
-    bool replaceWithSuggestion();
+    bool replaceWithSuggestion(bool shouldRequery = true);
+    void traverseHistory(bool direction);
     
-    CommandSuggestionList*  m_pSuggestions;
-    QString                 m_szIconConCommand;
-    QString                 m_szIconConVar;
-//    QColor                  m_colBgCommand;
-//    QColor                  m_colBgVariable;
-//    bool                    m_bHasCmdCol;
-//    bool                    m_bHasVarCol;
+    CommandSuggestionList*                  m_pSuggestions;
+    QString                                 m_szIconConCommand;
+    QString                                 m_szIconConVar;
+    bool                                    m_bShouldGetSuggestions;
+    QList<QString>                          m_CommandHistory;
+    int                                     m_iCommandHistorySize;
+    int                                     m_iCurrentHistoryIndex;
 };
 
 #endif // COMMANDENTRYBOX_H

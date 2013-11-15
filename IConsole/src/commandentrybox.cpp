@@ -5,14 +5,18 @@
 #include <QIcon>
 #include <QApplication>
 #include <QDir>
-#include <QListWidgetItem>
+
+// TEMP
+#include <QtDebug>
+// TEMP
 
 const QString CommandEntryBox::LI_NAME_COMMAND = "CommandListItem";
 const QString CommandEntryBox::LI_NAME_VARIABLE = "VariableListItem";
+const int CommandEntryBox::DEFAULT_COMMAND_HISTORY_SIZE = 32;
 
 CommandEntryBox::CommandEntryBox(QWidget *parent) :
-    QLineEdit(parent), m_pSuggestions(new CommandSuggestionList(this)), m_szIconConCommand(), m_szIconConVar()//, m_colBgCommand(), m_colBgVariable(),
-    //m_bHasCmdCol(false), m_bHasVarCol(false)
+    QLineEdit(parent), m_pSuggestions(new CommandSuggestionList(this)), m_szIconConCommand(), m_szIconConVar(), m_bShouldGetSuggestions(true),
+    m_CommandHistory(), m_iCommandHistorySize(DEFAULT_COMMAND_HISTORY_SIZE), m_iCurrentHistoryIndex(-1)
 {
     // Connect up our internal signals/slots.
     connect(this, SIGNAL(returnPressed()), SLOT(sendCommandString()));
@@ -22,6 +26,7 @@ CommandEntryBox::CommandEntryBox(QWidget *parent) :
     connect(this, SIGNAL(tabPressed()), SLOT(completeWithCurrentSuggestion()));
     connect(this, SIGNAL(textChanged(QString)), SLOT(processForSuggestions(QString)));
     
+    // Set up suggestions box.
     if ( m_pSuggestions )
     {
         m_pSuggestions->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
@@ -29,8 +34,37 @@ CommandEntryBox::CommandEntryBox(QWidget *parent) :
         m_pSuggestions->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_pSuggestions->setUniformItemSizes(true);
         m_pSuggestions->hide();
-        connect (m_pSuggestions, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(itemDoubleClicked(QListWidgetItem*)));
+        connect(m_pSuggestions, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(itemDoubleClicked(QListWidgetItem*)));
     }
+}
+
+int CommandEntryBox::commandHistorySize() const
+{
+    return m_iCommandHistorySize;
+}
+
+void CommandEntryBox::setCommandHistorySize(int size)
+{
+    m_iCommandHistorySize = size;
+    m_iCurrentHistoryIndex = -1;
+    
+    // If size is negative or 0, clear the command list.
+    if ( size <= 0 )
+    {
+        m_CommandHistory.clear();
+        return;
+    }
+    
+    // If we have too many stored commands:
+    while ( size < m_CommandHistory.size() )
+    {
+        m_CommandHistory.removeLast();
+    }
+}
+
+void CommandEntryBox::resetCommandHistorySize()
+{
+    setCommandHistorySize(DEFAULT_COMMAND_HISTORY_SIZE);
 }
 
 QString CommandEntryBox::iconConCommand() const
@@ -63,42 +97,21 @@ void CommandEntryBox::resetIconConVar()
     m_szIconConVar = QString("");
 }
 
-//QColor CommandEntryBox::bgcolorConCommand() const
-//{
-//    return m_bHasCmdCol ? m_colBgCommand : QColor(255,255,255,0);
-//}
-
-//void CommandEntryBox::setBgcolorConCommand(QColor col)
-//{
-//    m_colBgCommand = col;
-//    m_bHasCmdCol = true;
-//}
-
-//void CommandEntryBox::resetBgcolorConCommand()
-//{
-//    m_bHasCmdCol = false;
-//}
-
-//QColor CommandEntryBox::bgcolorConVar() const
-//{
-//    return m_bHasVarCol ? m_colBgVariable : QColor(255,255,255,0);
-//}
-
-//void CommandEntryBox::setBgcolorConVar(QColor col)
-//{
-//    m_colBgVariable = col;
-//    m_bHasVarCol = true;
-//}
-
-//void CommandEntryBox::resetBgcolorConVar()
-//{
-//    m_bHasVarCol = false;
-//}
-
 void CommandEntryBox::sendCommandString()
 {
-    // Strip any preceding or succeeding whitespace from the content.
-    emit commandString(text().trimmed());
+    // If we will exceed the number of commands to hold in history, remove from the head.
+    while ( m_CommandHistory.size() >= m_iCommandHistorySize )
+    {
+        m_CommandHistory.removeLast();
+    }
+    
+    // Store the command string at the head of the list.
+    QString command = text().trimmed();
+    m_CommandHistory.prepend(command);
+    m_iCurrentHistoryIndex = -1;
+    
+    // Send the string.
+    emit commandString(command);
     
     // Clear the text box.
     clear();
@@ -121,7 +134,7 @@ void CommandEntryBox::setSuggestionList(CommandSuggestionList *list)
     m_pSuggestions = list;
 }
 
-bool CommandEntryBox::insertSuggestion()
+bool CommandEntryBox::replaceWithSuggestion(bool shouldRequery)
 {
     if ( !suggestionsValid() ) return false;
     
@@ -130,28 +143,11 @@ bool CommandEntryBox::insertSuggestion()
     QString command = m_pSuggestions->getCurrentSelection();
     if ( command == "" ) return false;
     
-    // If the entry box's text is the same as the command we're suggesting, we don't need to do anything.
-    if ( text().trimmed() == command ) return true;
-    
-    // Remove all the characters we have entered so far.
-    QRegularExpression regex(QRegularExpression::escape(text()));
-    command.remove(regex);
-    
-    // Append the remaining characters.
-    setText(text() + command);
-    
-    return true;
-}
-
-bool CommandEntryBox::replaceWithSuggestion()
-{
-    if ( !suggestionsValid() ) return false;
-    
-    QString command = m_pSuggestions->getCurrentSelection();
-    if ( command == "" ) return false;
-    
     // Replace all the content with the current suggestion.
+    if ( !shouldRequery ) m_bShouldGetSuggestions = false;
     setText(command);
+    m_bShouldGetSuggestions = true;
+    
     return true;
 }
 
@@ -162,46 +158,6 @@ bool CommandEntryBox::suggestionsValid()
 
 void CommandEntryBox::keyPressEvent(QKeyEvent *e)
 {
-    // This is now all handled by signals/slots.
-//    // Handle key presses which should complete the current command.
-//    if ( e->key() == Qt::Key_Tab )
-//    {
-//        // If the insertion was successful, accept the key press as handled and return.
-//        if ( insertSuggestion() )
-//        {
-//            m_pSuggestions->clear();
-//            m_pSuggestions->hide();
-//            e->accept();
-//            return;
-//        }
-//    }
-//    else if ( e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter )
-//    {
-//        sendCommandString();
-//    }
-//    else if ( e->key() == Qt::Key_Up )
-//    {
-//        // Move the selection up in the suggestions box.
-//        if ( suggestionsValid() )
-//        {
-//            m_pSuggestions->moveUp();
-//            replaceWithSuggestion();
-//            e->accept();
-//            return;
-//        }
-//    }
-//    else if ( e->key() == Qt::Key_Down )
-//    {
-//        // Move the selection down in the suggestions box.
-//        if ( suggestionsValid() )
-//        {
-//            m_pSuggestions->moveDown();
-//            replaceWithSuggestion();
-//            e->accept();
-//            return;
-//        }
-//    }
-    
     // Base event first.
     QLineEdit::keyPressEvent(e);
     
@@ -226,94 +182,21 @@ void CommandEntryBox::keyPressEvent(QKeyEvent *e)
             break;
         }
     }
-    
-    // Moved elsewhere as well.
-//    // Only continue if we are linked to a suggestions list.
-//    if ( !m_pSuggestions ) return;
-    
-//    // If there is more than one argument, don't do a suggestions list for now.
-//    // We should probably advance this later to search for possible valid args, etc.
-//    QStringList list;  
-//    QRegularExpressionMatchIterator m = CommandInterpreter::matchArgsStrict.globalMatch(text());
-//    while ( m.hasNext() )
-//    {
-//        list.append(m.next().captured(0));
-//    }
-    
-//    if ( list.count() != 1 )
-//    {
-//        m_pSuggestions->clear();
-//        m_pSuggestions->hide();
-//        return;
-//    }
-    
-//    // Get suggestions for the current prefix.
-//    QList<CommandInterpreter::CommandIdentPair> suggestions;
-//    //m_pInterpreter->getSuggestions(list.at(0), suggestions);
-//    emit getSuggestions(list.at(0), suggestions, -1);
-    
-//    // Clear the current suggestions list.
-//    m_pSuggestions->clear();
-    
-//    // If we got no suggestions back, exit.
-//    if ( suggestions.count() < 1 )
-//    {
-//        m_pSuggestions->hide();
-//        return;
-//    }
-    
-//    // Add the suggestions to the list.
-//    foreach(CommandInterpreter::CommandIdentPair p, suggestions)
-//    {
-//        QDir dir(qApp->applicationDirPath());
-//        if ( dir.cd("resource") )
-//        {
-//            QIcon* icon = NULL;
+}
 
-//            switch (p.first)
-//            {
-//                case NGlobalCmd::CICommand:
-//                {
-//                    if ( dir.exists(command_img) )
-//                    {
-//                        icon = new QIcon(dir.filePath(command_img));
-//                        break;
-//                    }
-//                }
-                
-//                case NGlobalCmd::CIVariable:
-//                {
-//                    if ( dir.exists(variable_img) )
-//                    {
-//                        icon = new QIcon(dir.filePath(variable_img));
-//                        break;
-//                    }
-//                }
-//            }
-            
-//            if ( icon )
-//            {
-//                QListWidgetItem* i = new QListWidgetItem(*icon, p.second);
-//                m_pSuggestions->addItem(i);
-//                continue;
-//            }
-//        }
-        
-//        m_pSuggestions->addItem(p.second);
-//    }
-    
-//    // Sort them alphabetically.
-//    m_pSuggestions->sortItems();
-    
-//    // Show the suggestions list.
-//    repositionSuggestions();
-//    m_pSuggestions->show();
+void CommandEntryBox::clearCommandHistory()
+{
+    m_CommandHistory.clear();
+    m_iCurrentHistoryIndex = -1;
 }
 
 void CommandEntryBox::processForSuggestions(const QString &str)
 {
     // Only continue if we are linked to a suggestions list.
     if ( !m_pSuggestions ) return;
+    
+    // If we shouldn't be getting suggestions, exit.
+    if ( !m_bShouldGetSuggestions ) return;
     
     // If there is more than one argument, don't do a suggestions list for now.
     // We should probably advance this later to search for possible valid args, etc.
@@ -360,8 +243,6 @@ void CommandEntryBox::processForSuggestions(const QString &str)
                 {
                     iconPath = dir.filePath(m_szIconConCommand);
                 }
-                
-                //if ( m_bHasCmdCol ) bgcol = &m_colBgCommand;
                 break;
             }
             
@@ -371,8 +252,6 @@ void CommandEntryBox::processForSuggestions(const QString &str)
                 {
                     iconPath = dir.filePath(m_szIconConVar);
                 }
-                
-                //if ( m_bHasVarCol ) bgcol = &m_colBgVariable;
                 break;
             }
         }
@@ -384,11 +263,6 @@ void CommandEntryBox::processForSuggestions(const QString &str)
         {
             i->setIcon(QIcon(iconPath));
         }
-        
-//        if ( bgcol )
-//        {
-//            i->setBackgroundColor(*bgcol);
-//        }
         
         m_pSuggestions->addItem(i);
     }
@@ -437,14 +311,6 @@ void CommandEntryBox::wheelEvent(QWheelEvent *e)
     QLineEdit::wheelEvent(e);
     
     emit mouseWheel(e->angleDelta().y());
-    
-    // Moved elsewhere.
-//    // Keep taking away multiples of 120 to find out how many scrolls we need to do.
-//    while ( degrees >= 120 )
-//    {
-//        scrollDown ? moveSuggestionSelectionDown() : moveSuggestionSelectionUp();
-//        degrees -= 120;
-//    }
 }
 
 void CommandEntryBox::repositionSuggestions()
@@ -467,25 +333,62 @@ void CommandEntryBox::moveSuggestionSelectionDown()
 
 void CommandEntryBox::chooseAboveSuggestion()
 {
+    // We have a suggestions box, move the selection instead.
     if ( suggestionsValid() )
     {
+        m_iCurrentHistoryIndex = -1;
         moveSuggestionSelectionUp();
-        replaceWithSuggestion();
+        replaceWithSuggestion(false);
+    }
+    // We have no suggestions box, traverse command history.
+    else
+    {
+        traverseHistory(true);
     }
 }
 
 void CommandEntryBox::chooseBelowSuggestion()
 {
+    // We have a suggestions box, move the selection instead.
     if ( suggestionsValid() )
     {
+        m_iCurrentHistoryIndex = -1;
         moveSuggestionSelectionDown();
-        replaceWithSuggestion();
+        replaceWithSuggestion(false);
     }
+    // We have no suggestions box, traverse command history.
+    else
+    {
+        traverseHistory(false);
+    }
+}
+
+void CommandEntryBox::traverseHistory(bool direction)
+{
+    if ( m_CommandHistory.size() < 1 ) return;
+    
+    // If direction = true, increase the counter.
+    if ( direction )
+    {
+        if ( m_iCurrentHistoryIndex < 0 || m_iCurrentHistoryIndex >= m_CommandHistory.size()-1 ) m_iCurrentHistoryIndex = 0;
+        else m_iCurrentHistoryIndex++;
+    }
+    // If direction = false, decrease the counter.
+    else
+    {
+        if ( m_iCurrentHistoryIndex >= m_CommandHistory.size() || m_iCurrentHistoryIndex <= 0 ) m_iCurrentHistoryIndex = m_CommandHistory.size()-1;
+        else m_iCurrentHistoryIndex--;
+    }
+    
+    // Update the text box.
+    m_bShouldGetSuggestions = false;
+    setText(m_CommandHistory.at(m_iCurrentHistoryIndex));
+    m_bShouldGetSuggestions = true;
 }
 
 void CommandEntryBox::completeWithCurrentSuggestion()
 {
-    insertSuggestion(); // Does a validity check.
+    replaceWithSuggestion(); // Does a validity check.
     m_pSuggestions->clear();
     m_pSuggestions->hide();
 }
@@ -500,6 +403,7 @@ void CommandEntryBox::scrollSuggestionSelection(int deg)
     {
         isDown ? moveSuggestionSelectionDown() : moveSuggestionSelectionUp();
         deg -= 120;
+        replaceWithSuggestion(false);
     }
 }
 

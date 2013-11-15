@@ -31,6 +31,14 @@ public:
     static const QColor DEFAULT_CUSTOM_COLOUR5;
     static const QColor DEFAULT_CUSTOM_COLOUR6;
     static const unsigned int DEFAULT_MAX_LINES;
+    static const QString ANCHOR_MESSAGE;
+    static const QString ANCHOR_WARNING;
+    static const QString ANCHOR_CUSTOM1;
+    static const QString ANCHOR_CUSTOM2;
+    static const QString ANCHOR_CUSTOM3;
+    static const QString ANCHOR_CUSTOM4;
+    static const QString ANCHOR_CUSTOM5;
+    static const QString ANCHOR_CUSTOM6;
     
     QColor warningColor() const;
     void setWarningColor(QColor warningColor);
@@ -61,7 +69,7 @@ public:
     void resetCustomColor5();
     void resetCustomColor6();
     
-    int maxLines();
+    int maxLines() const;
     void setMaxLines(int lines);
     void resetMaxLines();
     
@@ -82,8 +90,9 @@ public slots:
     void printMessage(CommandSenderInfo::OutputType type, const QString &message);
     
 private:
-    void print(const QString &msg);
+    void print(const QString &msg, const QString* anchor = NULL);
     void trimToLineLimit();
+    void changeBlockColours(const QString &name, const QColor &col);
     //void printCustom(CommandSenderInfo::OutputType type, const QString &msg);
     
     QColor m_colWarning;

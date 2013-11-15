@@ -26,11 +26,12 @@ void shutdownSystems();
 void debugTests();
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg);
 
-DEFINE_CONVAR( test_var_1, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
-DEFINE_CONVAR( test_var_2, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
-DEFINE_CONVAR( test_var_3, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
-DEFINE_CONVAR( test_var_4, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
-DEFINE_CONVAR( test_var_5, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+// Remove these!
+DEFINE_CONVAR(test_var_1, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+DEFINE_CONVAR(test_var_2, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+DEFINE_CONVAR(test_var_3, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+DEFINE_CONVAR(test_var_4, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+DEFINE_CONVAR(test_var_5, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
 
 int main(int argc, char **argv)
 {
@@ -91,11 +92,8 @@ void initSystems(int argc, char **argv)
     
     // Set up message handler to print qDebug messages to console as well.
     qInstallMessageHandler(qDebugIntercept);
-
-    // Moving these to see if it affects the colour of the printed text.    
-//    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
-//    qDebug("We need to change the colour system - make the test output into the window be surrounded by HTML tags or something\n");
-//    qDebug("so that the colour is independent of the window text colour.");
+   
+    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 
 }
 
