@@ -120,8 +120,9 @@ void ConsoleWidget::printMessage(const QString &message)
 
 void ConsoleWidget::print(const QString &msg, const QString* anchor)
 {
-    QString msg2 = msg;
-    msg2.replace('\n', "<br />");   // Replace newlines with br tags so that they are accepted by the QTextEdit...
+    //qDebug() << "Font:" << fontFamily();
+    QString msg2 = msg.toHtmlEscaped();
+    msg2.replace('\n', "<br />");
     QString toInsert;
     
     if ( anchor )
@@ -136,6 +137,8 @@ void ConsoleWidget::print(const QString &msg, const QString* anchor)
     insertHtml(toInsert);
     trimToLineLimit();
     ensureCursorVisible();
+    
+    //qDebug() << "Content:" << toHtml();
 }
 
 //void ConsoleWidget::printCustom(CommandSenderInfo::OutputType type, const QString &msg)

@@ -94,7 +94,6 @@ void initSystems(int argc, char **argv)
     qInstallMessageHandler(qDebugIntercept);
    
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
-
 }
 
 void shutdownSystems()
