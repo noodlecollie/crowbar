@@ -18,7 +18,8 @@ SOURCES += \
     solid.cpp \
     indexpool.cpp \
     edge.cpp \
-    consolewindow.cpp
+    consolewindow.cpp \
+    console_util.cpp
 
 HEADERS += \
     mainwin.h \

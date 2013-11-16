@@ -5,6 +5,18 @@ ConsoleWidget
 	qproperty-maxLines:			300;
 	qproperty-messageColor:		#dde6ff;
 	qproperty-warningColor:		#ff1131;
+	
+	/*1- inactive text*/
+	qproperty-customColor1:		#1e1e1e;
+	
+	/*2 - highlighted text*/
+	qproperty-customColor2:		#efdb00;
+	
+	/*3-6 - arbitrary*/
+	/*qproperty-customColor3:		#000000;*/
+	/*qproperty-customColor4:		#000000;*/
+	/*qproperty-customColor5:		#000000;*/
+	/*qproperty-customColor6:		#000000;*/
 }
 
 CommandEntryBox
