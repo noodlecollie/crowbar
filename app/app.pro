@@ -51,6 +51,9 @@ win32 {
 unix {
     # Unix build - for some reason the -L/-l syntax doesn't work...
     LIBS    += ../IConsole/libIConsole.so
+    
+    # Stick this on the linker command line to allow loading libraries from the folder the application is in.
+    QMAKE_RPATHDIR += /media/Ext4Drive/crowbar/build-Crowbar-Desktop-Debug/IConsole  # This is obviously only for testing, remove it
 }
 
 # Extra includes for libraries.

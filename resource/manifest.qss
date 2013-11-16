@@ -1,10 +1,10 @@
 ConsoleWidget
 {
-	background-color:		#000000;
-	font-family:			"Lucida console";
-	qproperty-warningColor:	#ff0000;
-	qproperty-messageColor:	#ffffff;
-	qproperty-maxLines:		300;
+	background-color:			#000000;
+	font-family:				"Lucida console";
+	qproperty-maxLines:			300;
+	qproperty-messageColor:		#dde6ff;
+	qproperty-warningColor:		#ff1131;
 }
 
 CommandEntryBox

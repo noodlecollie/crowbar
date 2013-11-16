@@ -53,9 +53,6 @@ int main(int argc, char **argv)
     win.setCentralWidget(NULL);
 
     win.show();
-//    qDebug("Testing output.");
-//    qWarning("Testing warning.");
-//    qCritical("Testing critical.");
     int ret = app.exec();  // exec() starts the event loop. No user interaction should occur before this, but computation is fine.
 
     shutdownSystems();
@@ -91,7 +88,7 @@ void initSystems(int argc, char **argv)
     g_pLog = new ConsoleWindow(g_pCommandInterpreter);
     
     // Set up message handler to print qDebug messages to console as well.
-    qInstallMessageHandler(qDebugIntercept);
+    //qInstallMessageHandler(qDebugIntercept);
    
     LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 }
