@@ -1,5 +1,5 @@
 var matlib_8h =
 [
-    [ "VEC2_ORIGIN", "matlib_8h.html#abbca97a4f576c9ea1a52b3ab4fe9a483", null ],
-    [ "VEC3_ORIGIN", "matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29", null ]
+    [ "VEC2_ORIGIN", "matlib_8h.html#adf77f5338d26daaf925954019e2d403b", null ],
+    [ "VEC3_ORIGIN", "matlib_8h.html#a58c2465e144af99a0af3108235200f58", null ]
 ];

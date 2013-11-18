@@ -3,6 +3,7 @@ var class_vertex3_d =
     [ "Vertex3D", "class_vertex3_d.html#a41dee42f7502bdc4b04be44a4bf4bdbc", null ],
     [ "Vertex3D", "class_vertex3_d.html#a81b68cf7e781884ed457034bd5b63612", null ],
     [ "Vertex3D", "class_vertex3_d.html#a11ea685931b50972afb2ffda7bfaa984", null ],
+    [ "~Vertex3D", "class_vertex3_d.html#aac769a82c4a8b36850bf94dec1197a66", null ],
     [ "getColour", "class_vertex3_d.html#a2bdd677bf1eb764a7dfa967aa7d2660b", null ],
     [ "getHandle", "class_vertex3_d.html#acd4bdbddebb5090650cd31883280175e", null ],
     [ "getNormal", "class_vertex3_d.html#a02604a70c43c9ef567684174e8406959", null ],

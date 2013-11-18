@@ -19,7 +19,7 @@ ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager,
 QString ConVar::set(const QString &value)
 {
     // Construct a null sender info.
-    CommandSenderInfo info(getName(), NULL, NULL);
+    CommandSenderInfo info(name(), NULL, NULL, m_bHasMin, m_flMinVal, m_bHasMax, m_flMaxVal);
     return set(info, value);
 }
 
@@ -28,12 +28,39 @@ QString ConVar::set(const CommandSenderInfo &info, const QString &value)
     // Don't change if we are read-only.
     if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return m_Variable.toString();
     
-    // Call our callback (if it exists) before setting the eventual value.
-    QString toSet = value;
+    CommandSenderInfo info2 = info;
+    
+    // We should always pass in our actual min/max values.
+    info2.setHasMin(m_bHasMin);
+    info2.setMinValue(m_flMinVal);
+    info2.setHasMax(m_bHasMax);
+    info2.setMaxValue(m_flMaxVal);
 
+    QString toSet = value;
+    
+    // If we have a min or max, we should validate the string's numerical value.
+    if ( hasMin() || hasMax() )
+    {
+        // Check whether the string can be cast numerically. If not, we shouldn't accept it.
+        bool success;
+        float cast = toSet.toFloat(&success);
+        
+        // Couldn't cast
+        if ( !success )
+        {
+            return m_Variable.toString();
+        }
+        
+        // Ensure our value is clamped.
+        toSet = QString::number(clamp(cast));
+    }
+
+    // Call our callback (if it exists) before setting the eventual value.
+    // The callback is allowed to set a value not between the min/max (though this
+    // is not recommended).
     if ( m_pVarCallback )
     {
-        (m_pVarCallback)(info, m_Variable.toString(), toSet);
+        (m_pVarCallback)(info2, m_Variable.toString(), toSet);
     }
 
     m_Variable.setValue(toSet);
@@ -106,55 +133,53 @@ void ConVar::validateBounds(float &min, float &max)
     }
 }
 
-QString ConVar::getConVarString() const
+QString ConVar::stringValue() const
 {
     return get();
 }
 
-QString ConVar::setConVar(const QString &val)
+QString ConVar::setValue(const QString &val)
 {
     return set(val);
 }
 
-QString ConVar::setConVar(const char *val)
+QString ConVar::setValue(const char *val)
 {
     return set(val);
 }
 
-int ConVar::getConVarInt() const
+int ConVar::intValue() const
 {
     return m_Variable.toInt();
 }
 
-int ConVar::setConVar(int val)
+int ConVar::setValue(int val)
 {
-    // Clamp - make sure the integer is inside our bounds.
-    if ( hasMax() && (float)val > getMax() ) val = (int)getMax();
-    else if ( hasMin() && (float)val < getMin() ) val = 1 + (int)getMin();
+    // Clamping is done in set().
+    //val = clamp(val);
     
     return set(QString::number(val)).toInt();
 }
 
-float ConVar::getConVarFloat() const
+float ConVar::floatValue() const
 {
     return m_Variable.toFloat();
 }
 
-float ConVar::setConVar(float val)
+float ConVar::setValue(float val)
 {
-    // Clamp
-    if ( hasMax() && val > getMax() ) val = getMax();
-    else if ( hasMin() && val < getMin() ) val = getMin();
+    // Clamping is done in set().
+    //val = clamp(val);
     
     return set(QString::number(val)).toFloat();
 }
 
-bool ConVar::getConVarBool() const
+bool ConVar::boolValue() const
 {
-    return (getConVarInt() != 0);
+    return (intValue() != 0);
 }
 
-bool ConVar::setConVar(bool val)
+bool ConVar::setValue(bool val)
 {
     // Anything other than zero should be true!
     return (set(QString::number(val)).toInt() != 0);
@@ -163,4 +188,22 @@ bool ConVar::setConVar(bool val)
 NGlobalCmd::CmdIdent ConVar::identify() const
 {
     return NGlobalCmd::CIVariable;
+}
+
+float ConVar::clamp(float value)
+{
+    if ( hasMin() && value < getMin() ) value = getMin();
+    if ( hasMax() && value < getMax() ) value = getMax();
+    
+    return value;
+}
+
+int ConVar::clamp(int value)
+{
+    // Make sure the integer is inside our bounds.
+    // Straight int cast just truncates AFAIK.
+    if ( hasMax() && (float)value > getMax() ) value = (int)getMax();
+    else if ( hasMin() && (float)value < getMin() ) value = 1 + (int)getMin();
+    
+    return value;
 }

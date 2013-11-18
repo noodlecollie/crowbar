@@ -1,0 +1,253 @@
+\hypertarget{class_base_console_command}{\section{Base\-Console\-Command Class Reference}
+\label{class_base_console_command}\index{Base\-Console\-Command@{Base\-Console\-Command}}
+}
+
+
+Class defining properties common to all console commands.  
+
+
+
+
+{\ttfamily \#include $<$baseconsolecommand.\-h$>$}
+
+
+
+Inheritance diagram for Base\-Console\-Command\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{class_base_console_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Base\-Console\-Command\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{class_base_console_command__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_base_console_command_af36ba741b2ed473a9fa65921639736d5}{Base\-Console\-Command} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_base_console_command_a7d1ca8afdd3549778540595fd9f33881}{virtual \hyperlink{class_base_console_command_a7d1ca8afdd3549778540595fd9f33881}{$\sim$\-Base\-Console\-Command} ()}\label{class_base_console_command_a7d1ca8afdd3549778540595fd9f33881}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual N\-Global\-Cmd\-::\-Cmd\-Ident \hyperlink{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}{identify} () const 
+\begin{DoxyCompactList}\small\item\em Identifies this console command. A \hyperlink{class_base_console_command}{Base\-Console\-Command} object will return C\-I\-Null; other derived commands should return a specific identifier. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_base_console_command_addf7b841bac36ffc45dd79ec1e697e52}{name} () const 
+\begin{DoxyCompactList}\small\item\em Returns the name of the command. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_base_console_command_a8eaacc83646c4cca95a772a623343988}{description} () const 
+\begin{DoxyCompactList}\small\item\em Returns the description of the command. \end{DoxyCompactList}\item 
+N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S \hyperlink{class_base_console_command_a2e8b8d3a73e0684c7992945fd5d0a216}{flags\-Raw} () const 
+\begin{DoxyCompactList}\small\item\em Returns the command's collection of flags. \end{DoxyCompactList}\item 
+void \hyperlink{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}{set\-Flags\-Raw} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags)
+\begin{DoxyCompactList}\small\item\em Overwrites all flags on the command. \end{DoxyCompactList}\item 
+bool \hyperlink{class_base_console_command_a021a4299766424a10f1ec9398c6edb3e}{flag\-Set} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag) const 
+\begin{DoxyCompactList}\small\item\em Returns whether a given flag is set. Can test combinations of flags. \end{DoxyCompactList}\item 
+void \hyperlink{class_base_console_command_a3046da732d30b1de8b41f51d146b5e46}{set\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Sets the given flag(s) on the command. \end{DoxyCompactList}\item 
+void \hyperlink{class_base_console_command_a074b1ecedbef610eaa4a0e9d378f9da9}{remove\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Un-\/sets the given flag(s) from the command. \end{DoxyCompactList}\item 
+void \hyperlink{class_base_console_command_a509caa8e6fba5c10e9ff89dd5fb665cf}{toggle\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Toggles the given flag(s) on the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{Q\-String \hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}}\label{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}
+
+\begin{DoxyCompactList}\small\item\em Name of the command.  name() \end{DoxyCompactList}\item 
+\hypertarget{class_base_console_command_afcb44c52f870b7ca902da018c365b758}{Q\-String \hyperlink{class_base_console_command_afcb44c52f870b7ca902da018c365b758}{description}}\label{class_base_console_command_afcb44c52f870b7ca902da018c365b758}
+
+\begin{DoxyCompactList}\small\item\em Description of the command.  description() \end{DoxyCompactList}\item 
+\hypertarget{class_base_console_command_af736ebf1192e20424a3b738422cb55dc}{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S \hyperlink{class_base_console_command_af736ebf1192e20424a3b738422cb55dc}{flags\-Raw}}\label{class_base_console_command_af736ebf1192e20424a3b738422cb55dc}
+
+\begin{DoxyCompactList}\small\item\em Raw collection of command flags.  flags\-Raw(), \hyperlink{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}{set\-Flags\-Raw()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class defining properties common to all console commands. 
+
+A \hyperlink{class_base_console_command}{Base\-Console\-Command} contains data referring to the command's name, description, flags and identification. A \hyperlink{class_base_console_command}{Base\-Console\-Command} identifies as N\-Global\-Command\-::\-Cmd\-Ident\-::\-C\-I\-Null. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_base_console_command_af36ba741b2ed473a9fa65921639736d5}{\index{Base\-Console\-Command@{Base\-Console\-Command}!Base\-Console\-Command@{Base\-Console\-Command}}
+\index{Base\-Console\-Command@{Base\-Console\-Command}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{Base\-Console\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Base\-Console\-Command\-::\-Base\-Console\-Command (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{name, }
+\item[{const Q\-String \&}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags = {\ttfamily 0}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_base_console_command_af36ba741b2ed473a9fa65921639736d5}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the command. \\
+\hline
+{\em desc} & Optional description of the command. \\
+\hline
+{\em flags} & Command flags. \\
+\hline
+{\em parent} & Parent Q\-Object, if applicable. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_base_console_command_a8eaacc83646c4cca95a772a623343988}{\index{Base\-Console\-Command@{Base\-Console\-Command}!description@{description}}
+\index{description@{description}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{description}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Base\-Console\-Command\-::description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_base_console_command_a8eaacc83646c4cca95a772a623343988}
+
+
+Returns the description of the command. 
+
+\begin{DoxyReturn}{Returns}
+Command description, or empty string if no description was set. 
+\end{DoxyReturn}
+\hypertarget{class_base_console_command_a021a4299766424a10f1ec9398c6edb3e}{\index{Base\-Console\-Command@{Base\-Console\-Command}!flag\-Set@{flag\-Set}}
+\index{flag\-Set@{flag\-Set}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{flag\-Set}]{\setlength{\rightskip}{0pt plus 5cm}bool Base\-Console\-Command\-::flag\-Set (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+) const}}\label{class_base_console_command_a021a4299766424a10f1ec9398c6edb3e}
+
+
+Returns whether a given flag is set. Can test combinations of flags. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to test for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if flag is set (or in the case of multiple test flags, if all are set), false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_base_console_command_a2e8b8d3a73e0684c7992945fd5d0a216}{\index{Base\-Console\-Command@{Base\-Console\-Command}!flags\-Raw@{flags\-Raw}}
+\index{flags\-Raw@{flags\-Raw}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{flags\-Raw}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S Base\-Console\-Command\-::flags\-Raw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_base_console_command_a2e8b8d3a73e0684c7992945fd5d0a216}
+
+
+Returns the command's collection of flags. 
+
+\begin{DoxyReturn}{Returns}
+Flags. 
+\end{DoxyReturn}
+\hypertarget{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}{\index{Base\-Console\-Command@{Base\-Console\-Command}!identify@{identify}}
+\index{identify@{identify}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{identify}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Cmd\-Ident Base\-Console\-Command\-::identify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}
+
+
+Identifies this console command. A \hyperlink{class_base_console_command}{Base\-Console\-Command} object will return C\-I\-Null; other derived commands should return a specific identifier. 
+
+\begin{DoxyReturn}{Returns}
+Identifier for the console command. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_con_command_ab287443a9615df46739d0c39b096016e}{Con\-Command}, and \hyperlink{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}{Con\-Var}.
+
+\hypertarget{class_base_console_command_addf7b841bac36ffc45dd79ec1e697e52}{\index{Base\-Console\-Command@{Base\-Console\-Command}!name@{name}}
+\index{name@{name}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Base\-Console\-Command\-::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_base_console_command_addf7b841bac36ffc45dd79ec1e697e52}
+
+
+Returns the name of the command. 
+
+\begin{DoxyReturn}{Returns}
+Command name. 
+\end{DoxyReturn}
+\hypertarget{class_base_console_command_a074b1ecedbef610eaa4a0e9d378f9da9}{\index{Base\-Console\-Command@{Base\-Console\-Command}!remove\-Flag@{remove\-Flag}}
+\index{remove\-Flag@{remove\-Flag}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{remove\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Base\-Console\-Command\-::remove\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_base_console_command_a074b1ecedbef610eaa4a0e9d378f9da9}
+
+
+Un-\/sets the given flag(s) from the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to Un-\/set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_base_console_command_a3046da732d30b1de8b41f51d146b5e46}{\index{Base\-Console\-Command@{Base\-Console\-Command}!set\-Flag@{set\-Flag}}
+\index{set\-Flag@{set\-Flag}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{set\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Base\-Console\-Command\-::set\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_base_console_command_a3046da732d30b1de8b41f51d146b5e46}
+
+
+Sets the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}{\index{Base\-Console\-Command@{Base\-Console\-Command}!set\-Flags\-Raw@{set\-Flags\-Raw}}
+\index{set\-Flags\-Raw@{set\-Flags\-Raw}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{set\-Flags\-Raw}]{\setlength{\rightskip}{0pt plus 5cm}void Base\-Console\-Command\-::set\-Flags\-Raw (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags}
+\end{DoxyParamCaption}
+)}}\label{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}
+
+
+Overwrites all flags on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & Integer containing the exact state of all flags to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_base_console_command_a509caa8e6fba5c10e9ff89dd5fb665cf}{\index{Base\-Console\-Command@{Base\-Console\-Command}!toggle\-Flag@{toggle\-Flag}}
+\index{toggle\-Flag@{toggle\-Flag}!BaseConsoleCommand@{Base\-Console\-Command}}
+\subsubsection[{toggle\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Base\-Console\-Command\-::toggle\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)}}\label{class_base_console_command_a509caa8e6fba5c10e9ff89dd5fb665cf}
+
+
+Toggles the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to toggle. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{baseconsolecommand_8h}{baseconsolecommand.\-h}\item 
+I\-Console/src/baseconsolecommand.\-cpp\end{DoxyCompactItemize}

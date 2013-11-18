@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="crowbar_doc.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Crowbar
-   &#160;<span id="projectnumber">1a9bd335b9</span>
+   &#160;<span id="projectnumber">TODO</span>
    </div>
    <div id="projectbrief">An open-source level editor for Source games, built using Qt5.</div>
   </td>
@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('indexpool_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -124,46 +124,48 @@ $(document).ready(function(){initNavTree('indexpool_8h_source.html','');});
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_index_pool.html#a26e3c07764def73d6ebf8a1df0ce9bb4" title="Constructor. ">IndexPool</a>(QObject *parent = 0, <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> highestIndex = <a class="code" href="class_index_pool.html#abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a">INDEX_LIMIT</a>);</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">enum</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="comment">// 2^32 - 2,</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">// Because maxIndex needs to take the value 2^32 - 1 without overflowing.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_index_pool.html#abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a">   38</a></span>&#160;        <a class="code" href="class_index_pool.html#abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a">INDEX_LIMIT</a> = 4294967294    </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_index_pool.html#a6001551942dde955048c7fdca82cbda7" title="Returns whether the specified index is currently allocated. ">isAllocated</a>(<a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> index) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="class_index_pool.html#a6f3dade75f8853215eb40b8dc9593f6c">   52</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_index_pool.html#a6f3dade75f8853215eb40b8dc9593f6c" title="Returns the maximum index which can be allocated by this pool. ">getHighestAllowedIndex</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iHighestAllowedIndex; }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> <a class="code" href="class_index_pool.html#a47301791c0015a14e7f459ae3efb614c" title="Allocates the lowest free index. ">allocateIndex</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;signals:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#a80b1499f90029a3531fc0603a5420cd8" title="Fired when indices are re-allocated by condense(). Any indices whose value does not get passed throug...">indexReallocation</a>(<a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> oldValue, <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> newValue);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#a7791b409b32242230867480c9b79de15" title="Releases an index, allowing it to be allocated again. ">releaseIndex</a>(<span class="keyword">const</span> <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> index);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    </div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#abda4a4fa05598f52c3af955788904c9f" title="Condenses all indices (shifts indices down to fill all &quot;holes&quot; in the array). indexReallocation is fi...">condense</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">typedef</span> QMap&lt;GEOMHANDLE,GEOMHANDLE&gt; GeoMap;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> nextTop()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iMaxIndex; }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> highestAllocated()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iMaxIndex - 1; }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a>  m_iMaxIndex;            </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    GeoMap      m_UnusedIndices;        </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a>  m_iHighestAllowedIndex; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif // INDEXPOOL_H</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_index_pool.html" title="The IndexPool class manages non-consecutive array indices. ">IndexPool</a>() {}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">enum</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="comment">// 2^32 - 2,</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Because maxIndex needs to take the value 2^32 - 1 without overflowing.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="class_index_pool.html#abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a">   40</a></span>&#160;        <a class="code" href="class_index_pool.html#abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a">INDEX_LIMIT</a> = 4294967294    </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_index_pool.html#a6001551942dde955048c7fdca82cbda7" title="Returns whether the specified index is currently allocated. ">isAllocated</a>(<a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> index) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="class_index_pool.html#a6f3dade75f8853215eb40b8dc9593f6c">   54</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_index_pool.html#a6f3dade75f8853215eb40b8dc9593f6c" title="Returns the maximum index which can be allocated by this pool. ">getHighestAllowedIndex</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iHighestAllowedIndex; }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> <a class="code" href="class_index_pool.html#a47301791c0015a14e7f459ae3efb614c" title="Allocates the lowest free index. ">allocateIndex</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;signals:</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#a80b1499f90029a3531fc0603a5420cd8" title="Fired when indices are re-allocated by condense(). Any indices whose value does not get passed throug...">indexReallocation</a>(<a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> oldValue, <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> newValue);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#a7791b409b32242230867480c9b79de15" title="Releases an index, allowing it to be allocated again. ">releaseIndex</a>(<span class="keyword">const</span> <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> index);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_index_pool.html#abda4a4fa05598f52c3af955788904c9f" title="Condenses all indices (shifts indices down to fill all &quot;holes&quot; in the array). indexReallocation is fi...">condense</a>();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">typedef</span> QMap&lt;GEOMHANDLE,GEOMHANDLE&gt; GeoMap;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> nextTop()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iMaxIndex; }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a> highestAllocated()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_iMaxIndex - 1; }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a>  m_iMaxIndex;            </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    GeoMap      m_UnusedIndices;        </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb" title="Handle for a geometry component. ">GEOMHANDLE</a>  m_iHighestAllowedIndex; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif // INDEXPOOL_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="indexpool_8h.html">indexpool.h</a></li>
-    <li class="footer">Generated on Mon Sep 2 2013 22:28:57 for Crowbar by
+    <li class="footer">Generated on Sat Nov 16 2013 23:36:53 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

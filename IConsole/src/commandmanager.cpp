@@ -7,13 +7,13 @@ CommandManager::CommandManager(QObject *parent) : QObject(parent), m_CommandMap(
 bool CommandManager::registerCommand(BaseConsoleCommand *command)
 {
     // Don't register if there is already a command with this name in the manager.
-    if ( get(command->getName()) )
+    if ( get(command->name()) )
     {
         return false;
     }
 
     // Add the command reference to the map.
-    m_CommandMap.insert(command->getName(), command);
+    m_CommandMap.insert(command->name(), command);
     return true;
 }
 
@@ -52,7 +52,7 @@ void CommandManager::findRegex(const QRegularExpression &regex, QList<BaseConsol
         if ( numAdded >= maxEntries ) break;
         
         // If the name matches the regex, add the command to the output list.
-        if ( regex.match(cmd->getName()).hasMatch() )
+        if ( regex.match(cmd->name()).hasMatch() )
         {
             commands.append(cmd);
             numAdded++;
@@ -130,7 +130,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     }
     
     // Crete sender info.
-    CommandSenderInfo info(cmd->getName(), this, &CommandManager::emitMessage);
+    CommandSenderInfo info(cmd->name(), this, &CommandManager::emitMessage);
     
     // Process arguments to remove quotes.
     // Unfortunately this means building a new argument list.
@@ -168,8 +168,8 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
                 output.setValue(var->get());
                 
                 // Send an output signal with the value.
-                warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->getName()).arg(output.toString()).arg(var->getDefault()));
-                message(QString("- %0\n").arg(var->getDescription()));
+                warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->name()).arg(output.toString()).arg(var->getDefault()));
+                message(QString("- %0\n").arg(var->description()));
             }
             else                        // Set
             {

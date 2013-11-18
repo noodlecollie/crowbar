@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['debugging',['Debugging',['../class_command_line_parser.html#ac50e9de49d6e16174f6d5cf3f89c76d7',1,'CommandLineParser']]],
-  ['deletepluginlist',['DeletePluginList',['../class_plugin_manager.html#a7299c68a352c5fde51e803b32828b3da',1,'PluginManager']]]
+  ['description',['description',['../class_base_console_command.html#a8eaacc83646c4cca95a772a623343988',1,'BaseConsoleCommand']]],
+  ['downarrowpressed',['downArrowPressed',['../class_command_entry_box.html#abd5ca1d5f1eb6d5d5c1b5174d9cdf5fb',1,'CommandEntryBox']]]
 ];

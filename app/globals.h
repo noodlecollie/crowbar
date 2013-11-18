@@ -146,6 +146,6 @@ extern ListedConsoleCommand* g_pCommandList;
 
 //extern GlobalOutputRedirector* g_pOutputRedirect;
 
-/**@}*/
-
 #endif // GLOBAL_H
+
+/**@}*/

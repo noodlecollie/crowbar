@@ -19,13 +19,13 @@ CommandInterpreter::CommandInterpreter(CommandManager *manager, QObject *parent)
     connectSignals();
 }
 
-void CommandInterpreter::setManager(CommandManager *manager)
+void CommandInterpreter::setCommandManager(CommandManager *manager)
 {
     m_pCommandManager = manager;
     connectSignals();
 }
 
-CommandManager* CommandInterpreter::getManager() const
+CommandManager* CommandInterpreter::commandManager() const
 {
     return m_pCommandManager;
 }
@@ -42,7 +42,7 @@ void CommandInterpreter::getSuggestions(const QString &prefix, QList<CommandIden
     // For each of the returned commands, create an entry in our output list.
     foreach (BaseConsoleCommand* cmd, cmdList)
     {
-        list.append(QPair<NGlobalCmd::CmdIdent, QString>(cmd->identify(), cmd->getName()));
+        list.append(QPair<NGlobalCmd::CmdIdent, QString>(cmd->identify(), cmd->name()));
     }
 }
 
@@ -147,58 +147,6 @@ void CommandInterpreter::parse(const QString &cmdString)
 // Given a command string, filled the passed list with the commands and arguments contained in the string.
 void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEntryList &masterList)
 {
-    // List to hold command strings.
-    // The structure of this list is:
-    /*
-     * List <- Main list. Sub-lists were delimited by semicolons.
-     * {
-     *      List    <- Sub-list. Sequential commands pipe output to input. Commands in this list were delimited by pipes.
-     *      {
-     *          Pair(string, StringList)    <- Pair of command string and list of arguments. Executed first.
-     *          Pair(string, StringList)    <- Executed second. Receives input of first.
-     *          ...
-     *      }
-     *
-     *      List
-     *      {
-     *          Pair(String, StringList)    <- Executed next. Does not receive any input.
-     *          Pair(string, StringList)    <- Executed next again, receiving above command's input.
-     *          ...
-     *      }
-     *
-     *      ...
-     * }
-     */
-    
-    // TODO: Put this in the documentation!
-    // Unescaped reged to search a command string for pipes.
-    // Will match unescaped pipe characters, regardless of how much whitespace they are (or are not) surrounded by.
-    // \s*(?<!\\)\|\s*
-    // Searches for 0 or more whitespace characters, followed by a pipe which is not preceded by a backslash (using negative
-    // lookbehind), followed by 0 or more whitespace characters.
-    //QRegularExpression delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
-    
-    // Unescaped regex to search a command string for semicolons.
-    // \s*(?<!\\)\;\s*
-    // Similar construction to above.
-    //QRegularExpression delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
-    
-    // Unescaped regex to search a command string for arguments.
-    // Arguments are either space-delimited or enclosed in unescaped quotes.
-    // "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+
-    
-    // For example, when parsing the following string:
-    // this is a \" test\" "command \"string\""
-    
-    // The matches are:
-    // this
-    // is
-    // a
-    // \"
-    // test\"
-    // "command \"string\""
-    //QRegularExpression matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
-    
     // Split the original string by semicolons.
     QStringList splitFirstPass = cmdString.split(delimSemicolons);
     

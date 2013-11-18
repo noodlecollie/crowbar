@@ -34,7 +34,7 @@ CommandEntryBox::CommandEntryBox(QWidget *parent) :
         m_pSuggestions->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_pSuggestions->setUniformItemSizes(true);
         m_pSuggestions->hide();
-        connect(m_pSuggestions, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(itemDoubleClicked(QListWidgetItem*)));
+        connect(m_pSuggestions, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(completeListItem(QListWidgetItem*)));
     }
 }
 
@@ -124,15 +124,15 @@ void CommandEntryBox::sendCommandString()
     }
 }
 
-CommandSuggestionList* CommandEntryBox::getSuggestionList() const
+const CommandSuggestionList* CommandEntryBox::getSuggestionList() const
 {
     return m_pSuggestions;
 }
 
-void CommandEntryBox::setSuggestionList(CommandSuggestionList *list)
-{
-    m_pSuggestions = list;
-}
+//void CommandEntryBox::setSuggestionList(CommandSuggestionList *list)
+//{
+//    m_pSuggestions = list;
+//}
 
 bool CommandEntryBox::replaceWithSuggestion(bool shouldRequery)
 {
@@ -144,8 +144,53 @@ bool CommandEntryBox::replaceWithSuggestion(bool shouldRequery)
     if ( command == "" ) return false;
     
     // Replace all the content with the current suggestion.
-    if ( !shouldRequery ) m_bShouldGetSuggestions = false;
+    m_bShouldGetSuggestions = shouldRequery;
     setText(command);
+    m_bShouldGetSuggestions = true;
+    
+    return true;
+}
+
+bool CommandEntryBox::insertSuggestion(bool shouldRequery)
+{
+    if ( !suggestionsValid() ) return false;
+    
+    if ( !m_pSuggestions->hasSelection() ) m_pSuggestions->selectFirst();
+    
+    QString command = m_pSuggestions->getCurrentSelection();
+    if ( command == "" ) return false;
+    
+    // Hold the last argument we typed.
+    QString lastArg;
+    QRegularExpression matchLastArg("\\S*$");
+    QRegularExpressionMatch m = matchLastArg.match(text());
+    
+    // If we have a last argument
+    if ( m.hasMatch() )
+    {
+        lastArg = m.captured();
+    }
+    // We have no last argument - set lastArg to blank.
+    else
+    {
+        lastArg = "";
+    }
+    
+    QString command_pre = command;
+    if ( !lastArg.isEmpty() )
+    {
+        // Remove all the characters we have entered so far.
+        // This is assuming that the current last argument is actually part of the suggestion!
+        QRegularExpression regex("^" + QRegularExpression::escape(text()));
+        command.remove(regex);
+        
+        Q_ASSERT_X(command_pre != command, "CommandEntryBox::insertSuggestion()",
+                   "Command was erroneously suggested for most recent argument in entry box.");
+    }
+    
+    // Append the remaining characters.
+    m_bShouldGetSuggestions = shouldRequery;
+    setText(text() + command);
     m_bShouldGetSuggestions = true;
     
     return true;
@@ -388,7 +433,7 @@ void CommandEntryBox::traverseHistory(bool direction)
 
 void CommandEntryBox::completeWithCurrentSuggestion()
 {
-    replaceWithSuggestion(); // Does a validity check.
+    insertSuggestion(); // Does a validity check.
     m_pSuggestions->clear();
     m_pSuggestions->hide();
 }
@@ -403,8 +448,9 @@ void CommandEntryBox::scrollSuggestionSelection(int deg)
     {
         isDown ? moveSuggestionSelectionDown() : moveSuggestionSelectionUp();
         deg -= 120;
-        replaceWithSuggestion(false);
     }
+    
+    replaceWithSuggestion(false);
 }
 
 void CommandEntryBox::focusOutEvent(QFocusEvent *e)
@@ -427,7 +473,7 @@ void CommandEntryBox::focusOutEvent(QFocusEvent *e)
     }
 }
 
-void CommandEntryBox::itemDoubleClicked(QListWidgetItem *)
+void CommandEntryBox::completeListItem(QListWidgetItem *)
 {
     completeWithCurrentSuggestion();
 }

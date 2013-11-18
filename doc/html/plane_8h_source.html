@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="crowbar_doc.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Crowbar
-   &#160;<span id="projectnumber">1a9bd335b9</span>
+   &#160;<span id="projectnumber">TODO</span>
    </div>
    <div id="projectbrief">An open-source level editor for Source games, built using Qt5.</div>
   </td>
@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('plane_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -120,59 +120,62 @@ $(document).ready(function(){initNavTree('plane_8h_source.html','');});
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="class_plane.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_plane.html" title="Defines a plane in 3D space. ">Plane</a></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="class_plane.html#acac0d9c003e0ab10d07b146c3566a0c7">   24</a></span>&#160;    <a class="code" href="class_plane.html#acac0d9c003e0ab10d07b146c3566a0c7" title="Constructor. Member variables are set to zero values. ">Plane</a>() : m_Normal(<a class="code" href="matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29" title="Null 3D vector: (0.0, 0.0, 0.0). ">VEC3_ORIGIN</a>), m_bIsValid(false), m_Points()</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="class_plane.html#acac0d9c003e0ab10d07b146c3566a0c7">   24</a></span>&#160;    <a class="code" href="class_plane.html#acac0d9c003e0ab10d07b146c3566a0c7" title="Constructor. Member variables are set to zero values. ">Plane</a>() : m_Points(), m_Normal(<a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>), m_bIsValid(false)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        m_Points[0] = <a class="code" href="matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29" title="Null 3D vector: (0.0, 0.0, 0.0). ">VEC3_ORIGIN</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        m_Points[1] = <a class="code" href="matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29" title="Null 3D vector: (0.0, 0.0, 0.0). ">VEC3_ORIGIN</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        m_Points[2] = <a class="code" href="matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29" title="Null 3D vector: (0.0, 0.0, 0.0). ">VEC3_ORIGIN</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        m_Points[0] = <a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        m_Points[1] = <a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        m_Points[2] = <a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="class_plane.html#a044f4c5015112c8c5148ae28b41b8637">   35</a></span>&#160;    <a class="code" href="class_plane.html#a044f4c5015112c8c5148ae28b41b8637" title="Constructor specifying an array of plane points. The normal is calculated with vectors [1]-[0]...">Plane</a>(<span class="keyword">const</span> QVector3D points[3])</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="class_plane.html#a044f4c5015112c8c5148ae28b41b8637">   35</a></span>&#160;    <a class="code" href="class_plane.html#a044f4c5015112c8c5148ae28b41b8637" title="Constructor specifying an array of plane points. The normal is calculated with vectors [1]-[0]...">Plane</a>(<span class="keyword">const</span> QVector3D points[3]) : m_Points(), m_Normal(<a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>), m_bIsValid(false)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(points);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="class_plane.html#affc3a1de45dcac9b65569eef3635eba4">   46</a></span>&#160;    <a class="code" href="class_plane.html#affc3a1de45dcac9b65569eef3635eba4" title="Constructor specifying plane points. The normal is calculated with vectors p2-p1, p3-p1...">Plane</a>(<span class="keyword">const</span> QVector3D p1, <span class="keyword">const</span> QVector3D p2, <span class="keyword">const</span> QVector3D p3)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(p1, p2, p3);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">// Get</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_plane.html#af04d6d582cfc6bb3fdebfb7d2711c0b8" title="Gets an array of the three points on the plane. ">getPoints</a>(QVector3D points[3]) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_plane.html#af04d6d582cfc6bb3fdebfb7d2711c0b8" title="Gets an array of the three points on the plane. ">getPoints</a>(QList&lt;QVector3D&gt; &amp;points) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="class_plane.html#a9324f303beccf7ec9c6d3a5e371b7ca7">   68</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_plane.html#a9324f303beccf7ec9c6d3a5e371b7ca7" title="Specifies whether the plane is valid. Invalid planes contain two or more identical plane points...">isValid</a>()<span class="keyword"> const                         </span>{ <span class="keywordflow">return</span> m_bIsValid; }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="class_plane.html#aeaae7bd417894c587423251818f16197">   74</a></span>&#160;    <span class="keyword">inline</span> QVector3D <a class="code" href="class_plane.html#aeaae7bd417894c587423251818f16197" title="Returns the plane&#39;s normal, specifying the forward-facing direction of the plane. ...">getNormal</a>()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> m_Normal; }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// Set</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QVector3D points[3]);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QList&lt;QVector3D&gt; &amp;points);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QVector3D p1, <span class="keyword">const</span> QVector3D p2, <span class="keyword">const</span> QVector3D p3);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(<span class="keyword">const</span> QVector3D points[3]);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(QList&lt;QVector3D&gt; &amp;points);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(QVector3D p1, QVector3D p2, QVector3D p3);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    QVector3D   m_Points[3];    </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    QVector3D   m_Normal;       </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">bool</span>        m_bIsValid;     </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;};</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif // PLANE_H</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="class_plane.html#affc3a1de45dcac9b65569eef3635eba4">   46</a></span>&#160;    <a class="code" href="class_plane.html#affc3a1de45dcac9b65569eef3635eba4" title="Constructor specifying plane points. The normal is calculated with vectors p2-p1, p3-p1...">Plane</a>(<span class="keyword">const</span> QVector3D p1, <span class="keyword">const</span> QVector3D p2, <span class="keyword">const</span> QVector3D p3) :</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        m_Points(), m_Normal(<a class="code" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58" title="Null 3D vector: (0.0f, 0.0f, 0.0f). ">VEC3_ORIGIN</a>), m_bIsValid(false)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(p1, p2, p3);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_plane.html" title="Defines a plane in 3D space. ">Plane</a>() {}</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Get</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_plane.html#af04d6d582cfc6bb3fdebfb7d2711c0b8" title="Gets an array of the three points on the plane. ">getPoints</a>(QVector3D points[3]) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_plane.html#af04d6d582cfc6bb3fdebfb7d2711c0b8" title="Gets an array of the three points on the plane. ">getPoints</a>(QList&lt;QVector3D&gt; &amp;points) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="class_plane.html#a9324f303beccf7ec9c6d3a5e371b7ca7">   71</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_plane.html#a9324f303beccf7ec9c6d3a5e371b7ca7" title="Specifies whether the plane is valid. Invalid planes contain two or more identical plane points...">isValid</a>()<span class="keyword"> const                         </span>{ <span class="keywordflow">return</span> m_bIsValid; }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="class_plane.html#aeaae7bd417894c587423251818f16197">   77</a></span>&#160;    <span class="keyword">inline</span> QVector3D <a class="code" href="class_plane.html#aeaae7bd417894c587423251818f16197" title="Returns the plane&#39;s normal, specifying the forward-facing direction of the plane. ...">getNormal</a>()<span class="keyword"> const                  </span>{ <span class="keywordflow">return</span> m_Normal; }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// Set</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QVector3D points[3]);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QList&lt;QVector3D&gt; &amp;points);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_plane.html#a3a9fd7ef1b74fad45bf0b18b93922813" title="Sets the plane&#39;s points via an array. The normal is calculated with vectors [1]-[0], [2]-[0]. ">setPoints</a>(<span class="keyword">const</span> QVector3D p1, <span class="keyword">const</span> QVector3D p2, <span class="keyword">const</span> QVector3D p3);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(<span class="keyword">const</span> QVector3D points[3]);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(QList&lt;QVector3D&gt; &amp;points);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> checkValid(QVector3D p1, QVector3D p2, QVector3D p3);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    QVector3D   m_Points[3];    </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    QVector3D   m_Normal;       </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">bool</span>        m_bIsValid;     </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;};</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#endif // PLANE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="plane_8h.html">plane.h</a></li>
-    <li class="footer">Generated on Mon Sep 2 2013 22:28:57 for Crowbar by
+    <li class="footer">Generated on Sat Nov 16 2013 23:36:53 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

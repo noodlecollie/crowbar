@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="crowbar_doc.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Crowbar
-   &#160;<span id="projectnumber">1a9bd335b9</span>
+   &#160;<span id="projectnumber">TODO</span>
    </div>
    <div id="projectbrief">An open-source level editor for Source games, built using Qt5.</div>
   </td>
@@ -104,7 +104,7 @@ $(document).ready(function(){initNavTree('globals.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,20 +115,20 @@ $(document).ready(function(){initNavTree('globals.html','');});
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented file members with links to the documentation:</div><ul>
-<li>CLA_DEBUGGING
-: <a class="el" href="commandlineparser_8h.html#a28d598b46f4ac21d6aef06c46089f3cb">commandlineparser.h</a>
-</li>
-<li>CLA_LOGGING
-: <a class="el" href="commandlineparser_8h.html#a886e3ba324ee7244ccb5c79dd2d1cddb">commandlineparser.h</a>
-</li>
-<li>DEBUGGING
-: <a class="el" href="group___global_variables.html#ga7180786c98af534f76855fef6f1b97ab">globals.h</a>
-</li>
 <li>g_pCmdLine
 : <a class="el" href="group___global_variables.html#ga270fc6d9322b018e011978d6376f43ba">globals.h</a>
 </li>
+<li>g_pCommandInterpreter
+: <a class="el" href="group___global_variables.html#ga347a4723fad5c3711958f787dfc93fa4">globals.h</a>
+</li>
+<li>g_pCommandList
+: <a class="el" href="group___global_variables.html#ga8389c826239a1bc627ae3b7f97a79fe4">globals.h</a>
+</li>
+<li>g_pCommandManager
+: <a class="el" href="group___global_variables.html#ga4d39defaa5d22f29bde4c75d590bd0fe">globals.h</a>
+</li>
 <li>g_pLog
-: <a class="el" href="group___global_variables.html#gae7f290eef5ae2111832362dfb5c84af7">globals.h</a>
+: <a class="el" href="group___global_variables.html#gae2d76408535137add345d6e4258c5a07">globals.h</a>
 </li>
 <li>g_pWindowTracker
 : <a class="el" href="group___global_variables.html#gab5d481b5087f9956e533067ad8001d78">globals.h</a>
@@ -136,50 +136,29 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <li>GEOMHANDLE
 : <a class="el" href="vertex_8h.html#a72202e57358ed73cd212e9a2eaf39aeb">vertex.h</a>
 </li>
-<li>ICommandBox_iid
-: <a class="el" href="icommandbox_8h.html#a1bcdc417fec2fc4b28edabfb2bb06c25">icommandbox.h</a>
-</li>
-<li>ICommandManager_iid
-: <a class="el" href="icommandmanager_8h.html#af0732cfb4c99c335dd3f6913dd3ce213">icommandmanager.h</a>
-</li>
-<li>IConsoleWindow_iid
-: <a class="el" href="iconsolewindow_8h.html#af6f0bb613cbcad5dc57d0deb74a770e8">iconsolewindow.h</a>
-</li>
-<li>IPlugin_iid
-: <a class="el" href="plugin_8h.html#a9ab87d7ee5d55bff8a3c63aa85ed3862">plugin.h</a>
+<li>ICONSOLESHARED_EXPORT
+: <a class="el" href="iconsole__global_8h.html#a90bbfa5cf7aee8afd56acdcce53c4a08">iconsole_global.h</a>
 </li>
 <li>IVertex3DRenderSpec_iid
 : <a class="el" href="ivertex3drenderspec_8h.html#afd14dd1ec641943da1c3cd81a0037c0d">ivertex3drenderspec.h</a>
 </li>
-<li>LOG_WARNING_WEIGHT
-: <a class="el" href="logwindow_8h.html#aa59f3c05c5e9a804278af23116d430b6">logwindow.h</a>
-</li>
-<li>LOG_ZOOM_INCREMENT
-: <a class="el" href="logwindow_8h.html#a25966c8a7f786f100610fc01ac4b434b">logwindow.h</a>
-</li>
-<li>LOGGING
-: <a class="el" href="group___global_variables.html#ga24a31f60b063af0e662125ea2427b140">globals.h</a>
-</li>
 <li>LogMessage()
-: <a class="el" href="group___global_variables.html#ga9bb2d01dee132ec096040ba459b4e2e4">globals.h</a>
+: <a class="el" href="group___global_variables.html#ga1788dc69b89b298a038015cbb83f8183">globals.h</a>
 </li>
 <li>LogTaggedMessage()
-: <a class="el" href="group___global_variables.html#ga577d74a77b480346d9aa74680d6e7020">globals.h</a>
+: <a class="el" href="group___global_variables.html#gacb9fa8876388ad9319c61d9ae4d21510">globals.h</a>
 </li>
 <li>LogTaggedWarning()
-: <a class="el" href="group___global_variables.html#ga9765b2cee902fd2d265b2ddc307aecb2">globals.h</a>
+: <a class="el" href="group___global_variables.html#ga49e471be032d9340fe6b4c251d1aef21">globals.h</a>
 </li>
 <li>LogWarning()
-: <a class="el" href="group___global_variables.html#gabfd623074e3c2d311ca356321a5b839a">globals.h</a>
+: <a class="el" href="group___global_variables.html#ga4b2863ab23932e06f2b5f292c66e7ef6">globals.h</a>
 </li>
 <li>MAPDOC_VERSION
 : <a class="el" href="mapdoc_8h.html#af6699d6ffa298734e45b6a64604eb0ab">mapdoc.h</a>
 </li>
 <li>NULLHND
 : <a class="el" href="vertex_8h.html#a58600f71cdacd3fb41515de8749fe861">vertex.h</a>
-</li>
-<li>PluginVersion
-: <a class="el" href="plugin_8h.html#a725de6c68b62463ee6792bb48710febe">plugin.h</a>
 </li>
 <li>ShowErrorBox()
 : <a class="el" href="group___global_variables.html#gadf8a13f3d23660f424828d7f559addd3">globals.h</a>
@@ -191,10 +170,10 @@ $(document).ready(function(){initNavTree('globals.html','');});
 : <a class="el" href="vertex_8h.html#a2e2e1374aac5842116c8683f3b06e99f">vertex.h</a>
 </li>
 <li>VEC2_ORIGIN()
-: <a class="el" href="matlib_8h.html#abbca97a4f576c9ea1a52b3ab4fe9a483">matlib.h</a>
+: <a class="el" href="matlib_8h.html#adf77f5338d26daaf925954019e2d403b">matlib.h</a>
 </li>
 <li>VEC3_ORIGIN()
-: <a class="el" href="matlib_8h.html#ac2de4dab97258eff87e0a1253a2d1a29">matlib.h</a>
+: <a class="el" href="matlib_8h.html#a58c2465e144af99a0af3108235200f58">matlib.h</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -202,7 +181,7 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Sep 2 2013 22:28:57 for Crowbar by
+    <li class="footer">Generated on Sat Nov 16 2013 23:36:54 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

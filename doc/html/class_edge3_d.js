@@ -3,6 +3,7 @@ var class_edge3_d =
     [ "Edge3D", "class_edge3_d.html#a6f25535dfee47bf06832243b11207ba6", null ],
     [ "Edge3D", "class_edge3_d.html#a2c4d543fd8a4ffe272539547800c712c", null ],
     [ "Edge3D", "class_edge3_d.html#af04a433a585de58702f3586d8a52219d", null ],
+    [ "~Edge3D", "class_edge3_d.html#ae025e1410275fbce736b951079138770", null ],
     [ "calcMidpoint", "class_edge3_d.html#a9cd240bf4c0f68b3085777935e11fb85", null ],
     [ "getEndVertex", "class_edge3_d.html#aa845b1590748b1606697afafb9b33c73", null ],
     [ "getHandle", "class_edge3_d.html#a890650509dd10950ebaa358a349df4c7", null ],

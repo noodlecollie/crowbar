@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="crowbar_doc.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Crowbar
-   &#160;<span id="projectnumber">1a9bd335b9</span>
+   &#160;<span id="projectnumber">TODO</span>
    </div>
    <div id="projectbrief">An open-source level editor for Source games, built using Qt5.</div>
   </td>
@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_type.html"><span>Typedefs</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -107,7 +108,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -118,6 +119,21 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
+<li>DEFAULT_COMMAND_HISTORY_SIZE
+: <a class="el" href="class_command_entry_box.html#a52a1a304da91b347e879e095cf5eab67">CommandEntryBox</a>
+</li>
+<li>delimPipes
+: <a class="el" href="class_command_interpreter.html#ab4511b44fc5231f0527644e41b057398">CommandInterpreter</a>
+</li>
+<li>delimSemicolons
+: <a class="el" href="class_command_interpreter.html#abb5a98083df85f3bb4f3680c5d7a26a9">CommandInterpreter</a>
+</li>
+<li>LI_NAME_COMMAND
+: <a class="el" href="class_command_entry_box.html#afccb0e6456f6aa1264e5db11fdf1ca4e">CommandEntryBox</a>
+</li>
+<li>LI_NAME_VARIABLE
+: <a class="el" href="class_command_entry_box.html#a5301bf4e9f267a5d773ddcc087ae6d83">CommandEntryBox</a>
+</li>
 <li>m_bSelected
 : <a class="el" href="class_geom_meta_handle.html#a545e915bdbffcafcf5cd9381b404874c">GeomMetaHandle</a>
 </li>
@@ -130,11 +146,11 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>m_iType
 : <a class="el" href="struct_geom_info.html#a39b0270c2fa75ee91a7b43349440974d">GeomInfo</a>
 </li>
-<li>m_PluginList
-: <a class="el" href="class_plugin_manager.html#af65cae6069dfdb469aee42c4d2ec94d2">PluginManager</a>
+<li>matchArgs
+: <a class="el" href="class_command_interpreter.html#a5fb8575efe24f40344f656b82b7348fa">CommandInterpreter</a>
 </li>
-<li>m_szLoadDir
-: <a class="el" href="class_plugin_manager.html#ad76c45e41d41eac52be4ba19e4ae11fb">PluginManager</a>
+<li>matchArgsStrict
+: <a class="el" href="class_command_interpreter.html#afd08ad40b67d0d24dff5c6d992e55bad">CommandInterpreter</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -142,7 +158,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Sep 2 2013 22:28:57 for Crowbar by
+    <li class="footer">Generated on Sat Nov 16 2013 23:36:54 for Crowbar by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>

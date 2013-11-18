@@ -28,7 +28,7 @@ void ListedConsoleCommand::tryRegister(CommandManager *manager, ListedConsoleCom
     // If manager is not NULL, register.
     if ( manager )
     {
-        qDebug() << QString("Registering command %0.").arg(this->getName());
+        qDebug() << QString("Registering command %0.").arg(this->name());
         manager->registerCommand(this);
         return;
     }

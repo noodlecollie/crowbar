@@ -10,17 +10,17 @@ NGlobalCmd::CmdIdent BaseConsoleCommand::identify() const
     return NGlobalCmd::CINull;
 }
 
-QString BaseConsoleCommand::getName() const
+QString BaseConsoleCommand::name() const
 {
     return m_szName;
 }
 
-QString BaseConsoleCommand::getDescription() const
+QString BaseConsoleCommand::description() const
 {
     return m_szDescription;
 }
 
-NGlobalCmd::CMDFLAGS BaseConsoleCommand::getFlagsRaw() const
+NGlobalCmd::CMDFLAGS BaseConsoleCommand::flagsRaw() const
 {
     return m_iFlags;
 }

@@ -1,0 +1,408 @@
+\hypertarget{class_command_entry_box}{\section{Command\-Entry\-Box Class Reference}
+\label{class_command_entry_box}\index{Command\-Entry\-Box@{Command\-Entry\-Box}}
+}
+
+
+Manages input of console commands by the user.  
+
+
+
+
+{\ttfamily \#include $<$commandentrybox.\-h$>$}
+
+
+
+Inheritance diagram for Command\-Entry\-Box\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{class_command_entry_box__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Command\-Entry\-Box\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{class_command_entry_box__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_entry_box_a8310199329ce545fefd767066631250b}{void \hyperlink{class_command_entry_box_a8310199329ce545fefd767066631250b}{send\-Command\-String} ()}\label{class_command_entry_box_a8310199329ce545fefd767066631250b}
+
+\begin{DoxyCompactList}\small\item\em Sends the current command string. Results in the command\-String signal being emitted. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a238530c1dbe9c56b872759b4dec70239}{void \hyperlink{class_command_entry_box_a238530c1dbe9c56b872759b4dec70239}{reposition\-Suggestions} ()}\label{class_command_entry_box_a238530c1dbe9c56b872759b4dec70239}
+
+\begin{DoxyCompactList}\small\item\em Tells the entry box that the suggestion list should be repositioned to the entry box's current position. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_ae40495ddfe607385ba9a0d00f30c5757}{void \hyperlink{class_command_entry_box_ae40495ddfe607385ba9a0d00f30c5757}{move\-Suggestion\-Selection\-Up} ()}\label{class_command_entry_box_ae40495ddfe607385ba9a0d00f30c5757}
+
+\begin{DoxyCompactList}\small\item\em Moves the current selection in the command suggestion box up one entry. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a4a95a141eba1cc7869fbcf47af3ac972}{void \hyperlink{class_command_entry_box_a4a95a141eba1cc7869fbcf47af3ac972}{choose\-Above\-Suggestion} ()}\label{class_command_entry_box_a4a95a141eba1cc7869fbcf47af3ac972}
+
+\begin{DoxyCompactList}\small\item\em If the suggestion box is present, chooses the entry directly above the current suggestion and inserts the text into the entry box. The suggestion list is not closed. If the suggestion box is not present, moves back one in the command history and inserts the command string into the entry box. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a306ce6835a28f12b3c7103b01dd7be1a}{void \hyperlink{class_command_entry_box_a306ce6835a28f12b3c7103b01dd7be1a}{move\-Suggestion\-Selection\-Down} ()}\label{class_command_entry_box_a306ce6835a28f12b3c7103b01dd7be1a}
+
+\begin{DoxyCompactList}\small\item\em Moves the current selection in the command suggestion box down one entry. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a83b4d111d9b5d358752fd91876cd8b16}{void \hyperlink{class_command_entry_box_a83b4d111d9b5d358752fd91876cd8b16}{choose\-Below\-Suggestion} ()}\label{class_command_entry_box_a83b4d111d9b5d358752fd91876cd8b16}
+
+\begin{DoxyCompactList}\small\item\em If the suggestion box is present, chooses the entry directly below the current suggestion and inserts the text into the entry box. The suggestion list is not closed. If the suggestion box is not present, moves forward one in the command history and inserts the command string into the entry box. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_af1af0e911dd16951a7c38c7cdbf18151}{void \hyperlink{class_command_entry_box_af1af0e911dd16951a7c38c7cdbf18151}{complete\-With\-Current\-Suggestion} ()}\label{class_command_entry_box_af1af0e911dd16951a7c38c7cdbf18151}
+
+\begin{DoxyCompactList}\small\item\em Chooses the currently selected command suggestion and insert it into the entry box before closing the suggestion list. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a54b2fc4ebce5af818b61b3ade395fe3d}{scroll\-Suggestion\-Selection} (int n)
+\begin{DoxyCompactList}\small\item\em Scrolls {\itshape n} entries up or down in the suggestion list and inserts the resulting selection into the entry box. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a7d011c6ec9253d4f4c994934d7275567}{process\-For\-Suggestions} (const Q\-String \&str)
+\begin{DoxyCompactList}\small\item\em Processes the current partial command string and requests suggestions if required. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a922f73bd213ce52fb728f7459ac43a1c}{complete\-List\-Item} (Q\-List\-Widget\-Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em Inserts the command held by the list item into the entry box. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a3d5fbb81f6400d1b827607feb1153606}{void \hyperlink{class_command_entry_box_a3d5fbb81f6400d1b827607feb1153606}{clear\-Command\-History} ()}\label{class_command_entry_box_a3d5fbb81f6400d1b827607feb1153606}
+
+\begin{DoxyCompactList}\small\item\em Clears the command history buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_command_entry_box_ac3a24b4e68ffd823d14c37b212290fa3}{command\-String} (const Q\-String \&command)
+\begin{DoxyCompactList}\small\item\em Emitted when the user executes the command string they have been entering. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a926587c4199c009a85daec24624968f4}{get\-Suggestions} (const Q\-String \&prefix, Q\-List$<$ \hyperlink{class_command_interpreter_acef7360cdc3e98c4d35ec54954c4e39c}{Command\-Interpreter\-::\-Command\-Ident\-Pair} $>$ \&list, int count=-\/1)
+\begin{DoxyCompactList}\small\item\em Emitted when the entry box requests that its command suggestion list be filled with suggestions for the current command string prefix. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a2808bdf010ef238092b3cc3c050cbfdb}{void \hyperlink{class_command_entry_box_a2808bdf010ef238092b3cc3c050cbfdb}{tab\-Pressed} ()}\label{class_command_entry_box_a2808bdf010ef238092b3cc3c050cbfdb}
+
+\begin{DoxyCompactList}\small\item\em Tab has been pressed while the entry box has focus. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a5759602d5713c0f2f7fb9f68c5f7c507}{void \hyperlink{class_command_entry_box_a5759602d5713c0f2f7fb9f68c5f7c507}{up\-Arrow\-Pressed} ()}\label{class_command_entry_box_a5759602d5713c0f2f7fb9f68c5f7c507}
+
+\begin{DoxyCompactList}\small\item\em Up arrow has been pressed while the entry box has focus. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_abd5ca1d5f1eb6d5d5c1b5174d9cdf5fb}{void \hyperlink{class_command_entry_box_abd5ca1d5f1eb6d5d5c1b5174d9cdf5fb}{down\-Arrow\-Pressed} ()}\label{class_command_entry_box_abd5ca1d5f1eb6d5d5c1b5174d9cdf5fb}
+
+\begin{DoxyCompactList}\small\item\em Down arrow has been pressed while the entry box has focus. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a8399e5aa78c5841dd0c60f7a5285410b}{mouse\-Wheel} (int delta\-Degrees)
+\begin{DoxyCompactList}\small\item\em The user moved the mouse wheel while the entry box has focus. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_ac13c5c8a5aa22fd0fb264010ee271ea8}{void \hyperlink{class_command_entry_box_ac13c5c8a5aa22fd0fb264010ee271ea8}{icon\-Con\-Command\-Changed} ()}\label{class_command_entry_box_ac13c5c8a5aa22fd0fb264010ee271ea8}
+
+\begin{DoxyCompactList}\small\item\em The console command icon path has been changed. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a971a6587e79b6420a09963c09daa61a4}{void \hyperlink{class_command_entry_box_a971a6587e79b6420a09963c09daa61a4}{icon\-Con\-Var\-Changed} ()}\label{class_command_entry_box_a971a6587e79b6420a09963c09daa61a4}
+
+\begin{DoxyCompactList}\small\item\em The console variable icon path has been changed. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a89f2868238ec30998795c227fbaab143}{void \hyperlink{class_command_entry_box_a89f2868238ec30998795c227fbaab143}{command\-History\-Size\-Changed} ()}\label{class_command_entry_box_a89f2868238ec30998795c227fbaab143}
+
+\begin{DoxyCompactList}\small\item\em The command history buffer size has been changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_entry_box_a75c9cb2fee4e0034bc114222fa890e3b}{Command\-Entry\-Box} (Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a66f323c649a34cc167f124069aa5de53}{virtual \hyperlink{class_command_entry_box_a66f323c649a34cc167f124069aa5de53}{$\sim$\-Command\-Entry\-Box} ()}\label{class_command_entry_box_a66f323c649a34cc167f124069aa5de53}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+const \hyperlink{class_command_suggestion_list}{Command\-Suggestion\-List} $\ast$ \hyperlink{class_command_entry_box_ae00fdd5b4cbf8fc825e5333f3ae47dad}{get\-Suggestion\-List} () const 
+\begin{DoxyCompactList}\small\item\em Sets the pointer to this entry box's command suggestion list. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_command_entry_box_a4ff50a0239789c705b15a395cd1d3a68}{icon\-Con\-Command} () const 
+\begin{DoxyCompactList}\small\item\em Returns the file name and path of the icon displayed in the suggestion box for a console command entry. Path is relative to the application directory. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a5fc40503d8f9b6bf8faddc42ff6663bb}{set\-Icon\-Con\-Command} (Q\-String icon)
+\begin{DoxyCompactList}\small\item\em Sets the file name and path of the icon to display in the suggestion box next to a console command entry. Path should be relative to the application directory. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a9807265bf78369d6dfbc8210aa39c562}{void \hyperlink{class_command_entry_box_a9807265bf78369d6dfbc8210aa39c562}{reset\-Icon\-Con\-Command} ()}\label{class_command_entry_box_a9807265bf78369d6dfbc8210aa39c562}
+
+\begin{DoxyCompactList}\small\item\em Resets (blanks) the icon path string for the console command list entry icon. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_command_entry_box_ac7147c8f991326bcf6339d60220a4f58}{icon\-Con\-Var} () const 
+\begin{DoxyCompactList}\small\item\em Returns the file name and path of the icon displayed in the suggestion box for a console variable entry. Path is relative to the application directory. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a9e4387c47cb2de50da44360110d9e59a}{set\-Icon\-Con\-Var} (Q\-String icon)
+\begin{DoxyCompactList}\small\item\em Sets the file name and path of the icon to display in the suggestion box next to a console variable entry. Path should be relative to the application directory. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a85705eaae1055472de96c07142cf56af}{void \hyperlink{class_command_entry_box_a85705eaae1055472de96c07142cf56af}{reset\-Icon\-Con\-Var} ()}\label{class_command_entry_box_a85705eaae1055472de96c07142cf56af}
+
+\begin{DoxyCompactList}\small\item\em Resets (blanks) the icon path string for the console command list entry icon. \end{DoxyCompactList}\item 
+int \hyperlink{class_command_entry_box_a1c7d6384d3009e3685fb45f238c8a279}{command\-History\-Size} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current size of the command history buffer -\/ how many previously typed commands the entry box will remember. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_a96513e1f106fbf5e734c6a4ff7a26e2d}{set\-Command\-History\-Size} (int size)
+\begin{DoxyCompactList}\small\item\em Sets the size of the command history buffer. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_entry_box_ad81eaeb870ed56bc231cd962d527b520}{reset\-Command\-History\-Size} ()
+\begin{DoxyCompactList}\small\item\em Resets the command history buffer to the default size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_entry_box_afccb0e6456f6aa1264e5db11fdf1ca4e}{static const Q\-String \hyperlink{class_command_entry_box_afccb0e6456f6aa1264e5db11fdf1ca4e}{L\-I\-\_\-\-N\-A\-M\-E\-\_\-\-C\-O\-M\-M\-A\-N\-D} = \char`\"{}Command\-List\-Item\char`\"{}}\label{class_command_entry_box_afccb0e6456f6aa1264e5db11fdf1ca4e}
+
+\begin{DoxyCompactList}\small\item\em Identifying name of a command suggestion list item which contains the name of a console command. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a5301bf4e9f267a5d773ddcc087ae6d83}{static const Q\-String \hyperlink{class_command_entry_box_a5301bf4e9f267a5d773ddcc087ae6d83}{L\-I\-\_\-\-N\-A\-M\-E\-\_\-\-V\-A\-R\-I\-A\-B\-L\-E} = \char`\"{}Variable\-List\-Item\char`\"{}}\label{class_command_entry_box_a5301bf4e9f267a5d773ddcc087ae6d83}
+
+\begin{DoxyCompactList}\small\item\em Identifying name of a command suggestion list item which contains the name of a console variable. \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_a52a1a304da91b347e879e095cf5eab67}{static const int \hyperlink{class_command_entry_box_a52a1a304da91b347e879e095cf5eab67}{D\-E\-F\-A\-U\-L\-T\-\_\-\-C\-O\-M\-M\-A\-N\-D\-\_\-\-H\-I\-S\-T\-O\-R\-Y\-\_\-\-S\-I\-Z\-E} = 32}\label{class_command_entry_box_a52a1a304da91b347e879e095cf5eab67}
+
+\begin{DoxyCompactList}\small\item\em Default size of the command history buffer (how many previously typed commands this entry box will remember. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_entry_box_ac53924ba07f11bab5b255af0625ffbd6}{Q\-String \hyperlink{class_command_entry_box_ac53924ba07f11bab5b255af0625ffbd6}{icon\-Con\-Command}}\label{class_command_entry_box_ac53924ba07f11bab5b255af0625ffbd6}
+
+\begin{DoxyCompactList}\small\item\em Path to icon to display for a \hyperlink{class_con_command}{Con\-Command} suggestion entry.  icon\-Con\-Command(), \hyperlink{class_command_entry_box_a5fc40503d8f9b6bf8faddc42ff6663bb}{set\-Icon\-Con\-Command()}, \hyperlink{class_command_entry_box_a9807265bf78369d6dfbc8210aa39c562}{reset\-Icon\-Con\-Command()}, \hyperlink{class_command_entry_box_ac13c5c8a5aa22fd0fb264010ee271ea8}{icon\-Con\-Command\-Changed()} \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_ad069b345272bd9d2fe43266ac5ead588}{Q\-String \hyperlink{class_command_entry_box_ad069b345272bd9d2fe43266ac5ead588}{icon\-Con\-Var}}\label{class_command_entry_box_ad069b345272bd9d2fe43266ac5ead588}
+
+\begin{DoxyCompactList}\small\item\em Path to icon to display for a \hyperlink{class_con_var}{Con\-Var} suggestion entry.  icon\-Con\-Var(), \hyperlink{class_command_entry_box_a9e4387c47cb2de50da44360110d9e59a}{set\-Icon\-Con\-Var()}, \hyperlink{class_command_entry_box_a85705eaae1055472de96c07142cf56af}{reset\-Icon\-Con\-Var()}, \hyperlink{class_command_entry_box_a971a6587e79b6420a09963c09daa61a4}{icon\-Con\-Var\-Changed()} \end{DoxyCompactList}\item 
+\hypertarget{class_command_entry_box_ad659bb8ce66cbf009d51d31ca2589207}{int \hyperlink{class_command_entry_box_ad659bb8ce66cbf009d51d31ca2589207}{command\-History\-Size}}\label{class_command_entry_box_ad659bb8ce66cbf009d51d31ca2589207}
+
+\begin{DoxyCompactList}\small\item\em Size of the command history buffer.  command\-History\-Size(), \hyperlink{class_command_entry_box_a96513e1f106fbf5e734c6a4ff7a26e2d}{set\-Command\-History\-Size()}, \hyperlink{class_command_entry_box_ad81eaeb870ed56bc231cd962d527b520}{reset\-Command\-History\-Size()}, \hyperlink{class_command_entry_box_a89f2868238ec30998795c227fbaab143}{command\-History\-Size\-Changed()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manages input of console commands by the user. 
+
+The \hyperlink{class_command_entry_box}{Command\-Entry\-Box} is a specialised Q\-Line\-Edit which owns a popup suggestion window. Command strings are parsed as the user types them and the get\-Suggestions signal is emitted whenever command suggestions are required by the entry box. The command\-String signal is also emitted when the user's command should be sent to a \hyperlink{class_command_interpreter}{Command\-Interpreter} for execution. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_command_entry_box_a75c9cb2fee4e0034bc114222fa890e3b}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!Command\-Entry\-Box@{Command\-Entry\-Box}}
+\index{Command\-Entry\-Box@{Command\-Entry\-Box}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{Command\-Entry\-Box}]{\setlength{\rightskip}{0pt plus 5cm}Command\-Entry\-Box\-::\-Command\-Entry\-Box (
+\begin{DoxyParamCaption}
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_command_entry_box_a75c9cb2fee4e0034bc114222fa890e3b}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Q\-Widget parent, if applicable. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_command_entry_box_a1c7d6384d3009e3685fb45f238c8a279}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!command\-History\-Size@{command\-History\-Size}}
+\index{command\-History\-Size@{command\-History\-Size}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{command\-History\-Size}]{\setlength{\rightskip}{0pt plus 5cm}int Command\-Entry\-Box\-::command\-History\-Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_entry_box_a1c7d6384d3009e3685fb45f238c8a279}
+
+
+Returns the current size of the command history buffer -\/ how many previously typed commands the entry box will remember. 
+
+\begin{DoxyReturn}{Returns}
+Size of command history buffer. 
+\end{DoxyReturn}
+\hypertarget{class_command_entry_box_ac3a24b4e68ffd823d14c37b212290fa3}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!command\-String@{command\-String}}
+\index{command\-String@{command\-String}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{command\-String}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::command\-String (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{command}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_command_entry_box_ac3a24b4e68ffd823d14c37b212290fa3}
+
+
+Emitted when the user executes the command string they have been entering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Command string the user entered. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a922f73bd213ce52fb728f7459ac43a1c}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!complete\-List\-Item@{complete\-List\-Item}}
+\index{complete\-List\-Item@{complete\-List\-Item}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{complete\-List\-Item}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::complete\-List\-Item (
+\begin{DoxyParamCaption}
+\item[{Q\-List\-Widget\-Item $\ast$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_command_entry_box_a922f73bd213ce52fb728f7459ac43a1c}
+
+
+Inserts the command held by the list item into the entry box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Item holding the command to insert. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_ae00fdd5b4cbf8fc825e5333f3ae47dad}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!get\-Suggestion\-List@{get\-Suggestion\-List}}
+\index{get\-Suggestion\-List@{get\-Suggestion\-List}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{get\-Suggestion\-List}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Command\-Suggestion\-List} $\ast$ Command\-Entry\-Box\-::get\-Suggestion\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_entry_box_ae00fdd5b4cbf8fc825e5333f3ae47dad}
+
+
+Sets the pointer to this entry box's command suggestion list. 
+
+\begin{DoxyWarning}{Warning}
+Any previously held list is not deleted -\/ be sure to deallocate the old pointer first if necessary. 
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em list} & List pointer to set. Returns the command suggestion list belonging to this entry box. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_command_entry_box_a926587c4199c009a85daec24624968f4}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!get\-Suggestions@{get\-Suggestions}}
+\index{get\-Suggestions@{get\-Suggestions}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{get\-Suggestions}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::get\-Suggestions (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{prefix, }
+\item[{Q\-List$<$ {\bf Command\-Interpreter\-::\-Command\-Ident\-Pair} $>$ \&}]{list, }
+\item[{int}]{count = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_command_entry_box_a926587c4199c009a85daec24624968f4}
+
+
+Emitted when the entry box requests that its command suggestion list be filled with suggestions for the current command string prefix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & The string the user has entered so far, to be matched against the beginning of pre-\/existing commands. \\
+\hline
+{\em list} & List to fill with suggestion entries. \\
+\hline
+{\em count} & Maximum number of suggestions desired, or -\/1 if no limit. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a4ff50a0239789c705b15a395cd1d3a68}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!icon\-Con\-Command@{icon\-Con\-Command}}
+\index{icon\-Con\-Command@{icon\-Con\-Command}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{icon\-Con\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Command\-Entry\-Box\-::icon\-Con\-Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_entry_box_a4ff50a0239789c705b15a395cd1d3a68}
+
+
+Returns the file name and path of the icon displayed in the suggestion box for a console command entry. Path is relative to the application directory. 
+
+\begin{DoxyReturn}{Returns}
+Path to the current icon displayed, or an empty string if no icon should be displayed. 
+\end{DoxyReturn}
+\hypertarget{class_command_entry_box_ac7147c8f991326bcf6339d60220a4f58}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!icon\-Con\-Var@{icon\-Con\-Var}}
+\index{icon\-Con\-Var@{icon\-Con\-Var}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{icon\-Con\-Var}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Command\-Entry\-Box\-::icon\-Con\-Var (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_entry_box_ac7147c8f991326bcf6339d60220a4f58}
+
+
+Returns the file name and path of the icon displayed in the suggestion box for a console variable entry. Path is relative to the application directory. 
+
+\begin{DoxyReturn}{Returns}
+Path to the current icon displayed, or an empty string if no icon should be displayed. 
+\end{DoxyReturn}
+\hypertarget{class_command_entry_box_a8399e5aa78c5841dd0c60f7a5285410b}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!mouse\-Wheel@{mouse\-Wheel}}
+\index{mouse\-Wheel@{mouse\-Wheel}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{mouse\-Wheel}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::mouse\-Wheel (
+\begin{DoxyParamCaption}
+\item[{int}]{delta\-Degrees}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_command_entry_box_a8399e5aa78c5841dd0c60f7a5285410b}
+
+
+The user moved the mouse wheel while the entry box has focus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\-Degrees} & Number of degrees the mouse wheel was moved. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a7d011c6ec9253d4f4c994934d7275567}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!process\-For\-Suggestions@{process\-For\-Suggestions}}
+\index{process\-For\-Suggestions@{process\-For\-Suggestions}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{process\-For\-Suggestions}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::process\-For\-Suggestions (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_command_entry_box_a7d011c6ec9253d4f4c994934d7275567}
+
+
+Processes the current partial command string and requests suggestions if required. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Command string, possibly incomplete, to process. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_ad81eaeb870ed56bc231cd962d527b520}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!reset\-Command\-History\-Size@{reset\-Command\-History\-Size}}
+\index{reset\-Command\-History\-Size@{reset\-Command\-History\-Size}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{reset\-Command\-History\-Size}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::reset\-Command\-History\-Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_command_entry_box_ad81eaeb870ed56bc231cd962d527b520}
+
+
+Resets the command history buffer to the default size. 
+
+\begin{DoxyNote}{Note}
+Older commands will be removed from the history if they fall outside the new buffer size. 
+\end{DoxyNote}
+\hypertarget{class_command_entry_box_a54b2fc4ebce5af818b61b3ade395fe3d}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!scroll\-Suggestion\-Selection@{scroll\-Suggestion\-Selection}}
+\index{scroll\-Suggestion\-Selection@{scroll\-Suggestion\-Selection}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{scroll\-Suggestion\-Selection}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::scroll\-Suggestion\-Selection (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_command_entry_box_a54b2fc4ebce5af818b61b3ade395fe3d}
+
+
+Scrolls {\itshape n} entries up or down in the suggestion list and inserts the resulting selection into the entry box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Number of entries to scroll. Positive values scroll up, negative values scroll down. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a96513e1f106fbf5e734c6a4ff7a26e2d}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!set\-Command\-History\-Size@{set\-Command\-History\-Size}}
+\index{set\-Command\-History\-Size@{set\-Command\-History\-Size}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{set\-Command\-History\-Size}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::set\-Command\-History\-Size (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{class_command_entry_box_a96513e1f106fbf5e734c6a4ff7a26e2d}
+
+
+Sets the size of the command history buffer. 
+
+\begin{DoxyNote}{Note}
+Older commands will be removed from the history if they fall outside the new buffer size. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em size} & Size to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a5fc40503d8f9b6bf8faddc42ff6663bb}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!set\-Icon\-Con\-Command@{set\-Icon\-Con\-Command}}
+\index{set\-Icon\-Con\-Command@{set\-Icon\-Con\-Command}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{set\-Icon\-Con\-Command}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::set\-Icon\-Con\-Command (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{icon}
+\end{DoxyParamCaption}
+)}}\label{class_command_entry_box_a5fc40503d8f9b6bf8faddc42ff6663bb}
+
+
+Sets the file name and path of the icon to display in the suggestion box next to a console command entry. Path should be relative to the application directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icon} & Path to icon file, including extension. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_entry_box_a9e4387c47cb2de50da44360110d9e59a}{\index{Command\-Entry\-Box@{Command\-Entry\-Box}!set\-Icon\-Con\-Var@{set\-Icon\-Con\-Var}}
+\index{set\-Icon\-Con\-Var@{set\-Icon\-Con\-Var}!CommandEntryBox@{Command\-Entry\-Box}}
+\subsubsection[{set\-Icon\-Con\-Var}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Entry\-Box\-::set\-Icon\-Con\-Var (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{icon}
+\end{DoxyParamCaption}
+)}}\label{class_command_entry_box_a9e4387c47cb2de50da44360110d9e59a}
+
+
+Sets the file name and path of the icon to display in the suggestion box next to a console variable entry. Path should be relative to the application directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em icon} & Path to icon file, including extension. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{commandentrybox_8h}{commandentrybox.\-h}\item 
+I\-Console/src/commandentrybox.\-cpp\end{DoxyCompactItemize}

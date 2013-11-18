@@ -1,0 +1,126 @@
+\hypertarget{class_con_var}{\section{Con\-Var Class Reference}
+\label{class_con_var}\index{Con\-Var@{Con\-Var}}
+}
+
+
+Inheritance diagram for Con\-Var\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_var__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Con\-Var\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_var__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_con_var_ac437fec999dde2751271c7c1e400d89d}{{\bfseries Con\-Var} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, const Q\-String \&def, N\-Global\-Cmd\-::\-Var\-Callback callback=N\-U\-L\-L, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, bool has\-Min=false, float min=0.\-0, bool has\-Max=false, float max=0.\-0, Q\-Object $\ast$parent=0)}\label{class_con_var_ac437fec999dde2751271c7c1e400d89d}
+
+\item 
+\hypertarget{class_con_var_a6755a812d1e97a6524c26a703e480359}{{\bfseries Con\-Var} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, const Q\-String \&def, \hyperlink{class_command_manager}{Command\-Manager} $\ast$manager, \hyperlink{class_listed_console_command}{Listed\-Console\-Command} $\ast$$\ast$list, N\-Global\-Cmd\-::\-Var\-Callback callback=N\-U\-L\-L, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, bool has\-Min=false, float min=0.\-0f, bool has\-Max=false, float max=0.\-0f, Q\-Object $\ast$parent=0)}\label{class_con_var_a6755a812d1e97a6524c26a703e480359}
+
+\item 
+virtual N\-Global\-Cmd\-::\-Cmd\-Ident \hyperlink{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}{identify} () const 
+\begin{DoxyCompactList}\small\item\em Identifies this console command. A \hyperlink{class_base_console_command}{Base\-Console\-Command} object will return C\-I\-Null; other derived commands should return a specific identifier. \end{DoxyCompactList}\item 
+\hypertarget{class_con_var_a7521050905d25ae719fc4e97924047ea}{void {\bfseries set\-Callback} (N\-Global\-Cmd\-::\-Var\-Callback callback)}\label{class_con_var_a7521050905d25ae719fc4e97924047ea}
+
+\item 
+\hypertarget{class_con_var_a01a4f437684d3120d5a510b821b35f60}{N\-Global\-Cmd\-::\-Var\-Callback {\bfseries get\-Callback} () const }\label{class_con_var_a01a4f437684d3120d5a510b821b35f60}
+
+\item 
+\hypertarget{class_con_var_aeffed443f935c4081408a6a1268dd95d}{Q\-String {\bfseries get} () const }\label{class_con_var_aeffed443f935c4081408a6a1268dd95d}
+
+\item 
+\hypertarget{class_con_var_a3b2ed3c3d10884ebd282a80e35b6f13f}{Q\-String {\bfseries set} (const Q\-String \&value)}\label{class_con_var_a3b2ed3c3d10884ebd282a80e35b6f13f}
+
+\item 
+\hypertarget{class_con_var_a5c704cec9fa9849f60a1e7991a26ebf4}{Q\-String {\bfseries set} (const \hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, const Q\-String \&value)}\label{class_con_var_a5c704cec9fa9849f60a1e7991a26ebf4}
+
+\item 
+\hypertarget{class_con_var_abbd3524ea974888b57f1b8d96dbdb66b}{bool {\bfseries has\-Min} () const }\label{class_con_var_abbd3524ea974888b57f1b8d96dbdb66b}
+
+\item 
+\hypertarget{class_con_var_a834692f5723ed688376aa64cc193a33a}{float {\bfseries get\-Min} () const }\label{class_con_var_a834692f5723ed688376aa64cc193a33a}
+
+\item 
+\hypertarget{class_con_var_a519205f9ca1c33dbd077a15fd1258777}{void {\bfseries set\-Min} (float value)}\label{class_con_var_a519205f9ca1c33dbd077a15fd1258777}
+
+\item 
+\hypertarget{class_con_var_a68f039f62cbff56805cfc446fae33afd}{bool {\bfseries has\-Max} () const }\label{class_con_var_a68f039f62cbff56805cfc446fae33afd}
+
+\item 
+\hypertarget{class_con_var_a2c8924d47e175d5398cc456a5b2bb514}{float {\bfseries get\-Max} () const }\label{class_con_var_a2c8924d47e175d5398cc456a5b2bb514}
+
+\item 
+\hypertarget{class_con_var_aa921cc271742dec3c946b1448db4161b}{void {\bfseries set\-Max} (float value)}\label{class_con_var_aa921cc271742dec3c946b1448db4161b}
+
+\item 
+\hypertarget{class_con_var_a06aa478aa7e68010aa3ca9122e29ea7a}{Q\-String {\bfseries get\-Default} () const }\label{class_con_var_a06aa478aa7e68010aa3ca9122e29ea7a}
+
+\item 
+\hypertarget{class_con_var_a64a961b8a329ae1da039d90e37902b69}{void {\bfseries set\-To\-Default} ()}\label{class_con_var_a64a961b8a329ae1da039d90e37902b69}
+
+\item 
+\hypertarget{class_con_var_a25ac4d64950bac9c328e815084a3c089}{Q\-String {\bfseries get\-Con\-Var\-String} () const }\label{class_con_var_a25ac4d64950bac9c328e815084a3c089}
+
+\item 
+\hypertarget{class_con_var_ad427b11f271beec5df051fa5c8b2f987}{Q\-String {\bfseries set\-Con\-Var} (const Q\-String \&val)}\label{class_con_var_ad427b11f271beec5df051fa5c8b2f987}
+
+\item 
+\hypertarget{class_con_var_a4d7a5a37f5c338b448e0a425d4b30e86}{Q\-String {\bfseries set\-Con\-Var} (const char $\ast$val)}\label{class_con_var_a4d7a5a37f5c338b448e0a425d4b30e86}
+
+\item 
+\hypertarget{class_con_var_a2402ef5513453c1de7d302a905e406ed}{int {\bfseries get\-Con\-Var\-Int} () const }\label{class_con_var_a2402ef5513453c1de7d302a905e406ed}
+
+\item 
+\hypertarget{class_con_var_ae55d9dc55abf897c61233bf3dd41214c}{int {\bfseries set\-Con\-Var} (int val)}\label{class_con_var_ae55d9dc55abf897c61233bf3dd41214c}
+
+\item 
+\hypertarget{class_con_var_ae4c317de396722af0bec990c5d94dfce}{float {\bfseries get\-Con\-Var\-Float} () const }\label{class_con_var_ae4c317de396722af0bec990c5d94dfce}
+
+\item 
+\hypertarget{class_con_var_a1cf71ad595ac96881e8fcc84db81b2e7}{float {\bfseries set\-Con\-Var} (float val)}\label{class_con_var_a1cf71ad595ac96881e8fcc84db81b2e7}
+
+\item 
+\hypertarget{class_con_var_adae8d7ddfe5266a417f5c09248ad1c88}{bool {\bfseries get\-Con\-Var\-Bool} () const }\label{class_con_var_adae8d7ddfe5266a417f5c09248ad1c88}
+
+\item 
+\hypertarget{class_con_var_ad5781a996f6766794542922073d3faff}{bool {\bfseries set\-Con\-Var} (bool val)}\label{class_con_var_ad5781a996f6766794542922073d3faff}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}{\index{Con\-Var@{Con\-Var}!identify@{identify}}
+\index{identify@{identify}!ConVar@{Con\-Var}}
+\subsubsection[{identify}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Cmd\-Ident Con\-Var\-::identify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}
+
+
+Identifies this console command. A \hyperlink{class_base_console_command}{Base\-Console\-Command} object will return C\-I\-Null; other derived commands should return a specific identifier. 
+
+\begin{DoxyReturn}{Returns}
+Identifier for the console command. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}{Base\-Console\-Command}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/convar.\-h\item 
+I\-Console/src/convar.\-cpp\end{DoxyCompactItemize}
