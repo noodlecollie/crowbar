@@ -6,6 +6,8 @@
 #include <QApplication>
 #include <QDir>
 
+#include "nregexutil.h"
+
 // TEMP
 #include <QtDebug>
 // TEMP
@@ -245,8 +247,9 @@ void CommandEntryBox::processForSuggestions(const QString &str)
     
     // If there is more than one argument, don't do a suggestions list for now.
     // We should probably advance this later to search for possible valid args, etc.
-    QStringList list;  
-    QRegularExpressionMatchIterator m = CommandInterpreter::matchArgsStrict.globalMatch(QRegularExpression::escape(str));
+    QStringList list;
+    QRegularExpression matchArgsWithWhitespace(RegexUtil::RegexMatchCommandArgsWs);
+    QRegularExpressionMatchIterator m = matchArgsWithWhitespace.globalMatch(QRegularExpression::escape(str));
     while ( m.hasNext() )
     {
         list.append(m.next().captured(0));
@@ -278,7 +281,6 @@ void CommandEntryBox::processForSuggestions(const QString &str)
     {
         QDir dir(qApp->applicationDirPath());
         QString iconPath;
-        //QColor* bgcol = NULL;
 
         switch (p.first)
         {
@@ -288,6 +290,7 @@ void CommandEntryBox::processForSuggestions(const QString &str)
                 {
                     iconPath = dir.filePath(m_szIconConCommand);
                 }
+                
                 break;
             }
             
@@ -297,6 +300,7 @@ void CommandEntryBox::processForSuggestions(const QString &str)
                 {
                     iconPath = dir.filePath(m_szIconConVar);
                 }
+                
                 break;
             }
         }

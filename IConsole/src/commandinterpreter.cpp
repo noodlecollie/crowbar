@@ -1,12 +1,15 @@
 #include "wr_commandinterpreter.h"
+#include "nregexutil.h"
 
-const QRegularExpression CommandInterpreter::matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
+//const QRegularExpression CommandInterpreter::matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
 
-// Strict matches spaces between arguments as well - used to tell whether we have finished typing one argument.
-const QRegularExpression CommandInterpreter::matchArgsStrict = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+|[\\s]+");
+//// Strict matches spaces between arguments as well - used to tell whether we have finished typing one argument.
+//const QRegularExpression CommandInterpreter::matchArgsStrict = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+|[\\s]+");
 
-const QRegularExpression CommandInterpreter::delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
-const QRegularExpression CommandInterpreter::delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
+//const QRegularExpression CommandInterpreter::delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
+//const QRegularExpression CommandInterpreter::delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
+//const QRegularExpression CommandInterpreter::matchLastArgumentNonWhitespace = QRegularExpression("\\S*$");
+//const QRegularExpression CommandInterpreter::matchLastArgumentWordChar = QRegularExpression("\\w*$");
 
 CommandInterpreter::CommandInterpreter(QObject *parent) :
     QObject(parent), m_pCommandManager(NULL)
@@ -148,7 +151,7 @@ void CommandInterpreter::parse(const QString &cmdString)
 void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEntryList &masterList)
 {
     // Split the original string by semicolons.
-    QStringList splitFirstPass = cmdString.split(delimSemicolons);
+    QStringList splitFirstPass = cmdString.split(QRegularExpression(RegexUtil::RegexMatchDelimSemicolon));
     
     // Operate on each entry.
     foreach(QString str1, splitFirstPass)
@@ -157,7 +160,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
         CommandEntryPipeList pipeList;
         
         // Split each new string by pipes.
-        QStringList splitSecondPass = str1.split(delimPipes);
+        QStringList splitSecondPass = str1.split(QRegularExpression(RegexUtil::RegexMatchDelimPipe));
         
         // Operate on each new entry.
         foreach (QString str2, splitSecondPass)
@@ -166,6 +169,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
             CommandEntryPair pair;
             
             // Retrieve the list of argument matches.
+            QRegularExpression matchArgs(RegexUtil::RegexMatchCommandArgs);
             QRegularExpressionMatchIterator m = matchArgs.globalMatch(str2);
             
             while ( m.hasNext() )

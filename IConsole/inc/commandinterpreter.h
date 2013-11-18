@@ -123,52 +123,6 @@ public:
     // Suggestions are returned as a pair containing the ident and the command name.
     //void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count = -1);
     
-    // "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+
-    /**
-     * @brief Regex to match command arguments.
-     * Arguments are either space-delimited or enclosed in unescaped quotes.<br/>
-     * <b>\verbatim "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+ \endverbatim</b><br/>
-     * For example, when parsing the following string:<br/>
-     * <b>this is a \" test\" "command \"string\""</b><br/>
-     * The matches are:<br/>
-     * <ul><li>this</li>
-     * <li>is</li>
-     * <li>a</li>
-     * <li>\"</li>
-     * <li>test\"</li>
-     * <li>"command \"string\""</li></ul>
-     */
-    static const QRegularExpression matchArgs;
-    
-    // "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+|[\s]+
-    /**
-     * @brief Regex to match command arguments but also spaces between arguments.<br/>
-     * <b>\verbatim "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+|[\s]+ \endverbatim</b><br/>
-     * Same as the non-strict regex except spaces between the arguments are also matched.
-     * This allows checking whether a user has finished typing the first argument in a given
-     * string (ie. the command name) and is going to type any subsequent arguments for that command.
-     * As soon as the number of matches is greater than 1, the user has stopped typing the command name.
-     */
-    static const QRegularExpression matchArgsStrict;
-    
-    // \s*(?<!\\)\|\s*
-    /**
-     * @brief Regex to match pipe characters surrounded by whitespace.
-     * Will match unescaped pipe characters, regardless of how much whitespace they are (or are not) surrounded by.<br/>
-     * <b>\verbatim \s*(?<!\\)\|\s* \endverbatim</b><br/>
-     * Searches for 0 or more whitespace characters, followed by a pipe which is not preceded by a backslash (using negative
-     * lookbehind), followed by 0 or more whitespace characters.
-     */
-    static const QRegularExpression delimPipes;
-    
-    // \s*(?<!\\)\;\s*
-    /**
-     * @brief Regex to match semicolons surrounded by whitespace.<br/>
-     * <b>\verbatim \s*(?<!\\)\;\s* \endverbatim</b><br/>
-     * Similar construction to the pipe regex.
-     */
-    static const QRegularExpression delimSemicolons;
-    
 signals:
     /**
      * @brief Emitted when a command or variable contacted by this interpreter wants to output a message.
