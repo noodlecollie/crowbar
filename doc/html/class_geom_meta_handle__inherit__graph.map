@@ -1,6 +1,0 @@
-<map id="GeomMetaHandle" name="GeomMetaHandle">
-<area shape="rect" id="node2" href="$class_edge3_d.html" title="An edge links two vertices and two faces, referenced by their geometry handles. &#160;When considering tra..." alt="" coords="5,80,72,107"/>
-<area shape="rect" id="node3" href="$class_face3_d.html" title="Class representing a 3D face. " alt="" coords="97,80,164,107"/>
-<area shape="rect" id="node4" href="$class_solid3_d.html" title="Class representing a 3D solid. " alt="" coords="188,80,255,107"/>
-<area shape="rect" id="node5" href="$class_vertex3_d.html" title="Defines a vertex in 3D space. " alt="" coords="279,80,355,107"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="app/ivertex3drenderspec.h" name="app/ivertex3drenderspec.h">
-<area shape="rect" id="node2" href="$vertex_8h.html" title="TODO. " alt="" coords="62,80,153,107"/>
-<area shape="rect" id="node3" href="$edge_8h.html" title="Defines an edge which links two vertices. " alt="" coords="14,155,100,181"/>
-<area shape="rect" id="node6" href="$indexpool_8h.html" title="Defines the IndexPool class which manages non&#45;consecutive array indices. " alt="" coords="113,229,225,256"/>
-<area shape="rect" id="node4" href="$face_8h.html" title="Defines a 3D face. Solids are built up of these faces. Faces reference edges, which in turn reference..." alt="" coords="5,229,88,256"/>
-<area shape="rect" id="node5" href="$solid_8h.html" title="Defines a solid class. " alt="" coords="65,304,151,331"/>
-</map>
