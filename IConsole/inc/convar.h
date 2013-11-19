@@ -30,6 +30,8 @@ class CommandSenderInfo;
  * Values are stored physically in the ConVar as QVariants but are set at a raw level (and passed to/from the validation callbacks)
  * as strings. There are also convenience functions to get or set the value of a ConVar as a bool, int or float - these will return
  * false or 0 respectively if the value cannot be converted.
+ *
+ * @note If min/max values are set on a ConVar, attempting to set a string value which cannot be cast to a numerical value will fail.
  */
 class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 {
@@ -42,8 +44,6 @@ class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 public:
     /**
      * @brief Constructor.
-     * @note If min/max values are set, attempting to set a string value which cannot be cast to a numerical
-     * value will fail.
      * @param name Name of the variable.
      * @param def Default value of the variable.
      * @param callback Optional callback pointer to be run just before the variable's value is changed.
@@ -58,15 +58,49 @@ public:
     explicit ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback = NULL, const QString &desc = "",
                     NGlobalCmd::CMDFLAGS flags = 0, bool hasMin = false, float min = 0.0, bool hasMax = false, float max = 0.0, QObject *parent = 0);
     
+    /**
+     * @brief Constructor.
+     * @param name Name of the variable.
+     * @param def Default value of the variable.
+     * @param manager Manager to attempt to register to when this variable is constructed.
+     * @param list If the variable could not register with the manager, it attaches itself to this list instead.
+     * @param callback Optional callback pointer to be run just before the variable's value is changed.
+     * @param desc Optional description of the variable.
+     * @param flags Variable flags.
+     * @param hasMin True if the variable should have a minimum value. Numerical values outside this range are clamped.
+     * @param min 
+     * @param hasMax
+     * @param max
+     * @param parent
+     */
     explicit ConVar(const QString &name, const QString &def, CommandManager* manager, ListedConsoleCommand** list,
                     NGlobalCmd::VarCallback callback = NULL, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0,
                     bool hasMin = false, float min = 0.0f, bool hasMax = false, float max = 0.0f, QObject* parent = 0);
     
+    /**
+     * @brief Destructor.
+     */
     virtual ~ConVar() {}
     
+    /**
+     * @brief Returns the identifier for this command.
+     * @return CmdIdent::CIVariable for console variables.
+     */
     virtual NGlobalCmd::CmdIdent identify() const;
+    
+    /**
+     * @brief Sets the variable change callback.
+     * @param callback Callback pointer to set.
+     */
     void setCallback(NGlobalCmd::VarCallback callback);
+    
+    /**
+     * @brief Gets the current variable change callback
+     * @return Pointer to current callback, or NULL if none exists.
+     */
     NGlobalCmd::VarCallback getCallback() const;
+    
+    /** Next thing to do - ensure callback is not null if flag is set! */
     QString get() const;
     QString set(const QString &value);
     QString set(const CommandSenderInfo &info, const QString &value);
