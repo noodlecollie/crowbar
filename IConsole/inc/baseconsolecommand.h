@@ -86,7 +86,7 @@ public:
      * @brief Overwrites all flags on the command.
      * @param flags Integer containing the exact state of all flags to set.
      */
-    void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
+    virtual void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
     
     /**
      * @brief Returns whether a given flag is set. Can test combinations of flags.
@@ -99,7 +99,7 @@ public:
      * @brief Sets the given flag(s) on the command.
      * @param flag Flag(s) to set.
      */
-    void setFlag(NGlobalCmd::CMDFLAGS flag);
+    virtual void setFlag(NGlobalCmd::CMDFLAGS flag);
     
     /**
      * @brief Un-sets the given flag(s) from the command.
@@ -111,7 +111,7 @@ public:
      * @brief Toggles the given flag(s) on the command.
      * @param flag Flag(s) to toggle.
      */
-    void toggleFlag(NGlobalCmd::CMDFLAGS flag);
+    virtual void toggleFlag(NGlobalCmd::CMDFLAGS flag);
     
 signals:
     

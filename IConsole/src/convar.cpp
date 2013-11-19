@@ -5,6 +5,11 @@ ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback 
     ListedConsoleCommand(name, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
 {
+    if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
+    {
+        Q_ASSERT_X(callback, "ConVar::ConVar()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+    }
+    
     validateBounds(m_flMinVal, m_flMaxVal);
 }
 
@@ -13,6 +18,11 @@ ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager,
     ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
 {
+    if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
+    {
+        Q_ASSERT_X(callback, "ConVar::ConVar()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+    }
+    
     validateBounds(m_flMinVal, m_flMaxVal);
 }
 
@@ -74,6 +84,8 @@ QString ConVar::get() const
 
 void ConVar::setCallback(NGlobalCmd::VarCallback callback)
 {
+    if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) && !callback ) return;
+    
     m_pVarCallback = callback;
 }
 
@@ -124,7 +136,6 @@ void ConVar::setToDefault()
 
 void ConVar::validateBounds(float &min, float &max)
 {
-    // Hopefully we can get away without using fuzzy compare here?
     if ( min > max )
     {
         float temp = min;
@@ -206,4 +217,41 @@ int ConVar::clamp(int value)
     else if ( hasMin() && (float)value < getMin() ) value = 1 + (int)getMin();
     
     return value;
+}
+
+void ConVar::setFlagsRaw(NGlobalCmd::CMDFLAGS flags)
+{
+    if ( (flags & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pVarCallback, "ConVar::setFlagsRaw()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::setFlagsRaw(flags);
+}
+
+void ConVar::setFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    if ( (flag & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pVarCallback, "ConVar::setFlag()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::setFlag(flag);
+}
+
+void ConVar::toggleFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    // If we're toggling the callback flag and it's currently unset (ie. we are setting it):
+    if ( (flag & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK && !flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pVarCallback, "ConVar::toggleFlag()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::toggleFlag(flag);
 }

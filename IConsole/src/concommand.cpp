@@ -44,3 +44,40 @@ NGlobalCmd::CmdIdent ConCommand::identify() const
 {
     return NGlobalCmd::CICommand;
 }
+
+void ConCommand::setFlagsRaw(NGlobalCmd::CMDFLAGS flags)
+{
+    if ( (flags & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pCallback, "ConCommand::setFlagsRaw()", "CMDFLAG_ENSURECALLBACK requires command to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::setFlagsRaw(flags);
+}
+
+void ConCommand::setFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    if ( (flag & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pCallback, "ConCommand::setFlag()", "CMDFLAG_ENSURECALLBACK requires command to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::setFlag(flag);
+}
+
+void ConCommand::toggleFlag(NGlobalCmd::CMDFLAGS flag)
+{
+    // If we're toggling the callback flag and it's currently unset (ie. we are setting it):
+    if ( (flag & NGlobalCmd::CMDFLAG_ENSURECALLBACK) == NGlobalCmd::CMDFLAG_ENSURECALLBACK && !flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
+    {
+        // Ensure callback is not null.
+        Q_ASSERT_X(m_pCallback, "ConCommand::toggleFlag()", "CMDFLAG_ENSURECALLBACK requires command to have a callback.");
+    }
+    
+    // Call base function.
+    ListedConsoleCommand::toggleFlag(flag);
+}

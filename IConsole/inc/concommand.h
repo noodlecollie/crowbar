@@ -89,6 +89,10 @@ public:
      */
     void setExec(NGlobalCmd::CmdCallback cmd);
     
+    virtual void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
+    virtual void setFlag(NGlobalCmd::CMDFLAGS flag);
+    virtual void toggleFlag(NGlobalCmd::CMDFLAGS flag);
+    
 signals:
     
 public slots:

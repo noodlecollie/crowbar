@@ -100,10 +100,31 @@ public:
      */
     NGlobalCmd::VarCallback getCallback() const;
     
-    /** Next thing to do - ensure callback is not null if flag is set! */
+    /**
+     * @brief Gets the raw string value of the variable.
+     * @return Current string value.
+     */
     QString get() const;
+    
+    /**
+     * @brief Sets the raw string value of the variable.
+     * @param value Value to set.
+     * @return Eventual value that was set (variable change callback may have modified the input value).
+     */
     QString set(const QString &value);
+    
+    /**
+     * @brief Sets the raw string value of the variable
+     * @param info Specifies a CommandSenderInfo in case the variable callback wishes to print output.
+     * @param value Value to set.
+     * @return Eventual value that was set (variable change callback may have modified the input value).
+     */
     QString set(const CommandSenderInfo &info, const QString &value);
+    
+    /**
+     * @brief Returns whether or not this variable has a min value.
+     * @return True if the variable has a min value, false otherwise.
+     */
     bool hasMin() const;
     float getMin() const;
     void setMin(float value);
@@ -122,6 +143,10 @@ public:
     float setValue(float val);
     bool boolValue() const;
     bool setValue(bool val);
+    
+    virtual void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
+    virtual void setFlag(NGlobalCmd::CMDFLAGS flag);
+    virtual void toggleFlag(NGlobalCmd::CMDFLAGS flag);
     
 private:
     void validateBounds(float &min, float &max);
