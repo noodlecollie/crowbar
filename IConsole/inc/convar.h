@@ -29,17 +29,39 @@ class CommandSenderInfo;
  * on setToDefault().<br/><br/>
  * Values are stored physically in the ConVar as QVariants but are set at a raw level (and passed to/from the validation callbacks)
  * as strings. There are also convenience functions to get or set the value of a ConVar as a bool, int or float - these will return
- * false or 0 respectively if the value cannot be converted.
- *
- * @note If min/max values are set on a ConVar, attempting to set a string value which cannot be cast to a numerical value will fail.
+ * false or 0 respectively if the value cannot be converted.<br/><br/>
+ * If min or max values are set on a ConVar, set values will be clamped between the respective min or max. Integers will always be clamped
+ * to the nearest whole number either above the min or below the max; if this is not possible (ie. the bounds are too close together),
+ * the operation will fail. Boolean values are set as integers (and so also conform to this rule) - a value of zero is false and any other
+ * value represents true. If a string value is set when a variable has a min or max value, the operation will fail if the string cannot be
+ * converted to a float value; if it can, the float clamping rules will apply. 
  */
 class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 {
     Q_OBJECT
     
+    /** @property stringValue
+     * @brief Variable's value as a string.
+     * @accessors stringValue(), setValue()
+     */
     Q_PROPERTY(QString stringValue READ stringValue WRITE setValue)
+    
+    /** @property boolValue
+     * @brief Variable's value as a boolean.
+     * @accessors boolValue(), setValue()
+     */
     Q_PROPERTY(bool boolValue READ boolValue WRITE setValue)
+    
+    /** @property intValue
+     * @brief Variable's value as an int.
+     * @accessors intValue(), setValue()
+     */
     Q_PROPERTY(int intValue READ intValue WRITE setValue)
+    
+    /** @property floatValue
+     * @brief Variable's value as a float.
+     * @accessors floatValue(), setValue()
+     */
     Q_PROPERTY(float floatValue READ floatValue WRITE setValue)
 public:
     /**
@@ -101,31 +123,17 @@ public:
     NGlobalCmd::VarCallback getCallback() const;
     
     /**
-     * @brief Gets the raw string value of the variable.
-     * @return Current string value.
-     */
-    QString get() const;
-    
-    /**
-     * @brief Sets the raw string value of the variable.
-     * @param value Value to set.
-     * @return Eventual value that was set (variable change callback may have modified the input value).
-     */
-    QString set(const QString &value);
-    
-    /**
-     * @brief Sets the raw string value of the variable
-     * @param info Specifies a CommandSenderInfo in case the variable callback wishes to print output.
-     * @param value Value to set.
-     * @return Eventual value that was set (variable change callback may have modified the input value).
-     */
-    QString set(const CommandSenderInfo &info, const QString &value);
-    
-    /**
      * @brief Returns whether or not this variable has a min value.
      * @return True if the variable has a min value, false otherwise.
      */
     bool hasMin() const;
+    
+    /**
+     * @brief The minimum value of this variable.
+     * @note Integer/boolean values will always be clamped to values above this.
+     * @warning If hasMin() is false, the value this function returns is undefined.
+     * @return Minimum value of the variable.
+     */
     float getMin() const;
     void setMin(float value);
     bool hasMax() const;
@@ -152,6 +160,10 @@ private:
     void validateBounds(float &min, float &max);
     float clamp(float value);
     int clamp(int value);
+    bool canSetInt();
+    QString get() const;
+    QString set(const QString &value);
+    QString set(const CommandSenderInfo &info, const QString &value);
     
     NGlobalCmd::VarCallback     m_pVarCallback;
     QVariant                    m_Variable;

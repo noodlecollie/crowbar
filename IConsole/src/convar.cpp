@@ -1,4 +1,5 @@
 #include "wr_convar.h"
+#include <qmath.h>
 
 ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags,
                bool hasMin, float min, bool hasMax, float max, QObject *parent) :
@@ -48,22 +49,23 @@ QString ConVar::set(const CommandSenderInfo &info, const QString &value)
 
     QString toSet = value;
     
-    // If we have a min or max, we should validate the string's numerical value.
-    if ( hasMin() || hasMax() )
-    {
-        // Check whether the string can be cast numerically. If not, we shouldn't accept it.
-        bool success;
-        float cast = toSet.toFloat(&success);
+    // This should be done individually - different types have different clamping rules.
+//    // If we have a min or max, we should validate the string's numerical value.
+//    if ( hasMin() || hasMax() )
+//    {
+//        // Check whether the string can be cast numerically. If not, we shouldn't accept it.
+//        bool success;
+//        float cast = toSet.toFloat(&success);
         
-        // Couldn't cast
-        if ( !success )
-        {
-            return m_Variable.toString();
-        }
+//        // Couldn't cast
+//        if ( !success )
+//        {
+//            return m_Variable.toString();
+//        }
         
-        // Ensure our value is clamped.
-        toSet = QString::number(clamp(cast));
-    }
+//        // Ensure our value is clamped.
+//        toSet = QString::number(clamp(cast));
+//    }
 
     // Call our callback (if it exists) before setting the eventual value.
     // The callback is allowed to set a value not between the min/max (though this
@@ -151,12 +153,29 @@ QString ConVar::stringValue() const
 
 QString ConVar::setValue(const QString &val)
 {
+    // If we have a min or max, we should validate the string's numerical value.
+    if ( hasMin() || hasMax() )
+    {
+        // Check whether the string can be cast numerically. If not, we shouldn't accept it.
+        bool success;
+        float cast = val.toFloat(&success);
+        
+        // Couldn't cast
+        if ( !success )
+        {
+            return m_Variable.toString();
+        }
+        
+        // Ensure our value is clamped.
+        toSet = QString::number(clamp(cast));
+    }
+    
     return set(val);
 }
 
 QString ConVar::setValue(const char *val)
 {
-    return set(val);
+    return setValue(QString(val));
 }
 
 int ConVar::intValue() const
@@ -166,8 +185,11 @@ int ConVar::intValue() const
 
 int ConVar::setValue(int val)
 {
-    // Clamping is done in set().
-    //val = clamp(val);
+    // Check there is at least one integer value between the min and max - if not, return.
+    if ( !canSetInt() ) return intValue();
+    
+    // Clamp the value.
+    val = clamp(val);
     
     return set(QString::number(val)).toInt();
 }
@@ -179,8 +201,8 @@ float ConVar::floatValue() const
 
 float ConVar::setValue(float val)
 {
-    // Clamping is done in set().
-    //val = clamp(val);
+    // Clamp the value.
+    val = clamp(val);
     
     return set(QString::number(val)).toFloat();
 }
@@ -192,6 +214,9 @@ bool ConVar::boolValue() const
 
 bool ConVar::setValue(bool val)
 {
+    // Check there is at least one integer value between the min and max, since we set bools as ints.
+    if ( !canSetInt() ) return boolValue;
+    
     // Anything other than zero should be true!
     return (set(QString::number(val)).toInt() != 0);
 }
@@ -212,9 +237,8 @@ float ConVar::clamp(float value)
 int ConVar::clamp(int value)
 {
     // Make sure the integer is inside our bounds.
-    // Straight int cast just truncates AFAIK.
-    if ( hasMax() && (float)value > getMax() ) value = (int)getMax();
-    else if ( hasMin() && (float)value < getMin() ) value = 1 + (int)getMin();
+    if ( hasMax() && value > qFloor(getMax()) ) value = qFloor(getMax());
+    else if ( hasMin() && value < qCeil(getMin()) ) value = qCeil(getMin());
     
     return value;
 }
@@ -254,4 +278,21 @@ void ConVar::toggleFlag(NGlobalCmd::CMDFLAGS flag)
     
     // Call base function.
     ListedConsoleCommand::toggleFlag(flag);
+}
+
+bool ConVar::canSetInt()
+{
+    // We don't have one or the other bound, return true.
+    if ( !hasMax() || !hasMin() ) return true;
+    
+    // We have a min and a max.
+    // If there is no integer number between the bounds (eg 1.7-1.8), we cannot set an integer.
+    // This check, however, is not simply whether max-min >= 1, since there is an integer value between the bounds 1.9 and 2.1.
+    
+    // If the first integer above the min is below the max, there is space to set a clamped int.
+    // The converse is also true, but will be captured by this statement as well.
+    if ( qCeil(getMin) <= qFloor(getMax()) ) return true;
+    
+    // Otherwise there is no space between the bounds in which to set a clamped int, so return false.
+    else return false;
 }
