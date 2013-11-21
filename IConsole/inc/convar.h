@@ -30,11 +30,14 @@ class CommandSenderInfo;
  * Values are stored physically in the ConVar as QVariants but are set at a raw level (and passed to/from the validation callbacks)
  * as strings. There are also convenience functions to get or set the value of a ConVar as a bool, int or float - these will return
  * false or 0 respectively if the value cannot be converted.<br/><br/>
- * If min or max values are set on a ConVar, set values will be clamped between the respective min or max. Integers will always be clamped
- * to the nearest whole number either above the min or below the max; if this is not possible (ie. the bounds are too close together),
- * the operation will fail. Boolean values are set as integers (and so also conform to this rule) - a value of zero is false and any other
- * value represents true. If a string value is set when a variable has a min or max value, the operation will fail if the string cannot be
- * converted to a float value; if it can, the float clamping rules will apply. 
+ * Variable clamping is performed in two ways - for floats, the value is set to be either the min or max value if it exceeds these bounds.
+ * Integer values are instead set to the nearest integer inside the relevant bound.
+ * Setting a min or max value on a ConVar will result in the stored value being immediately clamped by the float clamping rules if it is
+ * outside the new bound. If min or max values exist when setting a value, the value will also immediately be clamped between the respective
+ * min or max. If it is not possible to clamp when setting an integer (ie. the bounds are too close together), the operation will fail.
+ * Boolean values are set as integers (and so also conform to this rule) - a value of zero is false and any other value represents true.
+ * If a string value is set when a variable has a min or max value, the operation will fail if the string cannot be converted to a float
+ * value; if it can, the float clamping rules will apply. 
  */
 class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
 {
@@ -63,6 +66,42 @@ class ICONSOLESHARED_EXPORT ConVar : public ListedConsoleCommand
      * @accessors floatValue(), setValue()
      */
     Q_PROPERTY(float floatValue READ floatValue WRITE setValue)
+    
+    /** @property hasMin
+     * @brief Whether the variable has a minimum value.
+     * @accessors hasMin(), setHasMin()
+     */
+    Q_PROPERTY(bool hasMin READ hasMin WRITE setHasMin)
+    
+    /** @property hasMax
+     * @brief Whether the variable has a maximum value.
+     * @accessors hasMax(), setHasMax()
+     */
+    Q_PROPERTY(bool hasMax READ hasMax WRITE setHasMax)
+    
+    /** @property maxValue
+     * @brief Maximum value allowed for the variable. Only valid if hasMax() is true.
+     * @accessors maxValue(), setMaxValue()
+     */
+    Q_PROPERTY(float maxValue READ maxValue WRITE setMaxValue)
+    
+    /** @property minValue
+     * @brief Minimum value allowed for the variable. Only valid if hasMin() is true.
+     * @accessors minValue(), setMinValue()
+     */
+    Q_PROPERTY(float minValue READ minValue WRITE setMinValue)
+    
+    /** @property defaultValue
+     * @brief Default value for the variable.
+     * @accessors defaultValue(), setDefaultValue()
+     */
+    Q_PROPERTY(QString defaultValue READ defaultValue)
+    
+    /** @property canSetInt
+     * @brief Whether the bounds of the variable have enough space between them for integer values to be set.
+     * @accessors canSetInt()
+     */
+    Q_PROPERTY(bool canSetInt READ canSetInt)
 public:
     /**
      * @brief Constructor.
@@ -129,28 +168,46 @@ public:
     bool hasMin() const;
     
     /**
+     * @brief Sets whether this variable has a minimum value.
+     * @note If true is passed and the current value is less than the min, it will
+     * be clamped according to the float clamping rules.
+     * @param b True if variable should have minimum value, false otherwise.
+     */
+    void setHasMin(bool b);
+    
+    /**
      * @brief The minimum value of this variable.
      * @note Integer/boolean values will always be clamped to values above this.
      * @warning If hasMin() is false, the value this function returns is undefined.
      * @return Minimum value of the variable.
      */
-    float getMin() const;
-    void setMin(float value);
+    float minValue() const;
+    void setMinValue(float value);
     bool hasMax() const;
-    float getMax() const;
-    void setMax(float value);
-    QString getDefault() const;
+    void setHasMax(bool b);
+    float maxValue() const;
+    void setMaxValue(float value);
+    QString defaultValue() const;
     void setToDefault();
     
     QString stringValue() const;
     QString setValue(const QString &val);
     QString setValue(const char* val);
+    QString setValue(const CommandSenderInfo &info, const QString &val);
+    
     int intValue() const;
     int setValue(int val);
+    int setValue(CommandSenderInfo &info, int val);
+    
     float floatValue() const;
     float setValue(float val);
+    float setValue(CommandSenderInfo &info, float val);
+    
     bool boolValue() const;
     bool setValue(bool val);
+    bool setValue(CommandSenderInfo &info, bool val);
+    
+    bool canSetInt() const;
     
     virtual void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
     virtual void setFlag(NGlobalCmd::CMDFLAGS flag);
@@ -158,9 +215,8 @@ public:
     
 private:
     void validateBounds(float &min, float &max);
-    float clamp(float value);
-    int clamp(int value);
-    bool canSetInt();
+    float clamp(float value) const;
+    int clamp(int value) const;
     QString get() const;
     QString set(const QString &value);
     QString set(const CommandSenderInfo &info, const QString &value);

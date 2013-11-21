@@ -15,6 +15,7 @@
 #include "wr_listedcommandmanager.h"
 #include "wr_commandinterpreter.h"
 #include "consolewindow.h"
+#include "nglobalcmd.h"
 
 #define LOG_QDEBUG_TAG      " Q "
 #define LOG_QWARNING_TAG    " Q!"
@@ -32,6 +33,8 @@ DEFINE_CONVAR(test_var_2, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
 DEFINE_CONVAR(test_var_3, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
 DEFINE_CONVAR(test_var_4, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
 DEFINE_CONVAR(test_var_5, "0", NULL, "Test var", 0, false, 0.0, false, 0.0)
+
+ConVar breakVar("break_var", "0", NULL, "Will hopefully cause an assertion failure", 0);
 
 int main(int argc, char **argv)
 {
@@ -108,6 +111,8 @@ void shutdownSystems()
 
 void debugTests()
 {
+    qDebug("Setting callback flag...");
+    breakVar.setFlag(NGlobalCmd::CMDFLAG_ENSURECALLBACK);
 }
 
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg)

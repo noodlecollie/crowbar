@@ -165,15 +165,15 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             // Get or set the variable.
             if ( args.count() < 1 )     // Get
             {
-                output.setValue(var->get());
+                output.setValue(var->stringValue());
                 
                 // Send an output signal with the value.
-                warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->name()).arg(output.toString()).arg(var->getDefault()));
+                warning(QString("\"%0\" = \"%1\" (def. \"%2\")\n").arg(var->name()).arg(output.toString()).arg(var->defaultValue()));
                 message(QString("- %0\n").arg(var->description()));
             }
             else                        // Set
             {
-                output.setValue(var->set(info, args.at(0)));
+                output.setValue(var->setValue(info, args.at(0)));
             }
             
             return NGlobalCmd::CIVariable;
