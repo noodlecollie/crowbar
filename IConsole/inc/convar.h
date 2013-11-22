@@ -175,6 +175,8 @@ public:
      */
     void setHasMin(bool b);
     
+    void setHasMin(CommandSenderInfo &info, bool b);
+    
     /**
      * @brief The minimum value of this variable.
      * @note Integer/boolean values will always be clamped to values above this.
@@ -183,10 +185,13 @@ public:
      */
     float minValue() const;
     void setMinValue(float value);
+    void setMinValue(CommandSenderInfo &info, float value);
     bool hasMax() const;
     void setHasMax(bool b);
+    void setHasMax(CommandSenderInfo &info, bool b);
     float maxValue() const;
     void setMaxValue(float value);
+    void setMaxValue(CommandSenderInfo &info, float value);
     QString defaultValue() const;
     void setToDefault();
     
