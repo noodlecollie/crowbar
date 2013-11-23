@@ -2,6 +2,11 @@
  * \brief Defines some global properties for the library.
  */
 
+/**
+ * \defgroup IConsole IConsole library
+ * @{
+ */
+
 #ifndef ICONSOLE_GLOBAL_H
 #define ICONSOLE_GLOBAL_H
 
@@ -17,3 +22,5 @@
 #endif
 
 #endif // ICONSOLE_GLOBAL_H
+
+/**@}*/

@@ -1,7 +1,18 @@
+/** \file nregexutil.h
+ * \brief Defines useful QRegularExpression objects.
+ */
+
+/**
+ * \defgroup IConsole IConsole library
+ * @{
+ */
+
 #ifndef NREGEXUTIL_H
 #define NREGEXUTIL_H
 
 class QString;
+
+// TODO: Put this into its own library!
 
 namespace RegexUtil
 {
@@ -65,3 +76,5 @@ namespace RegexUtil
 }
 
 #endif // NREGEXUTIL_H
+
+/**@}*/

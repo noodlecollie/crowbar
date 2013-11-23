@@ -63,9 +63,9 @@ class CommandManager;
 class ICONSOLESHARED_EXPORT CommandInterpreter : public QObject
 {
     Q_OBJECT
-    /** @property iconConCommand
-     * @brief Path to icon to display for a ConCommand suggestion entry.
-     * @accessors iconConCommand(), setIconConCommand(), resetIconConCommand(), iconConCommandChanged()
+    /** @property commandManager
+     * @brief Command manager the interpreter is linked to.
+     * @accessors commandManager(), setCommandManager()
      */
     Q_PROPERTY(CommandManager* commandManager READ commandManager WRITE setCommandManager)
 public:

@@ -89,8 +89,22 @@ public:
      */
     void setExec(NGlobalCmd::CmdCallback cmd);
     
+    /**
+     * @brief Overwrites all flags on the command.
+     * @param flags Integer containing the exact state of all flags to set.
+     */
     virtual void setFlagsRaw(NGlobalCmd::CMDFLAGS flags);
+    
+    /**
+     * @brief Sets the given flag(s) on the command.
+     * @param flag Flag(s) to set.
+     */
     virtual void setFlag(NGlobalCmd::CMDFLAGS flag);
+    
+    /**
+     * @brief Toggles the given flag(s) on the command.
+     * @param flag Flag(s) to toggle.
+     */
     virtual void toggleFlag(NGlobalCmd::CMDFLAGS flag);
     
 signals:

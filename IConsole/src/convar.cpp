@@ -114,6 +114,14 @@ float ConVar::maxValue() const
 
 void ConVar::setMinValue(float value)
 {
+    setMinValue(NULL_SENDER_INFO, value);
+}
+
+void ConVar::setMinValue(CommandSenderInfo &, float value)
+{
+    // Don't set if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return;
+    
     // Set the value.
     m_flMinVal = value;
     validateBounds(m_flMinVal, m_flMaxVal);
@@ -127,6 +135,14 @@ void ConVar::setMinValue(float value)
 
 void ConVar::setMaxValue(float value)
 {
+    setMaxValue(NULL_SENDER_INFO, value);
+}
+
+void ConVar::setMaxValue(CommandSenderInfo &, float value)
+{
+    // Don't set if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return;
+    
     // Set the value.
     m_flMaxVal = value;
     validateBounds(m_flMinVal, m_flMaxVal);
@@ -145,6 +161,9 @@ QString ConVar::defaultValue() const
 
 void ConVar::setToDefault()
 {
+    // Don't set if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return;
+    
     set(defaultValue());
 }
 
@@ -209,7 +228,7 @@ QString ConVar::setValue(const CommandSenderInfo &info, const QString &val)
 int ConVar::intValue() const
 {
     Q_ASSERT_X(canSetInt(), "ConVar::intValue()", "Min and max bounds are too close together to allow an integer value, returned value is unreliable.");
-    info.writeWarning(name() + ": Min and max bounds are too close together to allow an integer value, returned value is unreliable.");
+    //info.writeWarning(name() + ": Min and max bounds are too close together to allow an integer value, returned value is unreliable.");
     
     return get().toInt();
 }
@@ -280,6 +299,14 @@ bool ConVar::setValue(CommandSenderInfo &info, bool val)
 
 void ConVar::setHasMin(bool b)
 {
+    setHasMin(NULL_SENDER_INFO, b);
+}
+
+void ConVar::setHasMin(CommandSenderInfo &, bool b)
+{
+    // Don't set if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return;
+    
     // Set the min.
     m_bHasMin = b;
     if ( !hasMin() && !hasMax() ) return;
@@ -293,6 +320,14 @@ void ConVar::setHasMin(bool b)
 
 void ConVar::setHasMax(bool b)
 {
+    setHasMax(NULL_SENDER_INFO, b);
+}
+
+void ConVar::setHasMax(CommandSenderInfo &, bool b)
+{
+    // Don't set if we are read-only.
+    if ( flagSet(NGlobalCmd::CMDFLAG_READONLY) ) return;
+    
     // Set the max.
     m_bHasMax = b;
     if ( !hasMin() && !hasMax() ) return;
@@ -332,7 +367,8 @@ void ConVar::setFlagsRaw(NGlobalCmd::CMDFLAGS flags)
     {
         // Ensure callback is not null.
         Q_ASSERT_X(m_pVarCallback, "ConVar::setFlagsRaw()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
-        info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        //info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        return;
     }
     
     // Call base function.
@@ -345,7 +381,8 @@ void ConVar::setFlag(NGlobalCmd::CMDFLAGS flag)
     {
         // Ensure callback is not null.
         Q_ASSERT_X(m_pVarCallback, "ConVar::setFlag()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
-        info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        //info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        return;
     }
     
     // Call base function.
@@ -359,7 +396,8 @@ void ConVar::toggleFlag(NGlobalCmd::CMDFLAGS flag)
     {
         // Ensure callback is not null.
         Q_ASSERT_X(m_pVarCallback, "ConVar::toggleFlag()", "CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
-        info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        //info.writeWarning(name() + ": CMDFLAG_ENSURECALLBACK requires variable to have a callback.");
+        return;
     }
     
     // Call base function.

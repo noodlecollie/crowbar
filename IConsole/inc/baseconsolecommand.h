@@ -36,12 +36,6 @@ class ICONSOLESHARED_EXPORT BaseConsoleCommand : public QObject
      * @accessors description()
      */
     Q_PROPERTY(QString description READ description)
-    
-//    /** @property flagsRaw
-//     * @brief Raw collection of command flags.
-//     * @accessors flagsRaw(), setFlagsRaw()
-//     */
-//    Q_PROPERTY(NGlobalCmd::CMDFLAGS flagsRaw READ flagsRaw WRITE setFlagsRaw)
 public:
     /**
      * @brief Constructor

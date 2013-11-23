@@ -22,6 +22,7 @@ class CommandManager;
 class ICONSOLESHARED_EXPORT CommandSenderInfo : public QObject
 {
     Q_OBJECT
+    Q_ENUMS(OutputType)
     
     /** @property outputCallback
      * @brief Callback to send output through.
