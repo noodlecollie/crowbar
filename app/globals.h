@@ -19,8 +19,27 @@
 
 // See globals.cpp for implementations.
 
+//! \def DEFINE_CONVAR
+//! \brief Macro for defining a ConVar with the default command manager and list.
+//! \param szName_NoQuote Desired name of the ConVar, without quotes.
+//! \param szDefVal Default value of the ConVar.
+//! \param pCallback Optional callback (pass NULL if not needed).
+//! \param szDesc Description of ConVar.
+//! \param iFlags ConVar flags.
+//! \param bMin Whether the ConVar has a min bound.
+//! \param flMin Min value of the ConVar. If \a bMin is false, this value can be arbitrary.
+//! \param bMax Whether the ConVar has a max bound.
+//! \param flMax Max value of the ConVar. If \a bMax is false, this value can be arbitrary.
+
 #define DEFINE_CONVAR( szName_NoQuote, szDefVal, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax) \
 ConVar szName_NoQuote(#szName_NoQuote, szDefVal, g_pCommandManager, &g_pCommandList, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax);
+
+//! \def DEFINE_CONCOMMAND
+//! \brief Macro for defining a ConCommand with the default command manager and list.
+//! \param szName_NoQuote Desired name of the ConVar, without quotes.
+//! \param pCallback Pointer to callback.
+//! \param szDesc Description of ConVar.
+//! \param iFlags ConVar flags.
 
 #define DEFINE_CONCOMMAND( szName_NoQuote, pCallback, szDesc, iFlags ) \
 ConCommand szName_NoQuote(#szName_NoQuote, pCallback, g_pCommandManager, &g_pCommandList, szDesc, iFlags);

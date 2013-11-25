@@ -145,16 +145,62 @@ public:
      */
     void setCommandManager(CommandManager* manager);
     
+    /**
+     * @brief Returns whether the variable has a min value.
+     * @note Only relevant for ConVar callbacks. Informational only.
+     * @return True if the variable has a min value, false otherwise.
+     */
     bool hasMin() const;
+    
+    /**
+     * @brief Sets whether the variable has a min value.
+     * @note Only relevant for ConVar callbacks. This is informational only and has no effect on the actual variable.
+     * @param b True if the variable should have a min value, false otherwise.
+     */
     void setHasMin(bool b);
     
+    /**
+     * @brief Returns whether the variable has a max value.
+     * @note Only relevant for ConVar callbacks. Informational only.
+     * @return True if the variable has a max value, false otherwise.
+     */
     bool hasMax() const;
+    
+    /**
+     * @brief Sets whether the variable has a max value.
+     * @note Only relevant for ConVar callbacks. This is informational only and has no effect on the actual variable.
+     * @param b True if the variable should have a max value, false otherwise.
+     */
     void setHasMax(bool b);
     
+    /**
+     * @brief Gets the variable's min value.
+     * @note Only relevant for ConVar callbacks. Informational only.
+     * @warning If the variable does not have a minimum value, the return of this function is undefined.
+     * @return Minimum value of the variable.
+     */
     float minValue() const;
+    
+    /**
+     * @brief Sets the variable's min value.
+     * @note Only relevant for ConVar callbacks. This is informational only and has no effect on the actual variable.
+     * @param val Value of the min bound.
+     */
     void setMinValue(float val);
     
+    /**
+     * @brief Gets the variable's max value.
+     * @note Only relevant for ConVar callbacks. Informational only.
+     * @warning If the variable does not have a maximum value, the return of this function is undefined.
+     * @return Maximum value of the variable.
+     */
     float maxValue() const;
+    
+    /**
+     * @brief Sets the variable's max value.
+     * @note Only relevant for ConVar callbacks.This is informational only and has no effect on the actual variable.
+     * @param val Value of the max bound.
+     */
     void setMaxValue(float val);
     
 signals:
@@ -166,10 +212,10 @@ private:
     CommandManager* m_pManager;         /**< Manager we are assigned to.  */
     SendOutput      m_pOutput;          /**< Pointer to output callback. */
     QString         m_NameOfCommand;    /**< Name of command we have been assigned to. */
-    bool            m_bHasMin;
-    float           m_flMinValue;
-    bool            m_bHasMax;
-    float           m_flMaxValue;
+    bool            m_bHasMin;          /**< Whether the ConVar we are linked to has a min value. */
+    float           m_flMinValue;       /**< Value of the min bound if it exists. */
+    bool            m_bHasMax;          /**< Whether the ConVar we are linked to has a max value. */
+    float           m_flMaxValue;       /**< Value of the max bound if it exists. */
 };
 
 #endif // COMMANDSENDERINFO_H
