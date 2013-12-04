@@ -1,0 +1,952 @@
+\hypertarget{class_con_var}{\section{Con\-Var Class Reference}
+\label{class_con_var}\index{Con\-Var@{Con\-Var}}
+}
+
+
+Stores values that are retrievable and settable by the user (from the console) or by the application (via code).  
+
+
+
+
+{\ttfamily \#include $<$convar.\-h$>$}
+
+
+
+Inheritance diagram for Con\-Var\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_var__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Con\-Var\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_var__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_con_var_ac437fec999dde2751271c7c1e400d89d}{Con\-Var} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, const Q\-String \&def, N\-Global\-Cmd\-::\-Var\-Callback callback=N\-U\-L\-L, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, bool \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min}=false, float min=0.\-0, bool \hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max}=false, float max=0.\-0, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_con_var_a6755a812d1e97a6524c26a703e480359}{Con\-Var} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, const Q\-String \&def, \hyperlink{class_command_manager}{Command\-Manager} $\ast$manager, \hyperlink{class_listed_console_command}{Listed\-Console\-Command} $\ast$$\ast$list, N\-Global\-Cmd\-::\-Var\-Callback callback=N\-U\-L\-L, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, bool \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min}=false, float min=0.\-0f, bool has\-Max=false, float max=0.\-0f, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_con_var_ae903ce87b0937b4fe2e1c731783370ff}{virtual \hyperlink{class_con_var_ae903ce87b0937b4fe2e1c731783370ff}{$\sim$\-Con\-Var} ()}\label{class_con_var_ae903ce87b0937b4fe2e1c731783370ff}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual N\-Global\-Cmd\-::\-Cmd\-Ident \hyperlink{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}{identify} () const 
+\begin{DoxyCompactList}\small\item\em Returns the identifier for this command. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a7521050905d25ae719fc4e97924047ea}{set\-Callback} (N\-Global\-Cmd\-::\-Var\-Callback callback)
+\begin{DoxyCompactList}\small\item\em Sets the variable change callback. \end{DoxyCompactList}\item 
+N\-Global\-Cmd\-::\-Var\-Callback \hyperlink{class_con_var_a01a4f437684d3120d5a510b821b35f60}{get\-Callback} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current variable change callback. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_abbd3524ea974888b57f1b8d96dbdb66b}{has\-Min} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether or not this variable has a min value. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a01174fcd55542e8aae24bb8af63bff8e}{set\-Has\-Min} (bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether this variable has a minimum value. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a6e2c60d93fbaaf01560cf68bf0524c4b}{set\-Has\-Min} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether this variable has a minimum value. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_a7ff718a682ecd1f92539a8d4d4c478ac}{min\-Value} () const 
+\begin{DoxyCompactList}\small\item\em The minimum value of this variable. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a9379b560e93785245e941f35df3c56e5}{set\-Min\-Value} (float value)
+\begin{DoxyCompactList}\small\item\em Sets the minimum value allowed for this variable. The current value is clamped (as a float) if necessary. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_aa282144e7b6b81dc0ea94f0c4e78214e}{set\-Min\-Value} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, float value)
+\begin{DoxyCompactList}\small\item\em Sets the minimum value allowed for this variable. The current value is clamped (as a float) if necessary. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a68f039f62cbff56805cfc446fae33afd}{has\-Max} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether or not this variable has a max value. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a2bfda3901b996901e53c9a9197fd817d}{set\-Has\-Max} (bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether this variable has a maximum value. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a5cdfdc995447dd20aabda54af6cfb37e}{set\-Has\-Max} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether this variable has a maximum value. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_ab471739913a9e1a285d28d5f0523206a}{max\-Value} () const 
+\begin{DoxyCompactList}\small\item\em The maximum value of this variable. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_accd05b21f91b58de63554935dd51df7a}{set\-Max\-Value} (float value)
+\begin{DoxyCompactList}\small\item\em Sets the maximum value allowed for this variable. The current value is clamped (as a float) if necessary. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_var_a888be5fc32df2ae8c28cbfbe8cdc4cb8}{set\-Max\-Value} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, float value)
+\begin{DoxyCompactList}\small\item\em Sets the maximum value allowed for this variable. The current value is clamped (as a float) if necessary. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_a9b2d1363c0d9455fa35605bd555c1d9e}{default\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Returns the default value of this variable. \end{DoxyCompactList}\item 
+\hypertarget{class_con_var_a64a961b8a329ae1da039d90e37902b69}{void \hyperlink{class_con_var_a64a961b8a329ae1da039d90e37902b69}{set\-To\-Default} ()}\label{class_con_var_a64a961b8a329ae1da039d90e37902b69}
+
+\begin{DoxyCompactList}\small\item\em Sets the variable to its default value. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_a4c695572863c6f17ea0b7afe72373404}{string\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the value of the variable as a string. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{set\-Value} (const Q\-String \&val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a string. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_abd2daa3a4639d78df9b8a1d5aab3eb48}{set\-Value} (const char $\ast$val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a string. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_abc13cb366963b4589ae110fcee845374}{set\-Value} (const \hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, const Q\-String \&val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a string. \end{DoxyCompactList}\item 
+int \hyperlink{class_con_var_a81d5b979e23aba488e908089a86cb909}{int\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the value of the variable as an integer. \end{DoxyCompactList}\item 
+int \hyperlink{class_con_var_ac397b3e4935d515533ad2331a9548db5}{set\-Value} (int val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as an integer. \end{DoxyCompactList}\item 
+int \hyperlink{class_con_var_a2e66bffaa4d5e254f5b2bb17384bd346}{set\-Value} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, int val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as an integer. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_a03abad95ed4b10c3a4e9335f3b1907e5}{float\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the value of the variable as a float. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_ab34af2465c1dc9759ed2f469a89f9f93}{set\-Value} (float val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a float. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_ad3adc3f712e2594d33ad34dfe785d387}{set\-Value} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, float val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a float. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a191b4d80fbe76e8e1a03fd660236fd24}{bool\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the value of the variable as a boolean. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a8dfb9d5c094bb4815a58fc23aa44f869}{set\-Value} (bool val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a boolean. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a186fc5371b3a22dd905975b88bdc3edb}{set\-Value} (\hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, bool val)
+\begin{DoxyCompactList}\small\item\em Sets the value of the variable as a boolean. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_af13ded23be8ab55c52e39b679b9bda8b}{can\-Set\-Int} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the range between the variable's min and max values permits integer values to be set. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_var_af64d152bd5371b964b06795ef6532f76}{set\-Flags\-Raw} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags)
+\begin{DoxyCompactList}\small\item\em Overwrites all flags on the command. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_var_a3603e63a9f9798e0009e3e58edcfd277}{set\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Sets the given flag(s) on the command. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_var_aadc6d792abbb1e4b431611d20b8db595}{toggle\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Toggles the given flag(s) on the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_con_var_aa4e598b04548ba7f296a2fbe77e13e4d}{string\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's value as a string. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a9c926cb65abe64fc9da4eb22d128d635}{bool\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's value as a boolean. \end{DoxyCompactList}\item 
+int \hyperlink{class_con_var_a41c1d7b9907c288d9a3fd27208c14905}{int\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's value as an int. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_a5f274e561a3ee35dd2d67341be4def6f}{float\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's value as a float. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min}
+\begin{DoxyCompactList}\small\item\em Whether the variable has a minimum value. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max}
+\begin{DoxyCompactList}\small\item\em Whether the variable has a maximum value. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_a1c7d02c351c6fe7e9eae58fa65ef0ae4}{max\-Value}
+\begin{DoxyCompactList}\small\item\em Maximum value allowed for the variable. Only valid if \hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max()} is true. \end{DoxyCompactList}\item 
+float \hyperlink{class_con_var_a6c1a10a39a46f2dcb03a0a2c8d840e7a}{min\-Value}
+\begin{DoxyCompactList}\small\item\em Minimum value allowed for the variable. Only valid if \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min()} is true. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_con_var_a6c9dacfaf9130a2d3f971f8b67af3dfc}{default\-Value}
+\begin{DoxyCompactList}\small\item\em Default value for the variable. \end{DoxyCompactList}\item 
+bool \hyperlink{class_con_var_a9fe17f8e6afc6b9fa6b69136b51b070f}{can\-Set\-Int}
+\begin{DoxyCompactList}\small\item\em Whether the bounds of the variable have enough space between them for integer values to be set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stores values that are retrievable and settable by the user (from the console) or by the application (via code). 
+
+Con\-Vars work almost exactly the same way as in the Source engine\-: specifying a variable name in the console followed by a value will set the variable to that value, and just specifying the name on its own will print the current value of the variable to the console. Variables can also contain optional callback pointers which are run just before the variable's value is changed; the proposed input value can be modified/validated by the callback before it is physically set. Note that the callback is also called on \hyperlink{class_con_var_a64a961b8a329ae1da039d90e37902b69}{set\-To\-Default()}.\par
+\par
+ Values are stored physically in the \hyperlink{class_con_var}{Con\-Var} as Q\-Variants but are set at a raw level (and passed to/from the validation callbacks) as strings. There are also convenience functions to get or set the value of a \hyperlink{class_con_var}{Con\-Var} as a bool, int or float -\/ these will return false or 0 respectively if the value cannot be converted.\par
+\par
+ Variable clamping is performed in two ways -\/ for floats, the value is set to be either the min or max value if it exceeds these bounds. Integer values are instead set to the nearest integer inside the relevant bound. Setting a min or max value on a \hyperlink{class_con_var}{Con\-Var} will result in the stored value being immediately clamped by the float clamping rules if it is outside the new bound. If min or max values exist when setting a value, the value will also immediately be clamped between the respective min or max. If it is not possible to clamp when setting an integer (ie. the bounds are too close together), the operation will fail. Boolean values are set as integers (and so also conform to this rule) -\/ a value of zero is false and any other value represents true. If a string value is set when a variable has a min or max value, the operation will fail if the string cannot be converted to a float value; if it can, the float clamping rules will apply. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_con_var_ac437fec999dde2751271c7c1e400d89d}{\index{Con\-Var@{Con\-Var}!Con\-Var@{Con\-Var}}
+\index{Con\-Var@{Con\-Var}!ConVar@{Con\-Var}}
+\subsubsection[{Con\-Var}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Var\-::\-Con\-Var (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{name, }
+\item[{const Q\-String \&}]{def, }
+\item[{N\-Global\-Cmd\-::\-Var\-Callback}]{callback = {\ttfamily NULL}, }
+\item[{const Q\-String \&}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags = {\ttfamily 0}, }
+\item[{bool}]{has\-Min = {\ttfamily false}, }
+\item[{float}]{min = {\ttfamily 0.0}, }
+\item[{bool}]{has\-Max = {\ttfamily false}, }
+\item[{float}]{max = {\ttfamily 0.0}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_con_var_ac437fec999dde2751271c7c1e400d89d}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the variable. \\
+\hline
+{\em def} & Default value of the variable. \\
+\hline
+{\em callback} & Optional callback pointer to be run just before the variable's value is changed. \\
+\hline
+{\em desc} & Optional description of the variable. \\
+\hline
+{\em flags} & Variable flags. \\
+\hline
+{\em has\-Min} & True if the variable should have a minimum value. Numerical values outside this range are clamped. \\
+\hline
+{\em min} & Minimum value for the variable. \\
+\hline
+{\em has\-Max} & True if the variable should have a maximum value. Numerical values outside this range are clamped. \\
+\hline
+{\em max} & Maximum value for the variable. \\
+\hline
+{\em parent} & Parent Q\-Object, if applicable. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a6755a812d1e97a6524c26a703e480359}{\index{Con\-Var@{Con\-Var}!Con\-Var@{Con\-Var}}
+\index{Con\-Var@{Con\-Var}!ConVar@{Con\-Var}}
+\subsubsection[{Con\-Var}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Var\-::\-Con\-Var (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{name, }
+\item[{const Q\-String \&}]{def, }
+\item[{{\bf Command\-Manager} $\ast$}]{manager, }
+\item[{{\bf Listed\-Console\-Command} $\ast$$\ast$}]{list, }
+\item[{N\-Global\-Cmd\-::\-Var\-Callback}]{callback = {\ttfamily NULL}, }
+\item[{const Q\-String \&}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags = {\ttfamily 0}, }
+\item[{bool}]{has\-Min = {\ttfamily false}, }
+\item[{float}]{min = {\ttfamily 0.0f}, }
+\item[{bool}]{has\-Max = {\ttfamily false}, }
+\item[{float}]{max = {\ttfamily 0.0f}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_con_var_a6755a812d1e97a6524c26a703e480359}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the variable. \\
+\hline
+{\em def} & Default value of the variable. \\
+\hline
+{\em manager} & Manager to attempt to register to when this variable is constructed. \\
+\hline
+{\em list} & If the variable could not register with the manager, it attaches itself to this list instead. \\
+\hline
+{\em callback} & Optional callback pointer to be run just before the variable's value is changed. \\
+\hline
+{\em desc} & Optional description of the variable. \\
+\hline
+{\em flags} & Variable flags. \\
+\hline
+{\em has\-Min} & True if the variable should have a minimum value. Numerical values outside this range are clamped. \\
+\hline
+{\em min} & Minimum value for the variable. \\
+\hline
+{\em has\-Max} & True if the variable should have a maximum value. Numerical values outside this range are clamped. \\
+\hline
+{\em max} & Maximum value for the variable. \\
+\hline
+{\em parent} & Parent Q\-Object, if applicable. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_con_var_a191b4d80fbe76e8e1a03fd660236fd24}{\index{Con\-Var@{Con\-Var}!bool\-Value@{bool\-Value}}
+\index{bool\-Value@{bool\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{bool\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::bool\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a191b4d80fbe76e8e1a03fd660236fd24}
+
+
+Gets the value of the variable as a boolean. 
+
+\begin{DoxyReturn}{Returns}
+Value of variable as a boolean. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_af13ded23be8ab55c52e39b679b9bda8b}{\index{Con\-Var@{Con\-Var}!can\-Set\-Int@{can\-Set\-Int}}
+\index{can\-Set\-Int@{can\-Set\-Int}!ConVar@{Con\-Var}}
+\subsubsection[{can\-Set\-Int}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::can\-Set\-Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_af13ded23be8ab55c52e39b679b9bda8b}
+
+
+Returns whether the range between the variable's min and max values permits integer values to be set. 
+
+\begin{DoxyReturn}{Returns}
+True if the bounds are not too close together to set an int, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a9b2d1363c0d9455fa35605bd555c1d9e}{\index{Con\-Var@{Con\-Var}!default\-Value@{default\-Value}}
+\index{default\-Value@{default\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{default\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::default\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a9b2d1363c0d9455fa35605bd555c1d9e}
+
+
+Returns the default value of this variable. 
+
+\begin{DoxyReturn}{Returns}
+Default value. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a03abad95ed4b10c3a4e9335f3b1907e5}{\index{Con\-Var@{Con\-Var}!float\-Value@{float\-Value}}
+\index{float\-Value@{float\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{float\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::float\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a03abad95ed4b10c3a4e9335f3b1907e5}
+
+
+Gets the value of the variable as a float. 
+
+\begin{DoxyReturn}{Returns}
+Value of variable as a float. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a01a4f437684d3120d5a510b821b35f60}{\index{Con\-Var@{Con\-Var}!get\-Callback@{get\-Callback}}
+\index{get\-Callback@{get\-Callback}!ConVar@{Con\-Var}}
+\subsubsection[{get\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Var\-Callback Con\-Var\-::get\-Callback (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a01a4f437684d3120d5a510b821b35f60}
+
+
+Gets the current variable change callback. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to current callback, or N\-U\-L\-L if none exists. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a68f039f62cbff56805cfc446fae33afd}{\index{Con\-Var@{Con\-Var}!has\-Max@{has\-Max}}
+\index{has\-Max@{has\-Max}!ConVar@{Con\-Var}}
+\subsubsection[{has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::has\-Max (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a68f039f62cbff56805cfc446fae33afd}
+
+
+Returns whether or not this variable has a max value. 
+
+\begin{DoxyReturn}{Returns}
+True if the variable has a max value, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_abbd3524ea974888b57f1b8d96dbdb66b}{\index{Con\-Var@{Con\-Var}!has\-Min@{has\-Min}}
+\index{has\-Min@{has\-Min}!ConVar@{Con\-Var}}
+\subsubsection[{has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::has\-Min (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_abbd3524ea974888b57f1b8d96dbdb66b}
+
+
+Returns whether or not this variable has a min value. 
+
+\begin{DoxyReturn}{Returns}
+True if the variable has a min value, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}{\index{Con\-Var@{Con\-Var}!identify@{identify}}
+\index{identify@{identify}!ConVar@{Con\-Var}}
+\subsubsection[{identify}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Cmd\-Ident Con\-Var\-::identify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_var_a0d2fb6068e6fa0ac6b1655327c453d6b}
+
+
+Returns the identifier for this command. 
+
+\begin{DoxyReturn}{Returns}
+Cmd\-Ident\-::\-C\-I\-Variable for console variables. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}{Base\-Console\-Command}.
+
+\hypertarget{class_con_var_a81d5b979e23aba488e908089a86cb909}{\index{Con\-Var@{Con\-Var}!int\-Value@{int\-Value}}
+\index{int\-Value@{int\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{int\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int Con\-Var\-::int\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a81d5b979e23aba488e908089a86cb909}
+
+
+Gets the value of the variable as an integer. 
+
+\begin{DoxyReturn}{Returns}
+Value of variable as an integer. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_ab471739913a9e1a285d28d5f0523206a}{\index{Con\-Var@{Con\-Var}!max\-Value@{max\-Value}}
+\index{max\-Value@{max\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::max\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_ab471739913a9e1a285d28d5f0523206a}
+
+
+The maximum value of this variable. 
+
+\begin{DoxyNote}{Note}
+Integer/boolean values will always be clamped to the floor of this value. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+If \hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max()} is false, the value this function returns is undefined. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+Maximum value of the variable. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a7ff718a682ecd1f92539a8d4d4c478ac}{\index{Con\-Var@{Con\-Var}!min\-Value@{min\-Value}}
+\index{min\-Value@{min\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::min\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a7ff718a682ecd1f92539a8d4d4c478ac}
+
+
+The minimum value of this variable. 
+
+\begin{DoxyNote}{Note}
+Integer/boolean values will always be clamped to the ceiling of this value. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+If \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min()} is false, the value this function returns is undefined. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+Minimum value of the variable. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a7521050905d25ae719fc4e97924047ea}{\index{Con\-Var@{Con\-Var}!set\-Callback@{set\-Callback}}
+\index{set\-Callback@{set\-Callback}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Callback (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-Var\-Callback}]{callback}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a7521050905d25ae719fc4e97924047ea}
+
+
+Sets the variable change callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & Callback pointer to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a3603e63a9f9798e0009e3e58edcfd277}{\index{Con\-Var@{Con\-Var}!set\-Flag@{set\-Flag}}
+\index{set\-Flag@{set\-Flag}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_var_a3603e63a9f9798e0009e3e58edcfd277}
+
+
+Sets the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a3046da732d30b1de8b41f51d146b5e46}{Base\-Console\-Command}.
+
+\hypertarget{class_con_var_af64d152bd5371b964b06795ef6532f76}{\index{Con\-Var@{Con\-Var}!set\-Flags\-Raw@{set\-Flags\-Raw}}
+\index{set\-Flags\-Raw@{set\-Flags\-Raw}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Flags\-Raw}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Flags\-Raw (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_var_af64d152bd5371b964b06795ef6532f76}
+
+
+Overwrites all flags on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & Integer containing the exact state of all flags to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}{Base\-Console\-Command}.
+
+\hypertarget{class_con_var_a2bfda3901b996901e53c9a9197fd817d}{\index{Con\-Var@{Con\-Var}!set\-Has\-Max@{set\-Has\-Max}}
+\index{set\-Has\-Max@{set\-Has\-Max}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Has\-Max (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a2bfda3901b996901e53c9a9197fd817d}
+
+
+Sets whether this variable has a maximum value. 
+
+\begin{DoxyNote}{Note}
+If true is passed and the current value is greater than the max, it will be clamped according to the float clamping rules. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & True if variable should have maximum value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a5cdfdc995447dd20aabda54af6cfb37e}{\index{Con\-Var@{Con\-Var}!set\-Has\-Max@{set\-Has\-Max}}
+\index{set\-Has\-Max@{set\-Has\-Max}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Has\-Max (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a5cdfdc995447dd20aabda54af6cfb37e}
+
+
+Sets whether this variable has a maximum value. 
+
+\begin{DoxyNote}{Note}
+If true is passed and the current value is greater than the max, it will be clamped according to the float clamping rules. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em b} & True if variable should have maximum value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a01174fcd55542e8aae24bb8af63bff8e}{\index{Con\-Var@{Con\-Var}!set\-Has\-Min@{set\-Has\-Min}}
+\index{set\-Has\-Min@{set\-Has\-Min}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Has\-Min (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a01174fcd55542e8aae24bb8af63bff8e}
+
+
+Sets whether this variable has a minimum value. 
+
+\begin{DoxyNote}{Note}
+If true is passed and the current value is less than the min, it will be clamped according to the float clamping rules. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & True if variable should have minimum value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a6e2c60d93fbaaf01560cf68bf0524c4b}{\index{Con\-Var@{Con\-Var}!set\-Has\-Min@{set\-Has\-Min}}
+\index{set\-Has\-Min@{set\-Has\-Min}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Has\-Min (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a6e2c60d93fbaaf01560cf68bf0524c4b}
+
+
+Sets whether this variable has a minimum value. 
+
+\begin{DoxyNote}{Note}
+If true is passed and the current value is less than the min, it will be clamped according to the float clamping rules. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em b} & True if variable should have minimum value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_accd05b21f91b58de63554935dd51df7a}{\index{Con\-Var@{Con\-Var}!set\-Max\-Value@{set\-Max\-Value}}
+\index{set\-Max\-Value@{set\-Max\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Max\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_accd05b21f91b58de63554935dd51df7a}
+
+
+Sets the maximum value allowed for this variable. The current value is clamped (as a float) if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a888be5fc32df2ae8c28cbfbe8cdc4cb8}{\index{Con\-Var@{Con\-Var}!set\-Max\-Value@{set\-Max\-Value}}
+\index{set\-Max\-Value@{set\-Max\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Max\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a888be5fc32df2ae8c28cbfbe8cdc4cb8}
+
+
+Sets the maximum value allowed for this variable. The current value is clamped (as a float) if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a9379b560e93785245e941f35df3c56e5}{\index{Con\-Var@{Con\-Var}!set\-Min\-Value@{set\-Min\-Value}}
+\index{set\-Min\-Value@{set\-Min\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Min\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a9379b560e93785245e941f35df3c56e5}
+
+
+Sets the minimum value allowed for this variable. The current value is clamped (as a float) if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_aa282144e7b6b81dc0ea94f0c4e78214e}{\index{Con\-Var@{Con\-Var}!set\-Min\-Value@{set\-Min\-Value}}
+\index{set\-Min\-Value@{set\-Min\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::set\-Min\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_aa282144e7b6b81dc0ea94f0c4e78214e}
+
+
+Sets the minimum value allowed for this variable. The current value is clamped (as a float) if necessary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em value} & Value to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}
+
+
+Sets the value of the variable as a string. 
+
+\begin{DoxyNote}{Note}
+If the variable has a min or max, this function will fail if the string cannot be converted to a numerical value. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_abd2daa3a4639d78df9b8a1d5aab3eb48}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_abd2daa3a4639d78df9b8a1d5aab3eb48}
+
+
+Sets the value of the variable as a string. 
+
+\begin{DoxyNote}{Note}
+If the variable has a min or max, this function will fail if the string cannot be converted to a numerical value. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_abc13cb366963b4589ae110fcee845374}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command\-Sender\-Info} \&}]{info, }
+\item[{const Q\-String \&}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_abc13cb366963b4589ae110fcee845374}
+
+
+Sets the value of the variable as a string. 
+
+\begin{DoxyNote}{Note}
+If the variable has a min or max, this function will fail if the string cannot be converted to a numerical value. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_ac397b3e4935d515533ad2331a9548db5}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_ac397b3e4935d515533ad2331a9548db5}
+
+
+Sets the value of the variable as an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a2e66bffaa4d5e254f5b2bb17384bd346}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a2e66bffaa4d5e254f5b2bb17384bd346}
+
+
+Sets the value of the variable as an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_ab34af2465c1dc9759ed2f469a89f9f93}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_ab34af2465c1dc9759ed2f469a89f9f93}
+
+
+Sets the value of the variable as a float. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_ad3adc3f712e2594d33ad34dfe785d387}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{float}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_ad3adc3f712e2594d33ad34dfe785d387}
+
+
+Sets the value of the variable as a float. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a8dfb9d5c094bb4815a58fc23aa44f869}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{bool}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a8dfb9d5c094bb4815a58fc23aa44f869}
+
+
+Sets the value of the variable as a boolean. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a186fc5371b3a22dd905975b88bdc3edb}{\index{Con\-Var@{Con\-Var}!set\-Value@{set\-Value}}
+\index{set\-Value@{set\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{set\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::set\-Value (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info} \&}]{info, }
+\item[{bool}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_con_var_a186fc5371b3a22dd905975b88bdc3edb}
+
+
+Sets the value of the variable as a boolean. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} for printing messages. \\
+\hline
+{\em val} & Value to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Eventual value that the variable was set to. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_a4c695572863c6f17ea0b7afe72373404}{\index{Con\-Var@{Con\-Var}!string\-Value@{string\-Value}}
+\index{string\-Value@{string\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{string\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::string\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_var_a4c695572863c6f17ea0b7afe72373404}
+
+
+Gets the value of the variable as a string. 
+
+\begin{DoxyReturn}{Returns}
+Value of variable as a string. 
+\end{DoxyReturn}
+\hypertarget{class_con_var_aadc6d792abbb1e4b431611d20b8db595}{\index{Con\-Var@{Con\-Var}!toggle\-Flag@{toggle\-Flag}}
+\index{toggle\-Flag@{toggle\-Flag}!ConVar@{Con\-Var}}
+\subsubsection[{toggle\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Var\-::toggle\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_var_aadc6d792abbb1e4b431611d20b8db595}
+
+
+Toggles the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to toggle. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a509caa8e6fba5c10e9ff89dd5fb665cf}{Base\-Console\-Command}.
+
+
+
+\subsection{Property Documentation}
+\hypertarget{class_con_var_a9c926cb65abe64fc9da4eb22d128d635}{\index{Con\-Var@{Con\-Var}!bool\-Value@{bool\-Value}}
+\index{bool\-Value@{bool\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{bool\-Value}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::bool\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a9c926cb65abe64fc9da4eb22d128d635}
+
+
+Variable's value as a boolean. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a9c926cb65abe64fc9da4eb22d128d635}{bool\-Value()}, \hyperlink{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{set\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a9fe17f8e6afc6b9fa6b69136b51b070f}{\index{Con\-Var@{Con\-Var}!can\-Set\-Int@{can\-Set\-Int}}
+\index{can\-Set\-Int@{can\-Set\-Int}!ConVar@{Con\-Var}}
+\subsubsection[{can\-Set\-Int}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::can\-Set\-Int\hspace{0.3cm}{\ttfamily [read]}}}\label{class_con_var_a9fe17f8e6afc6b9fa6b69136b51b070f}
+
+
+Whether the bounds of the variable have enough space between them for integer values to be set. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a9fe17f8e6afc6b9fa6b69136b51b070f}{can\-Set\-Int()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a6c9dacfaf9130a2d3f971f8b67af3dfc}{\index{Con\-Var@{Con\-Var}!default\-Value@{default\-Value}}
+\index{default\-Value@{default\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{default\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::default\-Value\hspace{0.3cm}{\ttfamily [read]}}}\label{class_con_var_a6c9dacfaf9130a2d3f971f8b67af3dfc}
+
+
+Default value for the variable. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a6c9dacfaf9130a2d3f971f8b67af3dfc}{default\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a5f274e561a3ee35dd2d67341be4def6f}{\index{Con\-Var@{Con\-Var}!float\-Value@{float\-Value}}
+\index{float\-Value@{float\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{float\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::float\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a5f274e561a3ee35dd2d67341be4def6f}
+
+
+Variable's value as a float. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a5f274e561a3ee35dd2d67341be4def6f}{float\-Value()}, \hyperlink{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{set\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{\index{Con\-Var@{Con\-Var}!has\-Max@{has\-Max}}
+\index{has\-Max@{has\-Max}!ConVar@{Con\-Var}}
+\subsubsection[{has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::has\-Max\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}
+
+
+Whether the variable has a maximum value. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max()}, \hyperlink{class_con_var_a2bfda3901b996901e53c9a9197fd817d}{set\-Has\-Max()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a047d4105baf54cb783602456e0947196}{\index{Con\-Var@{Con\-Var}!has\-Min@{has\-Min}}
+\index{has\-Min@{has\-Min}!ConVar@{Con\-Var}}
+\subsubsection[{has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}bool Con\-Var\-::has\-Min\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a047d4105baf54cb783602456e0947196}
+
+
+Whether the variable has a minimum value. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min()}, \hyperlink{class_con_var_a01174fcd55542e8aae24bb8af63bff8e}{set\-Has\-Min()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a41c1d7b9907c288d9a3fd27208c14905}{\index{Con\-Var@{Con\-Var}!int\-Value@{int\-Value}}
+\index{int\-Value@{int\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{int\-Value}]{\setlength{\rightskip}{0pt plus 5cm}int Con\-Var\-::int\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a41c1d7b9907c288d9a3fd27208c14905}
+
+
+Variable's value as an int. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a41c1d7b9907c288d9a3fd27208c14905}{int\-Value()}, \hyperlink{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{set\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a1c7d02c351c6fe7e9eae58fa65ef0ae4}{\index{Con\-Var@{Con\-Var}!max\-Value@{max\-Value}}
+\index{max\-Value@{max\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::max\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a1c7d02c351c6fe7e9eae58fa65ef0ae4}
+
+
+Maximum value allowed for the variable. Only valid if \hyperlink{class_con_var_ab8a0883ab2a53b5ef20ea5673636ac01}{has\-Max()} is true. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a1c7d02c351c6fe7e9eae58fa65ef0ae4}{max\-Value()}, \hyperlink{class_con_var_accd05b21f91b58de63554935dd51df7a}{set\-Max\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_a6c1a10a39a46f2dcb03a0a2c8d840e7a}{\index{Con\-Var@{Con\-Var}!min\-Value@{min\-Value}}
+\index{min\-Value@{min\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Con\-Var\-::min\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_a6c1a10a39a46f2dcb03a0a2c8d840e7a}
+
+
+Minimum value allowed for the variable. Only valid if \hyperlink{class_con_var_a047d4105baf54cb783602456e0947196}{has\-Min()} is true. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_a6c1a10a39a46f2dcb03a0a2c8d840e7a}{min\-Value()}, \hyperlink{class_con_var_a9379b560e93785245e941f35df3c56e5}{set\-Min\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_con_var_aa4e598b04548ba7f296a2fbe77e13e4d}{\index{Con\-Var@{Con\-Var}!string\-Value@{string\-Value}}
+\index{string\-Value@{string\-Value}!ConVar@{Con\-Var}}
+\subsubsection[{string\-Value}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Con\-Var\-::string\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_con_var_aa4e598b04548ba7f296a2fbe77e13e4d}
+
+
+Variable's value as a string. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_con_var_aa4e598b04548ba7f296a2fbe77e13e4d}{string\-Value()}, \hyperlink{class_con_var_a855c6e0548e43aaa8876e90581a5e5f3}{set\-Value()} 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{convar_8h}{convar.\-h}\item 
+I\-Console/src/convar.\-cpp\end{DoxyCompactItemize}

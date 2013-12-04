@@ -1,0 +1,465 @@
+\hypertarget{class_vertex3_d}{\section{Vertex3\-D Class Reference}
+\label{class_vertex3_d}\index{Vertex3\-D@{Vertex3\-D}}
+}
+
+
+Defines a vertex in 3\-D space.  
+
+
+
+
+{\ttfamily \#include $<$vertex.\-h$>$}
+
+
+
+Inheritance diagram for Vertex3\-D\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{class_vertex3_d__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Vertex3\-D\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{class_vertex3_d__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vertex3_d_a41dee42f7502bdc4b04be44a4bf4bdbc}{\hyperlink{class_vertex3_d_a41dee42f7502bdc4b04be44a4bf4bdbc}{Vertex3\-D} ()}\label{class_vertex3_d_a41dee42f7502bdc4b04be44a4bf4bdbc}
+
+\begin{DoxyCompactList}\small\item\em Constructor. Initialises position and I\-D to zero. \end{DoxyCompactList}\item 
+\hyperlink{class_vertex3_d_a81b68cf7e781884ed457034bd5b63612}{Vertex3\-D} (const float x, const float y, const float z)
+\begin{DoxyCompactList}\small\item\em Constructor specifying vertex position. \end{DoxyCompactList}\item 
+\hyperlink{class_vertex3_d_a11ea685931b50972afb2ffda7bfaa984}{Vertex3\-D} (const Q\-Vector3\-D vec)
+\begin{DoxyCompactList}\small\item\em Constructor specifying vertex position. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_vertex3_d_aefb3922097ae3d982370671c2c83fe1d}{get\-Position} () const 
+\begin{DoxyCompactList}\small\item\em Gets the vertex's position local to its parent geometry object. \end{DoxyCompactList}\item 
+Q\-Color \hyperlink{class_vertex3_d_a2bdd677bf1eb764a7dfa967aa7d2660b}{get\-Colour} () const 
+\begin{DoxyCompactList}\small\item\em Gets the vertex's render colour. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_vertex3_d_a02604a70c43c9ef567684174e8406959}{get\-Normal} () const 
+\begin{DoxyCompactList}\small\item\em Gets this vertex's normal. \end{DoxyCompactList}\item 
+float \hyperlink{class_vertex3_d_ad22bd676ad371c1a3ba6e987e0704733}{get\-Tex\-Coord\-X} () const 
+\begin{DoxyCompactList}\small\item\em Gets this vertex's X texture co-\/ordinate. \end{DoxyCompactList}\item 
+float \hyperlink{class_vertex3_d_a3b6eab91dea0d4eb0c53d6c414bda232}{get\-Tex\-Coord\-Y} () const 
+\begin{DoxyCompactList}\small\item\em Gets this vertex's Y texture co-\/ordinate. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a2e2e1374aac5842116c8683f3b06e99f}{V\-B\-O\-\_\-\-O\-F\-F\-S\-E\-T} \hyperlink{class_vertex3_d_a04dca81ead78614468f7028913a2a582}{get\-V\-B\-O\-Offset} () const 
+\begin{DoxyCompactList}\small\item\em Gets this vertex's V\-B\-O offset from the beginning of the parent solid. This offset it not valid if the parent solid is N\-U\-L\-L\-H\-N\-D. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_vertex3_d_a77b0e7b96b5ec626d56ea32963111c37}{get\-Parent\-Solid} () const 
+\begin{DoxyCompactList}\small\item\em Gets the handle of this vertex's parent solid. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_vertex3_d_acd4bdbddebb5090650cd31883280175e}{get\-Handle} () const 
+\begin{DoxyCompactList}\small\item\em Returns this vertex's handle, which is unique within its parent solid. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a0727071117d99f6a5f5227b54d41a7cf}{set\-Position} (const float x, const float y, const float z)
+\begin{DoxyCompactList}\small\item\em Sets the vertex's position. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a62274f5655891dc5dfe979bc2c57ded6}{set\-Position} (const Q\-Vector3\-D pos)
+\begin{DoxyCompactList}\small\item\em Sets the vertex's position. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_ac922ca7c683657d60be4147d17d2d74e}{set\-Colour} (const Q\-Color colour)
+\begin{DoxyCompactList}\small\item\em Sets the vertex's render colour. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a512576966b5a70493353df7f3571e727}{set\-Normal} (const Q\-Vector3\-D normal)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's normal. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a8fba559b69d9ba907d962c7154321854}{set\-Tex\-Coord\-X} (const float coord)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's X texture co-\/ordinate. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a72cc82c3b015c4aabd5a2223933655b5}{set\-Tex\-Coord\-Y} (const float coord)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's Y texture co-\/ordinate. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a8201535f83d869bb1421e7d36962624a}{set\-V\-B\-O\-Offset} (const \hyperlink{vertex_8h_a2e2e1374aac5842116c8683f3b06e99f}{V\-B\-O\-\_\-\-O\-F\-F\-S\-E\-T} offset)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's V\-B\-O offset. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_aec0f45cdc6b03ec560fd4c352c6bd694}{set\-Parent\-Solid} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's parent solid handle. \end{DoxyCompactList}\item 
+void \hyperlink{class_vertex3_d_a53670951cc49d1b5ae9d03d08a11d581}{set\-Handle} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets this vertex's handle. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_vertex3_d_a1d95bf448d6cf90c2ba78ab22167b806}{V3\-R\-S\-\_\-\-Position} (float position\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fills an array with the position values for this vertex. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_vertex3_d_a40126d514f76cfef6ebf2855380338e1}{V3\-R\-S\-\_\-\-Colour} (unsigned char colour\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fills an array with the colour values for this vertex. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_vertex3_d_aea2d1d899ec54fc166fd04baeee64a91}{V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords} (float coords\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fills an array with the texture co-\/ordinate values for this vertex. \end{DoxyCompactList}\item 
+virtual unsigned long \hyperlink{class_vertex3_d_a13a922fd8180591636c1daf4687cc205}{V3\-R\-S\-\_\-\-Offset} ()
+\begin{DoxyCompactList}\small\item\em Returns the offset of this vertex from the beginning of the V\-B\-O, in V3\-R\-S\-\_\-\-T\-O\-T\-A\-L\-\_\-\-D\-A\-T\-A\-\_\-\-T\-R\-A\-N\-S\-F\-E\-R strides. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Defines a vertex in 3\-D space. 
+
+The vertex contains a V\-B\-O offset which, when combined with the parent solid's offset, defines where in the V\-B\-O this vertex's render data is found. The vertex also contains colour information and texture co-\/ordinates. Normals are not stored per vertex as when faces are rendered, the face's stored normal is used to calculate the shading required. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_vertex3_d_a81b68cf7e781884ed457034bd5b63612}{\index{Vertex3\-D@{Vertex3\-D}!Vertex3\-D@{Vertex3\-D}}
+\index{Vertex3\-D@{Vertex3\-D}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{Vertex3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Vertex3\-D\-::\-Vertex3\-D (
+\begin{DoxyParamCaption}
+\item[{const float}]{x, }
+\item[{const float}]{y, }
+\item[{const float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a81b68cf7e781884ed457034bd5b63612}
+
+
+Constructor specifying vertex position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position. \\
+\hline
+{\em y} & Y position. \\
+\hline
+{\em z} & Z position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a11ea685931b50972afb2ffda7bfaa984}{\index{Vertex3\-D@{Vertex3\-D}!Vertex3\-D@{Vertex3\-D}}
+\index{Vertex3\-D@{Vertex3\-D}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{Vertex3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Vertex3\-D\-::\-Vertex3\-D (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a11ea685931b50972afb2ffda7bfaa984}
+
+
+Constructor specifying vertex position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & Vector representing position. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_vertex3_d_a2bdd677bf1eb764a7dfa967aa7d2660b}{\index{Vertex3\-D@{Vertex3\-D}!get\-Colour@{get\-Colour}}
+\index{get\-Colour@{get\-Colour}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Colour}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Color Vertex3\-D\-::get\-Colour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a2bdd677bf1eb764a7dfa967aa7d2660b}
+
+
+Gets the vertex's render colour. 
+
+\begin{DoxyReturn}{Returns}
+Render colour. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_acd4bdbddebb5090650cd31883280175e}{\index{Vertex3\-D@{Vertex3\-D}!get\-Handle@{get\-Handle}}
+\index{get\-Handle@{get\-Handle}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Vertex3\-D\-::get\-Handle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_acd4bdbddebb5090650cd31883280175e}
+
+
+Returns this vertex's handle, which is unique within its parent solid. 
+
+\begin{DoxyReturn}{Returns}
+This vertex's handle. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_a02604a70c43c9ef567684174e8406959}{\index{Vertex3\-D@{Vertex3\-D}!get\-Normal@{get\-Normal}}
+\index{get\-Normal@{get\-Normal}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Normal}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Vertex3\-D\-::get\-Normal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a02604a70c43c9ef567684174e8406959}
+
+
+Gets this vertex's normal. 
+
+\begin{DoxyReturn}{Returns}
+Normal vector. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_a77b0e7b96b5ec626d56ea32963111c37}{\index{Vertex3\-D@{Vertex3\-D}!get\-Parent\-Solid@{get\-Parent\-Solid}}
+\index{get\-Parent\-Solid@{get\-Parent\-Solid}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Vertex3\-D\-::get\-Parent\-Solid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a77b0e7b96b5ec626d56ea32963111c37}
+
+
+Gets the handle of this vertex's parent solid. 
+
+\begin{DoxyReturn}{Returns}
+Parent solid's handle, or N\-U\-L\-L\-H\-N\-D if no parent solid exists. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_aefb3922097ae3d982370671c2c83fe1d}{\index{Vertex3\-D@{Vertex3\-D}!get\-Position@{get\-Position}}
+\index{get\-Position@{get\-Position}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Position}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Vertex3\-D\-::get\-Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_aefb3922097ae3d982370671c2c83fe1d}
+
+
+Gets the vertex's position local to its parent geometry object. 
+
+\begin{DoxyReturn}{Returns}
+Vector representing position. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_ad22bd676ad371c1a3ba6e987e0704733}{\index{Vertex3\-D@{Vertex3\-D}!get\-Tex\-Coord\-X@{get\-Tex\-Coord\-X}}
+\index{get\-Tex\-Coord\-X@{get\-Tex\-Coord\-X}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Tex\-Coord\-X}]{\setlength{\rightskip}{0pt plus 5cm}float Vertex3\-D\-::get\-Tex\-Coord\-X (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_ad22bd676ad371c1a3ba6e987e0704733}
+
+
+Gets this vertex's X texture co-\/ordinate. 
+
+\begin{DoxyReturn}{Returns}
+X co-\/ordinate. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_a3b6eab91dea0d4eb0c53d6c414bda232}{\index{Vertex3\-D@{Vertex3\-D}!get\-Tex\-Coord\-Y@{get\-Tex\-Coord\-Y}}
+\index{get\-Tex\-Coord\-Y@{get\-Tex\-Coord\-Y}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-Tex\-Coord\-Y}]{\setlength{\rightskip}{0pt plus 5cm}float Vertex3\-D\-::get\-Tex\-Coord\-Y (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a3b6eab91dea0d4eb0c53d6c414bda232}
+
+
+Gets this vertex's Y texture co-\/ordinate. 
+
+\begin{DoxyReturn}{Returns}
+Y co-\/ordinate. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_a04dca81ead78614468f7028913a2a582}{\index{Vertex3\-D@{Vertex3\-D}!get\-V\-B\-O\-Offset@{get\-V\-B\-O\-Offset}}
+\index{get\-V\-B\-O\-Offset@{get\-V\-B\-O\-Offset}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{get\-V\-B\-O\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf V\-B\-O\-\_\-\-O\-F\-F\-S\-E\-T} Vertex3\-D\-::get\-V\-B\-O\-Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a04dca81ead78614468f7028913a2a582}
+
+
+Gets this vertex's V\-B\-O offset from the beginning of the parent solid. This offset it not valid if the parent solid is N\-U\-L\-L\-H\-N\-D. 
+
+\begin{DoxyReturn}{Returns}
+Vertex's V\-B\-O offset. 
+\end{DoxyReturn}
+\hypertarget{class_vertex3_d_ac922ca7c683657d60be4147d17d2d74e}{\index{Vertex3\-D@{Vertex3\-D}!set\-Colour@{set\-Colour}}
+\index{set\-Colour@{set\-Colour}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Colour}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Colour (
+\begin{DoxyParamCaption}
+\item[{const Q\-Color}]{colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_ac922ca7c683657d60be4147d17d2d74e}
+
+
+Sets the vertex's render colour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colour} & Colour to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a53670951cc49d1b5ae9d03d08a11d581}{\index{Vertex3\-D@{Vertex3\-D}!set\-Handle@{set\-Handle}}
+\index{set\-Handle@{set\-Handle}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Handle (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a53670951cc49d1b5ae9d03d08a11d581}
+
+
+Sets this vertex's handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a512576966b5a70493353df7f3571e727}{\index{Vertex3\-D@{Vertex3\-D}!set\-Normal@{set\-Normal}}
+\index{set\-Normal@{set\-Normal}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Normal}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Normal (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{normal}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a512576966b5a70493353df7f3571e727}
+
+
+Sets this vertex's normal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em normal} & Normal to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_aec0f45cdc6b03ec560fd4c352c6bd694}{\index{Vertex3\-D@{Vertex3\-D}!set\-Parent\-Solid@{set\-Parent\-Solid}}
+\index{set\-Parent\-Solid@{set\-Parent\-Solid}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Parent\-Solid (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_aec0f45cdc6b03ec560fd4c352c6bd694}
+
+
+Sets this vertex's parent solid handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a0727071117d99f6a5f5227b54d41a7cf}{\index{Vertex3\-D@{Vertex3\-D}!set\-Position@{set\-Position}}
+\index{set\-Position@{set\-Position}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Position}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Position (
+\begin{DoxyParamCaption}
+\item[{const float}]{x, }
+\item[{const float}]{y, }
+\item[{const float}]{z}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a0727071117d99f6a5f5227b54d41a7cf}
+
+
+Sets the vertex's position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position. \\
+\hline
+{\em y} & Y position. \\
+\hline
+{\em z} & Z position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a62274f5655891dc5dfe979bc2c57ded6}{\index{Vertex3\-D@{Vertex3\-D}!set\-Position@{set\-Position}}
+\index{set\-Position@{set\-Position}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Position}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Position (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a62274f5655891dc5dfe979bc2c57ded6}
+
+
+Sets the vertex's position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Vector representing position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a8fba559b69d9ba907d962c7154321854}{\index{Vertex3\-D@{Vertex3\-D}!set\-Tex\-Coord\-X@{set\-Tex\-Coord\-X}}
+\index{set\-Tex\-Coord\-X@{set\-Tex\-Coord\-X}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Tex\-Coord\-X}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Tex\-Coord\-X (
+\begin{DoxyParamCaption}
+\item[{const float}]{coord}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a8fba559b69d9ba907d962c7154321854}
+
+
+Sets this vertex's X texture co-\/ordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & Co-\/ord to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a72cc82c3b015c4aabd5a2223933655b5}{\index{Vertex3\-D@{Vertex3\-D}!set\-Tex\-Coord\-Y@{set\-Tex\-Coord\-Y}}
+\index{set\-Tex\-Coord\-Y@{set\-Tex\-Coord\-Y}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-Tex\-Coord\-Y}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-Tex\-Coord\-Y (
+\begin{DoxyParamCaption}
+\item[{const float}]{coord}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a72cc82c3b015c4aabd5a2223933655b5}
+
+
+Sets this vertex's Y texture co-\/ordinate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & Co-\/ord to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a8201535f83d869bb1421e7d36962624a}{\index{Vertex3\-D@{Vertex3\-D}!set\-V\-B\-O\-Offset@{set\-V\-B\-O\-Offset}}
+\index{set\-V\-B\-O\-Offset@{set\-V\-B\-O\-Offset}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{set\-V\-B\-O\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}void Vertex3\-D\-::set\-V\-B\-O\-Offset (
+\begin{DoxyParamCaption}
+\item[{const {\bf V\-B\-O\-\_\-\-O\-F\-F\-S\-E\-T}}]{offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vertex3_d_a8201535f83d869bb1421e7d36962624a}
+
+
+Sets this vertex's V\-B\-O offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & Offset to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a40126d514f76cfef6ebf2855380338e1}{\index{Vertex3\-D@{Vertex3\-D}!V3\-R\-S\-\_\-\-Colour@{V3\-R\-S\-\_\-\-Colour}}
+\index{V3\-R\-S\-\_\-\-Colour@{V3\-R\-S\-\_\-\-Colour}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{V3\-R\-S\-\_\-\-Colour}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Vertex3\-D\-::\-V3\-R\-S\-\_\-\-Colour (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{colour\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_vertex3_d_a40126d514f76cfef6ebf2855380338e1}
+
+
+Fills an array with the colour values for this vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em colour} & Colour values. Format is R\-G\-B\-A, range 0.\-0 -\/ 1.\-0. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_a13a922fd8180591636c1daf4687cc205}{\index{Vertex3\-D@{Vertex3\-D}!V3\-R\-S\-\_\-\-Offset@{V3\-R\-S\-\_\-\-Offset}}
+\index{V3\-R\-S\-\_\-\-Offset@{V3\-R\-S\-\_\-\-Offset}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{V3\-R\-S\-\_\-\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}virtual unsigned long Vertex3\-D\-::\-V3\-R\-S\-\_\-\-Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_vertex3_d_a13a922fd8180591636c1daf4687cc205}
+
+
+Returns the offset of this vertex from the beginning of the V\-B\-O, in V3\-R\-S\-\_\-\-T\-O\-T\-A\-L\-\_\-\-D\-A\-T\-A\-\_\-\-T\-R\-A\-N\-S\-F\-E\-R strides. 
+
+\begin{DoxyReturn}{Returns}
+Offset for this vertex. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_i_vertex3_d_render_spec_a891d736d3d414de333398975f34bbae7}{I\-Vertex3\-D\-Render\-Spec}.
+
+\hypertarget{class_vertex3_d_a1d95bf448d6cf90c2ba78ab22167b806}{\index{Vertex3\-D@{Vertex3\-D}!V3\-R\-S\-\_\-\-Position@{V3\-R\-S\-\_\-\-Position}}
+\index{V3\-R\-S\-\_\-\-Position@{V3\-R\-S\-\_\-\-Position}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{V3\-R\-S\-\_\-\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Vertex3\-D\-::\-V3\-R\-S\-\_\-\-Position (
+\begin{DoxyParamCaption}
+\item[{float}]{position\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_vertex3_d_a1d95bf448d6cf90c2ba78ab22167b806}
+
+
+Fills an array with the position values for this vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Array to fill. Format is X\-Y\-Z. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vertex3_d_aea2d1d899ec54fc166fd04baeee64a91}{\index{Vertex3\-D@{Vertex3\-D}!V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords@{V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords}}
+\index{V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords@{V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords}!Vertex3D@{Vertex3\-D}}
+\subsubsection[{V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Vertex3\-D\-::\-V3\-R\-S\-\_\-\-Texture\-\_\-\-Coords (
+\begin{DoxyParamCaption}
+\item[{float}]{coords\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_vertex3_d_aea2d1d899ec54fc166fd04baeee64a91}
+
+
+Fills an array with the texture co-\/ordinate values for this vertex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coords} & Array to fill. Format is X\-Y. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{vertex_8h}{vertex.\-h}\end{DoxyCompactItemize}

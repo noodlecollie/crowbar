@@ -1,0 +1,267 @@
+\hypertarget{class_con_command}{\section{Con\-Command Class Reference}
+\label{class_con_command}\index{Con\-Command@{Con\-Command}}
+}
+
+
+Defines code which is executed whenever the user enters the command name into the console.  
+
+
+
+
+{\ttfamily \#include $<$concommand.\-h$>$}
+
+
+
+Inheritance diagram for Con\-Command\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Con\-Command\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_con_command__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_con_command_abd8a6c4780d77aa59f46233ac818e0e1}{Con\-Command} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, N\-Global\-Cmd\-::\-Cmd\-Callback callback, const Q\-String \&desc=\char`\"{}\char`\"{}, N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_con_command_a8b048f3b99fdd95b2c4e26c2a0a117be}{Con\-Command} (const Q\-String \&\hyperlink{class_base_console_command_a2f21764f46a3864a362eae2e3396e363}{name}, N\-Global\-Cmd\-::\-Cmd\-Callback callback, \hyperlink{class_command_manager}{Command\-Manager} $\ast$manager, \hyperlink{class_listed_console_command}{Listed\-Console\-Command} $\ast$$\ast$list, const Q\-String \&desc=\char`\"{}\char`\"{}, const N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags=0, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor passing in manager and list to attempt to register to. \end{DoxyCompactList}\item 
+\hypertarget{class_con_command_a90b9ab62350b55966e959d88caa97c84}{virtual \hyperlink{class_con_command_a90b9ab62350b55966e959d88caa97c84}{$\sim$\-Con\-Command} ()}\label{class_con_command_a90b9ab62350b55966e959d88caa97c84}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual N\-Global\-Cmd\-::\-Cmd\-Ident \hyperlink{class_con_command_ab287443a9615df46739d0c39b096016e}{identify} () const 
+\begin{DoxyCompactList}\small\item\em Returns the identifier for this command. \end{DoxyCompactList}\item 
+int \hyperlink{class_con_command_af6d7e9c4e0b654f0b3e9a34cb5b22179}{exec} (const \hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&info, const Q\-String\-List \&args, Q\-Variant \&output)
+\begin{DoxyCompactList}\small\item\em Runs the console command's execution function. \end{DoxyCompactList}\item 
+N\-Global\-Cmd\-::\-Cmd\-Callback \hyperlink{class_con_command_a7ff5a03d8a8a6ab7badaef4ffd083714}{get\-Exec} () const 
+\begin{DoxyCompactList}\small\item\em Gets the callback function pointer for this console command. \end{DoxyCompactList}\item 
+void \hyperlink{class_con_command_a3ae23385874e68d3e72ef50d0baf2ade}{set\-Exec} (N\-Global\-Cmd\-::\-Cmd\-Callback cmd)
+\begin{DoxyCompactList}\small\item\em Sets the callback function that is run when this command is executed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_command_a87828b1909270309d2005a03ca2cd413}{set\-Flags\-Raw} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flags)
+\begin{DoxyCompactList}\small\item\em Overwrites all flags on the command. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_command_a7004e0c6eb421e5dfb90bd633e85bf14}{set\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Sets the given flag(s) on the command. \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_con_command_ab2591a1c31847e9746520e9958ba0f9a}{toggle\-Flag} (N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S flag)
+\begin{DoxyCompactList}\small\item\em Toggles the given flag(s) on the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Defines code which is executed whenever the user enters the command name into the console. 
+
+Con\-Commands work almost exactly the same way as in the Source engine\-: they contain a pointer to a method which is executed when the command is typed by the user. When a \hyperlink{class_con_command}{Con\-Command} is executed, it returns an integer status (usually corresponding to an N\-Global\-Cmd\-::\-Con\-Command\-Return value) and can optionally return arbitrary output in the output Q\-Variant. Con\-Commands can write output to the a console window (relevant to the calling \hyperlink{class_command_manager}{Command\-Manager}, if one exists) through the passed \hyperlink{class_command_sender_info}{Command\-Sender\-Info}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_con_command_abd8a6c4780d77aa59f46233ac818e0e1}{\index{Con\-Command@{Con\-Command}!Con\-Command@{Con\-Command}}
+\index{Con\-Command@{Con\-Command}!ConCommand@{Con\-Command}}
+\subsubsection[{Con\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Command\-::\-Con\-Command (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{name, }
+\item[{N\-Global\-Cmd\-::\-Cmd\-Callback}]{callback, }
+\item[{const Q\-String \&}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags = {\ttfamily 0}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_con_command_abd8a6c4780d77aa59f46233ac818e0e1}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the command. \\
+\hline
+{\em callback} & Pointer to callback function to run when this command is executed. \\
+\hline
+{\em desc} & Optional command description. \\
+\hline
+{\em flags} & Command flags. \\
+\hline
+{\em parent} & Q\-Object parent, if applicable. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_command_a8b048f3b99fdd95b2c4e26c2a0a117be}{\index{Con\-Command@{Con\-Command}!Con\-Command@{Con\-Command}}
+\index{Con\-Command@{Con\-Command}!ConCommand@{Con\-Command}}
+\subsubsection[{Con\-Command}]{\setlength{\rightskip}{0pt plus 5cm}Con\-Command\-::\-Con\-Command (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{name, }
+\item[{N\-Global\-Cmd\-::\-Cmd\-Callback}]{callback, }
+\item[{{\bf Command\-Manager} $\ast$}]{manager, }
+\item[{{\bf Listed\-Console\-Command} $\ast$$\ast$}]{list, }
+\item[{const Q\-String \&}]{desc = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{const N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags = {\ttfamily 0}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_con_command_a8b048f3b99fdd95b2c4e26c2a0a117be}
+
+
+Constructor passing in manager and list to attempt to register to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the command. \\
+\hline
+{\em callback} & Pointer to callback function to run when this command is executed. \\
+\hline
+{\em manager} & Manager to attempt to register to when this command is constructed. \\
+\hline
+{\em list} & If the command could not register with the manager, it attaches itself to this list instead. \\
+\hline
+{\em desc} & Optional command description. \\
+\hline
+{\em flags} & Command flags. \\
+\hline
+{\em parent} & Q\-Object parent, if applicable. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_con_command_af6d7e9c4e0b654f0b3e9a34cb5b22179}{\index{Con\-Command@{Con\-Command}!exec@{exec}}
+\index{exec@{exec}!ConCommand@{Con\-Command}}
+\subsubsection[{exec}]{\setlength{\rightskip}{0pt plus 5cm}int Con\-Command\-::exec (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command\-Sender\-Info} \&}]{info, }
+\item[{const Q\-String\-List \&}]{args, }
+\item[{Q\-Variant \&}]{output}
+\end{DoxyParamCaption}
+)}}\label{class_con_command_af6d7e9c4e0b654f0b3e9a34cb5b22179}
+
+
+Runs the console command's execution function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Info class to facilitate communication between the command and the caller. \\
+\hline
+{\em args} & Arguments to the command. \\
+\hline
+{\em output} & Q\-Variant to hold any output from the command. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Integer return code of the command function. 
+\end{DoxyReturn}
+\hypertarget{class_con_command_a7ff5a03d8a8a6ab7badaef4ffd083714}{\index{Con\-Command@{Con\-Command}!get\-Exec@{get\-Exec}}
+\index{get\-Exec@{get\-Exec}!ConCommand@{Con\-Command}}
+\subsubsection[{get\-Exec}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Cmd\-Callback Con\-Command\-::get\-Exec (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_con_command_a7ff5a03d8a8a6ab7badaef4ffd083714}
+
+
+Gets the callback function pointer for this console command. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to callback function to run when this command is executed. 
+\end{DoxyReturn}
+\hypertarget{class_con_command_ab287443a9615df46739d0c39b096016e}{\index{Con\-Command@{Con\-Command}!identify@{identify}}
+\index{identify@{identify}!ConCommand@{Con\-Command}}
+\subsubsection[{identify}]{\setlength{\rightskip}{0pt plus 5cm}N\-Global\-Cmd\-::\-Cmd\-Ident Con\-Command\-::identify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_command_ab287443a9615df46739d0c39b096016e}
+
+
+Returns the identifier for this command. 
+
+\begin{DoxyReturn}{Returns}
+Cmd\-Ident\-::\-C\-I\-Command for console commands. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a8c1fe488f1e24c6bd4891225eb9bb122}{Base\-Console\-Command}.
+
+\hypertarget{class_con_command_a3ae23385874e68d3e72ef50d0baf2ade}{\index{Con\-Command@{Con\-Command}!set\-Exec@{set\-Exec}}
+\index{set\-Exec@{set\-Exec}!ConCommand@{Con\-Command}}
+\subsubsection[{set\-Exec}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Command\-::set\-Exec (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-Cmd\-Callback}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{class_con_command_a3ae23385874e68d3e72ef50d0baf2ade}
+
+
+Sets the callback function that is run when this command is executed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & Pointer to callback. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_con_command_a7004e0c6eb421e5dfb90bd633e85bf14}{\index{Con\-Command@{Con\-Command}!set\-Flag@{set\-Flag}}
+\index{set\-Flag@{set\-Flag}!ConCommand@{Con\-Command}}
+\subsubsection[{set\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Command\-::set\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_command_a7004e0c6eb421e5dfb90bd633e85bf14}
+
+
+Sets the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a3046da732d30b1de8b41f51d146b5e46}{Base\-Console\-Command}.
+
+\hypertarget{class_con_command_a87828b1909270309d2005a03ca2cd413}{\index{Con\-Command@{Con\-Command}!set\-Flags\-Raw@{set\-Flags\-Raw}}
+\index{set\-Flags\-Raw@{set\-Flags\-Raw}!ConCommand@{Con\-Command}}
+\subsubsection[{set\-Flags\-Raw}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Command\-::set\-Flags\-Raw (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_command_a87828b1909270309d2005a03ca2cd413}
+
+
+Overwrites all flags on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flags} & Integer containing the exact state of all flags to set. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_ac6ff6169ab06ae43d76d0b3c2e5336ff}{Base\-Console\-Command}.
+
+\hypertarget{class_con_command_ab2591a1c31847e9746520e9958ba0f9a}{\index{Con\-Command@{Con\-Command}!toggle\-Flag@{toggle\-Flag}}
+\index{toggle\-Flag@{toggle\-Flag}!ConCommand@{Con\-Command}}
+\subsubsection[{toggle\-Flag}]{\setlength{\rightskip}{0pt plus 5cm}void Con\-Command\-::toggle\-Flag (
+\begin{DoxyParamCaption}
+\item[{N\-Global\-Cmd\-::\-C\-M\-D\-F\-L\-A\-G\-S}]{flag}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_con_command_ab2591a1c31847e9746520e9958ba0f9a}
+
+
+Toggles the given flag(s) on the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag(s) to toggle. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_base_console_command_a509caa8e6fba5c10e9ff89dd5fb665cf}{Base\-Console\-Command}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{concommand_8h}{concommand.\-h}\item 
+I\-Console/src/concommand.\-cpp\end{DoxyCompactItemize}

@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     app \
     IConsole \
-    unit-test
+    unit-test \
+    RegexUtil

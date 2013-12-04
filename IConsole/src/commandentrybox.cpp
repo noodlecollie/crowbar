@@ -6,7 +6,7 @@
 #include <QApplication>
 #include <QDir>
 
-#include "nregexutil.h"
+#include "regexutil.h"
 
 // TEMP
 #include <QtDebug>
@@ -248,7 +248,7 @@ void CommandEntryBox::processForSuggestions(const QString &str)
     // If there is more than one argument, don't do a suggestions list for now.
     // We should probably advance this later to search for possible valid args, etc.
     QStringList list;
-    QRegularExpression matchArgsWithWhitespace(RegexUtil::RegexMatchCommandArgsWs);
+    QRegularExpression matchArgsWithWhitespace(NRegexUtil::RegexMatchCommandArgsWs);
     QRegularExpressionMatchIterator m = matchArgsWithWhitespace.globalMatch(QRegularExpression::escape(str));
     while ( m.hasNext() )
     {

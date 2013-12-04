@@ -1,0 +1,180 @@
+\hypertarget{class_command_suggestion_list}{\section{Command\-Suggestion\-List Class Reference}
+\label{class_command_suggestion_list}\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}}
+}
+
+
+Holds and displays console command suggestions to the user.  
+
+
+
+
+{\ttfamily \#include $<$commandsuggestionlist.\-h$>$}
+
+
+
+Inheritance diagram for Command\-Suggestion\-List\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{class_command_suggestion_list__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Command\-Suggestion\-List\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{class_command_suggestion_list__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_suggestion_list_a8f033cd908b50fa9cc3383899f515943}{void \hyperlink{class_command_suggestion_list_a8f033cd908b50fa9cc3383899f515943}{move\-Up} ()}\label{class_command_suggestion_list_a8f033cd908b50fa9cc3383899f515943}
+
+\begin{DoxyCompactList}\small\item\em Moves the selection up one item. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_a0df4ac65c3dc9db721b111d049330b64}{void \hyperlink{class_command_suggestion_list_a0df4ac65c3dc9db721b111d049330b64}{move\-Down} ()}\label{class_command_suggestion_list_a0df4ac65c3dc9db721b111d049330b64}
+
+\begin{DoxyCompactList}\small\item\em Moves the selection up one item. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_abdfc24c738389f63440679e786328bb5}{void \hyperlink{class_command_suggestion_list_abdfc24c738389f63440679e786328bb5}{select\-First} ()}\label{class_command_suggestion_list_abdfc24c738389f63440679e786328bb5}
+
+\begin{DoxyCompactList}\small\item\em Selects the first item. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_a5bbb5dc0289d336d123e852c0b4323c9}{void \hyperlink{class_command_suggestion_list_a5bbb5dc0289d336d123e852c0b4323c9}{auto\-Height} ()}\label{class_command_suggestion_list_a5bbb5dc0289d336d123e852c0b4323c9}
+
+\begin{DoxyCompactList}\small\item\em Attempts to aut-\/size the suggestion box's height. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_a8b9a9ca017e2507b43fb55cd7e2584dd}{void \hyperlink{class_command_suggestion_list_a8b9a9ca017e2507b43fb55cd7e2584dd}{auto\-Width} ()}\label{class_command_suggestion_list_a8b9a9ca017e2507b43fb55cd7e2584dd}
+
+\begin{DoxyCompactList}\small\item\em Attempts to aut-\/size the suggestion box's width. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_suggestion_list_a9efae0883b3853d30dd5b94412c040de}{void \hyperlink{class_command_suggestion_list_a9efae0883b3853d30dd5b94412c040de}{height\-Scale\-Changed} ()}\label{class_command_suggestion_list_a9efae0883b3853d30dd5b94412c040de}
+
+\begin{DoxyCompactList}\small\item\em Emitted when the height scale property is changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_suggestion_list_aa6cd6f32861900fb5c0280375ee45969}{Command\-Suggestion\-List} (Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_abc4ba5513dccfc66cddff8e028e73240}{virtual \hyperlink{class_command_suggestion_list_abc4ba5513dccfc66cddff8e028e73240}{$\sim$\-Command\-Suggestion\-List} ()}\label{class_command_suggestion_list_abc4ba5513dccfc66cddff8e028e73240}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_command_suggestion_list_ae8f5411f7b8b3b4f86da8278951b448e}{get\-Current\-Selection} ()
+\begin{DoxyCompactList}\small\item\em Returns a string representing the current selection. \end{DoxyCompactList}\item 
+bool \hyperlink{class_command_suggestion_list_afc4dc846e366ece3bf77651fd92a7392}{has\-Selection} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the suggestion box has a current selection. \end{DoxyCompactList}\item 
+float \hyperlink{class_command_suggestion_list_a1430f35686d3572b51ebba9730083c97}{height\-Scale} () const 
+\begin{DoxyCompactList}\small\item\em Gets the height scale for the suggestion box. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_suggestion_list_a5a05acbd3c0be81cb2fe7d2579cdb9a5}{set\-Height\-Scale} (float scale)
+\begin{DoxyCompactList}\small\item\em Sets the height scale for the suggestion box. \end{DoxyCompactList}\item 
+\hypertarget{class_command_suggestion_list_aedf54e67475b3d8e7ae116610de152a3}{void \hyperlink{class_command_suggestion_list_aedf54e67475b3d8e7ae116610de152a3}{reset\-Height\-Scale} ()}\label{class_command_suggestion_list_aedf54e67475b3d8e7ae116610de152a3}
+
+\begin{DoxyCompactList}\small\item\em Resets the height scale to the default. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{class_command_suggestion_list_adb584feb5f08a036a35aa0ea1763e7b1}{height\-Scale}
+\begin{DoxyCompactList}\small\item\em Scaling factor for height of suggestion box depending on how many items it contains. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds and displays console command suggestions to the user. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_command_suggestion_list_aa6cd6f32861900fb5c0280375ee45969}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!Command\-Suggestion\-List@{Command\-Suggestion\-List}}
+\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{Command\-Suggestion\-List}]{\setlength{\rightskip}{0pt plus 5cm}Command\-Suggestion\-List\-::\-Command\-Suggestion\-List (
+\begin{DoxyParamCaption}
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_command_suggestion_list_aa6cd6f32861900fb5c0280375ee45969}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Q\-Widget parent, if applicable. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_command_suggestion_list_ae8f5411f7b8b3b4f86da8278951b448e}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!get\-Current\-Selection@{get\-Current\-Selection}}
+\index{get\-Current\-Selection@{get\-Current\-Selection}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{get\-Current\-Selection}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Command\-Suggestion\-List\-::get\-Current\-Selection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_command_suggestion_list_ae8f5411f7b8b3b4f86da8278951b448e}
+
+
+Returns a string representing the current selection. 
+
+\begin{DoxyReturn}{Returns}
+Current selection string, or empty string if there is no selection. 
+\end{DoxyReturn}
+\hypertarget{class_command_suggestion_list_afc4dc846e366ece3bf77651fd92a7392}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!has\-Selection@{has\-Selection}}
+\index{has\-Selection@{has\-Selection}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{has\-Selection}]{\setlength{\rightskip}{0pt plus 5cm}bool Command\-Suggestion\-List\-::has\-Selection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_suggestion_list_afc4dc846e366ece3bf77651fd92a7392}
+
+
+Returns whether the suggestion box has a current selection. 
+
+\begin{DoxyReturn}{Returns}
+True if an item is selected, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_command_suggestion_list_a1430f35686d3572b51ebba9730083c97}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!height\-Scale@{height\-Scale}}
+\index{height\-Scale@{height\-Scale}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{height\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Suggestion\-List\-::height\-Scale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_suggestion_list_a1430f35686d3572b51ebba9730083c97}
+
+
+Gets the height scale for the suggestion box. 
+
+\begin{DoxyReturn}{Returns}
+Height scale. 
+\end{DoxyReturn}
+\hypertarget{class_command_suggestion_list_a5a05acbd3c0be81cb2fe7d2579cdb9a5}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!set\-Height\-Scale@{set\-Height\-Scale}}
+\index{set\-Height\-Scale@{set\-Height\-Scale}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{set\-Height\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Suggestion\-List\-::set\-Height\-Scale (
+\begin{DoxyParamCaption}
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)}}\label{class_command_suggestion_list_a5a05acbd3c0be81cb2fe7d2579cdb9a5}
+
+
+Sets the height scale for the suggestion box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & Scale to set. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_command_suggestion_list_adb584feb5f08a036a35aa0ea1763e7b1}{\index{Command\-Suggestion\-List@{Command\-Suggestion\-List}!height\-Scale@{height\-Scale}}
+\index{height\-Scale@{height\-Scale}!CommandSuggestionList@{Command\-Suggestion\-List}}
+\subsubsection[{height\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Suggestion\-List\-::height\-Scale\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_suggestion_list_adb584feb5f08a036a35aa0ea1763e7b1}
+
+
+Scaling factor for height of suggestion box depending on how many items it contains. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_suggestion_list_adb584feb5f08a036a35aa0ea1763e7b1}{height\-Scale()}, \hyperlink{class_command_suggestion_list_a5a05acbd3c0be81cb2fe7d2579cdb9a5}{set\-Height\-Scale()}, \hyperlink{class_command_suggestion_list_aedf54e67475b3d8e7ae116610de152a3}{reset\-Height\-Scale()}, \hyperlink{class_command_suggestion_list_a9efae0883b3853d30dd5b94412c040de}{height\-Scale\-Changed()} 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{commandsuggestionlist_8h}{commandsuggestionlist.\-h}\item 
+I\-Console/src/commandsuggestionlist.\-cpp\end{DoxyCompactItemize}

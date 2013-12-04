@@ -1,0 +1,195 @@
+\hypertarget{class_index_pool}{\section{Index\-Pool Class Reference}
+\label{class_index_pool}\index{Index\-Pool@{Index\-Pool}}
+}
+
+
+The \hyperlink{class_index_pool}{Index\-Pool} class manages non-\/consecutive array indices.  
+
+
+
+
+{\ttfamily \#include $<$indexpool.\-h$>$}
+
+
+
+Inheritance diagram for Index\-Pool\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=138pt]{class_index_pool__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Index\-Pool\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=138pt]{class_index_pool__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a}{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T} = 4294967294
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_index_pool_a7791b409b32242230867480c9b79de15}{release\-Index} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} index)
+\begin{DoxyCompactList}\small\item\em Releases an index, allowing it to be allocated again. \end{DoxyCompactList}\item 
+\hypertarget{class_index_pool_abda4a4fa05598f52c3af955788904c9f}{void \hyperlink{class_index_pool_abda4a4fa05598f52c3af955788904c9f}{condense} ()}\label{class_index_pool_abda4a4fa05598f52c3af955788904c9f}
+
+\begin{DoxyCompactList}\small\item\em Condenses all indices (shifts indices down to fill all \char`\"{}holes\char`\"{} in the array). index\-Reallocation is fired for each re-\/allocated index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_index_pool_a80b1499f90029a3531fc0603a5420cd8}{index\-Reallocation} (\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} old\-Value, \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} new\-Value)
+\begin{DoxyCompactList}\small\item\em Fired when indices are re-\/allocated by \hyperlink{class_index_pool_abda4a4fa05598f52c3af955788904c9f}{condense()}. Any indices whose value does not get passed through this signal as old\-Value remains at its original value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_index_pool_a26e3c07764def73d6ebf8a1df0ce9bb4}{Index\-Pool} (Q\-Object $\ast$parent=0, \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} highest\-Index=\hyperlink{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a}{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+bool \hyperlink{class_index_pool_a6001551942dde955048c7fdca82cbda7}{is\-Allocated} (\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} index) const 
+\begin{DoxyCompactList}\small\item\em Returns whether the specified index is currently allocated. \end{DoxyCompactList}\item 
+bool \hyperlink{class_index_pool_a6f3dade75f8853215eb40b8dc9593f6c}{get\-Highest\-Allowed\-Index} () const 
+\begin{DoxyCompactList}\small\item\em Returns the maximum index which can be allocated by this pool. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_index_pool_a47301791c0015a14e7f459ae3efb614c}{allocate\-Index} ()
+\begin{DoxyCompactList}\small\item\em Allocates the lowest free index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_index_pool}{Index\-Pool} class manages non-\/consecutive array indices. 
+
+The index pool works on the following heuristics\-:\par
+ 
+\begin{DoxyItemize}
+\item If the current number of allocated indices is contiguous (or nothing), the new index is allocated at the end of the current block of indices. 
+\item If the current number of allocated indices is non-\/contiguous, the lowest unused index is allocated.
+\end{DoxyItemize}\par
+ This means that when indices are deallocated, \char`\"{}holes\char`\"{} in the array of indices are filled first before new indices are added to the end of the array. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3d}{\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}\label{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3d}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T@{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T}!Index\-Pool@{Index\-Pool}}\index{Index\-Pool@{Index\-Pool}!I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T@{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T}}\item[{\em 
+\hypertarget{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a}{I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T}\label{class_index_pool_abacc88fb0ea6d1dcad5be70710ed0e3da3a3d6446453050cd4c95439b37b6824a}
+}]Highest allocatable index. \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_index_pool_a26e3c07764def73d6ebf8a1df0ce9bb4}{\index{Index\-Pool@{Index\-Pool}!Index\-Pool@{Index\-Pool}}
+\index{Index\-Pool@{Index\-Pool}!IndexPool@{Index\-Pool}}
+\subsubsection[{Index\-Pool}]{\setlength{\rightskip}{0pt plus 5cm}Index\-Pool\-::\-Index\-Pool (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}, }
+\item[{{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{highest\-Index = {\ttfamily {\bf I\-N\-D\-E\-X\-\_\-\-L\-I\-M\-I\-T}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_index_pool_a26e3c07764def73d6ebf8a1df0ce9bb4}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Parent object. \\
+\hline
+{\em highest\-Index} & Highest number of indices. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_index_pool_a47301791c0015a14e7f459ae3efb614c}{\index{Index\-Pool@{Index\-Pool}!allocate\-Index@{allocate\-Index}}
+\index{allocate\-Index@{allocate\-Index}!IndexPool@{Index\-Pool}}
+\subsubsection[{allocate\-Index}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Index\-Pool\-::allocate\-Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_index_pool_a47301791c0015a14e7f459ae3efb614c}
+
+
+Allocates the lowest free index. 
+
+\begin{DoxyReturn}{Returns}
+Allocated index, or N\-U\-L\-L\-H\-N\-D if no more indices could be allocated. 
+\end{DoxyReturn}
+\hypertarget{class_index_pool_a6f3dade75f8853215eb40b8dc9593f6c}{\index{Index\-Pool@{Index\-Pool}!get\-Highest\-Allowed\-Index@{get\-Highest\-Allowed\-Index}}
+\index{get\-Highest\-Allowed\-Index@{get\-Highest\-Allowed\-Index}!IndexPool@{Index\-Pool}}
+\subsubsection[{get\-Highest\-Allowed\-Index}]{\setlength{\rightskip}{0pt plus 5cm}bool Index\-Pool\-::get\-Highest\-Allowed\-Index (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_index_pool_a6f3dade75f8853215eb40b8dc9593f6c}
+
+
+Returns the maximum index which can be allocated by this pool. 
+
+\begin{DoxyReturn}{Returns}
+Highest allowed index. 
+\end{DoxyReturn}
+\hypertarget{class_index_pool_a80b1499f90029a3531fc0603a5420cd8}{\index{Index\-Pool@{Index\-Pool}!index\-Reallocation@{index\-Reallocation}}
+\index{index\-Reallocation@{index\-Reallocation}!IndexPool@{Index\-Pool}}
+\subsubsection[{index\-Reallocation}]{\setlength{\rightskip}{0pt plus 5cm}void Index\-Pool\-::index\-Reallocation (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{old\-Value, }
+\item[{{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{new\-Value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_index_pool_a80b1499f90029a3531fc0603a5420cd8}
+
+
+Fired when indices are re-\/allocated by \hyperlink{class_index_pool_abda4a4fa05598f52c3af955788904c9f}{condense()}. Any indices whose value does not get passed through this signal as old\-Value remains at its original value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\-Value} & Old value of index. \\
+\hline
+{\em new\-Value} & The index's new value. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_index_pool_a6001551942dde955048c7fdca82cbda7}{\index{Index\-Pool@{Index\-Pool}!is\-Allocated@{is\-Allocated}}
+\index{is\-Allocated@{is\-Allocated}!IndexPool@{Index\-Pool}}
+\subsubsection[{is\-Allocated}]{\setlength{\rightskip}{0pt plus 5cm}bool Index\-Pool\-::is\-Allocated (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{index}
+\end{DoxyParamCaption}
+) const}}\label{class_index_pool_a6001551942dde955048c7fdca82cbda7}
+
+
+Returns whether the specified index is currently allocated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if already allocated, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_index_pool_a7791b409b32242230867480c9b79de15}{\index{Index\-Pool@{Index\-Pool}!release\-Index@{release\-Index}}
+\index{release\-Index@{release\-Index}!IndexPool@{Index\-Pool}}
+\subsubsection[{release\-Index}]{\setlength{\rightskip}{0pt plus 5cm}void Index\-Pool\-::release\-Index (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_index_pool_a7791b409b32242230867480c9b79de15}
+
+
+Releases an index, allowing it to be allocated again. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index to release. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{indexpool_8h}{indexpool.\-h}\item 
+app/indexpool.\-cpp\end{DoxyCompactItemize}

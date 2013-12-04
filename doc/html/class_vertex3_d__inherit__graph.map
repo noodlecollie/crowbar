@@ -1,0 +1,4 @@
+<map id="Vertex3D" name="Vertex3D">
+<area shape="rect" id="node2" href="$class_geom_meta_handle.html" title="Metaclass which all geometry components subclass from. Contains useful metadata relevant to geometry ..." alt="" coords="5,5,131,32"/>
+<area shape="rect" id="node3" href="$class_i_vertex3_d_render_spec.html" title="Defines the properties required to be exposed by renderable vertices. " alt="" coords="155,5,305,32"/>
+</map>

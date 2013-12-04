@@ -1,0 +1,36 @@
+\hypertarget{mapdoc_8h}{\section{app/mapdoc.h File Reference}
+\label{mapdoc_8h}\index{app/mapdoc.\-h@{app/mapdoc.\-h}}
+}
+
+
+The main map document class.  
+
+
+{\ttfamily \#include $<$Q\-Object$>$}\\*
+{\ttfamily \#include \char`\"{}octree/octree.\-h\char`\"{}}\\*
+Include dependency graph for mapdoc.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{mapdoc_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_map_doc}{Map\-Doc}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{class_map_doc}{Map\-Doc} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{mapdoc_8h_af6699d6ffa298734e45b6a64604eb0ab}{\#define \hyperlink{mapdoc_8h_af6699d6ffa298734e45b6a64604eb0ab}{M\-A\-P\-D\-O\-C\-\_\-\-V\-E\-R\-S\-I\-O\-N}~10}\label{mapdoc_8h_af6699d6ffa298734e45b6a64604eb0ab}
+
+\begin{DoxyCompactList}\small\item\em Current version of the mapdoc\-: \mbox{[}major\mbox{]}\mbox{[}minor\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main map document class. The \hyperlink{class_map_doc}{Map\-Doc} class details any information that will be serialised when a map source file is saved. This includes geometry and entities but also settings such as camera positions, grid size, snapping, etc. Geometry and entities are kept inside an octree that represents the entire 3\-D space in the level.
+
+\begin{DoxyNote}{Note}
+Simon Perreault's octree's documentation can be found at \href{http://nomis80.org/code/doc/classOctree.html}{\tt http\-://nomis80.\-org/code/doc/class\-Octree.\-html} 
+\end{DoxyNote}

@@ -1,0 +1,362 @@
+\hypertarget{class_face3_d}{\section{Face3\-D Class Reference}
+\label{class_face3_d}\index{Face3\-D@{Face3\-D}}
+}
+
+
+Class representing a 3\-D face.  
+
+
+
+
+{\ttfamily \#include $<$face.\-h$>$}
+
+
+
+Inheritance diagram for Face3\-D\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{class_face3_d__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Face3\-D\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{class_face3_d__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_face3_d_af64a4a5fe2a8f06dd684bff91041e0cb}{\hyperlink{class_face3_d_af64a4a5fe2a8f06dd684bff91041e0cb}{Face3\-D} ()}\label{class_face3_d_af64a4a5fe2a8f06dd684bff91041e0cb}
+
+\begin{DoxyCompactList}\small\item\em Constructor. Sets member variables to default values. \end{DoxyCompactList}\item 
+\hyperlink{class_face3_d_a6113068475ee9edc57445f8eac3d4f5b}{Face3\-D} (const \hyperlink{class_plane}{Plane} p, const Q\-Vector3\-D centre=\hyperlink{matlib_8h_a58c2465e144af99a0af3108235200f58}{V\-E\-C3\-\_\-\-O\-R\-I\-G\-I\-N})
+\begin{DoxyCompactList}\small\item\em Constructor specifying plane and centre point of face. \end{DoxyCompactList}\item 
+\hypertarget{class_face3_d_af7dc0f5eb3359689d7617cad7fe65797}{\hyperlink{class_face3_d_af7dc0f5eb3359689d7617cad7fe65797}{$\sim$\-Face3\-D} ()}\label{class_face3_d_af7dc0f5eb3359689d7617cad7fe65797}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+int \hyperlink{class_face3_d_a83db8beee23e03ff24cd9b0649e8269c}{get\-Edge\-Count} () const 
+\begin{DoxyCompactList}\small\item\em Returns the number of edges this face contains. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_face3_d_a7a44b794e450e4e9784484876e10710b}{get\-Edge\-Handle} (const int index) const 
+\begin{DoxyCompactList}\small\item\em Returns the handle to the edge at a specific index in the edge list. Index must be within range. \end{DoxyCompactList}\item 
+\hyperlink{class_plane}{Plane} \hyperlink{class_face3_d_a1e3d068cffc33876100a3affc496e8eb}{get\-Plane} () const 
+\begin{DoxyCompactList}\small\item\em Gets the plane that represents this face's surface. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_face3_d_a0dfbcd5b1fa9fd18d2b09064d5dff8ac}{get\-Normal} () const 
+\begin{DoxyCompactList}\small\item\em Gets this face's normal. \end{DoxyCompactList}\item 
+bool \hyperlink{class_face3_d_a9e8a8bcd2337cc8aeaa231aba7c5996b}{is\-Plane\-Valid} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the face's plane is valid. \end{DoxyCompactList}\item 
+Q\-Vector3\-D \hyperlink{class_face3_d_a34bc3d8aeb903d18d3f05b6af299fdff}{get\-Centre\-Point} () const 
+\begin{DoxyCompactList}\small\item\em Gets the central point of the face. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_face3_d_a84bf13a7355baeeedf35b6da66c064ec}{get\-Parent\-Solid} () const 
+\begin{DoxyCompactList}\small\item\em Gets the hand of the parent solid of this face. \end{DoxyCompactList}\item 
+\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} \hyperlink{class_face3_d_ad0bc376833756ff964ad8967fc459c8f}{get\-Handle} () const 
+\begin{DoxyCompactList}\small\item\em Gets this face's handle. \end{DoxyCompactList}\item 
+bool \hyperlink{class_face3_d_a7b6289ce08b7e07e050641449d42a4d7}{contains\-Edge} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} edge) const 
+\begin{DoxyCompactList}\small\item\em Returns whether this face contains an edge with the specified handle. \end{DoxyCompactList}\item 
+bool \hyperlink{class_face3_d_ae8daf489ffc7b411edb78b2e62e95e80}{contains\-Any\-Edge} (const Q\-List$<$ \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} $>$ \&edges) const 
+\begin{DoxyCompactList}\small\item\em Returns whether this face contains any of the edges in the list provided. \end{DoxyCompactList}\item 
+void \hyperlink{class_face3_d_ab58095c8043c2f08751327a6399365c9}{set\-Plane} (const \hyperlink{class_plane}{Plane} p)
+\begin{DoxyCompactList}\small\item\em Set's the face's plane. \end{DoxyCompactList}\item 
+void \hyperlink{class_face3_d_aedb4458bdb3b06dddd830c53726aa844}{set\-Centre\-Point} (const Q\-Vector3\-D centre)
+\begin{DoxyCompactList}\small\item\em Sets the face's central point. \end{DoxyCompactList}\item 
+void \hyperlink{class_face3_d_aaf0b823d7e83800962181136a3806be5}{set\-Parent\-Solid} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets the parent solid handle for this face. \end{DoxyCompactList}\item 
+void \hyperlink{class_face3_d_a3f040832e7d61cddc9286acce1597bfd}{set\-Handle} (const \hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} handle)
+\begin{DoxyCompactList}\small\item\em Sets the handle of this face. \end{DoxyCompactList}\item 
+void \hyperlink{class_face3_d_a67c54bddb563a26bdde53b59ba38ae86}{add\-Edge} (\hyperlink{vertex_8h_a72202e57358ed73cd212e9a2eaf39aeb}{G\-E\-O\-M\-H\-A\-N\-D\-L\-E} edge)
+\begin{DoxyCompactList}\small\item\em Adds an edge to this face. The edge must already exist in the face's parent solid. \end{DoxyCompactList}\item 
+bool \hyperlink{class_face3_d_a5f360979f999dfaa2f7be7ed3c66ef0f}{is\-Composite} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the face is composite. Composite faces contain more than just three edges (ie. they are composed of more than one triangle). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class representing a 3\-D face. 
+
+Solids are made up of faces, which are built up from lists of member edges. Faces also contain plane information (for easy conversion to/from V\-M\-Fs). The direction of the face's edges according to their start/end vertices does not necessarily have to be clockwise (this would be impractical) but the edges do have to form a closed, contiguous loop from the beginning to the end of the list, the last vertex of the last edge being the first vertex of the first edge. The loop should form a convex 2\-D polygon. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_face3_d_a6113068475ee9edc57445f8eac3d4f5b}{\index{Face3\-D@{Face3\-D}!Face3\-D@{Face3\-D}}
+\index{Face3\-D@{Face3\-D}!Face3D@{Face3\-D}}
+\subsubsection[{Face3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Face3\-D\-::\-Face3\-D (
+\begin{DoxyParamCaption}
+\item[{const {\bf Plane}}]{p, }
+\item[{const Q\-Vector3\-D}]{centre = {\ttfamily {\bf V\-E\-C3\-\_\-\-O\-R\-I\-G\-I\-N}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a6113068475ee9edc57445f8eac3d4f5b}
+
+
+Constructor specifying plane and centre point of face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \\
+\hline
+{\em centre} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_face3_d_a67c54bddb563a26bdde53b59ba38ae86}{\index{Face3\-D@{Face3\-D}!add\-Edge@{add\-Edge}}
+\index{add\-Edge@{add\-Edge}!Face3D@{Face3\-D}}
+\subsubsection[{add\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\-D\-::add\-Edge (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{edge}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a67c54bddb563a26bdde53b59ba38ae86}
+
+
+Adds an edge to this face. The edge must already exist in the face's parent solid. 
+
+\begin{DoxyNote}{Note}
+Does N\-O\-T check whether the edge already exists in the face. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & Handle of the edge to add. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_face3_d_ae8daf489ffc7b411edb78b2e62e95e80}{\index{Face3\-D@{Face3\-D}!contains\-Any\-Edge@{contains\-Any\-Edge}}
+\index{contains\-Any\-Edge@{contains\-Any\-Edge}!Face3D@{Face3\-D}}
+\subsubsection[{contains\-Any\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}bool Face3\-D\-::contains\-Any\-Edge (
+\begin{DoxyParamCaption}
+\item[{const Q\-List$<$ {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} $>$ \&}]{edges}
+\end{DoxyParamCaption}
+) const}}\label{class_face3_d_ae8daf489ffc7b411edb78b2e62e95e80}
+
+
+Returns whether this face contains any of the edges in the list provided. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edges} & List of edge handles to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the face contains any edge, false if the face contains none of the edges. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a7b6289ce08b7e07e050641449d42a4d7}{\index{Face3\-D@{Face3\-D}!contains\-Edge@{contains\-Edge}}
+\index{contains\-Edge@{contains\-Edge}!Face3D@{Face3\-D}}
+\subsubsection[{contains\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}bool Face3\-D\-::contains\-Edge (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{edge}
+\end{DoxyParamCaption}
+) const}}\label{class_face3_d_a7b6289ce08b7e07e050641449d42a4d7}
+
+
+Returns whether this face contains an edge with the specified handle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edge} & Handle to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the edge is contained within the face, false if not. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a34bc3d8aeb903d18d3f05b6af299fdff}{\index{Face3\-D@{Face3\-D}!get\-Centre\-Point@{get\-Centre\-Point}}
+\index{get\-Centre\-Point@{get\-Centre\-Point}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Centre\-Point}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Face3\-D\-::get\-Centre\-Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a34bc3d8aeb903d18d3f05b6af299fdff}
+
+
+Gets the central point of the face. 
+
+\begin{DoxyReturn}{Returns}
+Face centre point. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a83db8beee23e03ff24cd9b0649e8269c}{\index{Face3\-D@{Face3\-D}!get\-Edge\-Count@{get\-Edge\-Count}}
+\index{get\-Edge\-Count@{get\-Edge\-Count}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Edge\-Count}]{\setlength{\rightskip}{0pt plus 5cm}int Face3\-D\-::get\-Edge\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a83db8beee23e03ff24cd9b0649e8269c}
+
+
+Returns the number of edges this face contains. 
+
+\begin{DoxyReturn}{Returns}
+Number of edges. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a7a44b794e450e4e9784484876e10710b}{\index{Face3\-D@{Face3\-D}!get\-Edge\-Handle@{get\-Edge\-Handle}}
+\index{get\-Edge\-Handle@{get\-Edge\-Handle}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Edge\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Face3\-D\-::get\-Edge\-Handle (
+\begin{DoxyParamCaption}
+\item[{const int}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a7a44b794e450e4e9784484876e10710b}
+
+
+Returns the handle to the edge at a specific index in the edge list. Index must be within range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of edge to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Edge at this index. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_ad0bc376833756ff964ad8967fc459c8f}{\index{Face3\-D@{Face3\-D}!get\-Handle@{get\-Handle}}
+\index{get\-Handle@{get\-Handle}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Face3\-D\-::get\-Handle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_ad0bc376833756ff964ad8967fc459c8f}
+
+
+Gets this face's handle. 
+
+\begin{DoxyReturn}{Returns}
+Handle of the face. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a0dfbcd5b1fa9fd18d2b09064d5dff8ac}{\index{Face3\-D@{Face3\-D}!get\-Normal@{get\-Normal}}
+\index{get\-Normal@{get\-Normal}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Normal}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Vector3\-D Face3\-D\-::get\-Normal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a0dfbcd5b1fa9fd18d2b09064d5dff8ac}
+
+
+Gets this face's normal. 
+
+\begin{DoxyReturn}{Returns}
+Normal of face. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a84bf13a7355baeeedf35b6da66c064ec}{\index{Face3\-D@{Face3\-D}!get\-Parent\-Solid@{get\-Parent\-Solid}}
+\index{get\-Parent\-Solid@{get\-Parent\-Solid}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E} Face3\-D\-::get\-Parent\-Solid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a84bf13a7355baeeedf35b6da66c064ec}
+
+
+Gets the hand of the parent solid of this face. 
+
+\begin{DoxyReturn}{Returns}
+Parent solid handle. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a1e3d068cffc33876100a3affc496e8eb}{\index{Face3\-D@{Face3\-D}!get\-Plane@{get\-Plane}}
+\index{get\-Plane@{get\-Plane}!Face3D@{Face3\-D}}
+\subsubsection[{get\-Plane}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Plane} Face3\-D\-::get\-Plane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a1e3d068cffc33876100a3affc496e8eb}
+
+
+Gets the plane that represents this face's surface. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_plane}{Plane} of face. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a5f360979f999dfaa2f7be7ed3c66ef0f}{\index{Face3\-D@{Face3\-D}!is\-Composite@{is\-Composite}}
+\index{is\-Composite@{is\-Composite}!Face3D@{Face3\-D}}
+\subsubsection[{is\-Composite}]{\setlength{\rightskip}{0pt plus 5cm}bool Face3\-D\-::is\-Composite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a5f360979f999dfaa2f7be7ed3c66ef0f}
+
+
+Returns whether the face is composite. Composite faces contain more than just three edges (ie. they are composed of more than one triangle). 
+
+\begin{DoxyReturn}{Returns}
+True if face is composite, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_a9e8a8bcd2337cc8aeaa231aba7c5996b}{\index{Face3\-D@{Face3\-D}!is\-Plane\-Valid@{is\-Plane\-Valid}}
+\index{is\-Plane\-Valid@{is\-Plane\-Valid}!Face3D@{Face3\-D}}
+\subsubsection[{is\-Plane\-Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool Face3\-D\-::is\-Plane\-Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a9e8a8bcd2337cc8aeaa231aba7c5996b}
+
+
+Returns whether the face's plane is valid. 
+
+\begin{DoxyReturn}{Returns}
+True if plane is valid, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_face3_d_aedb4458bdb3b06dddd830c53726aa844}{\index{Face3\-D@{Face3\-D}!set\-Centre\-Point@{set\-Centre\-Point}}
+\index{set\-Centre\-Point@{set\-Centre\-Point}!Face3D@{Face3\-D}}
+\subsubsection[{set\-Centre\-Point}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\-D\-::set\-Centre\-Point (
+\begin{DoxyParamCaption}
+\item[{const Q\-Vector3\-D}]{centre}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_aedb4458bdb3b06dddd830c53726aa844}
+
+
+Sets the face's central point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em centre} & Centre point to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_face3_d_a3f040832e7d61cddc9286acce1597bfd}{\index{Face3\-D@{Face3\-D}!set\-Handle@{set\-Handle}}
+\index{set\-Handle@{set\-Handle}!Face3D@{Face3\-D}}
+\subsubsection[{set\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\-D\-::set\-Handle (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_a3f040832e7d61cddc9286acce1597bfd}
+
+
+Sets the handle of this face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_face3_d_aaf0b823d7e83800962181136a3806be5}{\index{Face3\-D@{Face3\-D}!set\-Parent\-Solid@{set\-Parent\-Solid}}
+\index{set\-Parent\-Solid@{set\-Parent\-Solid}!Face3D@{Face3\-D}}
+\subsubsection[{set\-Parent\-Solid}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\-D\-::set\-Parent\-Solid (
+\begin{DoxyParamCaption}
+\item[{const {\bf G\-E\-O\-M\-H\-A\-N\-D\-L\-E}}]{handle}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_aaf0b823d7e83800962181136a3806be5}
+
+
+Sets the parent solid handle for this face. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Handle to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_face3_d_ab58095c8043c2f08751327a6399365c9}{\index{Face3\-D@{Face3\-D}!set\-Plane@{set\-Plane}}
+\index{set\-Plane@{set\-Plane}!Face3D@{Face3\-D}}
+\subsubsection[{set\-Plane}]{\setlength{\rightskip}{0pt plus 5cm}void Face3\-D\-::set\-Plane (
+\begin{DoxyParamCaption}
+\item[{const {\bf Plane}}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_face3_d_ab58095c8043c2f08751327a6399365c9}
+
+
+Set's the face's plane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \hyperlink{class_plane}{Plane} to set. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{face_8h}{face.\-h}\item 
+app/face.\-cpp\end{DoxyCompactItemize}

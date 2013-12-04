@@ -1,5 +1,5 @@
 #include "wr_commandinterpreter.h"
-#include "nregexutil.h"
+#include "regexutil.h"
 
 //const QRegularExpression CommandInterpreter::matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
 
@@ -151,7 +151,7 @@ void CommandInterpreter::parse(const QString &cmdString)
 void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEntryList &masterList)
 {
     // Split the original string by semicolons.
-    QStringList splitFirstPass = cmdString.split(QRegularExpression(RegexUtil::RegexMatchDelimSemicolon));
+    QStringList splitFirstPass = cmdString.split(QRegularExpression(NRegexUtil::RegexMatchDelimSemicolon));
     
     // Operate on each entry.
     foreach(QString str1, splitFirstPass)
@@ -160,7 +160,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
         CommandEntryPipeList pipeList;
         
         // Split each new string by pipes.
-        QStringList splitSecondPass = str1.split(QRegularExpression(RegexUtil::RegexMatchDelimPipe));
+        QStringList splitSecondPass = str1.split(QRegularExpression(NRegexUtil::RegexMatchDelimPipe));
         
         // Operate on each new entry.
         foreach (QString str2, splitSecondPass)
@@ -169,7 +169,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
             CommandEntryPair pair;
             
             // Retrieve the list of argument matches.
-            QRegularExpression matchArgs(RegexUtil::RegexMatchCommandArgs);
+            QRegularExpression matchArgs(NRegexUtil::RegexMatchCommandArgs);
             QRegularExpressionMatchIterator m = matchArgs.globalMatch(str2);
             
             while ( m.hasNext() )

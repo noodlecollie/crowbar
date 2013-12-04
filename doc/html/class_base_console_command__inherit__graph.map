@@ -1,0 +1,5 @@
+<map id="BaseConsoleCommand" name="BaseConsoleCommand">
+<area shape="rect" id="node3" href="$class_listed_console_command.html" title="Provides functionality for console commands to form a linked list. " alt="" coords="31,155,193,181"/>
+<area shape="rect" id="node4" href="$class_con_command.html" title="Defines code which is executed whenever the user enters the command name into the console..." alt="" coords="5,229,109,256"/>
+<area shape="rect" id="node5" href="$class_con_var.html" title="Stores values that are retrievable and settable by the user (from the console) or by the application ..." alt="" coords="134,229,199,256"/>
+</map>

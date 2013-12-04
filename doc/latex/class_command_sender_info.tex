@@ -1,0 +1,582 @@
+\hypertarget{class_command_sender_info}{\section{Command\-Sender\-Info Class Reference}
+\label{class_command_sender_info}\index{Command\-Sender\-Info@{Command\-Sender\-Info}}
+}
+
+
+The \hyperlink{class_command_sender_info}{Command\-Sender\-Info} class provides a route between a calling \hyperlink{class_command_manager}{Command\-Manager} and a receiving \hyperlink{class_con_command}{Con\-Command} or \hyperlink{class_con_var}{Con\-Var}. The command or variable can print output to the relevant console window (if one exists) by passing the output to this class.  
+
+
+
+
+{\ttfamily \#include $<$commandsenderinfo.\-h$>$}
+
+
+
+Inheritance diagram for Command\-Sender\-Info\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_command_sender_info__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Command\-Sender\-Info\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_command_sender_info__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60}{Output\-Type} \{ \\*
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a64260c3ff17cea2a0f40e2ed74725f2b}{Output\-General} = 0, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a1f1c1e463dbcd5c68f875391a024f520}{Output\-Warning}, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a706c899cbfdfa13ffdad7083e52c3fed}{Output\-Custom1}, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a2226af7b44b642ccaa3d276171a5e83c}{Output\-Custom2}, 
+\\*
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60ab3580e2a4b7ce9cd6ceccf36ae3fa852}{Output\-Custom3}, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a23562ae85b8c4b677f80813d4a51fdbb}{Output\-Custom4}, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a800acfe2330488652d04da3d82474242}{Output\-Custom5}, 
+\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a60ad31618b524d4c8ce1751cff398133}{Output\-Custom6}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines the different types of output that can be displayed in a \hyperlink{class_console_widget}{Console\-Widget}. \end{DoxyCompactList}\item 
+typedef void(Command\-Manager\-::$\ast$ \hyperlink{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{Send\-Output} )(\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60}{Command\-Sender\-Info\-::\-Output\-Type} type, const Q\-String \&msg)
+\begin{DoxyCompactList}\small\item\em Typedef for a callback which accepts output from commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_sender_info_a2e699544abc14568046168b014f4f16e}{Command\-Sender\-Info} (Q\-String name, \hyperlink{class_command_manager}{Command\-Manager} $\ast$manager, \hyperlink{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{Send\-Output} output\-Func, bool \hyperlink{class_command_sender_info_a9f34e6eb3bab0b16dff37fdacd82695e}{has\-Min}=false, float min=0.\-0f, bool has\-Max=false, float max=0.\-0f, Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_command_sender_info_ae52b21dd10b8c15fa87c6bdbb6f9ed8c}{Command\-Sender\-Info} (const \hyperlink{class_command_sender_info}{Command\-Sender\-Info} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a405f18d255eb60211b373bf58c287d05}{write\-Output} (\hyperlink{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60}{Command\-Sender\-Info\-::\-Output\-Type} type, const Q\-String \&output) const 
+\begin{DoxyCompactList}\small\item\em Sends the output through the output callback stored within this object. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a0d081d74145ea6a83502acee2d995e50}{write\-Message} (const Q\-String \&message) const 
+\begin{DoxyCompactList}\small\item\em Convenience function -\/ sends a standard message as output. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a7c679e9584183f503e322e4149c28dde}{write\-Warning} (const Q\-String \&message) const 
+\begin{DoxyCompactList}\small\item\em Convenience function -\/ sends a warning message as output. \end{DoxyCompactList}\item 
+\hyperlink{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{Command\-Sender\-Info\-::\-Send\-Output} \hyperlink{class_command_sender_info_a689dcd3ee607d6f7548f37acfd9545fb}{output\-Callback} () const 
+\begin{DoxyCompactList}\small\item\em Returns the pointer to the output callback. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a4cd8d7cbb6810d91565534616d3566c3}{set\-Output\-Callback} (\hyperlink{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{Command\-Sender\-Info\-::\-Send\-Output} output)
+\begin{DoxyCompactList}\small\item\em Sets the callback this object will send output through. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_command_sender_info_ad170306b2bdd8e76016aaf485053f9d7}{command\-Name} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of the command this object was assigned to. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a35b041f14c94c82d2fd32d1b2877bc54}{set\-Command\-Name} (Q\-String \&name)
+\begin{DoxyCompactList}\small\item\em Sets the name of the command this object is assigned to. \end{DoxyCompactList}\item 
+const \hyperlink{class_command_manager}{Command\-Manager} $\ast$ \hyperlink{class_command_sender_info_ab2a5d671d9f8b617a2b15675937b7f53}{command\-Manager} () const 
+\begin{DoxyCompactList}\small\item\em Gets the manager this object is assigned to. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_ab61acf2d7dd2ab6b1eb5376ac611041e}{set\-Command\-Manager} (\hyperlink{class_command_manager}{Command\-Manager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Sets the manager this object is assigned to. \end{DoxyCompactList}\item 
+bool \hyperlink{class_command_sender_info_a0535d20518b5f3dbb358d027784e63fe}{has\-Min} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the variable has a min value. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_ac46d887956a3edbadc8375a97c85b38f}{set\-Has\-Min} (bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether the variable has a min value. \end{DoxyCompactList}\item 
+bool \hyperlink{class_command_sender_info_afc6b456de58752c0601f635927c72852}{has\-Max} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the variable has a max value. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_a69ac1e0453b2a79bc697def44a8d356e}{set\-Has\-Max} (bool b)
+\begin{DoxyCompactList}\small\item\em Sets whether the variable has a max value. \end{DoxyCompactList}\item 
+float \hyperlink{class_command_sender_info_aa3d7b4f7a78bcc0c0f882b6a479b74dc}{min\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the variable's min value. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_ad1e49e6c18b5d75aacb8c7c68a79ed76}{set\-Min\-Value} (float val)
+\begin{DoxyCompactList}\small\item\em Sets the variable's min value. \end{DoxyCompactList}\item 
+float \hyperlink{class_command_sender_info_a187eae30c2bc2a2ab98d2cf09bad4a13}{max\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Gets the variable's max value. \end{DoxyCompactList}\item 
+void \hyperlink{class_command_sender_info_af57f1c16ede28190022994e75206223f}{set\-Max\-Value} (float val)
+\begin{DoxyCompactList}\small\item\em Sets the variable's max value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{Send\-Output} \hyperlink{class_command_sender_info_af04b4cc7b75a48a4583411c1c130d654}{output\-Callback}
+\begin{DoxyCompactList}\small\item\em Callback to send output through. \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_command_sender_info_af9825e2019cac0c5c9793eefe8086b6c}{command\-Name}
+\begin{DoxyCompactList}\small\item\em Name of command this object is assigned to. \end{DoxyCompactList}\item 
+bool \hyperlink{class_command_sender_info_a9f34e6eb3bab0b16dff37fdacd82695e}{has\-Min}
+\begin{DoxyCompactList}\small\item\em Whether the variable has a min value. Only used for Con\-Vars. \end{DoxyCompactList}\item 
+bool \hyperlink{class_command_sender_info_ae003e4ee143379be99e52bbe6dce3a69}{has\-Max}
+\begin{DoxyCompactList}\small\item\em Whether the variable has a max value. Only used for Con\-Vars. \end{DoxyCompactList}\item 
+float \hyperlink{class_command_sender_info_a7279460303b092c8d78735bd33e94ae0}{min\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's min value. Only used for Con\-Vars. \end{DoxyCompactList}\item 
+float \hyperlink{class_command_sender_info_ac5b816de5b4e61339e0b649bd8f58799}{max\-Value}
+\begin{DoxyCompactList}\small\item\em Variable's max value. Only used for Con\-Vars. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_command_sender_info_a5ee157709621d8775061d944a62ed7fa}{class {\bfseries Command\-Sender\-Info}}\label{class_command_sender_info_a5ee157709621d8775061d944a62ed7fa}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_command_sender_info}{Command\-Sender\-Info} class provides a route between a calling \hyperlink{class_command_manager}{Command\-Manager} and a receiving \hyperlink{class_con_command}{Con\-Command} or \hyperlink{class_con_var}{Con\-Var}. The command or variable can print output to the relevant console window (if one exists) by passing the output to this class. 
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Send\-Output@{Send\-Output}}
+\index{Send\-Output@{Send\-Output}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{Send\-Output}]{\setlength{\rightskip}{0pt plus 5cm}typedef void(Command\-Manager\-::$\ast$ Command\-Sender\-Info\-::\-Send\-Output)({\bf Command\-Sender\-Info\-::\-Output\-Type} type, const Q\-String \&msg)}}\label{class_command_sender_info_a68c494ef69a25ac7bf667b83e24639ed}
+
+
+Typedef for a callback which accepts output from commands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of output to display. \\
+\hline
+{\em msg} & Output message. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Type@{Output\-Type}}
+\index{Output\-Type@{Output\-Type}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{Output\-Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\-Sender\-Info\-::\-Output\-Type}}}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60}
+
+
+Defines the different types of output that can be displayed in a \hyperlink{class_console_widget}{Console\-Widget}. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Output\-General@{Output\-General}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-General@{Output\-General}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a64260c3ff17cea2a0f40e2ed74725f2b}{Output\-General}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a64260c3ff17cea2a0f40e2ed74725f2b}
+}]Standard message \index{Output\-Warning@{Output\-Warning}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Warning@{Output\-Warning}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a1f1c1e463dbcd5c68f875391a024f520}{Output\-Warning}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a1f1c1e463dbcd5c68f875391a024f520}
+}]Warning \index{Output\-Custom1@{Output\-Custom1}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom1@{Output\-Custom1}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a706c899cbfdfa13ffdad7083e52c3fed}{Output\-Custom1}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a706c899cbfdfa13ffdad7083e52c3fed}
+}]Custom type 1 -\/ usually inactive text \index{Output\-Custom2@{Output\-Custom2}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom2@{Output\-Custom2}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a2226af7b44b642ccaa3d276171a5e83c}{Output\-Custom2}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a2226af7b44b642ccaa3d276171a5e83c}
+}]Custom type 2 -\/ usually highlighted or otherwise important text \index{Output\-Custom3@{Output\-Custom3}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom3@{Output\-Custom3}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60ab3580e2a4b7ce9cd6ceccf36ae3fa852}{Output\-Custom3}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60ab3580e2a4b7ce9cd6ceccf36ae3fa852}
+}]Custom type 3 \index{Output\-Custom4@{Output\-Custom4}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom4@{Output\-Custom4}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a23562ae85b8c4b677f80813d4a51fdbb}{Output\-Custom4}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a23562ae85b8c4b677f80813d4a51fdbb}
+}]Custom type 4 \index{Output\-Custom5@{Output\-Custom5}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom5@{Output\-Custom5}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a800acfe2330488652d04da3d82474242}{Output\-Custom5}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a800acfe2330488652d04da3d82474242}
+}]Custom type 5 \index{Output\-Custom6@{Output\-Custom6}!Command\-Sender\-Info@{Command\-Sender\-Info}}\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Output\-Custom6@{Output\-Custom6}}\item[{\em 
+\hypertarget{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a60ad31618b524d4c8ce1751cff398133}{Output\-Custom6}\label{class_command_sender_info_a3a5e6a2ef1772f6557f351652c2e3b60a60ad31618b524d4c8ce1751cff398133}
+}]Custom type 6 \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_command_sender_info_a2e699544abc14568046168b014f4f16e}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Command\-Sender\-Info@{Command\-Sender\-Info}}
+\index{Command\-Sender\-Info@{Command\-Sender\-Info}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{Command\-Sender\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Command\-Sender\-Info\-::\-Command\-Sender\-Info (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{name, }
+\item[{{\bf Command\-Manager} $\ast$}]{manager, }
+\item[{{\bf Send\-Output}}]{output\-Func, }
+\item[{bool}]{has\-Min = {\ttfamily false}, }
+\item[{float}]{min = {\ttfamily 0.0f}, }
+\item[{bool}]{has\-Max = {\ttfamily false}, }
+\item[{float}]{max = {\ttfamily 0.0f}, }
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_command_sender_info_a2e699544abc14568046168b014f4f16e}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of command or variable we are passing data to. Informational only. \\
+\hline
+{\em manager} & Command's manager. \\
+\hline
+{\em output\-Func} & Pointer to function which the command can write output through. \\
+\hline
+{\em has\-Min} & Whether the variable has a minimum value. Informational only. \\
+\hline
+{\em min} & Minimum value of the variable. Informational only. \\
+\hline
+{\em has\-Max} & Whether the variable has a maximum value. Informational only. \\
+\hline
+{\em max} & Maximum value of the variable. Informational only. \\
+\hline
+{\em parent} & Q\-Object parent, if applicable. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_ae52b21dd10b8c15fa87c6bdbb6f9ed8c}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!Command\-Sender\-Info@{Command\-Sender\-Info}}
+\index{Command\-Sender\-Info@{Command\-Sender\-Info}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{Command\-Sender\-Info}]{\setlength{\rightskip}{0pt plus 5cm}Command\-Sender\-Info\-::\-Command\-Sender\-Info (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command\-Sender\-Info} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_ae52b21dd10b8c15fa87c6bdbb6f9ed8c}
+
+
+Copy constructor. 
+
+\begin{DoxyNote}{Note}
+As per Qt's architecture, similar Q\-Objects are not {\itshape copies} of each other, just different instances of the same object. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{class_command_sender_info}{Command\-Sender\-Info} to copy values from. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_command_sender_info_ab2a5d671d9f8b617a2b15675937b7f53}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!command\-Manager@{command\-Manager}}
+\index{command\-Manager@{command\-Manager}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{command\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Command\-Manager} $\ast$ Command\-Sender\-Info\-::command\-Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_ab2a5d671d9f8b617a2b15675937b7f53}
+
+
+Gets the manager this object is assigned to. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to manager. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_ad170306b2bdd8e76016aaf485053f9d7}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!command\-Name@{command\-Name}}
+\index{command\-Name@{command\-Name}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{command\-Name}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Command\-Sender\-Info\-::command\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_ad170306b2bdd8e76016aaf485053f9d7}
+
+
+Gets the name of the command this object was assigned to. 
+
+\begin{DoxyReturn}{Returns}
+Name of object. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_afc6b456de58752c0601f635927c72852}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!has\-Max@{has\-Max}}
+\index{has\-Max@{has\-Max}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}bool Command\-Sender\-Info\-::has\-Max (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_afc6b456de58752c0601f635927c72852}
+
+
+Returns whether the variable has a max value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. Informational only. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+True if the variable has a max value, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_a0535d20518b5f3dbb358d027784e63fe}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!has\-Min@{has\-Min}}
+\index{has\-Min@{has\-Min}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}bool Command\-Sender\-Info\-::has\-Min (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a0535d20518b5f3dbb358d027784e63fe}
+
+
+Returns whether the variable has a min value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. Informational only. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+True if the variable has a min value, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_a187eae30c2bc2a2ab98d2cf09bad4a13}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!max\-Value@{max\-Value}}
+\index{max\-Value@{max\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Sender\-Info\-::max\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a187eae30c2bc2a2ab98d2cf09bad4a13}
+
+
+Gets the variable's max value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. Informational only. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+If the variable does not have a maximum value, the return of this function is undefined. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+Maximum value of the variable. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_aa3d7b4f7a78bcc0c0f882b6a479b74dc}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!min\-Value@{min\-Value}}
+\index{min\-Value@{min\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Sender\-Info\-::min\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_aa3d7b4f7a78bcc0c0f882b6a479b74dc}
+
+
+Gets the variable's min value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. Informational only. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+If the variable does not have a minimum value, the return of this function is undefined. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+Minimum value of the variable. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_a689dcd3ee607d6f7548f37acfd9545fb}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!output\-Callback@{output\-Callback}}
+\index{output\-Callback@{output\-Callback}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{output\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\-Sender\-Info\-::\-Send\-Output} Command\-Sender\-Info\-::output\-Callback (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a689dcd3ee607d6f7548f37acfd9545fb}
+
+
+Returns the pointer to the output callback. 
+
+\begin{DoxyReturn}{Returns}
+Callback pointer. 
+\end{DoxyReturn}
+\hypertarget{class_command_sender_info_ab61acf2d7dd2ab6b1eb5376ac611041e}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Command\-Manager@{set\-Command\-Manager}}
+\index{set\-Command\-Manager@{set\-Command\-Manager}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Command\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Command\-Manager (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Manager} $\ast$}]{manager}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_ab61acf2d7dd2ab6b1eb5376ac611041e}
+
+
+Sets the manager this object is assigned to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Manager to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a35b041f14c94c82d2fd32d1b2877bc54}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Command\-Name@{set\-Command\-Name}}
+\index{set\-Command\-Name@{set\-Command\-Name}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Command\-Name}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Command\-Name (
+\begin{DoxyParamCaption}
+\item[{Q\-String \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_a35b041f14c94c82d2fd32d1b2877bc54}
+
+
+Sets the name of the command this object is assigned to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a69ac1e0453b2a79bc697def44a8d356e}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Has\-Max@{set\-Has\-Max}}
+\index{set\-Has\-Max@{set\-Has\-Max}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Has\-Max (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_a69ac1e0453b2a79bc697def44a8d356e}
+
+
+Sets whether the variable has a max value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. This is informational only and has no effect on the actual variable. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & True if the variable should have a max value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_ac46d887956a3edbadc8375a97c85b38f}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Has\-Min@{set\-Has\-Min}}
+\index{set\-Has\-Min@{set\-Has\-Min}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Has\-Min (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_ac46d887956a3edbadc8375a97c85b38f}
+
+
+Sets whether the variable has a min value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. This is informational only and has no effect on the actual variable. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em b} & True if the variable should have a min value, false otherwise. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_af57f1c16ede28190022994e75206223f}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Max\-Value@{set\-Max\-Value}}
+\index{set\-Max\-Value@{set\-Max\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Max\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_af57f1c16ede28190022994e75206223f}
+
+
+Sets the variable's max value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks.\-This is informational only and has no effect on the actual variable. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value of the max bound. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_ad1e49e6c18b5d75aacb8c7c68a79ed76}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Min\-Value@{set\-Min\-Value}}
+\index{set\-Min\-Value@{set\-Min\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Min\-Value (
+\begin{DoxyParamCaption}
+\item[{float}]{val}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_ad1e49e6c18b5d75aacb8c7c68a79ed76}
+
+
+Sets the variable's min value. 
+
+\begin{DoxyNote}{Note}
+Only relevant for \hyperlink{class_con_var}{Con\-Var} callbacks. This is informational only and has no effect on the actual variable. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value of the min bound. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a4cd8d7cbb6810d91565534616d3566c3}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!set\-Output\-Callback@{set\-Output\-Callback}}
+\index{set\-Output\-Callback@{set\-Output\-Callback}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{set\-Output\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::set\-Output\-Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info\-::\-Send\-Output}}]{output}
+\end{DoxyParamCaption}
+)}}\label{class_command_sender_info_a4cd8d7cbb6810d91565534616d3566c3}
+
+
+Sets the callback this object will send output through. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em output} & Pointer to set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a0d081d74145ea6a83502acee2d995e50}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!write\-Message@{write\-Message}}
+\index{write\-Message@{write\-Message}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{write\-Message}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::write\-Message (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{message}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a0d081d74145ea6a83502acee2d995e50}
+
+
+Convenience function -\/ sends a standard message as output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Output message. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a405f18d255eb60211b373bf58c287d05}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!write\-Output@{write\-Output}}
+\index{write\-Output@{write\-Output}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{write\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::write\-Output (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\-Sender\-Info\-::\-Output\-Type}}]{type, }
+\item[{const Q\-String \&}]{output}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a405f18d255eb60211b373bf58c287d05}
+
+
+Sends the output through the output callback stored within this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of output to display. \\
+\hline
+{\em output} & Output message. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_command_sender_info_a7c679e9584183f503e322e4149c28dde}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!write\-Warning@{write\-Warning}}
+\index{write\-Warning@{write\-Warning}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{write\-Warning}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Sender\-Info\-::write\-Warning (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{message}
+\end{DoxyParamCaption}
+) const}}\label{class_command_sender_info_a7c679e9584183f503e322e4149c28dde}
+
+
+Convenience function -\/ sends a warning message as output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Warning message. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_command_sender_info_af9825e2019cac0c5c9793eefe8086b6c}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!command\-Name@{command\-Name}}
+\index{command\-Name@{command\-Name}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{command\-Name}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Command\-Sender\-Info\-::command\-Name\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_af9825e2019cac0c5c9793eefe8086b6c}
+
+
+Name of command this object is assigned to. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_af9825e2019cac0c5c9793eefe8086b6c}{command\-Name()}, \hyperlink{class_command_sender_info_a35b041f14c94c82d2fd32d1b2877bc54}{set\-Command\-Name()} 
+\end{DoxyParagraph}
+\hypertarget{class_command_sender_info_ae003e4ee143379be99e52bbe6dce3a69}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!has\-Max@{has\-Max}}
+\index{has\-Max@{has\-Max}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{has\-Max}]{\setlength{\rightskip}{0pt plus 5cm}bool Command\-Sender\-Info\-::has\-Max\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_ae003e4ee143379be99e52bbe6dce3a69}
+
+
+Whether the variable has a max value. Only used for Con\-Vars. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_ae003e4ee143379be99e52bbe6dce3a69}{has\-Max()}, \hyperlink{class_command_sender_info_a69ac1e0453b2a79bc697def44a8d356e}{set\-Has\-Max()} 
+\end{DoxyParagraph}
+\hypertarget{class_command_sender_info_a9f34e6eb3bab0b16dff37fdacd82695e}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!has\-Min@{has\-Min}}
+\index{has\-Min@{has\-Min}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{has\-Min}]{\setlength{\rightskip}{0pt plus 5cm}bool Command\-Sender\-Info\-::has\-Min\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_a9f34e6eb3bab0b16dff37fdacd82695e}
+
+
+Whether the variable has a min value. Only used for Con\-Vars. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_a9f34e6eb3bab0b16dff37fdacd82695e}{has\-Min()}, \hyperlink{class_command_sender_info_ac46d887956a3edbadc8375a97c85b38f}{set\-Has\-Min()} 
+\end{DoxyParagraph}
+\hypertarget{class_command_sender_info_ac5b816de5b4e61339e0b649bd8f58799}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!max\-Value@{max\-Value}}
+\index{max\-Value@{max\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{max\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Sender\-Info\-::max\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_ac5b816de5b4e61339e0b649bd8f58799}
+
+
+Variable's max value. Only used for Con\-Vars. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_ac5b816de5b4e61339e0b649bd8f58799}{max\-Value()}, \hyperlink{class_command_sender_info_af57f1c16ede28190022994e75206223f}{set\-Max\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_command_sender_info_a7279460303b092c8d78735bd33e94ae0}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!min\-Value@{min\-Value}}
+\index{min\-Value@{min\-Value}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{min\-Value}]{\setlength{\rightskip}{0pt plus 5cm}float Command\-Sender\-Info\-::min\-Value\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_a7279460303b092c8d78735bd33e94ae0}
+
+
+Variable's min value. Only used for Con\-Vars. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_a7279460303b092c8d78735bd33e94ae0}{min\-Value()}, \hyperlink{class_command_sender_info_ad1e49e6c18b5d75aacb8c7c68a79ed76}{set\-Min\-Value()} 
+\end{DoxyParagraph}
+\hypertarget{class_command_sender_info_af04b4cc7b75a48a4583411c1c130d654}{\index{Command\-Sender\-Info@{Command\-Sender\-Info}!output\-Callback@{output\-Callback}}
+\index{output\-Callback@{output\-Callback}!CommandSenderInfo@{Command\-Sender\-Info}}
+\subsubsection[{output\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\-Sender\-Info\-::\-Send\-Output} Command\-Sender\-Info\-::output\-Callback\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}}\label{class_command_sender_info_af04b4cc7b75a48a4583411c1c130d654}
+
+
+Callback to send output through. 
+
+\begin{DoxyParagraph}{Accessors\-:}
+\hyperlink{class_command_sender_info_af04b4cc7b75a48a4583411c1c130d654}{output\-Callback()}, \hyperlink{class_command_sender_info_a4cd8d7cbb6810d91565534616d3566c3}{set\-Output\-Callback()} 
+\end{DoxyParagraph}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+I\-Console/inc/\hyperlink{commandsenderinfo_8h}{commandsenderinfo.\-h}\item 
+I\-Console/src/commandsenderinfo.\-cpp\end{DoxyCompactItemize}

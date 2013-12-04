@@ -1,0 +1,92 @@
+\hypertarget{class_command_line_parser}{\section{Command\-Line\-Parser Class Reference}
+\label{class_command_line_parser}\index{Command\-Line\-Parser@{Command\-Line\-Parser}}
+}
+
+
+Deals with arguments passed to the application on the command-\/line.  
+
+
+
+
+{\ttfamily \#include $<$commandlineparser.\-h$>$}
+
+
+
+Inheritance diagram for Command\-Line\-Parser\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_command_line_parser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Command\-Line\-Parser\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{class_command_line_parser__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_command_line_parser_a6a39c14ecf639b02bf8a71ac224b0a61}{Parse\-Arguments} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Parses the command-\/line arguments from the ignition function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_command_line_parser_af9c962bcd44ea242d11b88c9c28bd78d}{Command\-Line\-Parser} (Q\-Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Deals with arguments passed to the application on the command-\/line. 
+
+The command-\/line parser is created before the main application window is initialised and parses any options sent to the application on the command line. The global instance of the parser is made available through \hyperlink{globals_8h}{globals.\-h} under g\-\_\-p\-Cmd\-Line and several macros exist for facilitating the checking of common global application properties. See \hyperlink{globals_8h}{globals.\-h} for a full description. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_command_line_parser_af9c962bcd44ea242d11b88c9c28bd78d}{\index{Command\-Line\-Parser@{Command\-Line\-Parser}!Command\-Line\-Parser@{Command\-Line\-Parser}}
+\index{Command\-Line\-Parser@{Command\-Line\-Parser}!CommandLineParser@{Command\-Line\-Parser}}
+\subsubsection[{Command\-Line\-Parser}]{\setlength{\rightskip}{0pt plus 5cm}Command\-Line\-Parser\-::\-Command\-Line\-Parser (
+\begin{DoxyParamCaption}
+\item[{Q\-Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_command_line_parser_af9c962bcd44ea242d11b88c9c28bd78d}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Parent object (usually N\-U\-L\-L). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_command_line_parser_a6a39c14ecf639b02bf8a71ac224b0a61}{\index{Command\-Line\-Parser@{Command\-Line\-Parser}!Parse\-Arguments@{Parse\-Arguments}}
+\index{Parse\-Arguments@{Parse\-Arguments}!CommandLineParser@{Command\-Line\-Parser}}
+\subsubsection[{Parse\-Arguments}]{\setlength{\rightskip}{0pt plus 5cm}void Command\-Line\-Parser\-::\-Parse\-Arguments (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_command_line_parser_a6a39c14ecf639b02bf8a71ac224b0a61}
+
+
+Parses the command-\/line arguments from the ignition function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of arguments. \\
+\hline
+{\em argv} & Char array of arguments. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+app/\hyperlink{commandlineparser_8h}{commandlineparser.\-h}\item 
+app/commandlineparser.\-cpp\end{DoxyCompactItemize}

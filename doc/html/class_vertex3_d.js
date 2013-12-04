@@ -1,0 +1,28 @@
+var class_vertex3_d =
+[
+    [ "Vertex3D", "class_vertex3_d.html#a41dee42f7502bdc4b04be44a4bf4bdbc", null ],
+    [ "Vertex3D", "class_vertex3_d.html#a81b68cf7e781884ed457034bd5b63612", null ],
+    [ "Vertex3D", "class_vertex3_d.html#a11ea685931b50972afb2ffda7bfaa984", null ],
+    [ "~Vertex3D", "class_vertex3_d.html#aac769a82c4a8b36850bf94dec1197a66", null ],
+    [ "getColour", "class_vertex3_d.html#a2bdd677bf1eb764a7dfa967aa7d2660b", null ],
+    [ "getHandle", "class_vertex3_d.html#acd4bdbddebb5090650cd31883280175e", null ],
+    [ "getNormal", "class_vertex3_d.html#a02604a70c43c9ef567684174e8406959", null ],
+    [ "getParentSolid", "class_vertex3_d.html#a77b0e7b96b5ec626d56ea32963111c37", null ],
+    [ "getPosition", "class_vertex3_d.html#aefb3922097ae3d982370671c2c83fe1d", null ],
+    [ "getTexCoordX", "class_vertex3_d.html#ad22bd676ad371c1a3ba6e987e0704733", null ],
+    [ "getTexCoordY", "class_vertex3_d.html#a3b6eab91dea0d4eb0c53d6c414bda232", null ],
+    [ "getVBOOffset", "class_vertex3_d.html#a04dca81ead78614468f7028913a2a582", null ],
+    [ "setColour", "class_vertex3_d.html#ac922ca7c683657d60be4147d17d2d74e", null ],
+    [ "setHandle", "class_vertex3_d.html#a53670951cc49d1b5ae9d03d08a11d581", null ],
+    [ "setNormal", "class_vertex3_d.html#a512576966b5a70493353df7f3571e727", null ],
+    [ "setParentSolid", "class_vertex3_d.html#aec0f45cdc6b03ec560fd4c352c6bd694", null ],
+    [ "setPosition", "class_vertex3_d.html#a0727071117d99f6a5f5227b54d41a7cf", null ],
+    [ "setPosition", "class_vertex3_d.html#a62274f5655891dc5dfe979bc2c57ded6", null ],
+    [ "setTexCoordX", "class_vertex3_d.html#a8fba559b69d9ba907d962c7154321854", null ],
+    [ "setTexCoordY", "class_vertex3_d.html#a72cc82c3b015c4aabd5a2223933655b5", null ],
+    [ "setVBOOffset", "class_vertex3_d.html#a8201535f83d869bb1421e7d36962624a", null ],
+    [ "V3RS_Colour", "class_vertex3_d.html#a40126d514f76cfef6ebf2855380338e1", null ],
+    [ "V3RS_Offset", "class_vertex3_d.html#a13a922fd8180591636c1daf4687cc205", null ],
+    [ "V3RS_Position", "class_vertex3_d.html#a1d95bf448d6cf90c2ba78ab22167b806", null ],
+    [ "V3RS_Texture_Coords", "class_vertex3_d.html#aea2d1d899ec54fc166fd04baeee64a91", null ]
+];
