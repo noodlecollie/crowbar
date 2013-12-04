@@ -43,7 +43,8 @@ HEADERS += \
     inc/commandentrybox.h \
     inc/commandsuggestionlist.h \
     inc/wr_commandentrybox.h \
-    inc/commandsenderinfo.h
+    inc/commandsenderinfo.h \
+    inc/nregexutil.h
 
 unix:!symbian {
     maemo5 {
@@ -67,25 +68,8 @@ SOURCES += \
     src/commandinterpreter.cpp \
     src/commandentrybox.cpp \
     src/commandsuggestionlist.cpp \
-    src/commandsenderinfo.cpp
-
-win32 {
-    # Windows build
-    # Should change this for release mode!
-    LIBS    += -L../RegexUtil/debug/ -lRegexUtil
-}
-unix {
-    # Unix build - for some reason the -L/-l syntax doesn't work...
-    LIBS    += ../RegexUtil/libRegexUtil.so
-}
-
-if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
-    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
-    win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
-}
-
-message($$LIBS)
+    src/commandsenderinfo.cpp \
+    src/nregexutil.cpp
 
 INCLUDEPATH += \
-    inc \
-    ../RegexUtil/inc
+    inc

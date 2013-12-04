@@ -1,8 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_geom_meta_handle.html" title="Metaclass which all geometry components subclass from. Contains useful metadata relevant to geometry ..." alt="" coords="18,81,145,108"/>
-<area shape="rect" id="node2" href="$class_edge3_d.html" title="An edge links two vertices and two faces, referenced by their geometry handles. &#160;When considering tra..." alt="" coords="210,5,278,32"/>
-<area shape="rect" id="node3" href="$class_face3_d.html" title="Class representing a 3D face. " alt="" coords="211,56,277,83"/>
-<area shape="rect" id="node4" href="$class_solid3_d.html" title="Class representing a 3D solid. " alt="" coords="211,107,277,133"/>
-<area shape="rect" id="node5" href="$class_vertex3_d.html" title="Defines a vertex in 3D space. " alt="" coords="206,157,282,184"/>
-<area shape="rect" id="node6" href="$class_i_vertex3_d_render_spec.html" title="Defines the properties required to be exposed by renderable vertices. " alt="" coords="6,157,157,184"/>
-</map>

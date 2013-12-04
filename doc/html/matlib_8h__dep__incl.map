@@ -1,8 +1,0 @@
-<map id="app/matlib.h" name="app/matlib.h">
-<area shape="rect" id="node2" href="$vertex_8h.html" title="TODO. " alt="" coords="97,80,188,107"/>
-<area shape="rect" id="node7" href="$plane_8h.html" title="Defines a plane class to hold the co&#45;ordinates of a plane in 3D space. " alt="" coords="210,155,299,181"/>
-<area shape="rect" id="node3" href="$edge_8h.html" title="Defines an edge which links two vertices. " alt="" coords="99,155,185,181"/>
-<area shape="rect" id="node6" href="$indexpool_8h.html" title="Defines the IndexPool class which manages non&#45;consecutive array indices. " alt="" coords="5,229,117,256"/>
-<area shape="rect" id="node4" href="$face_8h.html" title="Defines a 3D face. Solids are built up of these faces. Faces reference edges, which in turn reference..." alt="" coords="143,229,225,256"/>
-<area shape="rect" id="node5" href="$solid_8h.html" title="Defines a solid class. " alt="" coords="80,304,165,331"/>
-</map>

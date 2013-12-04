@@ -1,4 +1,0 @@
-<map id="app/plane.h" name="app/plane.h">
-<area shape="rect" id="node2" href="$face_8h.html" title="Defines a 3D face. Solids are built up of these faces. Faces reference edges, which in turn reference..." alt="" coords="8,80,91,107"/>
-<area shape="rect" id="node3" href="$solid_8h.html" title="Defines a solid class. " alt="" coords="7,155,92,181"/>
-</map>

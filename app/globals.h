@@ -128,25 +128,7 @@ extern void LogWarning(const QString &message, bool newline = true);
  */
 extern void LogTaggedWarning(const QString &tag, const QString &message, bool newline = true);
 
-/**
- * @brief Logs output of the specified type to the log window.
- * @param type Type of output.
- * @param message Message to write.
- * @param newline Whether a newline should follow the message. Defaults to true.
- */
 extern void LogOutput(CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
-
-/**
- * @brief Logs tagged output of the specified type to the log window.
- *
- * Messages can be formatted by passing QString("%0 %1 ...").arg(arg0).arg(arg1)... as the message parameter.<br>
- * A tagged message includes a short tag enclosed in square brackets, in order to help more clearly describe
- * what the message relates to.
- * @param type Type of output.
- * @param tag Message tag.
- * @param message Message to write.
- * @param newline Whether a newline should follow the message. Defaults to true.
- */
 extern void LogTaggedOutput(CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
 
 // =========== Window tracking ===========
