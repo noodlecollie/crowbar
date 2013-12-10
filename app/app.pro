@@ -47,6 +47,7 @@ HEADERS += \
 # LIBS is from the main build directory (where debug/release folders are located)
 win32 {
     # Windows build
+    # Should change this for release mode!
     LIBS    += -L../IConsole/debug/ -lIConsole
 }
 unix {
@@ -54,11 +55,11 @@ unix {
     LIBS    += ../IConsole/libIConsole.so
     
     # Stick this on the linker command line to allow loading libraries from the folder the application is in.
-    QMAKE_RPATHDIR += /media/Ext4Drive/crowbar/build-Crowbar-Desktop-Debug/IConsole  # This is obviously only for testing, remove it
+    #QMAKE_RPATHDIR += /media/Ext4Drive/crowbar/build-Crowbar-Desktop-Debug/IConsole  # This is obviously only for testing, remove it
 }
 
 # Extra includes for libraries.
-INCLUDEPATH += ../IConsole/inc
+INCLUDEPATH += ../IConsole/inc \
 
 CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {

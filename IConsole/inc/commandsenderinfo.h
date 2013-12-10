@@ -83,11 +83,27 @@ public:
      */
     typedef void (CommandManager::*SendOutput) (CommandSenderInfo::OutputType type, const QString &msg);
     
+    /**
+     * @brief Constructor.
+     * @param name Name of command or variable we are passing data to. Informational only.
+     * @param manager Command's manager.
+     * @param outputFunc Pointer to function which the command can write output through.
+     * @param hasMin Whether the variable has a minimum value. Informational only.
+     * @param min Minimum value of the variable. Informational only.
+     * @param hasMax Whether the variable has a maximum value. Informational only.
+     * @param max Maximum value of the variable. Informational only.
+     * @param parent QObject parent, if applicable.
+     */
     explicit CommandSenderInfo(QString name, CommandManager *manager, SendOutput outputFunc,
                                bool hasMin = false, float min = 0.0f, bool hasMax = false, float max = 0.0f,
                                QObject *parent = 0);
     
     // Copy constructor
+    /**
+     * @brief Copy constructor.
+     * @note As per Qt's architecture, similar QObjects are not <em>copies</em> of each other, just different instances of the same object.
+     * @param other CommandSenderInfo to copy values from.
+     */
     CommandSenderInfo(const CommandSenderInfo &other);
     
     /**

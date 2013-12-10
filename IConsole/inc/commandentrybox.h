@@ -73,16 +73,11 @@ public:
      */
     static const int DEFAULT_COMMAND_HISTORY_SIZE;
     
-//    /**
-//     * @brief Sets the pointer to this entry box's command suggestion list.
-//     * @warning Any previously held list is not deleted - be sure to deallocate the old pointer first if necessary.
-//     * @param list List pointer to set.
-//     */
 //    void setSuggestionList(CommandSuggestionList* list);
     
     /**
      * @brief Returns the command suggestion list belonging to this entry box.
-     * @return 
+     * @return Suggestion list for this entry box.
      */
     const CommandSuggestionList* getSuggestionList() const;
     
