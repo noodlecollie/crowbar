@@ -1,31 +1,10 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2013-12-20T08:00:00
+# Project created by QtCreator 2013-12-20T20:43:20
 #
 #-------------------------------------------------
 
 QT       -= gui
-
-TARGET = RegexUtil
-TEMPLATE = lib
-
-DEFINES += REGEXUTIL_LIBRARY
-
-SOURCES += \
-    regexutil.cpp
-
-HEADERS +=\
-        regexutil_global.h \
-    regexutil.h
-
-unix:!symbian {
-    maemo5 {
-        target.path = /opt/usr/lib
-    } else {
-        target.path = /usr/lib
-    }
-    INSTALLS += target
-}
 
 CONFIG(debug) {
     win32 {
@@ -37,3 +16,26 @@ CONFIG(debug) {
 } else {
     TARGET = RegexUtil
 }
+
+TEMPLATE = lib
+
+DEFINES += REGEXUTIL_LIBRARY
+
+SOURCES += \
+    src/regexutil.cpp
+
+HEADERS += \
+    inc/regexutil_global.h \
+    inc/regexutil.h
+
+unix:!symbian {
+    maemo5 {
+        target.path = /opt/usr/lib
+    } else {
+        target.path = /usr/lib
+    }
+    INSTALLS += target
+}
+
+INCLUDEPATH += \
+    inc

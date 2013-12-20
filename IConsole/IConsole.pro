@@ -19,6 +19,21 @@ CONFIG(debug) {
     TARGET = IConsole
 }
 
+# Don't actually need this yet because RegexUtil does not actually export anything.
+# If we do export things in the future, uncomment (and correct!) this bit.
+#win32 {
+#    # Windows build
+#    # Should change this for release mode!
+#    LIBS    += -L../RegexUtil/debug/ -lRegexUtil
+#}
+#unix {
+#    # Unix build - for some reason the -L/-l syntax doesn't work...
+#    LIBS    += ../RegexUtil/libRegexUtil.so
+#    
+#    # Stick this on the linker command line to allow loading libraries from the folder the application is in.
+#    #QMAKE_RPATHDIR += /media/Ext4Drive/crowbar/build-Crowbar-Desktop-Debug/IConsole  # This is obviously only for testing, remove it
+#}
+
 TEMPLATE = lib
 
 DEFINES += ICONSOLE_LIBRARY
@@ -72,4 +87,11 @@ SOURCES += \
     src/nregexutil.cpp
 
 INCLUDEPATH += \
-    inc
+    inc \
+    ..\RegexUtil\inc
+
+# Commented for the same reason as above (no libraries to depend on).
+#if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
+#    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
+#    win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
+#}
