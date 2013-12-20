@@ -1,0 +1,12 @@
+#ifndef REGEXUTIL_GLOBAL_H
+#define REGEXUTIL_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(REGEXUTIL_LIBRARY)
+#  define REGEXUTILSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define REGEXUTILSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // REGEXUTIL_GLOBAL_H

@@ -59,7 +59,7 @@ unix {
 }
 
 # Extra includes for libraries.
-INCLUDEPATH += ../IConsole/inc \
+INCLUDEPATH += ../IConsole/inc
 
 CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
