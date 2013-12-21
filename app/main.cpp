@@ -5,10 +5,6 @@
 #include <QTextStream>
 #include <QDir>
 
-// TEMP
-
-// TEMP
-
 #include "globals.h"
 #include "mainwin.h"
 #include "commandlineparser.h"
