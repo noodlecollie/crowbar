@@ -19,7 +19,8 @@ SOURCES += \
     indexpool.cpp \
     edge.cpp \
     consolewindow.cpp \
-    console_util.cpp
+    console_util.cpp \
+    consolecommandstore.cpp
 
 HEADERS += \
     mainwin.h \
@@ -42,28 +43,33 @@ HEADERS += \
     ivertex3drenderspec.h \
     solid.h \
     indexpool.h \
-    consolewindow.h
+    consolewindow.h \
+    consolecommandstore.h
 
-# LIBS is from the main build directory (where debug/release folders are located)
-win32 {
-    # Windows build
-    # Should change this for release mode!
-    LIBS    += -L../IConsole/debug/ -lIConsole \
-               -L../CommandStore/debug/ -lCommandStore
+CONFIG(debug) {
+    win32 {
+        # Windows build
+        LIBS    += -L../IConsole/debug/ -lIConsole
+    }
+} else {
+    win32 {
+        # Windows build
+        LIBS    += -L../IConsole/release/ -lIConsole
+    }
 }
+
 unix {
     # Unix build - for some reason the -L/-l syntax doesn't work...
-    LIBS    += ../IConsole/libIConsole.so \ 
-               ../CommandStore/libCommandStore.so
+    LIBS    += ../IConsole/libIConsole.so
     
-    # Stick this on the linker command line to allow loading libraries from the folder the application is in.
-    #QMAKE_RPATHDIR += /media/Ext4Drive/crowbar/build-Crowbar-Desktop-Debug/IConsole  # This is obviously only for testing, remove it
+    # At the moment we also need to use QMAKE_RPATHDIR to specify the location of the libraries when the program runs.
+    # Need to find a better way of accomplishing this, maybe by using a script to run the application which sets LD_LIBRARY_PATH correctly.
 }
 
 # Extra includes for libraries.
-INCLUDEPATH += ../IConsole/inc \
-               ../CommandStore/inc
+INCLUDEPATH += ../IConsole/inc
 
+# Should the "if" here match up with above?
 CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
     mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug

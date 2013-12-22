@@ -48,8 +48,8 @@ namespace NGlobalCmd
      */
     enum
     {
-        CMDFLAG_READONLY = 0x1,     /**< ConVar's value cannot be changed. */
-        CMDFLAG_ENSURECALLBACK      /**< ConVar or ConCommand must have a callback. */
+        CMDFLAG_READONLY = 0x1,         /**< ConVar's value cannot be changed. */
+        CMDFLAG_ENSURECALLBACK = 0x2    /**< ConVar or ConCommand must have a callback. */
     };  
     
     /**
