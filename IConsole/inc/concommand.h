@@ -42,7 +42,7 @@ public:
      * @param parent QObject parent, if applicable.
      */
     explicit ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, const QString &desc = "",
-                            NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
+                            NGlobalCmd::ArgCallback argCallback = NULL, NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
     
     /**
      * @brief Constructor passing in manager and list to attempt to register to.
@@ -55,7 +55,8 @@ public:
      * @param parent QObject parent, if applicable.
      */
     explicit ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, CommandManager* manager,
-                            ListedConsoleCommand** list, const QString &desc = "", const NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
+                        ListedConsoleCommand** list, const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL,
+                        const NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
     
     /**
      * @brief Destructor.

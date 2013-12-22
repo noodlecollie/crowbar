@@ -87,8 +87,7 @@ namespace NRegexUtil
     static const QString testString = "Test string";
 }
 
-// It appears that without a .cpp file there are compile errors.
-// Until I learn why, a redundant class is defined here and implemented in the .cpp file to make compiled work.
+// If/when we need a .cpp file for actual things, this is here in order to generate the .lib
 namespace NULL_REQUIRED
 {
     class Null_Required

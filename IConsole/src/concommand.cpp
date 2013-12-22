@@ -1,7 +1,8 @@
 #include "wr_concommand.h"
 
-ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
-    ListedConsoleCommand(name, desc, flags, parent), m_pCallback(callback)
+ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, const QString &desc, NGlobalCmd::ArgCallback argCallback,
+                       NGlobalCmd::CMDFLAGS flags, QObject *parent) :
+    ListedConsoleCommand(name, desc, argCallback, flags, parent), m_pCallback(callback)
 {
     if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
     {
@@ -10,8 +11,8 @@ ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, co
 }
 
 ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, CommandManager *manager, ListedConsoleCommand **list,
-                       const QString &desc, const NGlobalCmd::CMDFLAGS flags, QObject *parent) :
-    ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pCallback(callback)
+                       const QString &desc, NGlobalCmd::ArgCallback argCallback, const NGlobalCmd::CMDFLAGS flags, QObject *parent) :
+    ListedConsoleCommand(name, manager, list, desc, argCallback, flags, parent), m_pCallback(callback)
 {
     if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
     {
