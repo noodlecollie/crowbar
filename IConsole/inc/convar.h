@@ -116,7 +116,7 @@ public:
      * @param max Maximum value for the variable.
      * @param parent Parent QObject, if applicable.
      */
-    explicit ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback = NULL, const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL,
+    explicit ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback = NULL, const QString &desc = "",
                     NGlobalCmd::CMDFLAGS flags = 0, bool hasMin = false, float min = 0.0, bool hasMax = false, float max = 0.0, QObject *parent = 0);
     
     /**
@@ -135,7 +135,7 @@ public:
      * @param parent Parent QObject, if applicable.
      */
     explicit ConVar(const QString &name, const QString &def, CommandManager* manager, ListedConsoleCommand** list,
-                    NGlobalCmd::VarCallback callback = NULL, const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL, NGlobalCmd::CMDFLAGS flags = 0,
+                    NGlobalCmd::VarCallback callback = NULL, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0,
                     bool hasMin = false, float min = 0.0f, bool hasMax = false, float max = 0.0f, QObject* parent = 0);
     
     /**

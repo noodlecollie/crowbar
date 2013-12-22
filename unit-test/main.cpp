@@ -18,16 +18,6 @@ int main(int, char**);
 void init();
 void myMessageOutput(QtMsgType, const QMessageLogContext &, const QString &);
 
-void argCallback(QStringList &list, int /*argNum*/, const QString &/*current*/)
-{
-    list.append("A test string");
-}
-
-int testCallback(const CommandSenderInfo &info, const QStringList &/*args*/, QVariant &/*output*/)
-{
-    info.writeMessage("Message");
-}
-
 QWidget* mainWin = NULL;
 QVBoxLayout* mainLayout = NULL;
 QHBoxLayout* subLayout = NULL;
@@ -39,9 +29,7 @@ ListedConsoleCommand* listHead = NULL;
 CommandInterpreter* commandInterpreter = NULL;
 ListedCommandManager* commandManager2 = NULL;
 
-ConCommand testCommand("test_command", &testCallback, commandManager2, listHead, "Test command.", &argCallback);
-
-ConVar test_var("test_var", "0", commandManager2, &listHead, NULL, "A test variable", NULL, 0, false, 0.0, false, 0.0);
+ConVar test_var("test_var", "0", commandManager, &listHead, NULL, "A test variable", 0, false, 0.0, false, 0.0);
 
 int main(int argc, char **argv)
 {

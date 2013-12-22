@@ -3,10 +3,10 @@
 
 #define NULL_SENDER_INFO    CommandSenderInfo(name(), NULL, NULL, m_bHasMin, m_flMinVal, m_bHasMax, m_flMaxVal)
 
-ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::ArgCallback argCallback,
-               NGlobalCmd::CMDFLAGS flags, bool hasMin, float min, bool hasMax, float max, QObject *parent) :
+ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags,
+               bool hasMin, float min, bool hasMax, float max, QObject *parent) :
     
-    ListedConsoleCommand(name, desc, argCallback, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
+    ListedConsoleCommand(name, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
   
 {
@@ -22,9 +22,9 @@ ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback 
 }
 
 ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager, ListedConsoleCommand **list, NGlobalCmd::VarCallback callback,
-               const QString &desc, NGlobalCmd::ArgCallback argCallback, NGlobalCmd::CMDFLAGS flags, bool hasMin, float min, bool hasMax, float max, QObject *parent) :
+               const QString &desc, NGlobalCmd::CMDFLAGS flags, bool hasMin, float min, bool hasMax, float max, QObject *parent) :
     
-    ListedConsoleCommand(name, manager, list, desc, argCallback, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
+    ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
   
 {

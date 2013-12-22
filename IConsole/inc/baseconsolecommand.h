@@ -41,11 +41,11 @@ public:
      * @brief Constructor
      * @param name Name of the command.
      * @param desc Optional description of the command.
-     * @param argCallback Optional callback to suggest options for arguments as the user types them.
      * @param flags Command flags.
      * @param parent Parent QObject, if applicable.
      */
-    explicit BaseConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL, NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
+    explicit BaseConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject* parent = 0);
+    
     /**
      * @brief Destructor.
      */
@@ -75,18 +75,6 @@ public:
      * @return Flags.
      */
     NGlobalCmd::CMDFLAGS flagsRaw() const;
-    
-    /**
-     * @brief Sets the argument suggestion callback pointer for this command.
-     * @param callback Pointer to callback.
-     */
-    void setArgSuggestionCallback(NGlobalCmd::ArgCallback callback);
-    
-    /**
-     * @brief Gets the argument suggestion callback pointer for this command.
-     * @return Callback pointer, or NULL if none exists.
-     */
-    NGlobalCmd::ArgCallback argSuggestionCallback() const;
     
     /**
      * @brief Overwrites all flags on the command.
@@ -124,10 +112,9 @@ signals:
 public slots:
     
 private:
-    QString                     m_szName;           /**< Name of command. */
-    QString                     m_szDescription;    /**< Description of command. */
-    NGlobalCmd::CMDFLAGS        m_iFlags;           /**< Command flags. */
-    NGlobalCmd::ArgCallback     m_pArgCallback;     /**< Pointer to function which suggests options for arguments. */
+    QString                 m_szName;           /**< Name of command. */
+    QString                 m_szDescription;    /**< Description of command. */
+    NGlobalCmd::CMDFLAGS    m_iFlags;           /**< Command flags. */
 };
 
 #endif // BASECONSOLECOMMAND_H

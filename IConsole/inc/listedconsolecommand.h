@@ -38,8 +38,7 @@ public:
      * @param parent QObject parent, if applicable.
      */
     explicit ListedConsoleCommand(const QString &name, CommandManager* manager, ListedConsoleCommand** listHead,
-                                  const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL,
-                                  NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
+                                  const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
     
     /**
      * @brief Constructor.
@@ -48,8 +47,7 @@ public:
      * @param flags Command flags.
      * @param parent QObject parent, if applicable.
      */
-    explicit ListedConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::ArgCallback argCallback = NULL,
-                                  NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
+    explicit ListedConsoleCommand(const QString &name, const QString &desc = "", NGlobalCmd::CMDFLAGS flags = 0, QObject *parent = 0);
     
     /**
      * @brief Destructor.

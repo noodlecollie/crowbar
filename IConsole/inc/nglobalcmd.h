@@ -61,14 +61,6 @@ namespace NGlobalCmd
      * @brief Typedef for a ConVar callback.
      */
     typedef void (*VarCallback) (const CommandSenderInfo &info, const QString &oldValue, QString &newValue);
-    
-    /**
-     * @brief Typedef for an argument completion suggestion callback.
-     */
-    // list - list to update with suggestions for the current argument.
-    // argNum - number of the argument, from 1 (0 is the command name).
-    // current - the currently entered string for this argument.
-    typedef void (*ArgCallback) (QStringList &list, int argNum, const QString &current);
 }
 
 #endif // NGLOBALCMD_H

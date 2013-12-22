@@ -1,7 +1,7 @@
-#include "baseconsolecommand.h"
+#include "wr_listedcommandmanager.h"
 
-BaseConsoleCommand::BaseConsoleCommand(const QString &name, const QString &desc, NGlobalCmd::ArgCallback argCallback, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
-    QObject(parent), m_szName(name), m_szDescription(desc), m_iFlags(flags), m_pArgCallback(argCallback)
+BaseConsoleCommand::BaseConsoleCommand(const QString &name, const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
+    QObject(parent), m_szName(name), m_szDescription(desc), m_iFlags(flags)
 {
 }
 
@@ -48,14 +48,4 @@ void BaseConsoleCommand::removeFlag(NGlobalCmd::CMDFLAGS flag)
 void BaseConsoleCommand::toggleFlag(NGlobalCmd::CMDFLAGS flag)
 {
     m_iFlags ^= flag;
-}
-
-void BaseConsoleCommand::setArgSuggestionCallback(NGlobalCmd::ArgCallback callback)
-{
-    m_pArgCallback = callback;
-}
-
-NGlobalCmd::ArgCallback BaseConsoleCommand::argSuggestionCallback() const
-{
-    return m_pArgCallback;
 }

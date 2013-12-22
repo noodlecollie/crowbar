@@ -1,16 +1,15 @@
 #include "wr_listedconsolecommand.h"
+#include <QtDebug>  // TEMP
 
 ListedConsoleCommand::ListedConsoleCommand(const QString &name, CommandManager *manager, ListedConsoleCommand **listHead,
-                                           const QString &desc, NGlobalCmd::ArgCallback argCallback,
-                                           NGlobalCmd::CMDFLAGS flags, QObject *parent) :
-    BaseConsoleCommand(name, desc, argCallback, flags, parent)
+                                           const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
+    BaseConsoleCommand(name, desc, flags, parent)
 {
     tryRegister(manager, listHead);
 }
 
-ListedConsoleCommand::ListedConsoleCommand(const QString &name, const QString &desc, NGlobalCmd::ArgCallback argCallback,
-                                           NGlobalCmd::CMDFLAGS flags, QObject *parent) :
-    BaseConsoleCommand(name, desc, argCallback, flags, parent)
+ListedConsoleCommand::ListedConsoleCommand(const QString &name, const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
+    BaseConsoleCommand(name, desc, flags, parent)
 {
 }
 
@@ -29,6 +28,7 @@ void ListedConsoleCommand::tryRegister(CommandManager *manager, ListedConsoleCom
     // If manager is not NULL, register.
     if ( manager )
     {
+        qDebug() << QString("Registering command %0.").arg(this->name());
         manager->registerCommand(this);
         return;
     }
