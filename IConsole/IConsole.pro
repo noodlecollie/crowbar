@@ -8,16 +8,18 @@ QT       += widgets
 
 #TARGET = IConsole
 
-CONFIG(debug) {
-    win32 {
-        TARGET = IConsoled
-    }
-    mac {
-        TARGET = IConsole_debug
-    }
-} else {
-    TARGET = IConsole
-}
+#CONFIG(debug) {
+#    win32 {
+#        TARGET = IConsoled
+#    }
+#    mac {
+#        TARGET = IConsole_debug
+#    }
+#} else {
+#    TARGET = IConsole
+#}
+
+TARGET = IConsole
 
 # Don't actually need this yet because RegexUtil does not actually export anything.
 # If we do export things in the future, uncomment (and correct!) this bit.

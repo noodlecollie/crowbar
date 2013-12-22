@@ -5,8 +5,10 @@
 
 ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags,
                bool hasMin, float min, bool hasMax, float max, QObject *parent) :
+    
     ListedConsoleCommand(name, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
+  
 {
     if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
     {
@@ -21,8 +23,10 @@ ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback 
 
 ConVar::ConVar(const QString &name, const QString &def, CommandManager *manager, ListedConsoleCommand **list, NGlobalCmd::VarCallback callback,
                const QString &desc, NGlobalCmd::CMDFLAGS flags, bool hasMin, float min, bool hasMax, float max, QObject *parent) :
+    
     ListedConsoleCommand(name, manager, list, desc, flags, parent), m_pVarCallback(callback), m_Variable(def), m_Default(def), m_bHasMin(hasMin),
     m_bHasMax(hasMax), m_flMinVal(min), m_flMaxVal(max)
+  
 {
     if ( flagSet(NGlobalCmd::CMDFLAG_ENSURECALLBACK) )
     {

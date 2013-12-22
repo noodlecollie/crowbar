@@ -1,7 +1,13 @@
 #include "wr_commandmanager.h"
+#include <QtDebug>
 
 CommandManager::CommandManager(QObject *parent) : QObject(parent), m_CommandMap()
 {
+}
+
+CommandManager::CommandManager(const CommandManager &other, QObject* parent) : QObject(parent), m_CommandMap()
+{
+    registerCommand(other);
 }
 
 bool CommandManager::registerCommand(BaseConsoleCommand *command)
@@ -15,6 +21,20 @@ bool CommandManager::registerCommand(BaseConsoleCommand *command)
     // Add the command reference to the map.
     m_CommandMap.insert(command->name(), command);
     return true;
+}
+
+void CommandManager::registerCommand(const CommandManager &other)
+{
+    // Get the iterator.
+    BaseCommandMap::const_iterator it = other.constBegin();
+    BaseCommandMap::const_iterator end = other.constEnd();
+    
+    // Add commands.
+    while ( it != end )
+    {
+        registerCommand(it.value());
+        it++;
+    }
 }
 
 void CommandManager::unregisterCommand(const QString &command)
@@ -186,12 +206,12 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     }
 }
 
-CommandManager::BaseCommandMap::const_iterator CommandManager::constBegin()
+CommandManager::BaseCommandMap::const_iterator CommandManager::constBegin() const
 {
     return m_CommandMap.constBegin();
 }
 
-CommandManager::BaseCommandMap::const_iterator CommandManager::constEnd()
+CommandManager::BaseCommandMap::const_iterator CommandManager::constEnd() const
 {
     return m_CommandMap.constEnd();
 }

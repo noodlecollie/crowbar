@@ -12,6 +12,7 @@
 #include "wr_commandinterpreter.h"
 #include "consolewindow.h"
 #include "nglobalcmd.h"
+//#include "consolecommandstore.h"
 
 #define LOG_QDEBUG_TAG      " Q "
 #define LOG_QWARNING_TAG    " Q!"

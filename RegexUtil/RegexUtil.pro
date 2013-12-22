@@ -6,16 +6,18 @@
 
 QT       -= gui
 
-CONFIG(debug) {
-    win32 {
-        TARGET = RegexUtild
-    }
-    mac {
-        TARGET = RegexUtil_debug
-    }
-} else {
-    TARGET = RegexUtil
-}
+#CONFIG(debug) {
+#    win32 {
+#        TARGET = RegexUtild
+#    }
+#    mac {
+#        TARGET = RegexUtil_debug
+#    }
+#} else {
+#    TARGET = RegexUtil
+#}
+
+TARGET = RegexUtil
 
 TEMPLATE = lib
 

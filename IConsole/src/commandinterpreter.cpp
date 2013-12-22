@@ -1,16 +1,6 @@
 #include "wr_commandinterpreter.h"
-//#include "nregexutil.h"
 #include "regexutil.h"
-
-//const QRegularExpression CommandInterpreter::matchArgs = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
-
-//// Strict matches spaces between arguments as well - used to tell whether we have finished typing one argument.
-//const QRegularExpression CommandInterpreter::matchArgsStrict = QRegularExpression("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+|[\\s]+");
-
-//const QRegularExpression CommandInterpreter::delimPipes = QRegularExpression("\\s*(?<!\\\\)\\|\\s*");
-//const QRegularExpression CommandInterpreter::delimSemicolons = QRegularExpression("\\s*(?<!\\\\)\\;\\s*");
-//const QRegularExpression CommandInterpreter::matchLastArgumentNonWhitespace = QRegularExpression("\\S*$");
-//const QRegularExpression CommandInterpreter::matchLastArgumentWordChar = QRegularExpression("\\w*$");
+#include <QByteArray>
 
 CommandInterpreter::CommandInterpreter(QObject *parent) :
     QObject(parent), m_pCommandManager(NULL)
@@ -152,7 +142,9 @@ void CommandInterpreter::parse(const QString &cmdString)
 void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEntryList &masterList)
 {
     // Split the original string by semicolons.
-    QStringList splitFirstPass = cmdString.split(QRegularExpression(NRegexUtil::RegexMatchDelimSemicolon));
+    //QStringList splitFirstPass = cmdString.split(QRegularExpression(NRegexUtil::RegexMatchDelimSemicolon));
+    QStringList splitFirstPass;
+    splitViaUnquotedChar(splitFirstPass, cmdString, ';');
     
     // Operate on each entry.
     foreach(QString str1, splitFirstPass)
@@ -161,7 +153,9 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
         CommandEntryPipeList pipeList;
         
         // Split each new string by pipes.
-        QStringList splitSecondPass = str1.split(QRegularExpression(NRegexUtil::RegexMatchDelimPipe));
+        //QStringList splitSecondPass = str1.split(QRegularExpression(NRegexUtil::RegexMatchDelimPipe));
+        QStringList splitSecondPass;
+        splitViaUnquotedChar(splitSecondPass, str1, '|');
         
         // Operate on each new entry.
         foreach (QString str2, splitSecondPass)
@@ -215,4 +209,84 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
 void CommandInterpreter::connectSignals()
 {
     if ( m_pCommandManager ) connect(m_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), this, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)));
+}
+
+void CommandInterpreter::splitViaUnquotedChar(QStringList &list, const QString &str, char ch, bool shouldTrim)
+{
+    // Input string's byte array.
+    QByteArray inputArray = str.toLatin1();
+    
+    // Byte array to store temporary split data in.
+    QByteArray temp(str.size()+1, '\0');
+    int currentPos = 0;
+    
+    bool inString = false;
+    
+    for ( int i = 0; i < str.size(); i++ ) // Element at str.size() is '\0'.
+    {
+        // If character is a backslash, it may be escaping something.
+        // If it is escaping a quote, don't change the inString status.
+        if ( inputArray[i].operator ==(0x5C) /*Backslash*/ )
+        {
+            // Next character is a quote.
+            if ( inputArray[i+1].operator ==(0x22) /*Quote*/ )
+            {
+                temp[currentPos] = inputArray[i];
+                currentPos++;
+                temp[currentPos] = inputArray[i+1];
+                currentPos++;
+                i++;
+                continue;
+            }
+        }
+        
+        // If the character is an unescaped quote, toggle our inString status and add to output.
+        else if ( inputArray[i].operator ==(0x22) /*Quote*/ )
+        {
+            inString = !inString;
+            temp[currentPos] = inputArray[i];
+            currentPos++;
+            continue;
+        }
+        
+        // If the character matches our given parameter, don't include it unless it's quoted.
+        else if ( inputArray[i].operator ==(ch) )
+        {
+            // We're in a quoted string, include the character.
+            if ( inString )
+            {
+                temp[currentPos] = inputArray[i];
+                currentPos++;
+            }
+            // We're not in a quoted string - set the character to null and add our current string to the string list.
+            else
+            {
+                temp[currentPos] = '\0';
+                currentPos++;
+                
+                // If the string is longer than one character (which will be null), add to list.
+                if ( currentPos > 1 )
+                {
+                    list.append(shouldTrim? QString(temp.constData()).trimmed() : QString(temp.constData()));
+                }
+                
+                // Reset this for the next iterations.
+                currentPos = 0;
+            }
+        }
+        
+        // Otherwise, add the character.
+        else
+        {
+            temp[currentPos] = inputArray[i];
+            currentPos++;
+        }
+    }
+    
+    // We've reached the end of the original string - check the last bit of data we got.
+    // If the string is longer than one character (which will be null), add to list.
+    if ( currentPos > 1 )
+    {
+        list.append(shouldTrim? QString(temp.constData()).trimmed() : QString(temp.constData()));
+    }
 }

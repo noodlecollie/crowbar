@@ -11,7 +11,7 @@ namespace NRegexUtil
      *
      * Arguments are either space-delimited or enclosed in unescaped quotes.
      * <b>
-     * @verbatim "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+ @endverbatim
+     * @verbatim "[^"\\]*(?:\\.[^"\\]*)*"|\S+ @endverbatim
      * </b><br/>
      * For example, when parsing the following string:<br/>
      * <b>this is a \" test\" "command \"string\""</b><br/>
@@ -23,20 +23,20 @@ namespace NRegexUtil
      * <li>test\"</li>
      * <li>"command \"string\""</li></ul>
      */
-    static const QString RegexMatchCommandArgs = QString("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+");
+    static const QString RegexMatchCommandArgs = QString("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|\\S+");
     
     /**
      * @brief Regex to match command arguments but also spaces between arguments.
      *
      * <b>
-     * @verbatim "[^"\\]*(?:\\.[^"\\]*)*"|[\S]+|[\s]+ @endverbatim
+     * @verbatim "[^"\\]*(?:\\.[^"\\]*)*"|\S+|\s+ @endverbatim
      * </b><br/>
      * Same as the non-strict regex except spaces between the arguments are also matched.
      * This allows checking whether a user has finished typing the first argument in a given
      * string (ie. the command name) and is going to type any subsequent arguments for that command.
      * As soon as the number of matches is greater than 1, the user has stopped typing the command name.
      */
-    static const QString RegexMatchCommandArgsWs = QString("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|[\\S]+|[\\s]+");
+    static const QString RegexMatchCommandArgsWs = QString("\"[^\"\\\\]*(?:\\\\.[^\"\\\\]*)*\"|\\S+|\\s+");
     
     /**
      * @brief Regex to match pipe characters surrounded by whitespace.
@@ -47,6 +47,7 @@ namespace NRegexUtil
      * </b><br/>
      * Searches for 0 or more whitespace characters, followed by a pipe which is not preceded by a backslash (using negative
      * lookbehind), followed by 0 or more whitespace characters.
+     * @note Will still match pipe characters that are quoted.
      */
     static const QString RegexMatchDelimPipe = QString("\\s*(?<!\\\\)\\|\\s*");
     
@@ -57,6 +58,7 @@ namespace NRegexUtil
      * @verbatim \s*(?<!\\)\;\s* @endverbatim
      * </b><br/>
      * Similar construction to the pipe regex.
+     * @note Will still match semicolon characters that are quoted.
      */
     static const QString RegexMatchDelimSemicolon = QString("\\s*(?<!\\\\)\\;\\s*");
     

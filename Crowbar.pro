@@ -16,4 +16,5 @@ SUBDIRS += \
     app \
     IConsole \
     unit-test \
-    RegexUtil
+    RegexUtil \
+    CommandStore

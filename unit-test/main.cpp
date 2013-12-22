@@ -18,7 +18,6 @@ int main(int, char**);
 void init();
 void myMessageOutput(QtMsgType, const QMessageLogContext &, const QString &);
 
-
 QWidget* mainWin = NULL;
 QVBoxLayout* mainLayout = NULL;
 QHBoxLayout* subLayout = NULL;
@@ -28,39 +27,9 @@ QPushButton* submitButton = NULL;
 ListedCommandManager* commandManager = NULL;
 ListedConsoleCommand* listHead = NULL;
 CommandInterpreter* commandInterpreter = NULL;
+ListedCommandManager* commandManager2 = NULL;
 
 ConVar test_var("test_var", "0", commandManager, &listHead, NULL, "A test variable", 0, false, 0.0, false, 0.0);
-
-int aCallback(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
-{
-    info.writeMessage("Arguments we were passed:\n");
-    
-    foreach(QString s, args)
-    {
-        info.writeMessage(s + QString("\n"));
-    }
-    
-    output.setValue(QString("Yiff yiff acid bath"));
-    return NGlobalCmd::CCR_OK;
-}
-ConCommand exampleCmd("example_cmd", &aCallback, commandManager, &listHead, "An example command");
-
-int callback_echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
-{
-    QString message;
-    bool first = true;
-    foreach(QString s, args)
-    {
-        message.append(QString((first ? "" : " ") + s));
-        first = false;
-    }
-    info.writeMessage(message + QString("\n"));
-    
-    output.setValue(message);
-    
-    return NGlobalCmd::CCR_OK;
-}
-ConCommand echo("echo", &callback_echo, commandManager, &listHead, "Echos arguments to output.");
 
 int main(int argc, char **argv)
 {
@@ -89,7 +58,8 @@ void init()
     consoleWindow = new ConsoleWidget();
     entryBox = new CommandEntryBox();
     submitButton = new QPushButton("Submit");
-    commandManager = new ListedCommandManager(listHead);
+    commandManager2 = new ListedCommandManager(listHead);
+    commandManager = new ListedCommandManager(*commandManager2);
     commandInterpreter = new CommandInterpreter(commandManager);
     
     mainWin->setLayout(mainLayout);

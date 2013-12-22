@@ -7,7 +7,7 @@ ConsoleWidget
 	qproperty-warningColor:		#ff1131;
 	
 	/*1- inactive text*/
-	qproperty-customColor1:		#1e1e1e;
+	qproperty-customColor1:		#3c3c3c;
 	
 	/*2 - highlighted text*/
 	qproperty-customColor2:		#efdb00;

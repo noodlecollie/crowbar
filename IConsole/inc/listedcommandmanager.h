@@ -29,6 +29,13 @@ public:
     explicit ListedCommandManager(QObject* parent = 0);
     
     /**
+     * @brief Copy constructor
+     * @param other Manager to copy from.
+     * @param parent QObject parent, if applicable.
+     */
+    explicit ListedCommandManager(ListedCommandManager &other, QObject *parent = 0);
+    
+    /**
      * @brief Constructor with a pointer to a list to traverse.
      * @param listHead When constructed, the manager will traverse the list whose head is pointed to by this parameter.
      * @param parent QObject parent, if applicable.

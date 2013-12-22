@@ -19,7 +19,6 @@ SOURCES += \
     indexpool.cpp \
     edge.cpp \
     consolewindow.cpp \
-    console_util.cpp \
     consolecommandstore.cpp
 
 HEADERS += \
@@ -43,37 +42,17 @@ HEADERS += \
     ivertex3drenderspec.h \
     solid.h \
     indexpool.h \
-    consolewindow.h \
-    consolecommandstore.h
-
-CONFIG(debug) {
-    win32 {
-        # Windows build
-        LIBS    += -L../IConsole/debug/ -lIConsole
-    }
-} else {
-    win32 {
-        # Windows build
-        LIBS    += -L../IConsole/release/ -lIConsole
-    }
-}
-
-unix {
-    # Unix build - for some reason the -L/-l syntax doesn't work...
-    LIBS    += ../IConsole/libIConsole.so
-    
-    # At the moment we also need to use QMAKE_RPATHDIR to specify the location of the libraries when the program runs.
-    # Need to find a better way of accomplishing this, maybe by using a script to run the application which sets LD_LIBRARY_PATH correctly.
-}
+    consolewindow.h
 
 # Extra includes for libraries.
-INCLUDEPATH += ../IConsole/inc
+INCLUDEPATH += ../IConsole/inc \
+               ../CommandStore/inc
 
 # Should the "if" here match up with above?
 CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
-    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
-    win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
+#    mac:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)_debug
+#    win32:LIBS = $$member(LIBS, 0) $$member(LIBS, 1)d
     CONF_OUT=debug
 }
 
@@ -101,3 +80,17 @@ unix:BATCH=$$quote($$PWD/build_post_unix.sh)
 # Set exec string.
 # Batch file expects arg 1 to be the source folder to copy from, and the second to be the configuration we're building with (debug/release).
 QMAKE_POST_LINK += $$BATCH $$ORIG_FOLDER $$CONF_OUT $$escape_expand(\\n\\t)
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../IConsole/release/ -lIConsole
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../IConsole/debug/ -lIConsole
+else:unix: LIBS += -L$$OUT_PWD/../IConsole/ -lIConsole
+
+INCLUDEPATH += $$PWD/../IConsole/inc
+DEPENDPATH += $$PWD/../IConsole/inc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CommandStore/release/ -lCommandStore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CommandStore/debug/ -lCommandStore
+else:unix: LIBS += -L$$OUT_PWD/../CommandStore/ -lCommandStore
+
+INCLUDEPATH += $$PWD/../CommandStore/inc
+DEPENDPATH += $$PWD/../CommandStore/inc

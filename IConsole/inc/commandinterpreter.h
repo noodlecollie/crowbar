@@ -120,6 +120,16 @@ public:
      */
     CommandManager* commandManager() const;
     
+    /**
+     * @brief Splits the given string into contiguous sections using the given character as a delimiter.
+     * If the character is found inside a quoted string section it is ignored.
+     * @param list QStringList to output split sections to.
+     * @param str String to parse.
+     * @param ch Character to split at.
+     * @param shouldTrim If true, each split string will have preceding and trailing whitespace trimmed.
+     */
+    static void splitViaUnquotedChar(QStringList &list, const QString &str, char ch, bool shouldTrim = true);
+    
     // Suggestions are returned as a pair containing the ident and the command name.
     //void getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count = -1);
     

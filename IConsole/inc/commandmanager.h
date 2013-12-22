@@ -46,6 +46,13 @@ public:
     explicit CommandManager(QObject* parent = 0);
     
     /**
+     * @brief Copy constructor.
+     * @param other CommandManager to copy commands from.
+     * @param parent QObject parent, if applicable.
+     */
+    explicit CommandManager(const CommandManager &other, QObject* parent = 0);
+    
+    /**
      * @brief Destructor.
      */
     virtual ~CommandManager() {}
@@ -56,6 +63,14 @@ public:
      * @return True on success, false if a command with the same name was already registered.
      */
     bool registerCommand(BaseConsoleCommand *command);
+    
+    /**
+     * @brief Registers all console commands contained in another manager.
+     * 
+     * The commands are not removed from the other manager.
+     * @param other Manager holding commands to register.
+     */
+    void registerCommand(const CommandManager &other);
     
     /**
      * @brief Unregisters a command by name.
@@ -140,13 +155,13 @@ public:
      * @brief Returns the const_iterator representing the beginning of the QMap.
      * @return Const_iterator representing the beginning of the QMap.
      */
-    BaseCommandMap::const_iterator constBegin();
+    BaseCommandMap::const_iterator constBegin() const;
     
     /**
      * @brief Returns the const_iterator representing the null item after the end of the QMap.
      * @return Const_iterator representing the null item after the end of the QMap.
      */
-    BaseCommandMap::const_iterator constEnd();
+    BaseCommandMap::const_iterator constEnd() const;
     
 signals:
     /**
