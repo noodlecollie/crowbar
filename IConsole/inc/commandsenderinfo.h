@@ -101,7 +101,6 @@ public:
     // Copy constructor
     /**
      * @brief Copy constructor.
-     * @note As per Qt's architecture, similar QObjects are not <em>copies</em> of each other, just different instances of the same object.
      * @param other CommandSenderInfo to copy values from.
      */
     CommandSenderInfo(const CommandSenderInfo &other);

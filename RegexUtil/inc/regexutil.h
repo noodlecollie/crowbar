@@ -1,3 +1,12 @@
+/** \file regexutil.h
+ * \brief Defines useful regular expression strings.
+ */
+
+/**
+ * \defgroup RegexUtil RegexUtil library
+ * @{
+ */
+
 #ifndef REGEXUTIL_H
 #define REGEXUTIL_H
 
@@ -91,10 +100,18 @@ namespace NRegexUtil
 // Until I learn why, a redundant class is defined here and implemented in the .cpp file to make compiled work.
 namespace NULL_REQUIRED
 {
+    /**
+     * @brief Temporary class that's here in order to generate a .lib file.
+     */
     class Null_Required
     {
+        /**
+         * @brief Constructor.
+         */
         Null_Required();
     };
 }
 
 #endif // REGEXUTIL_H
+
+/**@}*/

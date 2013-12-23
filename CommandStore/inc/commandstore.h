@@ -1,3 +1,12 @@
+/** \file commandstore.h
+ * \brief Defines command callbacks usable by console commands.
+ */
+
+/**
+ * \defgroup CommandStore CommandStore library
+ * @{
+ */
+
 #ifndef COMMANDSTORE_H
 #define COMMANDSTORE_H
 
@@ -30,3 +39,5 @@ namespace CommandStore
 }
 
 #endif // COMMANDSTORE_H
+
+/**@}*/
