@@ -8,7 +8,9 @@
 # RegexUtil     - Utility regular expression strings put into their own library for portability.
 # CommandStore  - Library of static ConCommand callbacks that can be referenced.
 #
-# Todo: Automate the build (by building libraries in order) if possible.
+# Todo:     Add namespace to all IConsole entries.
+#           Add signals for ConVars pre/post change.
+#           Automate the build (by building libraries in order) if possible.
 
 TEMPLATE = subdirs
 
@@ -17,4 +19,5 @@ SUBDIRS += \
     IConsole \
     unit-test \
     RegexUtil \
-    CommandStore
+    CommandStore \
+    Geometry
