@@ -20,4 +20,5 @@ SUBDIRS += \
     unit-test \
     RegexUtil \
     CommandStore \
-    Geometry
+    Geometry \
+    3dtest

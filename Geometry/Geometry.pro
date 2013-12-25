@@ -17,7 +17,8 @@ SOURCES += \
     src/vertex3d.cpp \
     src/geomutil.cpp \
     src/edge3d.cpp \
-    src/polygon3d.cpp
+    src/polygon3d.cpp \
+    src/plane3d.cpp
 
 HEADERS += \
     inc/geommetahandle.h \
@@ -25,7 +26,8 @@ HEADERS += \
     inc/vertex3d.h \
     inc/geomutil.h \
     inc/edge3d.h \
-    inc/polygon3d.h
+    inc/polygon3d.h \
+    inc/plane3d.h
 
 unix:!symbian {
     maemo5 {
