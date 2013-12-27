@@ -4,7 +4,7 @@
 #include <QVariant>
 #include "nglobalcmd.h"
 
-namespace CommandStore
+namespace NCommandStore
 {
     int ccb_Echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
     {

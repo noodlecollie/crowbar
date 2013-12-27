@@ -16,6 +16,7 @@
 
 #include <QList>
 #include "commandsenderinfo.h"
+#include "commandstore_manager.h"   // Includes the global command manager and list.
 
 // See globals.cpp for implementations.
 
@@ -32,7 +33,7 @@
 //! \param flMax Max value of the ConVar. If \a bMax is false, this value can be arbitrary.
 
 #define DEFINE_CONVAR( szName_NoQuote, szDefVal, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax) \
-ConVar szName_NoQuote(#szName_NoQuote, szDefVal, g_pCommandManager, &g_pCommandList, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax);
+ConVar szName_NoQuote(#szName_NoQuote, szDefVal, NCommandStore::g_pCommandManager, &NCommandStore::g_pConsoleCommandList, pCallback, szDesc, iFlags, bMin, flMin, bMax, flMax);
 
 //! \def DEFINE_CONCOMMAND
 //! \brief Macro for defining a ConCommand with the default command manager and list.
@@ -42,7 +43,7 @@ ConVar szName_NoQuote(#szName_NoQuote, szDefVal, g_pCommandManager, &g_pCommandL
 //! \param iFlags ConVar flags.
 
 #define DEFINE_CONCOMMAND( szName_NoQuote, pCallback, szDesc, iFlags ) \
-ConCommand szName_NoQuote(#szName_NoQuote, pCallback, g_pCommandManager, &g_pCommandList, szDesc, iFlags);
+ConCommand szName_NoQuote(#szName_NoQuote, pCallback, NCommandStore::g_pCommandManager, &NCommandStore::g_pConsoleCommandList, szDesc, iFlags);
 
 class ConsoleWindow;
 class QString;
@@ -161,25 +162,26 @@ extern QList<MainWin*>* g_pWindowTracker;
 
 // =============== Console ===============
 
-/**
- * @brief Global console command manager, created in main.cpp.
- *
- * Console command and variables should register to this manager.
- */
-extern ListedCommandManager* g_pCommandManager;
+// These are now in CommandStore module.
+///**
+// * @brief Global console command manager, created in main.cpp.
+// *
+// * Console command and variables should register to this manager.
+// */
+//extern ListedCommandManager* g_pCommandManager;
+
+///**
+// * @brief Global console command list pointer.
+// *
+// * Any console commands or variables should register to this pointer, to be picked
+// * up by the global manager on creation.
+// */
+//extern ListedConsoleCommand* g_pCommandList;
 
 /**
  * @brief Global console command interpreter, created in main.cpp.
  */
 extern CommandInterpreter*  g_pCommandInterpreter;
-
-/**
- * @brief Global console command list pointer.
- *
- * Any console commands or variables should register to this pointer, to be picked
- * up by the global manager on creation.
- */
-extern ListedConsoleCommand* g_pCommandList;
 
 //extern GlobalOutputRedirector* g_pOutputRedirect;
 

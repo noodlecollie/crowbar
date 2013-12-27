@@ -12,8 +12,11 @@
 
 #include "commandstore_global.h"
 #include "commandsenderinfo.h"
+#include "wr_concommand.h"
+#include "wr_commandmanager.h"
+#include "wr_listedcommandmanager.h"
 
-namespace CommandStore
+namespace NCommandStore
 {
     /**
      * @brief Echoes arguments back to the caller's console and to the output.

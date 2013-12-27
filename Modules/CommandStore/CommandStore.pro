@@ -24,11 +24,13 @@ TEMPLATE = lib
 DEFINES += COMMANDSTORE_LIBRARY
 
 SOURCES += \
-    src/commandstore.cpp
+    src/commandstore.cpp \
+    src/commandmanager.cpp
 
 HEADERS += \
     inc/commandstore_global.h \
-    inc/commandstore.h
+    inc/commandstore.h \
+    inc/commandstore_manager.h
 
 unix:!symbian {
     maemo5 {

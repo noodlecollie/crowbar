@@ -163,14 +163,19 @@ private:
      * @param cmdString String to parse.
      * @param masterList List to fill.
      */
-    void parseCommandString(const QString &cmdString, CommandEntryList &masterList);
+    static void parseCommandString(const QString &cmdString, CommandEntryList &masterList);
     
     /**
      * @brief Convenience function - connects required signals/slots.
      */
-    void connectSignals();
+    void connectSignals(CommandManager* m);
     
-    CommandManager*     m_pCommandManager;  /**< Command manager this interpreter is linked to */
+    /**
+     * @brief Convenience function - disconnects required signals/slots.
+     */
+    void disconnectSignals(CommandManager* m);
+    
+    CommandManager*     m_pCommandManager;  /**< Command manager this interpreter is linked to. */
 };
 
 #endif // COMMANDINTERPRETER_H

@@ -10,13 +10,25 @@ CommandInterpreter::CommandInterpreter(QObject *parent) :
 CommandInterpreter::CommandInterpreter(CommandManager *manager, QObject *parent) :
     QObject(parent), m_pCommandManager(manager)
 {
-    connectSignals();
+    connectSignals(m_pCommandManager);
 }
 
 void CommandInterpreter::setCommandManager(CommandManager *manager)
 {
+    bool different = manager != m_pCommandManager;
+    // If manager is different, disconnect current signals.
+    if ( different )
+    {
+        disconnectSignals(m_pCommandManager);
+    }
+    
     m_pCommandManager = manager;
-    connectSignals();
+    
+    // Whoops, if we don't do this then signals get connected God knows how many times.
+    if ( different )
+    {
+        connectSignals(m_pCommandManager);
+    }
 }
 
 CommandManager* CommandInterpreter::commandManager() const
@@ -26,6 +38,8 @@ CommandManager* CommandInterpreter::commandManager() const
 
 void CommandInterpreter::getSuggestions(const QString &prefix, QList<CommandIdentPair> &list, int count)
 {
+    //qDebug("Command manager: %p", m_pCommandManager);
+    
     // If manager is NULL, return.
     if ( !m_pCommandManager ) return;
     
@@ -206,9 +220,14 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
     }
 }
 
-void CommandInterpreter::connectSignals()
+void CommandInterpreter::connectSignals(CommandManager* m)
 {
-    if ( m_pCommandManager ) connect(m_pCommandManager, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), this, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)));
+    if ( m ) connect(m, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), this, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)));
+}
+
+void CommandInterpreter::disconnectSignals(CommandManager* m)
+{
+    if ( m ) disconnect(m, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), this, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)));
 }
 
 void CommandInterpreter::splitViaUnquotedChar(QStringList &list, const QString &str, char ch, bool shouldTrim)

@@ -12,12 +12,13 @@
 #include "wr_commandinterpreter.h"
 #include "consolewindow.h"
 #include "nglobalcmd.h"
-//#include "consolecommandstore.h"
 
 #define LOG_QDEBUG_TAG      " Q "
 #define LOG_QWARNING_TAG    " Q!"
 #define LOG_QCRITICAL_TAG   "!Q!"
 #define LOG_QFATAL_TAG      "XXX"
+
+using namespace NCommandStore;
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
@@ -63,7 +64,7 @@ void initSystems(int argc, char **argv)
     }
     
     // Create global console command manager.
-    g_pCommandManager = new ListedCommandManager(g_pCommandList);
+    //g_pCommandManager = new ListedCommandManager(g_pCommandList); // This is now in the CommandStore module.
     
     // Create global interpreter and hook up to the manager.
     g_pCommandInterpreter = new CommandInterpreter(g_pCommandManager);
@@ -80,8 +81,9 @@ void initSystems(int argc, char **argv)
     
     // Set up message handler to print qDebug messages to console as well.
     //qInstallMessageHandler(qDebugIntercept);
-   
-    LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
+    
+    // This won't necessarily reflect the right date/time if main.cpp is not modified before compile!
+    //LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 }
 
 void shutdownSystems()
@@ -94,7 +96,9 @@ void shutdownSystems()
     if ( g_pWindowTracker ) delete g_pWindowTracker;
     if ( g_pCmdLine ) delete g_pCmdLine;
     if ( g_pCommandInterpreter ) delete g_pCommandInterpreter;
-    if ( g_pCommandManager ) delete g_pCommandManager;
+    
+    // Do we still need to delete this now that it's handled in the CommandStore module?
+    //if ( g_pCommandManager ) delete g_pCommandManager;
 }
 
 void debugTests()

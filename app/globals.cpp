@@ -9,8 +9,6 @@
 ConsoleWindow*          g_pLog = NULL;
 CommandLineParser*      g_pCmdLine = NULL;
 QList<MainWin*>*        g_pWindowTracker = NULL;
-ListedConsoleCommand*   g_pCommandList = NULL;
-ListedCommandManager*   g_pCommandManager = NULL;
 CommandInterpreter*     g_pCommandInterpreter = NULL;
 
 // Creates a simple QMessageBox with an OK button that shows the specified message.
