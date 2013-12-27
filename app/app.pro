@@ -1,4 +1,4 @@
-QT  += core gui opengl
+QT  += core gui opengl 3d
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -44,10 +44,6 @@ HEADERS += \
     indexpool.h \
     consolewindow.h
 
-# Extra includes for libraries.
-INCLUDEPATH += ../IConsole/inc \
-               ../CommandStore/inc
-
 # Should the "if" here match up with above?
 CONF_OUT=release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
@@ -81,16 +77,23 @@ unix:BATCH=$$quote($$PWD/build_post_unix.sh)
 # Batch file expects arg 1 to be the source folder to copy from, and the second to be the configuration we're building with (debug/release).
 QMAKE_POST_LINK += $$BATCH $$ORIG_FOLDER $$CONF_OUT $$escape_expand(\\n\\t)
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../IConsole/release/ -lIConsole
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../IConsole/debug/ -lIConsole
-else:unix: LIBS += -L$$OUT_PWD/../IConsole/ -lIConsole
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Modules/IConsole/release/ -lIConsole
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Modules/IConsole/debug/ -lIConsole
+else:unix: LIBS += -L$$OUT_PWD/../Modules/IConsole/ -lIConsole
 
-INCLUDEPATH += $$PWD/../IConsole/inc
-DEPENDPATH += $$PWD/../IConsole/inc
+INCLUDEPATH += $$PWD/../Modules/IConsole/inc
+DEPENDPATH += $$PWD/../Modules/IConsole/inc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../CommandStore/release/ -lCommandStore
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../CommandStore/debug/ -lCommandStore
-else:unix: LIBS += -L$$OUT_PWD/../CommandStore/ -lCommandStore
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Modules/CommandStore/release/ -lCommandStore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Modules/CommandStore/debug/ -lCommandStore
+else:unix: LIBS += -L$$OUT_PWD/../Modules/CommandStore/ -lCommandStore
 
-INCLUDEPATH += $$PWD/../CommandStore/inc
-DEPENDPATH += $$PWD/../CommandStore/inc
+INCLUDEPATH += $$PWD/../Modules/CommandStore/inc
+DEPENDPATH += $$PWD/../Modules/CommandStore/inc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../qt3d/lib -lQt53D
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../qt3d/lib -lQt53Dd
+else:unix: LIBS += -L$$OUT_PWD/../../qt3d/src/threed/ -lQt53Dd
+
+INCLUDEPATH += $$PWD/../../qt3d/include
+DEPENDPATH += $$PWD/../../qt3d/include

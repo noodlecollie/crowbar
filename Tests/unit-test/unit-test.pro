@@ -55,9 +55,9 @@ SOURCES += \
 
 #copyToResourceDir($$PWD/../crowbar/resource/manifest.qss $$PWD/../crowbar/resource/command_symbol.svg $$PWD/../crowbar/resource/variable_symbol.svg)
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../IConsole/release/ -lIConsole
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../IConsole/debug/ -lIConsole
-else:unix: LIBS += -L$$OUT_PWD/../IConsole/ -lIConsole
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IConsole/release/ -lIConsole
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IConsole/debug/ -lIConsole
+else:unix: LIBS += -L$$OUT_PWD/../Modules/IConsole/ -lIConsole
 
-INCLUDEPATH += $$PWD/../IConsole/inc
-DEPENDPATH += $$PWD/../IConsole/inc
+INCLUDEPATH += $$PWD/../../Modules/IConsole/inc
+DEPENDPATH += $$PWD/../../Modules/IConsole/inc

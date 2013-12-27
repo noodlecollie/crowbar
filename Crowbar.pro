@@ -16,9 +16,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     app \
-    IConsole \
-    unit-test \
-    RegexUtil \
-    CommandStore \
-    Geometry \
-    3dtest
+    Tests \
+    Modules 
