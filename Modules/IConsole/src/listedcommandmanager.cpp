@@ -1,5 +1,7 @@
 #include "wr_listedcommandmanager.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 ListedCommandManager::ListedCommandManager(ListedConsoleCommand * listHead, QObject *parent) :
     CommandManager(parent)
 {
@@ -28,3 +30,5 @@ void ListedCommandManager::traverse(ListedConsoleCommand * listHead)
         listHead = listHead->getListNext();
     }
 }
+
+ICONSOLE_END_NAMESPACE

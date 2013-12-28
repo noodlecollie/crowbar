@@ -16,6 +16,8 @@
 #include <QString>
 #include "nglobalcmd.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 /**
  * @brief Class defining properties common to all console commands.
  *
@@ -116,6 +118,8 @@ private:
     QString                 m_szDescription;    /**< Description of command. */
     NGlobalCmd::CMDFLAGS    m_iFlags;           /**< Command flags. */
 };
+    
+ICONSOLE_END_NAMESPACE
 
 #endif // BASECONSOLECOMMAND_H
 

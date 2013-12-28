@@ -15,6 +15,8 @@
 #include "nglobalcmd.h"
 #include "baseconsolecommand.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 class CommandManager;
 
 /**
@@ -80,6 +82,8 @@ public slots:
 private:
     ListedConsoleCommand*     m_pListNext;  /**< Pointer to the next command in the linked list. */
 };
+    
+ICONSOLE_END_NAMESPACE
 
 #endif // LISTEDCONSOLECOMMAND_H
 

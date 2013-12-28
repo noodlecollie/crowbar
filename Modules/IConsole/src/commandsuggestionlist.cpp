@@ -1,6 +1,8 @@
 #include "commandsuggestionlist.h"
 #include <QString>
 
+ICONSOLE_BEGIN_NAMESPACE
+
 CommandSuggestionList::CommandSuggestionList(QWidget *parent) :
     QListWidget(parent), m_flHeightScale(1.0f)
 {
@@ -98,3 +100,5 @@ void CommandSuggestionList::autoWidth()
     // FIXME: Making the width static for now unless/until we find a good way of doing this.
     resize(200, height());
 }
+
+ICONSOLE_END_NAMESPACE

@@ -30,8 +30,8 @@ namespace NCommandStore
      * @param output Output variant.
      * @return Return code representing the success or failure of this callback's execution.
      */
-    COMMANDSTORESHARED_EXPORT int ccb_Echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output);
-    static ConCommand echo("echo", ccb_Echo, g_pCommandManager, &g_pConsoleCommandList,
+    COMMANDSTORESHARED_EXPORT int ccb_Echo(const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+    static NIConsole::ConCommand echo("echo", ccb_Echo, g_pCommandManager, &g_pConsoleCommandList,
                            "Echoes arguments to console and output variant.");
     
     /**
@@ -41,8 +41,8 @@ namespace NCommandStore
      * @param output Output variant.
      * @return Return code representing the success or failure of this callback's execution.
      */
-    COMMANDSTORESHARED_EXPORT int ccb_Con_TestColours(const CommandSenderInfo &info, const QStringList &args, QVariant &output);
-    static ConCommand con_testcolours("con_testcolours", ccb_Con_TestColours, g_pCommandManager, &g_pConsoleCommandList,
+    COMMANDSTORESHARED_EXPORT int ccb_Con_TestColours(const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+    static NIConsole::ConCommand con_testcolours("con_testcolours", ccb_Con_TestColours, g_pCommandManager, &g_pConsoleCommandList,
                                       "Outputs test phrases for each of the 8 different supported console message colours");
 }
 

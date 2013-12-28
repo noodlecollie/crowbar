@@ -18,6 +18,8 @@
 #include <QPair>
 #include <QRegularExpression>
 
+ICONSOLE_BEGIN_NAMESPACE
+
 class CommandManager;
 
 /**
@@ -178,6 +180,8 @@ private:
     CommandManager*     m_pCommandManager;  /**< Command manager this interpreter is linked to. */
 };
 
+ICONSOLE_END_NAMESPACE
+    
 #endif // COMMANDINTERPRETER_H
 
 /**@}*/

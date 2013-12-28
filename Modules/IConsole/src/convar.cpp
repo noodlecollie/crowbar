@@ -3,6 +3,8 @@
 
 #define NULL_SENDER_INFO    CommandSenderInfo(name(), NULL, NULL, m_bHasMin, m_flMinVal, m_bHasMax, m_flMaxVal)
 
+ICONSOLE_BEGIN_NAMESPACE
+
 ConVar::ConVar(const QString &name, const QString &def, NGlobalCmd::VarCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags,
                bool hasMin, float min, bool hasMax, float max, QObject *parent) :
     
@@ -424,3 +426,5 @@ bool ConVar::canSetInt() const
     // Otherwise there is no space between the bounds in which to set a clamped int, so return false.
     else return false;
 }
+
+ICONSOLE_END_NAMESPACE

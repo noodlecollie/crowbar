@@ -1,6 +1,8 @@
 #include "wr_commandmanager.h"
 #include <QtDebug>
 
+ICONSOLE_BEGIN_NAMESPACE
+
 CommandManager::CommandManager(QObject *parent) : QObject(parent), m_CommandMap()
 {
 }
@@ -220,3 +222,5 @@ void CommandManager::emitMessage(CommandSenderInfo::OutputType type, const QStri
 {
     emit outputMessage(type, message);
 }
+
+ICONSOLE_END_NAMESPACE

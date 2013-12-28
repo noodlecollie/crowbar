@@ -18,6 +18,8 @@
 #include "nglobalcmd.h"
 #include "commandsenderinfo.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 class BaseConsoleCommand;
 class ConCommand;
 class ConVar;
@@ -195,6 +197,8 @@ private:
     
     BaseCommandMap     m_CommandMap;    /**< QMap to hold commands. */
 };
+
+ICONSOLE_END_NAMESPACE
 
 #endif // COMMANDMANAGER_H
 

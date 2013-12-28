@@ -16,6 +16,8 @@
 #include "nglobalcmd.h"
 #include "listedconsolecommand.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 class CommandManager;
 class CommandSenderInfo;
 
@@ -437,6 +439,8 @@ private:
     float                       m_flMinVal;     /**< Min value of the variable. */
     float                       m_flMaxVal;     /**< Max value of the variable. */
 };
+    
+ICONSOLE_END_NAMESPACE
 
 #endif // CONVAR_H
 

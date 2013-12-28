@@ -6,6 +6,8 @@
 #include "wr_listedcommandmanager.h"
 #include "commandsenderinfo.h"
 
+using namespace NIConsole;
+
 ConsoleWindow*          g_pLog = NULL;
 CommandLineParser*      g_pCmdLine = NULL;
 QList<MainWin*>*        g_pWindowTracker = NULL;

@@ -13,6 +13,8 @@
 #include <QtDebug>
 // TEMP
 
+ICONSOLE_BEGIN_NAMESPACE
+
 const QString CommandEntryBox::LI_NAME_COMMAND = "CommandListItem";
 const QString CommandEntryBox::LI_NAME_VARIABLE = "VariableListItem";
 const int CommandEntryBox::DEFAULT_COMMAND_HISTORY_SIZE = 32;
@@ -482,3 +484,5 @@ void CommandEntryBox::completeListItem(QListWidgetItem *)
 {
     completeWithCurrentSuggestion();
 }
+
+ICONSOLE_END_NAMESPACE

@@ -17,6 +17,7 @@
 #include <QList>
 #include "commandsenderinfo.h"
 #include "commandstore_manager.h"   // Includes the global command manager and list.
+#include "iconsole_global.h"
 
 // See globals.cpp for implementations.
 
@@ -45,16 +46,18 @@ ConVar szName_NoQuote(#szName_NoQuote, szDefVal, NCommandStore::g_pCommandManage
 #define DEFINE_CONCOMMAND( szName_NoQuote, pCallback, szDesc, iFlags ) \
 ConCommand szName_NoQuote(#szName_NoQuote, pCallback, NCommandStore::g_pCommandManager, &NCommandStore::g_pConsoleCommandList, szDesc, iFlags);
 
-class ConsoleWindow;
 class QString;
-class CommandLineParser;
 class MainWin;
+class CommandLineParser;
+class ConsoleWindow;
+
+ICONSOLE_BEGIN_NAMESPACE
 class ListedCommandManager;
 class ListedConsoleCommand;
 class CommandInterpreter;
 class ConCommand;
 class ConVar;
-class GlobalOutputRedirector;
+ICONSOLE_END_NAMESPACE
 
 //extern ConVar g_debugging;
 //extern ConVar g_logging;
@@ -135,7 +138,7 @@ extern void LogTaggedWarning(const QString &tag, const QString &message, bool ne
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogOutput(CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
+extern void LogOutput(NIConsole::CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
 
 /**
  * @brief Logs tagged output of the specified type to the log window.
@@ -148,7 +151,7 @@ extern void LogOutput(CommandSenderInfo::OutputType type, const QString &message
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogTaggedOutput(CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
+extern void LogTaggedOutput(NIConsole::CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
 
 // =========== Window tracking ===========
 /**
@@ -181,7 +184,7 @@ extern QList<MainWin*>* g_pWindowTracker;
 /**
  * @brief Global console command interpreter, created in main.cpp.
  */
-extern CommandInterpreter*  g_pCommandInterpreter;
+extern NIConsole::CommandInterpreter*  g_pCommandInterpreter;
 
 //extern GlobalOutputRedirector* g_pOutputRedirect;
 

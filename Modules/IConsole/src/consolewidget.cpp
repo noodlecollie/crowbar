@@ -20,6 +20,8 @@ void ConsoleWidget::resetCustomColor##_col() \
     setCustomColor##_col(DEFAULT_CUSTOM_COLOUR##_col); \
 }
 
+ICONSOLE_BEGIN_NAMESPACE
+
 const unsigned int ConsoleWidget::DEFAULT_MAX_LINES = 256;
 const QColor ConsoleWidget::DEFAULT_MESSAGE_COLOUR = QColor(0,0,0);
 const QColor ConsoleWidget::DEFAULT_WARNING_COLOUR = QColor(255,0,0);
@@ -160,3 +162,5 @@ void ConsoleWidget::repolish()
     style()->unpolish(this);
     style()->polish(this);
 }
+
+ICONSOLE_END_NAMESPACE

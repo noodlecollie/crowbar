@@ -1,5 +1,7 @@
 #include "wr_concommand.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 ConCommand::ConCommand(const QString &name, NGlobalCmd::CmdCallback callback, const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
     ListedConsoleCommand(name, desc, flags, parent), m_pCallback(callback)
 {
@@ -81,3 +83,5 @@ void ConCommand::toggleFlag(NGlobalCmd::CMDFLAGS flag)
     // Call base function.
     ListedConsoleCommand::toggleFlag(flag);
 }
+
+ICONSOLE_END_NAMESPACE

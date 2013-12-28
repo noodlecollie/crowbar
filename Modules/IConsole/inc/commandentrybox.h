@@ -15,8 +15,11 @@
 #include "iconsole_global.h"
 #include "commandinterpreter.h"
 
-class CommandSuggestionList;
 class QListWidgetItem;
+
+ICONSOLE_BEGIN_NAMESPACE
+
+class CommandSuggestionList;
 
 /**
  * @brief Manages input of console commands by the user.
@@ -330,6 +333,8 @@ private:
     int                                     m_iCommandHistorySize;      /**< Maximum size of previous commands kept in history */
     int                                     m_iCurrentHistoryIndex;     /**< Index of the current command we are looking at in history */
 };
+    
+ICONSOLE_END_NAMESPACE
 
 #endif // COMMANDENTRYBOX_H
 

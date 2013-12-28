@@ -1,6 +1,8 @@
 #include "commandsenderinfo.h"
 #include "wr_commandmanager.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 CommandSenderInfo::CommandSenderInfo(QString name, CommandManager *manager, SendOutput outputFunc,
                                      bool hasMin, float min, bool hasMax, float max, QObject *parent) :
     QObject(parent), m_pManager(manager), m_pOutput(outputFunc), m_NameOfCommand(name), m_bHasMin(hasMin),
@@ -111,3 +113,4 @@ void CommandSenderInfo::setMaxValue(float val)
     m_flMaxValue = val;
 }
 
+ICONSOLE_END_NAMESPACE

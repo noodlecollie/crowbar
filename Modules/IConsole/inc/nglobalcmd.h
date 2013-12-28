@@ -55,12 +55,12 @@ namespace NGlobalCmd
     /**
      * @brief Typedef for a ConCommand callback.
      */
-    typedef int (*CmdCallback) (const CommandSenderInfo &info, const QStringList &args, QVariant &output);
+    typedef int (*CmdCallback) (const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
     
     /**
      * @brief Typedef for a ConVar callback.
      */
-    typedef void (*VarCallback) (const CommandSenderInfo &info, const QString &oldValue, QString &newValue);
+    typedef void (*VarCallback) (const NIConsole::CommandSenderInfo &info, const QString &oldValue, QString &newValue);
 }
 
 #endif // NGLOBALCMD_H

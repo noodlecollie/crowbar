@@ -18,7 +18,7 @@
 #define LOG_QCRITICAL_TAG   "!Q!"
 #define LOG_QFATAL_TAG      "XXX"
 
-using namespace NCommandStore;
+using namespace NIConsole;
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
@@ -67,7 +67,7 @@ void initSystems(int argc, char **argv)
     //g_pCommandManager = new ListedCommandManager(g_pCommandList); // This is now in the CommandStore module.
     
     // Create global interpreter and hook up to the manager.
-    g_pCommandInterpreter = new CommandInterpreter(g_pCommandManager);
+    g_pCommandInterpreter = new CommandInterpreter(NCommandStore::g_pCommandManager);
     
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();

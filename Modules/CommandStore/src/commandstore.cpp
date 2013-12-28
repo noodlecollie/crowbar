@@ -6,6 +6,8 @@
 
 namespace NCommandStore
 {
+    using namespace NIConsole;
+    
     int ccb_Echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
     {
         QString message;

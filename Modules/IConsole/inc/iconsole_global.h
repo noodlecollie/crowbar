@@ -21,6 +21,9 @@
 #  define ICONSOLESHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+#define ICONSOLE_BEGIN_NAMESPACE namespace NIConsole {
+#define ICONSOLE_END_NAMESPACE }
+
 #endif // ICONSOLE_GLOBAL_H
 
 /**@}*/

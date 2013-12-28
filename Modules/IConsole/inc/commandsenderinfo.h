@@ -13,6 +13,9 @@
 #include <QObject>
 
 class QString;
+
+ICONSOLE_BEGIN_NAMESPACE
+
 class CommandManager;
 
 /**
@@ -232,6 +235,8 @@ private:
     bool            m_bHasMax;          /**< Whether the ConVar we are linked to has a max value. */
     float           m_flMaxValue;       /**< Value of the max bound if it exists. */
 };
+
+ICONSOLE_END_NAMESPACE
 
 #endif // COMMANDSENDERINFO_H
 

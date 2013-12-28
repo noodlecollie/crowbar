@@ -13,6 +13,8 @@
 #include "iconsole_global.h"
 #include "commandmanager.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 class ListedConsoleCommand;
 
 /**
@@ -53,6 +55,8 @@ public:
      */
     void traverse(ListedConsoleCommand* listHead);
 };
+    
+ICONSOLE_END_NAMESPACE
 
 #endif // LISTEDCOMMANDMANAGER_H
 

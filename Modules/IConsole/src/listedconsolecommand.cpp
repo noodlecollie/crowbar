@@ -1,6 +1,8 @@
 #include "wr_listedconsolecommand.h"
 #include <QtDebug>  // TEMP
 
+ICONSOLE_BEGIN_NAMESPACE
+
 ListedConsoleCommand::ListedConsoleCommand(const QString &name, CommandManager *manager, ListedConsoleCommand **listHead,
                                            const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
     BaseConsoleCommand(name, desc, flags, parent)
@@ -38,3 +40,5 @@ void ListedConsoleCommand::tryRegister(CommandManager *manager, ListedConsoleCom
     setListNext(*listHead);
     *listHead = this;
 }
+
+ICONSOLE_END_NAMESPACE

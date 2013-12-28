@@ -5,6 +5,8 @@
 #include "commandentrybox.h"
 #include "consolewindow.h"
 
+using namespace NIConsole;
+
 ConsoleWindow::ConsoleWindow(CommandInterpreter* interpreter, QWidget *parent) :
     QWidget(parent), m_pMainLayout(new QVBoxLayout()), m_pSubLayout(new QHBoxLayout()),
     m_pConsoleWidget(new ConsoleWidget()), m_pEntryBox(new CommandEntryBox()),

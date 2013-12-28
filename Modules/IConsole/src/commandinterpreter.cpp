@@ -2,6 +2,8 @@
 #include "regexutil.h"
 #include <QByteArray>
 
+ICONSOLE_BEGIN_NAMESPACE
+
 CommandInterpreter::CommandInterpreter(QObject *parent) :
     QObject(parent), m_pCommandManager(NULL)
 {
@@ -309,3 +311,5 @@ void CommandInterpreter::splitViaUnquotedChar(QStringList &list, const QString &
         list.append(shouldTrim? QString(temp.constData()).trimmed() : QString(temp.constData()));
     }
 }
+
+ICONSOLE_END_NAMESPACE

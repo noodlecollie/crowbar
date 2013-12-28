@@ -14,6 +14,8 @@
 #include "iconsole_global.h"
 #include "commandsenderinfo.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 /**
  * @brief Displays output from the console system. Is usually grouped with a CommandEntryBox to form a full console window.
  *
@@ -390,6 +392,8 @@ private:
     QColor m_colCustom6;    /**< Custom message colour 6. */
 };
 
+ICONSOLE_END_NAMESPACE
+    
 #endif // CONSOLEWIDGET_H
 
 /**@}*/

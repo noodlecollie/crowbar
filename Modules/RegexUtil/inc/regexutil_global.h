@@ -21,6 +21,9 @@
 #  define REGEXUTILSHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+#define REGEXUTIL_BEGIN_NAMESPACE namespace NRegexUtil {
+#define REGEXUTIL_END_NAMESPACE }
+
 #endif // REGEXUTIL_GLOBAL_H
 
 /**@}*/

@@ -17,8 +17,9 @@
 #include "nglobalcmd.h"
 #include "listedconsolecommand.h"
 
-class CommandSenderInfo;
+ICONSOLE_BEGIN_NAMESPACE
 
+class CommandSenderInfo;
 class CommandManager;
 
 /**
@@ -115,6 +116,8 @@ private:
     NGlobalCmd::CmdCallback    m_pCallback; /**< Pointer to execution callback */
 };
 
+ICONSOLE_END_NAMESPACE
+    
 #endif // CONCOMMAND_H
 
 /**@}*/

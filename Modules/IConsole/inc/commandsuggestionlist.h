@@ -15,6 +15,8 @@
 
 class QString;
 
+ICONSOLE_BEGIN_NAMESPACE
+
 /**
  * @brief Holds and displays console command suggestions to the user.
  */
@@ -105,6 +107,8 @@ private:
     float m_flHeightScale;  /**< Height scale for the suggestion box */
 };
 
+ICONSOLE_END_NAMESPACE
+    
 #endif // COMMANDSUGGESTIONLIST_H
 
 /**@}*/
