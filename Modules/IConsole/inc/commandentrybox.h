@@ -182,17 +182,17 @@ signals:
     /**
      * @brief The console command icon path has been changed.
      */
-    void iconConCommandChanged();
+    void iconConCommandChanged(QString);
     
     /**
      * @brief The console variable icon path has been changed.
      */
-    void iconConVarChanged();
+    void iconConVarChanged(QString);
     
     /**
      * @brief The command history buffer size has been changed.
      */
-    void commandHistorySizeChanged();
+    void commandHistorySizeChanged(int);
     
 public slots:
     /**

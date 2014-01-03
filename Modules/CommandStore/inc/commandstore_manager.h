@@ -9,10 +9,11 @@ class ListedCommandManager;
 class ListedConsoleCommand;
 ICONSOLE_END_NAMESPACE
 
-namespace NCommandStore
-{
-    COMMANDSTORESHARED_EXPORT extern NIConsole::ListedCommandManager*   g_pCommandManager;
-    COMMANDSTORESHARED_EXPORT extern NIConsole::ListedConsoleCommand*   g_pConsoleCommandList;
-}
+COMMANDSTORE_BEGIN_NAMESPACE
+
+COMMANDSTORESHARED_EXPORT extern NIConsole::ListedCommandManager*   g_pCommandManager;
+COMMANDSTORESHARED_EXPORT extern NIConsole::ListedConsoleCommand*   g_pConsoleCommandList;
+    
+COMMANDSTORE_END_NAMESPACE
 
 #endif // COMMANDSTORE_MANAGER_H

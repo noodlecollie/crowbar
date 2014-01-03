@@ -18,7 +18,8 @@ SOURCES += \
     solid.cpp \
     indexpool.cpp \
     edge.cpp \
-    consolewindow.cpp
+    consolewindow.cpp \
+    localcommands.cpp
 
 HEADERS += \
     mainwin.h \
@@ -41,7 +42,8 @@ HEADERS += \
     ivertex3drenderspec.h \
     solid.h \
     indexpool.h \
-    consolewindow.h
+    consolewindow.h \
+    localcommands.h
 
 # Should the "if" here match up with above?
 CONF_OUT=release

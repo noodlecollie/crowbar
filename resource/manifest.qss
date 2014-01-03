@@ -1,4 +1,4 @@
-ConsoleWidget
+NIConsole--ConsoleWidget
 {
 	background-color:			#000000;
 	font-family:				"Lucida console";
@@ -19,7 +19,7 @@ ConsoleWidget
 	/*qproperty-customColor6:		#000000;*/
 }
 
-CommandEntryBox
+NIConsole--CommandEntryBox
 {
 	qproperty-iconConCommand:		"resource/command_symbol.svg";
 	qproperty-iconConVar:			"resource/variable_symbol.svg";

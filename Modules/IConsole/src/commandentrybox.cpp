@@ -13,6 +13,8 @@
 #include <QtDebug>
 // TEMP
 
+//#define VERBOSE_OUTPUT
+
 ICONSOLE_BEGIN_NAMESPACE
 
 const QString CommandEntryBox::LI_NAME_COMMAND = "CommandListItem";
@@ -278,6 +280,10 @@ void CommandEntryBox::processForSuggestions(const QString &str)
         m_pSuggestions->hide();
         return;
     }
+    
+#ifdef VERBOSE_OUTPUT
+    qDebug("ConCommand icon: %s (null: %d) ConVar icon: %s (null: %d)", m_szIconConCommand, m_szIconConCommand.isNull(), m_szIconConVar, m_szIconConVar.isNull());
+#endif
     
     // Add the suggestions to the list.
     foreach(CommandInterpreter::CommandIdentPair p, suggestions)

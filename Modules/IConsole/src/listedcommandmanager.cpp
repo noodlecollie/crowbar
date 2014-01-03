@@ -5,7 +5,7 @@ ICONSOLE_BEGIN_NAMESPACE
 ListedCommandManager::ListedCommandManager(ListedConsoleCommand * listHead, QObject *parent) :
     CommandManager(parent)
 {
-    traverse(listHead);
+   traverse(listHead);
 }
 
 ListedCommandManager::ListedCommandManager(ListedCommandManager &other, QObject *parent) :

@@ -16,6 +16,7 @@
 ICONSOLE_BEGIN_NAMESPACE
 
 class ListedConsoleCommand;
+class InitSignalWrapper;
 
 /**
  * @brief Extends the CommandManager class by providing functionality to traverse a list of ListedConsoleCommands when the

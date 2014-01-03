@@ -57,7 +57,7 @@ SOURCES += \
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IConsole/release/ -lIConsole
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IConsole/debug/ -lIConsole
-else:unix: LIBS += -L$$OUT_PWD/../Modules/IConsole/ -lIConsole
+else:unix: LIBS += -L$$OUT_PWD/../../../Modules/IConsole/ -lIConsole
 
 INCLUDEPATH += $$PWD/../../Modules/IConsole/inc
 DEPENDPATH += $$PWD/../../Modules/IConsole/inc

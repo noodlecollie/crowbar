@@ -299,47 +299,47 @@ signals:
     /**
      * @brief Emitted when the max lines property has been changed.
      */
-    void maxLinesChanged();
+    void maxLinesChanged(int);
     
     /**
      * @brief Emitted when the standard message colour property has been changed.
      */
-    void messageColorChanged();
+    void messageColorChanged(QColor);
     
     /**
      * @brief Emitted when the warning message colour property has been changed.
      */
-    void warningColorChanged();
+    void warningColorChanged(QColor);
     
     /**
      * @brief Emitted when the first custom message colour property has been changed.
      */
-    void customColor1Changed();
+    void customColor1Changed(QColor);
     
     /**
      * @brief Emitted when the second custom message colour property has been changed.
      */
-    void customColor2Changed();
+    void customColor2Changed(QColor);
     
     /**
      * @brief Emitted when the third custom message colour property has been changed.
      */
-    void customColor3Changed();
+    void customColor3Changed(QColor);
     
     /**
      * @brief Emitted when the fourth custom message colour property has been changed.
      */
-    void customColor4Changed();
+    void customColor4Changed(QColor);
     
     /**
      * @brief Emitted when the fifth custom message colour property has been changed.
      */
-    void customColor5Changed();
+    void customColor5Changed(QColor);
     
     /**
      * @brief Emitted when the sixth custom message colour property has been changed.
      */
-    void customColor6Changed();
+    void customColor6Changed(QColor);
 
 public slots:
     

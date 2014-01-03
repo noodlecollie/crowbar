@@ -1,35 +1,17 @@
 #include <QApplication>
 #include <QString>
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPushButton>
 #include <QFile>
 #include <QDir>
-#include <QTextStream>
+#include <QPushButton>
+#include <QVBoxLayout>
 #include "consolewidget.h"
-#include "wr_commandentrybox.h"
-#include "wr_listedcommandmanager.h"
-#include "wr_convar.h"
-#include "wr_concommand.h"
-#include "wr_commandinterpreter.h"
-
-int main(int, char**);
-void init();
-void myMessageOutput(QtMsgType, const QMessageLogContext &, const QString &);
 
 QWidget* mainWin = NULL;
-QVBoxLayout* mainLayout = NULL;
-QHBoxLayout* subLayout = NULL;
-ConsoleWidget* consoleWindow = NULL;
-CommandEntryBox* entryBox = NULL;
-QPushButton* submitButton = NULL;
-ListedCommandManager* commandManager = NULL;
-ListedConsoleCommand* listHead = NULL;
-CommandInterpreter* commandInterpreter = NULL;
-ListedCommandManager* commandManager2 = NULL;
+QPushButton* button = NULL;
+QVBoxLayout* vb = NULL;
+NIConsole::ConsoleWidget* console = NULL;
 
-ConVar test_var("test_var", "0", commandManager, &listHead, NULL, "A test variable", 0, false, 0.0, false, 0.0);
+void init();
 
 int main(int argc, char **argv)
 {
@@ -45,7 +27,6 @@ int main(int argc, char **argv)
     
     init();
     mainWin->show();
-    qDebug("Test");
 
     return app.exec();
 }
@@ -53,65 +34,11 @@ int main(int argc, char **argv)
 void init()
 {
     mainWin = new QWidget();
-    mainLayout = new QVBoxLayout();
-    subLayout = new QHBoxLayout();
-    consoleWindow = new ConsoleWidget();
-    entryBox = new CommandEntryBox();
-    submitButton = new QPushButton("Submit");
-    commandManager2 = new ListedCommandManager(listHead);
-    commandManager = new ListedCommandManager(*commandManager2);
-    commandInterpreter = new CommandInterpreter(commandManager);
-    
-    mainWin->setLayout(mainLayout);
-    mainLayout->setMargin(2);
-    mainLayout->addWidget(consoleWindow);
-    mainLayout->addLayout(subLayout);
-    subLayout->setMargin(0);
-    subLayout->addWidget(entryBox);
-    subLayout->addWidget(submitButton);
-    
-    // Submit button connections.
-    submitButton->connect(submitButton, SIGNAL(clicked()), entryBox, SLOT(sendCommandString()));
-    
-    // Command entry box connections.
-    entryBox->connect(entryBox, SIGNAL(commandString(QString)), commandInterpreter, SLOT(parse(QString)));
-    entryBox->connect(entryBox, SIGNAL(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)), commandInterpreter, SLOT(getSuggestions(QString,QList<CommandInterpreter::CommandIdentPair>&,int)));
-    
-    // Command interpreter connections.
-    commandInterpreter->connect(commandInterpreter, SIGNAL(outputMessage(CommandSenderInfo::OutputType,QString)), consoleWindow, SLOT(printMessage(CommandSenderInfo::OutputType,QString)));
-    
-    // Message handler.
-    qInstallMessageHandler(myMessageOutput);
-    //consoleWindow->printMessage("Test msg");
-}
-
-void myMessageOutput(QtMsgType type, const QMessageLogContext &, const QString &msg)
-{
-    switch (type)
-    {
-        case QtDebugMsg:
-        {
-            if ( consoleWindow ) consoleWindow->printMessage(QString("]: %0\n").arg(msg));
-            QTextStream(stdout) << msg << endl;
-            break;
-        }
-        case QtWarningMsg:
-        {
-            if ( consoleWindow ) consoleWindow->printWarning(QString("]! %0\n").arg(msg));
-            QTextStream(stderr) << msg << endl;
-            break;
-        }
-        case QtCriticalMsg:
-        {
-            if ( consoleWindow ) consoleWindow->printWarning(QString("]!! %0\n").arg(msg));
-            QTextStream(stderr) << msg << endl;
-            break;
-        }
-        case QtFatalMsg:
-        {
-            if ( consoleWindow ) consoleWindow->printWarning(QString("]X %0\n").arg(msg));
-            QTextStream(stderr) << msg << endl;
-            abort();
-        }
-    }
+    vb = new QVBoxLayout(mainWin);
+    mainWin->setLayout(vb);
+    button = new QPushButton();
+    button->setText("A test button");
+    vb->addWidget(button);
+    console = new NIConsole::ConsoleWidget();
+    vb->addWidget(console);
 }

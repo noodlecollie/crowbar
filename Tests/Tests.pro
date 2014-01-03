@@ -1,4 +1,3 @@
 TEMPLATE = subdirs
 
-SUBDIRS += \
-    unit-test
+SUBDIRS += unit-test

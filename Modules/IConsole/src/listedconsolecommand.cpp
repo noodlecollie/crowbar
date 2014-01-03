@@ -3,6 +3,8 @@
 
 ICONSOLE_BEGIN_NAMESPACE
 
+//#define VERBOSE_OUTPUT
+
 ListedConsoleCommand::ListedConsoleCommand(const QString &name, CommandManager *manager, ListedConsoleCommand **listHead,
                                            const QString &desc, NGlobalCmd::CMDFLAGS flags, QObject *parent) :
     BaseConsoleCommand(name, desc, flags, parent)
@@ -30,8 +32,12 @@ void ListedConsoleCommand::tryRegister(CommandManager *manager, ListedConsoleCom
     // If manager is not NULL, register.
     if ( manager )
     {
+        
+#ifdef VERBOSE_OUTPUT
         //qDebug() << QString("Registering command %0 into manager at %1").arg(this->name()).arg(manager);
         qDebug("Registering command %s into manager at %p", this->name().toLatin1().constData(), manager);
+#endif
+        
         manager->registerCommand(this);
         return;
     }

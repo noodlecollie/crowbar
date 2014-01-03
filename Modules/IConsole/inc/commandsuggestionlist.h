@@ -74,7 +74,7 @@ signals:
     /**
      * @brief Emitted when the height scale property is changed.
      */
-    void heightScaleChanged();
+    void heightScaleChanged(float);
     //void itemDoubleClicked(QListWidgetItem *);
     
 public slots:

@@ -3,5 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     RegexUtil \
     IConsole \
-    CommandStore
-    
+    CommandStore \
+    Geometry

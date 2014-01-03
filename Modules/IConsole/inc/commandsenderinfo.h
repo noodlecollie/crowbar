@@ -63,6 +63,9 @@ class ICONSOLESHARED_EXPORT CommandSenderInfo : public QObject
      * @accessors maxValue(), setMaxValue()
      */
     Q_PROPERTY(float maxValue READ maxValue WRITE setMaxValue)
+    
+    // FIXME
+    //Q_ENUM(OutputType);
 public:
     /**
      * @brief Defines the different types of output that can be displayed in a ConsoleWidget.

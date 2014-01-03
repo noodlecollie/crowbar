@@ -21,6 +21,9 @@
 #  define COMMANDSTORESHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+#define COMMANDSTORE_BEGIN_NAMESPACE namespace NCommandStore {
+#define COMMANDSTORE_END_NAMESPACE }
+
 #endif // COMMANDSTORE_GLOBAL_H
 
 /**@}*/

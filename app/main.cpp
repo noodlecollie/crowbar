@@ -12,6 +12,7 @@
 #include "wr_commandinterpreter.h"
 #include "consolewindow.h"
 #include "nglobalcmd.h"
+#include "localcommands.h"
 
 #define LOG_QDEBUG_TAG      " Q "
 #define LOG_QWARNING_TAG    " Q!"
@@ -53,15 +54,8 @@ int main(int argc, char **argv)
 
 void initSystems(int argc, char **argv)
 {
-    // Apply style sheet.
-    QDir dir(qApp->applicationDirPath());
-    if ( dir.cd("resource") && dir.exists("manifest.qss") )
-    {
-        QFile stylesheet(dir.filePath("manifest.qss"));
-        stylesheet.open(QFile::ReadOnly);
-        QString setSheet = QLatin1String(stylesheet.readAll());
-        qApp->setStyleSheet(setSheet);
-    }
+    // Set style sheet.
+    applyStyleSheet();
     
     // Create global console command manager.
     //g_pCommandManager = new ListedCommandManager(g_pCommandList); // This is now in the CommandStore module.
