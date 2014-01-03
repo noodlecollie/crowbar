@@ -11,7 +11,7 @@
 
 GEOMETRY_BEGIN_NAMESPACE
 
-class BrushVertex : public GeomMetaHandle, public IBasicTransform
+class GEOMETRYSHARED_EXPORT BrushVertex : public GeomMetaHandle, public IBasicTransform
 {
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged)

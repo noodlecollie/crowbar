@@ -15,7 +15,8 @@ DEFINES += GEOMETRY_LIBRARY
 SOURCES += \
     src/geommetahandle.cpp \
     src/geomutil.cpp \
-    src/brushvertex.cpp
+    src/brushvertex.cpp \
+    src/renderbox.cpp
 
 HEADERS += \
     inc/geommetahandle.h \
@@ -23,7 +24,9 @@ HEADERS += \
     inc/geomutil.h \
     inc/ibasictransform.h \
     inc/ibrushops.h \
-    inc/brushvertex.h
+    inc/brushvertex.h \
+    inc/renderbox.h \
+    inc/igeomdataexport.h
 
 unix:!symbian {
     maemo5 {
