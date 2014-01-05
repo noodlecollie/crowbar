@@ -6,12 +6,12 @@
 GEOMETRY_BEGIN_NAMESPACE
 
 RenderBox::RenderBox() :
-    QBox3D(), m_colColour(255,255,255,255)
+    QBox3D(), m_vecPosition(VEC3_ORIGIN), m_colColour(255,255,255,255)
 {
 }
 
-RenderBox::RenderBox(const QVector3D &corner1, const QVector3D &corner2) :
-    QBox3D(corner1, corner2), m_colColour(255,255,255,255)
+RenderBox::RenderBox(const QVector3D &origin, const QVector3D &min, const QVector3D &max) :
+    QBox3D(min, max), m_vecPosition(origin), m_colColour(255,255,255,255)
 {
 }
 
@@ -25,10 +25,26 @@ void RenderBox::setColor(const QColor &col)
     m_colColour = col;
 }
 
+QVector3D RenderBox::wOrigin() const
+{
+    return m_vecPosition;
+}
+
+void RenderBox::setWOrigin(const QVector3D &pos)
+{
+    m_vecPosition = pos;
+}
+
+QVector3D RenderBox::wCenter() const
+{
+    return m_vecPosition + center();
+}
+
 QGeometryData RenderBox::toGeomData() const
 {
-    QVector3D min = minimum();
-    QVector3D max = maximum();
+    // Calculate the min and max co-ordinates in world space.
+    QVector3D min = m_vecPosition + minimum();
+    QVector3D max = m_vecPosition + maximum();
     QColor col = color();
     
     // Order of vertices:
@@ -40,9 +56,9 @@ QGeometryData RenderBox::toGeomData() const
     // 5. Maximum with modified Z and X co-ords
     // 6. Maximum with modified X co-ord
     // 7. Maximum
-    // This gives us counter-clockwise winding for the top and bottom faces.
+    // This gives us an easy counter-clockwise winding for the top and bottom faces.
     
-    const QVector3D verts[8] =               // Taking Y as "north" and looking down on the box, we have:
+    const QVector3D verts[8] =               // Taking Z as "north" and looking down on the box (Y pointing at us), we have:
     {
         min,                                    // Lower SW 0
         QVector3D(max.x(), min.y(), min.z()),   // Lower NW 1
@@ -54,13 +70,13 @@ QGeometryData RenderBox::toGeomData() const
         max                                     // Upper NE 7
     };
     
-    // Calculate normals for faces.
-    QVector3D nTop = ccwNormal(verts[5], verts[6], verts[7]);       // SW, SE, NE
-    QVector3D nBottom = ccwNormal(verts[0], verts[1], verts[2]);    // SW, NW, NE
-    QVector3D nNorth = ccwNormal(verts[7], verts[2], verts[1]);     // UNE, LNE, LNW
-    QVector3D nSouth = ccwNormal(verts[0], verts[3], verts[6]);     // LSW, LSE, USE
-    QVector3D nEast = ccwNormal(verts[7], verts[6], verts[3]);      // UNE, USE, LSE
-    QVector3D nWest = ccwNormal(verts[0], verts[5], verts[4]);      // LSW, USW, UNW
+    // Normals for faces
+    const QVector3D nTop(0, 1, 0);      // Up    = +Y
+    const QVector3D nBottom(0, -1, 0);  // Down  = -Y
+    const QVector3D nNorth(0, 0, 1);    // North = +Z
+    const QVector3D nSouth(0, 0, -1);   // South = -Z
+    const QVector3D nEast(-1, 0, 0);    // East  = -X
+    const QVector3D nWest(1, 0, 0);     // West  = +X
     
     // Create a GeomData and add each face of the box.
     QGeometryData geom;
