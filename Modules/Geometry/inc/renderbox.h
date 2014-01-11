@@ -19,7 +19,12 @@ public:
     
     // === All functions inherited from QBox3D refer to the local space of this object. ===
 
-    QColor color() const;
+    QColor colorMin() const;
+    void setColorMin(const QColor &col);
+    
+    QColor colorMax() const;
+    void setColorMax(const QColor &col);
+    
     void setColor(const QColor &col);
     
     // Physical origin of this box in the world.
@@ -35,7 +40,8 @@ public:
     
 private:
     QVector3D   m_vecPosition;
-    QColor      m_colColour;
+    QColor      m_colColourMin;
+    QColor      m_colColourMax;
 };
     
 GEOMETRY_END_NAMESPACE

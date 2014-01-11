@@ -7,9 +7,19 @@ GEOMETRY_BEGIN_NAMESPACE
 const QVector3D VEC3_ORIGIN(0.0, 0.0, 0.0);
 const QVector2D VEC2_ORIGIN(0.0, 0.0);
 
-QVector3D ccwNormal(const QVector3D v0, const QVector3D v1, const QVector3D v2)
+QVector3D ccwNormal(const QVector3D &v0, const QVector3D &v1, const QVector3D &v2)
 {
     return QVector3D::normal(v2-v1, v0-v1);
+}
+
+qreal scalarProjection(const QVector3D &v0, const QVector3D &v1)
+{
+    return (QVector3D::dotProduct(v0, v1))/(v1.length());
+}
+
+QVector3D vectorProjection(const QVector3D &v0, const QVector3D &v1)
+{
+    return scalarProjection(v0, v1) * v1.normalized();
 }
 
 GEOMETRY_END_NAMESPACE

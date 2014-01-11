@@ -4,4 +4,5 @@ SUBDIRS += \
     RegexUtil \
     IConsole \
     CommandStore \
-    Geometry
+    Geometry \
+    IRenderSystem
