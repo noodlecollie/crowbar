@@ -140,7 +140,7 @@ public:
 
     // Mutators
     /**
-     * \brief Sets the empty value this oscree uses.
+     * \brief Sets the empty value this octree uses.
      * \brief Sets the value of empty nodes to \a emptyValue.
      * \see setEmptyValue()
      */

@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QTextStream>
 #include <QDir>
-#include <QOpenGLContext>
-#include <QOffscreenSurface>
 
 #include "globals.h"
 #include "mainwin.h"
@@ -22,18 +20,24 @@
 #define LOG_QCRITICAL_TAG   "!Q!"
 #define LOG_QFATAL_TAG      "XXX"
 
+#define OPENGL_MIN_VERSION 2.0f
+
 using namespace NIConsole;
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
-void debugTests();
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg);
 bool checkOpenGLVersion(QString* error);
+
+#ifdef QT_DEBUG
+void debugTests();
+#endif
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     
+    // Record the max OpenGL version the system supports in the gl_max_version ConVar.
     QString error;
     if ( !checkOpenGLVersion(&error) )
     {
@@ -43,9 +47,22 @@ int main(int argc, char **argv)
         return 1;
     }
     
+    // Check the max version is high enough.
+    if ( gl_max_version.floatValue() < OPENGL_MIN_VERSION )
+    {
+        QString message = QString("Unable to launch application: Minimum OpenGL version of %0 not met by the system.").arg(OPENGL_MIN_VERSION);
+        qFatal(message.toLatin1().constData());
+        ShowErrorBox(message);
+        return 1;
+    }
+    
+    // Create and initialise all core systems.
     initSystems(argc, argv);
     
+    // Perform any tests we need.
+#ifdef QT_DEBUG
     debugTests();
+#endif
 
     MainWin win;
     win.setCentralWidget(NULL);
@@ -62,10 +79,7 @@ void initSystems(int argc, char **argv)
     // Set style sheet.
     applyStyleSheet();
     
-    // Create global console command manager.
-    //g_pCommandManager = new ListedCommandManager(g_pCommandList); // This is now in the CommandStore module.
-    
-    // Create global interpreter and hook up to the manager.
+    // Create global interpreter and hook up to the CommandStore manager.
     g_pCommandInterpreter = new CommandInterpreter(NCommandStore::g_pCommandManager);
     
     // Create global command line parser.
@@ -81,9 +95,6 @@ void initSystems(int argc, char **argv)
     
     // Set up message handler to print qDebug messages to console as well.
     qInstallMessageHandler(qDebugIntercept);
-    
-    // This won't necessarily reflect the right date/time if main.cpp is not modified before compile!
-    //LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
 }
 
 void shutdownSystems()
@@ -101,9 +112,11 @@ void shutdownSystems()
     //if ( g_pCommandManager ) delete g_pCommandManager;
 }
 
+#ifdef QT_DEBUG
 void debugTests()
 {
 }
+#endif
 
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
@@ -153,106 +166,31 @@ bool checkOpenGLVersion(QString* error)
     
     QGLFormat::OpenGLVersionFlags flags = QGLFormat::openGLVersionFlags();
     
-#define GLFORMAT(_ver) QGLFormat::OpenGL_Version_##_ver
+// This saves me from having to write the damn thing out over and over.
+#define CHECK_VERSION(_var, _glVersion, _valToSet) \
+if ( (_var & QGLFormat::OpenGL_Version_##_glVersion) == QGLFormat::OpenGL_Version_##_glVersion ) \
+{ \
+gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY); \
+gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), _valToSet); \
+gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY); \
+return true; \
+}
     
     // The highest one reached here will be the max version.
-    if ( (flags & GLFORMAT(4_0)) == GLFORMAT(4_0) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 4.0f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(3_3)) == GLFORMAT(3_3) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.3f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(3_2)) == GLFORMAT(3_2) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.2f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(3_1)) == GLFORMAT(3_1) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.1f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(3_0)) == GLFORMAT(3_0) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.0f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(2_1)) == GLFORMAT(2_1) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 2.1f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(2_0)) == GLFORMAT(2_0) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 2.0f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(1_5)) == GLFORMAT(1_5) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.5f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(1_4)) == GLFORMAT(1_4) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.4f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(1_3)) == GLFORMAT(1_3) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.3f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(1_2)) == GLFORMAT(1_2) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.2f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-    if ( (flags & GLFORMAT(1_1)) == GLFORMAT(1_1) )
-    {
-        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
-        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.1f);
-        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
-        return true;
-    }
-    
-#undef GLFORMAT
+    CHECK_VERSION(flags, 4_0, 4.0f)
+    CHECK_VERSION(flags, 3_3, 3.3f)
+    CHECK_VERSION(flags, 3_2, 3.2f)
+    CHECK_VERSION(flags, 3_1, 3.1f)
+    CHECK_VERSION(flags, 3_0, 3.0f)
+    CHECK_VERSION(flags, 2_1, 2.1f)
+    CHECK_VERSION(flags, 2_0, 2.0f)
+    CHECK_VERSION(flags, 1_5, 1.5f)
+    CHECK_VERSION(flags, 1_4, 1.4f)
+    CHECK_VERSION(flags, 1_3, 1.3f)
+    CHECK_VERSION(flags, 1_2, 1.2f)
+    CHECK_VERSION(flags, 1_1, 1.1f)
+
+#undef CHECK_VERSION
     
     // We matched none.
     if ( error ) *error = "System does not support OpenGL.";

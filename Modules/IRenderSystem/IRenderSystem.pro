@@ -13,10 +13,12 @@ TEMPLATE = lib
 
 DEFINES += IRENDERSYSTEM_LIBRARY
 
-SOURCES +=
+SOURCES += \
+    dummy.cpp
 
 HEADERS += \
-    inc/irendersystem_global.h
+    inc/irendersystem_global.h \
+    dummy.h
 
 unix {
     target.path = /usr/lib

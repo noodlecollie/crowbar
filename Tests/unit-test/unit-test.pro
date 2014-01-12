@@ -51,7 +51,9 @@ TEMPLATE = app
 #if(release):createDir($$OUT_PWD/release/resource/)
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    handler.cpp \
+    customspin.cpp
 
 #copyToResourceDir($$PWD/../crowbar/resource/manifest.qss $$PWD/../crowbar/resource/command_symbol.svg $$PWD/../crowbar/resource/variable_symbol.svg)
 
@@ -62,7 +64,9 @@ else:unix: LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
 INCLUDEPATH += $$PWD/../../../qt3d/include
 DEPENDPATH += $$PWD/../../../qt3d/include
 
-HEADERS +=
+HEADERS += \
+    handler.h \
+    customspin.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Geometry/release/ -lGeometry
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Geometry/debug/ -lGeometry
