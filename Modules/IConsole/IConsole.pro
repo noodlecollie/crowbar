@@ -84,7 +84,8 @@ SOURCES += \
     src/commandinterpreter.cpp \
     src/commandentrybox.cpp \
     src/commandsuggestionlist.cpp \
-    src/commandsenderinfo.cpp
+    src/commandsenderinfo.cpp \
+    src/nglobalcmd.cpp
 
 INCLUDEPATH += \
     inc \

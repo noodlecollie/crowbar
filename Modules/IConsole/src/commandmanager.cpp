@@ -170,6 +170,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
     // Deal with ident.
     switch ( cmd->identify() )
     {
+        // Console command
         case NGlobalCmd::CICommand:
         {
             ConCommand* con = (ConCommand*) cmd;
@@ -180,6 +181,7 @@ NGlobalCmd::CmdIdent CommandManager::exec(const QString &name, const QStringList
             return NGlobalCmd::CICommand;
         }
         
+        // Console variable
         case NGlobalCmd::CIVariable:
         {
             ConVar* var = (ConVar*) cmd;

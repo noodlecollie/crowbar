@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTextStream>
 #include <QDir>
+#include <QOpenGLContext>
+#include <QOffscreenSurface>
 
 #include "globals.h"
 #include "mainwin.h"
@@ -13,6 +15,7 @@
 #include "consolewindow.h"
 #include "nglobalcmd.h"
 #include "localcommands.h"
+#include "commandsenderinfo.h"
 
 #define LOG_QDEBUG_TAG      " Q "
 #define LOG_QWARNING_TAG    " Q!"
@@ -25,16 +28,18 @@ void initSystems(int argc, char **argv);
 void shutdownSystems();
 void debugTests();
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg);
+bool checkOpenGLVersion(QString* error);
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-
-    // Check for correct OpenGL version.
-    // Qt supports the OpenGL core profile from version 3.1 upwards.
-    if (!QGLFormat::openGLVersionFlags().testFlag(QGLFormat::OpenGL_Version_3_1))
+    
+    QString error;
+    if ( !checkOpenGLVersion(&error) )
     {
-        ShowErrorBox("An OpenGL level of 3.1 or above is required but\nis not supported by the system.");
+        QString message = QString("Unable to launch application: %0").arg(error);
+        qFatal(message.toLatin1().constData());
+        ShowErrorBox(message);
         return 1;
     }
     
@@ -72,9 +77,10 @@ void initSystems(int argc, char **argv)
     
     // Create console window.
     g_pLog = new ConsoleWindow(g_pCommandInterpreter);
+    g_pLog->resize(640, 480);
     
     // Set up message handler to print qDebug messages to console as well.
-    //qInstallMessageHandler(qDebugIntercept);
+    qInstallMessageHandler(qDebugIntercept);
     
     // This won't necessarily reflect the right date/time if main.cpp is not modified before compile!
     //LogMessage(QString("Crowbar Editor - Last build %0 at %1").arg(__DATE__).arg(__TIME__));
@@ -128,4 +134,132 @@ void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &
             abort();
         }
     }
+}
+
+// Returns true if the program should continue to run.
+// Also updates gl_max_version.
+bool checkOpenGLVersion(QString* error)
+{
+    if ( !QGLFormat::hasOpenGL() )
+    {
+        if ( error ) *error = "System does not support OpenGL.";
+        
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 0.0f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        
+        return false;
+    }
+    
+    QGLFormat::OpenGLVersionFlags flags = QGLFormat::openGLVersionFlags();
+    
+#define GLFORMAT(_ver) QGLFormat::OpenGL_Version_##_ver
+    
+    // The highest one reached here will be the max version.
+    if ( (flags & GLFORMAT(4_0)) == GLFORMAT(4_0) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 4.0f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(3_3)) == GLFORMAT(3_3) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.3f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(3_2)) == GLFORMAT(3_2) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.2f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(3_1)) == GLFORMAT(3_1) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.1f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(3_0)) == GLFORMAT(3_0) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 3.0f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(2_1)) == GLFORMAT(2_1) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 2.1f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(2_0)) == GLFORMAT(2_0) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 2.0f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(1_5)) == GLFORMAT(1_5) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.5f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(1_4)) == GLFORMAT(1_4) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.4f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(1_3)) == GLFORMAT(1_3) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.3f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(1_2)) == GLFORMAT(1_2) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.2f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+    if ( (flags & GLFORMAT(1_1)) == GLFORMAT(1_1) )
+    {
+        gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+        gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 1.1f);
+        gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+        return true;
+    }
+    
+#undef GLFORMAT
+    
+    // We matched none.
+    if ( error ) *error = "System does not support OpenGL.";
+    
+    gl_max_version.removeFlag(NGlobalCmd::CMDFLAG_READONLY);
+    gl_max_version.setValue(CommandSenderInfo(gl_max_version.name(), NULL, NULL), 0.0f);
+    gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
+    
+    return false;
 }

@@ -53,4 +53,5 @@ void ConsoleWindow::showAndRaise()
 {
     show();
     raise();
+    m_pEntryBox->setFocus(Qt::ActiveWindowFocusReason);
 }

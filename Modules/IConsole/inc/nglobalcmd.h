@@ -23,9 +23,9 @@ namespace NGlobalCmd
      */
     enum CmdIdent
     {
-        CINull = 0, /**< Null (BaseConsoleCommand) */
-        CICommand,  /**< Command (ConCommand) */
-        CIVariable  /**< Variable (ConVar) */
+        CINull = 0,     /**< Null (BaseConsoleCommand) */
+        CICommand,      /**< Command (ConCommand) */
+        CIVariable,     /**< Variable (ConVar) */
     };
     
     /**
@@ -49,8 +49,22 @@ namespace NGlobalCmd
     enum
     {
         CMDFLAG_READONLY = 0x1,         /**< ConVar's value cannot be changed. */
-        CMDFLAG_ENSURECALLBACK = 0x2    /**< ConVar or ConCommand must have a callback. */
-    };  
+        CMDFLAG_ENSURECALLBACK = 0x2,   /**< ConVar or ConCommand must have a callback. */
+    };
+    
+    static const QString FLAGNAMES[] =
+    {
+        "CMDFLAG_READONLY",
+        "CMDFLAG_ENSURECALLBACK",
+    };
+    
+    /**
+     * @brief Returns the given flags as a string, separated by pipe characters.
+     * If no flags match, an empty string is returned.
+     * @param cmdFlags Flags to check.
+     * @return String representation of flags.
+     */
+    inline QString commandFlagsToString(CMDFLAGS cmdFlags);
     
     /**
      * @brief Typedef for a ConCommand callback.
