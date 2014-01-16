@@ -5,4 +5,5 @@ SUBDIRS += \
     IConsole \
     CommandStore \
     Geometry \
-    IRenderSystem
+    IRenderSystem \
+    Octree

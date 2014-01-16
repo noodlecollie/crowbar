@@ -1,0 +1,9 @@
+#include "dummy.h"
+
+IRENDERSYSTEM_BEGIN_NAMESPACE
+
+Dummy::Dummy()
+{
+}
+
+IRENDERSYSTEM_END_NAMESPACE

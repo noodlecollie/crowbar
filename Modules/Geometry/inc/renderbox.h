@@ -7,11 +7,11 @@
 #include <QVector3D>
 #include <QColor>
 
-#include "igeomdataexport.h"
+#include "irenderable.h"
 
 GEOMETRY_BEGIN_NAMESPACE
 
-class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public IGeomDataExport
+class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public NIRenderSystem::IRenderable
 {
 public:
     explicit RenderBox();
@@ -35,7 +35,7 @@ public:
     // in world space. center() returns in local space.
     QVector3D wCenter() const;
     
-    // IGeomDataExport interface
+    // IRenderable interface
     virtual QGeometryData toGeomData() const;
     
 private:
