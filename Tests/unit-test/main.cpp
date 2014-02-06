@@ -1,11 +1,14 @@
 #include <QGuiApplication>
 #include "octree.h"
+#include "worldculltree.h"
 
 using namespace NOctree;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    
+    WorldCullTree<int> testme(256, 1024);
     
     Octree<int> o(256);
     

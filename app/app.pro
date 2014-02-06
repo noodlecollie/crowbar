@@ -71,7 +71,7 @@ ORIG_FOLDER=$$quote($$PWD/..)
 win32:ORIG_FOLDER ~= s,/,\\,g
 
 # Set up string to exec post-build.
-win32:BATCH=$$quote($$PWD\build_post_windows.bat)
+win32:BATCH=$$quote($$PWD\\build_post_windows.bat)
 unix:BATCH=$$quote($$PWD/build_post_unix.sh)
 
 # Set exec string.

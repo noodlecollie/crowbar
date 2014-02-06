@@ -89,7 +89,7 @@ SOURCES += \
 
 INCLUDEPATH += \
     inc \
-    ..\RegexUtil\inc
+    ../RegexUtil/inc
 
 # Commented for the same reason as above (no libraries to depend on).
 #if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {

@@ -779,9 +779,14 @@ int Octree<T,AS>::mapToNodeIndex(int extent, int nodeCount, float inValue)
 {
     //qDebug("Extent: %d Size: %d In: %f", extent, nodeCount, inValue);
     //qDebug("Before floor: %f", (inValue*nodeCount)/extent);
+    
+    // inValue / extent gives the fraction along the extent from -magnitude to +magnitude that the inValue lies.
+    // Multiplying this by nodeCount and flooring will give us the node index along this extent.
     int ret = qFloor((inValue*nodeCount)/extent);
+    
     if ( ret < 0 ) ret = 0;
     else if ( ret >= nodeCount ) ret = nodeCount - 1;
+    
     return ret;
 }
 
