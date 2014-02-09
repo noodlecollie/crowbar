@@ -26,7 +26,8 @@ HEADERS += \
     inc/ibrushops.h \
     inc/brushvertex.h \
     inc/renderbox.h \
-    inc/igeomdataexport.h
+    inc/igeomdataexport.h \
+    inc/frustum_util.h
 
 unix:!symbian {
     maemo5 {

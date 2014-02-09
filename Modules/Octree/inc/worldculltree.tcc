@@ -115,7 +115,7 @@ void WorldCullTree<T,AS>::remove(const T obj)
 }
 
 template< typename T, int AS >
-QHash::const_iterator<const T, char> WorldCullTree<T,AS>::contents(const QVector3D &pos, bool &success) const
+typename WorldCullTree<T,AS>::NodeHash::const_iterator WorldCullTree<T,AS>::contents(const QVector3D &pos, bool &success) const
 {
     // Translate the position to an octree node.
     OctreeIndex i;
@@ -136,7 +136,7 @@ QHash::const_iterator<const T, char> WorldCullTree<T,AS>::contents(const QVector
 }
 
 template< typename T, int AS >
-QHash::const_iterator<const T, char> WorldCullTree<T,AS>::constEnd(const QVector3D &pos, bool &success) const
+typename WorldCullTree<T,AS>::NodeHash::const_iterator WorldCullTree<T,AS>::constEnd(const QVector3D &pos, bool &success) const
 {
     // Translate the position to an octree node.
     OctreeIndex i;
@@ -223,7 +223,7 @@ void WorldCullTree<T,AS>::contents(const QBox3D &box, QList<const T> &list) cons
 }
 
 template< typename T, int AS >
-void WorldCullTree<T,AS>::box3dToOctreeRange(const QBox3D &box, OctreeRange &range)
+void WorldCullTree<T,AS>::box3dToOctreeRange(const QBox3D &box, OctreeRange &range) const
 {
     range.max_x = m_Octree.mapToNodeIndex(m_iMagnitude, box.maximum().x());
     range.max_y = m_Octree.mapToNodeIndex(m_iMagnitude, box.maximum().y());
@@ -234,7 +234,7 @@ void WorldCullTree<T,AS>::box3dToOctreeRange(const QBox3D &box, OctreeRange &ran
 }
 
 template< typename T, int AS >
-void WorldCullTree<T,AS>::vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index)
+void WorldCullTree<T,AS>::vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index) const
 {
     index.x = m_Octree.mapToNodeIndex(pos.x());
     index.y = m_Octree.mapToNodeIndex(pos.y());
@@ -242,7 +242,7 @@ void WorldCullTree<T,AS>::vector3DToOctreeIndex(const QVector3D &pos, OctreeInde
 }
 
 template< typename T, int AS >
-NodeHash* WorldCullTree<T,AS>::at(const OctreeIndex &index)
+typename WorldCullTree<T,AS>::NodeHash* WorldCullTree<T,AS>::at(const OctreeIndex &index) const
 {
     return m_Octree.at(index.x, index.y, index.z);
 }
@@ -305,6 +305,42 @@ void WorldCullTree<T,AS>::removeReferenceFromTree(const T obj, const OctreeRange
             }
         }
     }
+}
+
+template< typename T, int AS >
+typename WorldCullTree<T,AS>::FrustumEnclose WorldCullTree<T,AS>::bboxTest(const QBox3D &bbox, const NGeometry::Frustum &frustum)
+{
+    // The following rules apply when testing a bounding box for presence inside a frustum:
+    // - If min or max is not in front of a plane, it is considered to be behind the plane.
+    // - Both min and max are behind all planes if and only if the box is completely inside the frustum.
+    // - Both min and max are in front of the same plane if and only if the box is completely outside the frustum.
+    // - If a box encloses the frustum in any way, it is partially enclosed by the frustum.
+    
+    // Set up a loop to test each plane in turn.
+    const QPlane3D* planes = reinterpret_cast<const QPlane3D*>(&frustum);
+    bool behindAllPlanesSoFar = true;
+    for ( int i = 0; i < 6; i++ )
+    {
+        // Test min and max against the plane.
+        qreal minDist = planes[i].distance(bbox.minimum());
+        qreal maxDist = planes[i].distance(bbox.maximum());
+        
+        // If both are positive, we immediately know that the bounding box is outside the volume.
+        if ( minDist > 0.0 && maxDist > 0.0 )
+        {
+            return FENone;
+        }
+        
+        // If one or the other is in front, unset our behindAllPlanes flag.
+        if ( minDist > 0.0 || maxDist > 0.0 )
+        {
+            behindAllPlanesSoFar = false;
+        }
+    }
+    
+    // If behindAllPlanesSoFar is true after all plane checks, we are fully within the volume.
+    // Otherwise we are partially inside.
+    return behindAllPlanesSoFar ? FEFull : FEPartial;
 }
 
 OCTREE_END_NAMESPACE

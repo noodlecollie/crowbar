@@ -7,6 +7,7 @@
 #include <QHash>
 #include <Qt3D/QBox3D>
 #include <QList>
+#include "frustum_util.h"
 
 OCTREE_BEGIN_NAMESPACE
 
@@ -38,11 +39,22 @@ public:
         
     // If there is nothing in the node, an invalid const_iterator is returned and
     // success is set to false.
-    QHash::const_iterator<const T, char> contents(const QVector3D &pos, bool &success) const;
-    QHash::const_iterator<const T, char> constEnd(const QVector3D &pos, bool &success) const;
+    typename NodeHash::const_iterator contents(const QVector3D &pos, bool &success) const;
+    typename NodeHash::const_iterator constEnd(const QVector3D &pos, bool &success) const;
         
     void contents(const QVector3D &pos, QList<const T> &list) const;
     void contents(const QBox3D &box, QList<const T> &list) const;
+    
+    // Make these private again once we're finished testing!!
+    // To what extent a frustum volume encloses an object.
+    enum FrustumEnclose
+    {
+        FEFull = 0, // Object is completely inside the frustum.
+        FEPartial,  // Object is partially inside the frustum.
+        FENone      // Object is completely outside the frustum.
+    };
+    static FrustumEnclose bboxTest(const QBox3D &bbox, const NGeometry::Frustum &frustum);
+    // -----
     
 private:
     struct OctreeRange
@@ -64,13 +76,13 @@ private:
         
     void addReferenceToTree(const T obj, const OctreeRange &range);
     void removeReferenceFromTree(const T obj, const OctreeRange &range);
-    void box3dToOctreeRange(const QBox3D &box, OctreeRange &range);
-    void vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index);
-    NodeHash* at(const OctreeIndex &index);
+    void box3dToOctreeRange(const QBox3D &box, OctreeRange &range) const;
+    void vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index) const;
+    NodeHash* at(const OctreeIndex &index) const;
         
     int                     m_iMagnitude;   // Distance from centre of octree to furthest point in each axis.
     Octree<NodeHash*, AS>   m_Octree;       // Pointer to octree this class contains.
-    QHash<const T, QBox3D>  m_HashTable;    // Hash table of objects and bounding boxes.
+    QHash<const T, QBox3D>        m_HashTable;    // Hash table of objects and bounding boxes.
 };
 
 OCTREE_END_NAMESPACE

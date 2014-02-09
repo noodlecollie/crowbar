@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 #QT       -= gui
+QT      += 3d
 
 TARGET = Octree
 TEMPLATE = lib
@@ -37,7 +38,8 @@ OTHER_FILES += \
     License.txt
 
 INCLUDEPATH += \
-    inc
+    inc \
+    $$PWD/../Geometry/inc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../../qt3d/lib -lQt53D
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../../qt3d/lib -lQt53Dd

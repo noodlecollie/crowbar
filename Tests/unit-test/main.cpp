@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include "octree.h"
 #include "worldculltree.h"
+#include <Qt3D/QBox3D>
 
 using namespace NOctree;
 
@@ -37,6 +38,37 @@ int main(int argc, char *argv[])
     
     // Return the value at (-32667.5, 16201.27, 1301.0).
     qDebug("Getting value at (-32667.5, 16201.27, 1301.0): %d", o.atPosition(MAGNITUDE, QVector3D(-32667.5f, 16201.27f, 1301.0f)));
+    
+    // Create a frustum cube.
+    // -Z is forward, Z is backward; X is upward, Y is left.
+    NGeometry::Frustum fr;
+    fr.farPlane = QPlane3D(QVector3D(0.0f, 0.0f, -1.0f), QVector3D(0.0f, 0.0f, -1.0f));
+    fr.nearPlane = QPlane3D(QVector3D(0.0f, 0.0f, 1.0f), QVector3D(0.0f, 0.0f, 1.0f));
+    fr.leftPlane = QPlane3D(QVector3D(0.0f, 1.0f, 0.0f), QVector3D(0.0f, 1.0f, 0.0f));
+    fr.rightPlane = QPlane3D(QVector3D(0.0f, -1.0f, 0.0f), QVector3D(0.0f, -1.0f, 0.0f));
+    fr.topPlane = QPlane3D(QVector3D(1.0f, 0.0f, 0.0f), QVector3D(1.0f, 0.0f, 0.0f));
+    fr.bottomPlane = QPlane3D(QVector3D(-1.0f, 0.0f, 0.0f), QVector3D(-1.0f, 0.0f, 0.0f));
+    
+    // Create a bounding box.
+    QBox3D bbox(QVector3D(-0.5f, -0.5f, -0.5f), QVector3D(0.5f, 0.5f, 0.5f));
+    
+    // Test it.
+    WorldCullTree<int>::FrustumEnclose encloseVal = testme.bboxTest(bbox, fr);
+    qDebug("Result of bbox test: %d (expected: %d)", encloseVal, WorldCullTree<int>::FEFull);
+    
+    // Create another.
+    QBox3D bbox2(QVector3D(-0.5f, -0.5f, -0.5f), QVector3D(1.5f, 1.5f, 1.5f));
+    
+    // Test it.
+    encloseVal = testme.bboxTest(bbox2, fr);
+    qDebug("Result of bbox test: %d (expected: %d)", encloseVal, WorldCullTree<int>::FEPartial);
+    
+    // Create another.
+    QBox3D bbox3(QVector3D(1.1f, 1.1f, 1.1f), QVector3D(1.5f, 1.5f, 1.5f));
+    
+    // Test it.
+    encloseVal = testme.bboxTest(bbox3, fr);
+    qDebug("Result of bbox test: %d (expected: %d)", encloseVal, WorldCullTree<int>::FENone);
     
     //return app.exec();
     return 0;

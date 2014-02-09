@@ -95,7 +95,8 @@ template< typename T, int N >
 int Array<T,N>::dataIndex( const TinyVector<int,N>& indices ) const
 {
     for ( int i = 0; i < N; ++i ) {
-        assert( indices(i) >= 0 && indices(i) < sizes_(i) );
+        //assert( indices(i) >= 0 && indices(i) < sizes_(i) );
+        Q_ASSERT( indices(i) >= 0 && indices(i) < sizes_(i) );
     }
 
     return offset_ + sum( indices * strides_ );

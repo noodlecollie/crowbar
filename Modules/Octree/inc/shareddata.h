@@ -94,7 +94,8 @@ SharedData<T>& SharedData<T>::operator= ( SharedData<T> sharedData )
 template< typename T >
 T& SharedData<T>::operator[] ( int i ) const
 {
-    assert(data_);
+    //assert(data_);
+    Q_ASSERT(data_);
     return data_[i];
 }
 
