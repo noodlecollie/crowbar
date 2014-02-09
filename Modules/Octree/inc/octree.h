@@ -265,6 +265,8 @@ public:
      * writeBinary().
      */
     void readBinary( std::istream& in );
+        
+    // ==================================
     
     /**
      * @brief Given a total extent and the number of divisions within that extent,
