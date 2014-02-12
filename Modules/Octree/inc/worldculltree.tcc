@@ -6,13 +6,13 @@ OCTREE_BEGIN_NAMESPACE
 
 template< typename T, int AS >
 WorldCullTree<T,AS>::WorldCullTree(int size, int magnitude) :
-    m_iMagnitude(magnitude), m_Octree(size, NULL), m_HashTable()
+    m_iMagnitude(magnitude), m_Octree(size, NULL), m_HashTable(), m_NodeHashTable()
 {
 }
 
 template< typename T, int AS >
 WorldCullTree<T,AS>::WorldCullTree(const WorldCullTree<T,AS>& o) :
-    m_iMagnitude(o.m_iMagnitude), m_Octree(o.m_Octree), m_HashTable(o.m_HashTable)
+    m_iMagnitude(o.m_iMagnitude), m_Octree(o.m_Octree), m_HashTable(o.m_HashTable), m_NodeHashTable(o.m_NodeHashTable)
 {
 }
 
@@ -20,23 +20,15 @@ template< typename T, int AS >
 WorldCullTree<T,AS>::~WorldCullTree()
 {
     // Delete all dynamically allocated NodeHashes that are still present in the octree.
-    for ( int z = 0; z < m_Octree.size(); z++ )
+    // We now use a QHash to record all allocated NodeHashes, because iterating over every
+    // node in the octree here is really slow.
+    QHash<NodeHash*, char>::const_iterator it = m_NodeHashTable.constBegin();
+    while ( it != m_NodeHashTable.constEnd() )
     {
-        Array2D<NodeHash*> tmp = m_Octree.zSlice(z);
+        NodeHash* h = it.key();
+        if ( h ) delete h;
         
-        for ( int y = 0; y < m_Octree.size(); y++ )
-        {
-            for ( int x = 0; x < m_Octree.size(); x++ )
-            {
-                NodeHash* h = tmp(x, y);
-                
-                if ( h )
-                {
-                    delete h;
-                    m_Octree.set(x, y, z, NULL);
-                }
-            }
-        }
+        it++;
     }
 }
 
@@ -112,6 +104,62 @@ void WorldCullTree<T,AS>::remove(const T obj)
     
     // Then remove the object from the hash table.
     m_HashTable.remove(obj);
+}
+
+template< typename T, int AS >
+QBox3D WorldCullTree<T,AS>::nodeBbox(const QVector3D &pos) const
+{
+    // Translate position to an octree index.
+    OctreeIndex i;
+    vector3DToOctreeIndex(pos, i);
+    
+    // Translate octree index to bounding box.
+    return octreeIndexToBbox(i);
+}
+
+template< typename T, int AS >
+QBox3D WorldCullTree<T,AS>::octreeIndexToBbox(const OctreeIndex &index) const
+{
+    // Given an octree node index, get the world co-ordinate of the index (ie. the centre of the node).
+    QVector3D centre = octreeIndexToVector3D(index);
+    
+    // The minimum point is centre - (0.5 * leafNodeDimension()) in each axis, and the maximum point is centre + the same.
+    float deltaComponent = 0.5f * leafNodeDimension();
+    QVector3D delta(deltaComponent, deltaComponent, deltaComponent);
+    return QBox3D(centre - delta, centre + delta);
+}
+
+template< typename T, int AS >
+QVector3D WorldCullTree<T,AS>::octreeIndexToVector3D(const OctreeIndex &index) const
+{
+    return QVector3D(indexToAxisValue(index.x),indexToAxisValue(index.y),indexToAxisValue(index.z));
+}
+
+template< typename T, int AS >
+float WorldCullTree<T,AS>::indexToAxisValue(int index) const
+{
+    // Can you tell my commenting is basically me thinking aloud as I code up a solution? :P
+    
+    // If an index ordinate is less between 0 and (octreeSize()/2)-1, it corresponds to a negative world ordinate.
+    // If it's between octreeSize()/2 and octreeSize()-1 it corresponds to a positive world ordinate.
+    // It would be helpful if we could first establish an imaginary index which would represent a world ordinate of 0.
+    // (This index is "imaginary" since it's a fraction.)
+    float iOrigin = ((float)octreeSize()/2.0f) - 0.5f;
+    
+    // Any ordinate index - iOrigin will give the distance from the octree origin in this axis: positive or negative depending on the direction.
+    // It would also help if we defined a "local magnitude" - half the size of the octree.
+    float localMag = octreeSize() / 2.0f;
+    
+    // Now (index - iOrigin)/localMag will give the fraction of the magnitude from the origin in which the point lies in a given dimension.
+    // We multiply our world magnitude by this fraction in order to get the real-world position in this axis.
+    return (float)magnitude() * ( ((float)index-iOrigin)/localMag );
+}
+
+template< typename T, int AS >
+float WorldCullTree<T,AS>::leafNodeDimension() const
+{
+    // Length of an edge of a leaf node is 2*magnitude divided by the number of leaf nodes in a given axis.
+    return (2.0f*(float)magnitude()) / (float)octreeSize();
 }
 
 template< typename T, int AS >
@@ -236,9 +284,9 @@ void WorldCullTree<T,AS>::box3dToOctreeRange(const QBox3D &box, OctreeRange &ran
 template< typename T, int AS >
 void WorldCullTree<T,AS>::vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index) const
 {
-    index.x = m_Octree.mapToNodeIndex(pos.x());
-    index.y = m_Octree.mapToNodeIndex(pos.y());
-    index.z = m_Octree.mapToNodeIndex(pos.z());
+    index.x = m_Octree.mapToNodeIndex(magnitude(), pos.x());
+    index.y = m_Octree.mapToNodeIndex(magnitude(), pos.y());
+    index.z = m_Octree.mapToNodeIndex(magnitude(), pos.z());
 }
 
 template< typename T, int AS >
@@ -265,6 +313,7 @@ void WorldCullTree<T,AS>::addReferenceToTree(const T obj, const OctreeRange &ran
                 if ( !h )
                 {
                     h = new NodeHash();
+                    m_NodeHashTable.insert(h, 0);   // Record the pointer so we can delete it later.
                     m_Octree.set(x, y, z, h);
                 }
                 
@@ -300,6 +349,7 @@ void WorldCullTree<T,AS>::removeReferenceFromTree(const T obj, const OctreeRange
                 if ( h->size() < 1 )
                 {
                     delete h;
+                    m_NodeHashTable.remove(h);
                     m_Octree.set(x, y, z, NULL);
                 }
             }

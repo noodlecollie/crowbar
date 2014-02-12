@@ -2,13 +2,18 @@
 #include "octree.h"
 #include "worldculltree.h"
 #include <Qt3D/QBox3D>
+#include <QTime>
 
 using namespace NOctree;
 
-int main(int argc, char *argv[])
+// Gonna keep tests in case they're useful later. Uncomment defines here to activate the tests.
+//#define OCTREE_TEST1
+//#define OCTREE_TEST2
+#define OCTREE_TEST3
+
+#ifdef OCTREE_TEST1
+void Octree_Test1()
 {
-    QGuiApplication app(argc, argv);
-    
     WorldCullTree<int> testme(256, 1024);
     
     Octree<int> o(256);
@@ -69,6 +74,74 @@ int main(int argc, char *argv[])
     // Test it.
     encloseVal = testme.bboxTest(bbox3, fr);
     qDebug("Result of bbox test: %d (expected: %d)", encloseVal, WorldCullTree<int>::FENone);
+    
+    // Create one that completely encases some of the frustum
+    QBox3D bbox4(QVector3D(-1.5f, -1.2f, -0.1f), QVector3D(1.5f, 1.8f, 0.5f));
+    
+    // Test it.
+    encloseVal = testme.bboxTest(bbox4, fr);
+    qDebug("Result of bbox test: %d (expected: %d)", encloseVal, WorldCullTree<int>::FEPartial);
+}
+#endif  // OCTREE_TEST1
+
+#ifdef OCTREE_TEST2
+void Octree_Test2()
+{
+    QTime timer;
+    timer.start();
+    WorldCullTree<int> testme(256, 1024.0f);
+    
+    // There are 128 octree nodes between the origin and the outer edge of the tree.
+    // Their dimension should be 8.
+    qDebug("Octree dimension: %f (expected: 8)", testme.leafNodeDimension());
+    
+    // Node at (100,100,200) should have a min of (96,96,200) and a max of (104,104,208).
+    QBox3D bbox = testme.nodeBbox(QVector3D(100.0f, 100.0f, 200.0f));
+    qDebug("(100,100,200): min: %f %f %f, max %f %f %f", bbox.minimum().x(), bbox.minimum().y(), bbox.minimum().z(),
+           bbox.maximum().x(), bbox.maximum().y(), bbox.maximum().z());
+    qDebug("Octree_Test2: duration: %dms", timer.elapsed());
+}
+#endif  // OCTREE_TEST2
+
+#ifdef OCTREE_TEST3
+void Octree_Test3()
+{
+    WorldCullTree<int>* test = new WorldCullTree<int>(256, 1024.0f);
+    QTime timer;
+    test->add(5, QBox3D(QVector3D(100.0f, 100.0f, 100.0f), QVector3D(150.0f, 150.0f, 150.0f)));
+    test->add(10, QBox3D(QVector3D(-15.0f, -30.0f, -15.0f), QVector3D(150.0f, 70.0f, 23.0f)));
+    test->add(9001, QBox3D(QVector3D(-1024.0f, -1024.0f, -1024.0f), QVector3D(1024.0f, 1024.0f, 1024.0f))); // <- THIS IS VERY BAD INDEED
+    
+    timer.start();
+    delete test;
+    test = NULL;
+    
+    qDebug("Time to destruct WorldCullTree: %dms", timer.elapsed());
+}
+#endif  // OCTREE_TEST3
+
+int main(int argc, char *argv[])
+{
+    QGuiApplication app(argc, argv);
+    
+    // Tests!
+    QTime timer;
+    qDebug("Begin tests!");
+    timer.start();
+    
+#ifdef OCTREE_TEST1
+    Octree_Test1();
+#endif  // OCTREE_TEST1
+    
+#ifdef OCTREE_TEST2
+    Octree_Test2();
+#endif  // OCTREE_TEST2
+    
+#ifdef OCTREE_TEST3
+    Octree_Test3();
+#endif  // OCTREE_TEST3
+    
+    qDebug("Time elapsed for tests: %dms", timer.elapsed());
     
     //return app.exec();
     return 0;

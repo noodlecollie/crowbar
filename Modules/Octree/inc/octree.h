@@ -267,7 +267,8 @@ public:
     void readBinary( std::istream& in );
         
     // ==================================
-    
+    // X6Herbius edits here:
+        
     /**
      * @brief Given a total extent and the number of divisions within that extent,
      * remaps an input value to a 0-based node value within that extent.
@@ -311,7 +312,7 @@ public:
      * 
      * @note All components of \a worldPos should be between \a -magnitude and \a magnitude.
      * @param magnitude Number of units spanned by the distance from the centre of the octree volume to its outermost edge on an axis.
-     * @param worldPos A position in the (2 * \a magnitude)^3 volume occupied by the octree.
+     * @param worldPos A position within the (2 * \a magnitude)^3 volume occupied by the octree.
      * @return The contents of the octree node that encloses this position.
      */
     const T& atPosition(int magnitude, const QVector3D &worldPos) const;

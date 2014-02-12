@@ -30,12 +30,14 @@ public:
     int magnitude() const;
     int octreeSize() const;
     int count() const;
+    float leafNodeDimension() const;    // How long each edge of a leaf node is, in world space.
         
     void add(const T obj, const QBox3D &bb);
     void remove(const T obj);
     bool exists(const T obj) const;
     bool nodeEmpty(const QVector3D &pos) const;
     QBox3D bboxFor(const T obj) const;
+    QBox3D nodeBbox(const QVector3D &pos) const;
         
     // If there is nothing in the node, an invalid const_iterator is returned and
     // success is set to false.
@@ -78,11 +80,15 @@ private:
     void removeReferenceFromTree(const T obj, const OctreeRange &range);
     void box3dToOctreeRange(const QBox3D &box, OctreeRange &range) const;
     void vector3DToOctreeIndex(const QVector3D &pos, OctreeIndex &index) const;
+    QVector3D octreeIndexToVector3D(const OctreeIndex &index) const;    // Returns the position of the centre of the leaf node.
+    QBox3D octreeIndexToBbox(const OctreeIndex &index) const;
     NodeHash* at(const OctreeIndex &index) const;
+    float indexToAxisValue(int index) const;
         
-    int                     m_iMagnitude;   // Distance from centre of octree to furthest point in each axis.
-    Octree<NodeHash*, AS>   m_Octree;       // Pointer to octree this class contains.
-    QHash<const T, QBox3D>        m_HashTable;    // Hash table of objects and bounding boxes.
+    int                     m_iMagnitude;       // Distance from centre of octree to furthest point in each axis.
+    Octree<NodeHash*, AS>   m_Octree;           // Pointer to octree this class contains.
+    QHash<const T, QBox3D>  m_HashTable;        // Hash table of objects and bounding boxes.
+    QHash<NodeHash*, char>  m_NodeHashTable;    // Keeps track of dynamically allocated node hashes.
 };
 
 OCTREE_END_NAMESPACE
