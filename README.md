@@ -17,6 +17,10 @@ This does not mean that it'll do so successfully, however! As I muddle through, 
 things won't, so there's no guarantee that a given commit will be in a runnable state. This is very much a learning
 experience for myself, so things may not work or be laid out as more experienced programmers might expect them to be.
 I'm always open to advice and improvements from people who have been doing this kind of thing longer than I have.
+If you want an example of a commit where everything was relatively functional and we had rudimentary drawing capabilities,
+check out the tests in https://github.com/x6herbius/crowbar/commit/c94508bc51b6946a79b40c041cfd31b67e8b2333
 
 Some Doxygen documentation does exist, although it's not currently complete as new things are being added/removed/changed.
 Run Doxygen on the doxyfile to generate it.
+
+- x6herbius
