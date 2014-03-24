@@ -9,7 +9,7 @@ using namespace NOctree;
 // Gonna keep tests in case they're useful later. Uncomment defines here to activate the tests.
 //#define OCTREE_TEST1
 //#define OCTREE_TEST2
-#define OCTREE_TEST3
+//#define OCTREE_TEST3
 
 #ifdef OCTREE_TEST1
 void Octree_Test1()

@@ -1,4 +1,7 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-SUBDIRS += unit-test
+# Comment the subdir out if you don't want to bother compiling a test.
+
+SUBDIRS += unit-test \
+    render-test
