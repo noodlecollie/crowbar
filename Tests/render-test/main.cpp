@@ -125,21 +125,12 @@ void CustomView::paintGL(QGLPainter *painter)
     QGeometryData geom2 = box.toGeomData();
     box.setWOrigin(QVector3D(0.0f, 0.0f, 0.0f));
     
-    // The problematic bit: none of these work.
-    // All of them end up only displaying geom2 and not geom.
+    // SOLUTION TO THE SINGLE GEOMETRY INSTANCE PROBLEM:
+    // call newSection() before adding the next bit.
     
-//    b << geom;
-//    b << geom2;
-    
-//    b.newNode();
-//    b.addTriangles(geom);
-//    b.newNode();
-//    b.addTriangles(geom2);
-    
-    b.newNode();
-    b.addTriangles(geom);
-    b.pushNode();
-    b.addTriangles(geom2);
+    b << geom;
+    b.newSection();
+    b << geom2;
     
     // End
     
