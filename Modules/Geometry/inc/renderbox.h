@@ -8,10 +8,11 @@
 #include <QColor>
 
 #include "irenderable.h"
+#include "iconstbboxvolume.h"
 
 GEOMETRY_BEGIN_NAMESPACE
 
-class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public NIRenderSystem::IRenderable
+class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public NIRenderSystem::IRenderable, public IConstBBoxVolume
 {
 public:
     explicit RenderBox();
@@ -37,6 +38,10 @@ public:
     
     // IRenderable interface
     virtual QGeometryData toGeomData() const;
+    
+    // IConstBBoxVolume interface.
+    virtual QBox3D boundingBox() const;
+    virtual bool _implementsIConstBBoxVolume() const;
     
 private:
     QVector3D   m_vecPosition;
