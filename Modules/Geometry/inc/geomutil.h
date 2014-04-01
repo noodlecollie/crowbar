@@ -15,20 +15,18 @@ extern const GEOMETRYSHARED_EXPORT QVector3D    VEC3_ORIGIN;
 // Returns the normal of three vertices.
 // If the three vertices are specified with a counter-clockwise winding, the
 // normal points up at the viewpoint.
-QVector3D ccwNormal(const QVector3D &v0, const QVector3D &v1, const QVector3D &v2);
+QVector3D GEOMETRYSHARED_EXPORT ccwNormal(const QVector3D &v0, const QVector3D &v1, const QVector3D &v2);
 
 // Calculates the scalar projection of v0 along v1.
-qreal scalarProjection(const QVector3D &v0, const QVector3D &v1);
+qreal GEOMETRYSHARED_EXPORT scalarProjection(const QVector3D &v0, const QVector3D &v1);
 
 // Calculates the vector projection of v0 along v1.
-QVector3D vectorProjection(const QVector3D &v0, const QVector3D &v1);
+QVector3D GEOMETRYSHARED_EXPORT vectorProjection(const QVector3D &v0, const QVector3D &v1);
 
 // Determines whether two bounding boxes intersect.
 // Returns false if they are completely disjoint, true otherwise.
-bool boundingBoxesIntersect(const QVector3D &max1, const QVector3D &min1, const QVector3D &max2, const QVector3D &min2);
-bool boundingBoxesIntersect(const QBox3D &box1, const QBox3D &box2);
-
-void removeme();
+bool GEOMETRYSHARED_EXPORT boundingBoxesIntersect(const QVector3D &max1, const QVector3D &min1, const QVector3D &max2, const QVector3D &min2);
+bool GEOMETRYSHARED_EXPORT boundingBoxesIntersect(const QBox3D &box1, const QBox3D &box2);
 
 GEOMETRY_END_NAMESPACE
 

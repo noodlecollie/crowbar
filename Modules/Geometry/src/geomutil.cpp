@@ -40,6 +40,4 @@ bool boundingBoxesIntersect(const QBox3D &box1, const QBox3D &box2)
     return boundingBoxesIntersect(box1.maximum(), box1.minimum(), box2.maximum(), box2.minimum());
 }
 
-void removeme() {}
-
 GEOMETRY_END_NAMESPACE

@@ -33,8 +33,6 @@ int main(int argc, char *argv[])
     
     WorldCullTreeNode<Temp*, 1024, 2> tree(QBox3D(QVector3D(-1024.0f, -1024.0f, -1024.0f), QVector3D(1024.0f, 1024.0f, 1024.0f)));
     
-    NGeometry::removeme();
-    
     //return app.exec();
     return 0;
 }
