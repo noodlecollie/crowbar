@@ -8,21 +8,11 @@
 
 OCTREE_BEGIN_NAMESPACE
 
-/* OK, it's half 1 in the morning and I'm tired, so I'l write a quick note on what the hell is going on in this file.
- * 
- * WorldCullTreeNodeAbstract (which is no longer abstract) is a template class that should allow objects with bounding
- * boxes to be put into an octree. However, the method for calling functions on the object ('.' vs '->') differs
- * depending on whether the T parameter is a pointer or not. Hence, the way I ended up getting it to "work" (if that
- * actually holds up into the future) was by having WorldCullTreeNodeAbstract call virtual protected functions at the
- * points which it would previously have called functions on the T object. I then derived a partially specialised child
- * class which overrides these functions to implement the dereferencing correctly depending on whether T is a pointer
- * or not. Oddly enough, after having done this the syntax turned out to be identical ('->') in both specialised templates.
- * 
- * After a short test this code doesn't -seem- to throw up any more errors, although I am currently getting unresolved
- * externals relating to boundingBoxesIntersect() from the Geometry module, so I'm praying that's something different.
- * I just hope I never have to touch this file again...
- * 
- * - x6herbius
+/* The saga of this class: http://stackoverflow.com/questions/22783851/c-calling-derived-specialised-virtual-functions-within-a-base-template-class/
+ * For reference if I ever need this again: since the template parameter T could be a pointer or a class, we can't just try and dereference it from
+ * within this class by using '.' - we need to be able to use -> if required. After much headache and faffing around StackOverflow prevailed and
+ * there are helper specialisations defined statically within the .tcc file. Use deref_if_pointer().blah() when calling functions on objects of
+ * type T.
  */
 
 template<typename T, int MD, int MO>
@@ -40,14 +30,14 @@ public:
     int splitMinObjects() const     { return MO; }
 
     void addObject(const T &obj);
-    virtual void addObjectRecurse(const T &obj);
+    void addObjectRecurse(const T &obj);
     void removeObject(const T &obj);
     void removeObjectRecurse(const T &obj);
     void removeAllObjects();
     void removeAllObjectsRecurse();
-    virtual void updateObject(const T &obj);
+    void updateObject(const T &obj);
     void updateObjectRecurse(const T &obj);
-    virtual void updateAllObjectsRecurse();
+    void updateAllObjectsRecurse();
     bool containsObject(const T &obj) const;
     WorldCullTreeNodeAbstract<T,MD,MO>* findObjectRecurse(const T &obj);
     int objectCount() const;
@@ -62,54 +52,11 @@ public:
     void setBounds(QBox3D bounds);
    
 private:
-    virtual bool checkImplementsInterfaces(const T &obj) const;
-    
+    bool checkImplementsInterfaces(const T &obj) const;
     QBox3D          m_Bounds;       // Bounding box for this node.
     
 protected:
-    virtual QBox3D specialisedBoundsForType(const T* obj) const;        // Override this in derives specialisations.
-    virtual bool specialisedImplementationCheck(const T* obj) const;    // Override this in derives specialisations.
-    QHash<T, char>  m_ObjectHash;                                       // Hash table of objects this node stores.
-};
-
-// Specialised for objects.
-template<typename T, int MD, int MO>
-class WorldCullTreeNode : public WorldCullTreeNodeAbstract<T,MD,MO>
-{
-public:
-    explicit WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent = NULL) : WorldCullTreeNodeAbstract(bounds, parent) {}
-    virtual ~WorldCullTreeNode() {}
-    
-protected:
-    virtual QBox3D specialisedBoundsForType(const T *obj) const
-    {
-        return obj->boundingBox();
-    }
-    
-    virtual bool specialisedImplementationCheck(const T *obj) const
-    {
-        return obj->_implementsIConstBBoxVolume();
-    }
-};
-
-// Specialised for objects.
-template<typename T, int MD, int MO>
-class WorldCullTreeNode<T*,MD,MO> : public WorldCullTreeNodeAbstract<T*,MD,MO>
-{
-public:
-    explicit WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent = NULL) : WorldCullTreeNodeAbstract(bounds, parent) {}
-    virtual ~WorldCullTreeNode() {}
-    
-protected:
-    virtual QBox3D specialisedBoundsForType(const T *obj) const
-    {
-        return obj->boundingBox();
-    }
-    
-    virtual bool specialisedImplementationCheck(const T *obj) const
-    {
-        return obj->_implementsIConstBBoxVolume();
-    }
+    QHash<T, char>  m_ObjectHash;   // Hash table of objects this node stores.
 };
 
 OCTREE_END_NAMESPACE

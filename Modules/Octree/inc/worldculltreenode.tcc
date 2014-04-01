@@ -5,6 +5,17 @@
 
 OCTREE_BEGIN_NAMESPACE
 
+// Helper functions!
+template <typename T>
+static T& deref_if_pointer(T& t) { return t; }
+template <typename T>
+static const T& deref_if_pointer(const T& t) { return t; }
+
+template <typename T>
+static T& deref_if_pointer(T* t) { return *t; }
+template <typename T>
+static const T& deref_if_pointer(const T* t) { return *t; }
+
 template<typename T, int MD, int MO>
 WorldCullTreeNodeAbstract<T,MD,MO>::WorldCullTreeNodeAbstract(QBox3D bounds, WorldCullTreeNodeAbstract* parent) : TreeNode(parent),
     m_ObjectHash(), m_Bounds(bounds)
@@ -39,33 +50,13 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::addObject(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-QBox3D WorldCullTreeNodeAbstract<T,MD,MO>::specialisedBoundsForType(const T *obj) const
-{
-    Q_UNUSED(obj);
-    
-    // We shouldn't be here!
-    Q_ASSERT( false );
-    return QBox3D();
-}
-
-template<typename T, int MD, int MO>
-bool WorldCullTreeNodeAbstract<T,MD,MO>::specialisedImplementationCheck(const T *obj) const
-{
-    Q_UNUSED(obj);
-    
-    // We shouldn't be here!
-    Q_ASSERT( false );
-    return false;
-}
-
-template<typename T, int MD, int MO>
 void WorldCullTreeNodeAbstract<T,MD,MO>::addObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
     
     // If the bounding box intersects ours, add to this node (or its children).
-    if ( NGeometry::boundingBoxesIntersect(bounds(), specialisedBoundsForType(&obj)) )
+    if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
     {
         // If we're not a leaf, add to our children.
         if ( !isLeaf() )
@@ -173,7 +164,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateObject(const T &obj)
     Q_ASSERT( checkImplementsInterfaces(obj) );
     
     // If the bounding box intersects ours, add.
-    if ( NGeometry::boundingBoxesIntersect(bounds(), specialisedBoundsForType(&obj)) )
+    if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
     {
         addObject(obj);
     }
@@ -233,7 +224,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateAllObjectsRecurse()
         // Whoops, foreach returns the values from the hash, not the keys...
 //        foreach( T obj, m_ObjectHash )
 //        {
-//            if ( NGeometry::boundingBoxesIntersect(bounds(), specialisedBoundsForType(&obj)) )
+//            if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
 //            {
 //                toRemove.append(obj);
 //            }
@@ -245,7 +236,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateAllObjectsRecurse()
         {
             T obj = it.key();
             
-            if ( NGeometry::boundingBoxesIntersect(bounds(), specialisedBoundsForType(&obj)) )
+            if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
             {
                 toRemove.append(obj);
             }
@@ -269,7 +260,7 @@ template<typename T, int MD, int MO>
 bool WorldCullTreeNodeAbstract<T,MD,MO>::checkImplementsInterfaces(const T &obj) const
 {
     // This -should- cause a compilation error if the method is not implemented.
-    return specialisedImplementationCheck(&obj);
+    return deref_if_pointer(obj)._implementsIConstBBoxVolume();
 }
 
 template<typename T, int MD, int MO>
