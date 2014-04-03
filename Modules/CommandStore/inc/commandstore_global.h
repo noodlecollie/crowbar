@@ -21,6 +21,12 @@
 #  define COMMANDSTORESHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+//! \def COMMANDSTORE_BEGIN_NAMESPACE
+//! \brief Macro for beginning the CommandStore namespace.
+
+//! \def COMMANDSTORE_END_NAMESPACE
+//! \brief Macro for ending the CommandStore namespace.
+
 #define COMMANDSTORE_BEGIN_NAMESPACE namespace NCommandStore {
 #define COMMANDSTORE_END_NAMESPACE }
 

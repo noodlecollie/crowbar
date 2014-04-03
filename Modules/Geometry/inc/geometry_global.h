@@ -12,11 +12,20 @@
 
 #include <QtCore/qglobal.h>
 
+//! \def GEOMETRYSHARED_EXPORT
+//! \brief DLL import/export prefix.
+
 #if defined(GEOMETRY_LIBRARY)
 #  define GEOMETRYSHARED_EXPORT Q_DECL_EXPORT
 #else
 #  define GEOMETRYSHARED_EXPORT Q_DECL_IMPORT
 #endif
+
+//! \def GEOMETRY_BEGIN_NAMESPACE
+//! \brief Macro for beginning the Geometry namespace.
+
+//! \def GEOMETRY_END_NAMESPACE
+//! \brief Macro for ending the Geometry namespace.
 
 #define GEOMETRY_BEGIN_NAMESPACE namespace NGeometry {
 #define GEOMETRY_END_NAMESPACE }

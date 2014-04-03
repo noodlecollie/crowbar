@@ -21,6 +21,12 @@
 #  define ICONSOLESHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+//! \def ICONSOLE_BEGIN_NAMESPACE
+//! \brief Macro for beginning the IConsole namespace.
+
+//! \def ICONSOLE_END_NAMESPACE
+//! \brief Macro for ending the IConsole namespace.
+
 #define ICONSOLE_BEGIN_NAMESPACE namespace NIConsole {
 #define ICONSOLE_END_NAMESPACE }
 

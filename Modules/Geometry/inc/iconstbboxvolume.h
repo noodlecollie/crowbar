@@ -25,7 +25,7 @@ public:
      * interface is not present.
      * @return Returns true.
      */
-    virtual bool _implementsIConstBBoxVolume() const = 0;
+    virtual bool _implementsIConstBBoxVolume() const { return true; }
     
     /**
      * @brief Gets the bounding box for this object.

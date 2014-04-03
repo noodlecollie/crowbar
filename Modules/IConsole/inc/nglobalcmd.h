@@ -52,6 +52,10 @@ namespace NGlobalCmd
         CMDFLAG_ENSURECALLBACK = 0x2,   /**< ConVar or ConCommand must have a callback. */
     };
     
+    /**
+     * @brief Command flag names as strings.
+     * @note Order should correspond one-to-one with the above flag callback.
+     */
     static const QString FLAGNAMES[] =
     {
         "CMDFLAG_READONLY",

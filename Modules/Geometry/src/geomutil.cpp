@@ -7,6 +7,8 @@ GEOMETRY_BEGIN_NAMESPACE
 
 const QVector3D VEC3_ORIGIN(0.0, 0.0, 0.0);
 const QVector2D VEC2_ORIGIN(0.0, 0.0);
+const float MAP_MIN_COORD = -16384.0f;
+const float MAP_MAX_COORD = 16384.0f;
 
 QVector3D ccwNormal(const QVector3D &v0, const QVector3D &v1, const QVector3D &v2)
 {

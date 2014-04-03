@@ -12,6 +12,10 @@ GEOMETRY_BEGIN_NAMESPACE
 extern const GEOMETRYSHARED_EXPORT QVector2D    VEC2_ORIGIN;
 extern const GEOMETRYSHARED_EXPORT QVector3D    VEC3_ORIGIN;
 
+// These are defaults - we should add something in to allow overriding them.
+extern const GEOMETRYSHARED_EXPORT float        MAP_MIN_COORD;
+extern const GEOMETRYSHARED_EXPORT float        MAP_MAX_COORD;
+
 // Returns the normal of three vertices.
 // If the three vertices are specified with a counter-clockwise winding, the
 // normal points up at the viewpoint.

@@ -2,7 +2,7 @@
 
 namespace NULL_REQUIRED
 {
-    Null_Required::Null_Required()
+    RegexUtil_Null_Required::RegexUtil_Null_Required()
     {
     }
 }

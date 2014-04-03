@@ -185,9 +185,4 @@ QBox3D RenderBox::boundingBox() const
     return QBox3D(minimum(), maximum());
 }
 
-bool RenderBox::_implementsIConstBBoxVolume() const
-{
-    return true;
-}
-
 GEOMETRY_END_NAMESPACE

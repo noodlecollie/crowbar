@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     
-    WorldCullTreeNodeAbstract<IConstBBoxVolume*, 1024, 2> tree(QBox3D(QVector3D(-1024.0f, -1024.0f, -1024.0f), QVector3D(1024.0f, 1024.0f, 1024.0f)));
+    WorldCullTreeNode<IConstBBoxVolume*, 1024, 2> tree(QBox3D(QVector3D(-1024.0f, -1024.0f, -1024.0f), QVector3D(1024.0f, 1024.0f, 1024.0f)));
     qDebug("Tree stats: %d %d", tree.splitMinDimensions(), tree.splitMinObjects());
     
     RenderBox box(QVector3D(5.0f, 3.0f, 2.0f), QVector3D(-1.0f, -1.0f, -1.0f), QVector3D(1.0f, 1.0f, 1.0f));

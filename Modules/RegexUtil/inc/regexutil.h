@@ -93,23 +93,19 @@ static const QString RegexMatchLastArgNonWs = QString("\\S*$");
  */
 static const QString RegexMatchLastArgWord = QString("\\w*$");
 
-static const QString testString = "Test string";
-
 REGEXUTIL_END_NAMESPACE
 
-// It appears that without a .cpp file there are compile errors.
-// Until I learn why, a redundant class is defined here and implemented in the .cpp file to make compile work.
 namespace NULL_REQUIRED
 {
     /**
      * @brief Temporary class that's here in order to generate a .lib file.
      */
-    class Null_Required
+    class RegexUtil_Null_Required
     {
         /**
          * @brief Constructor.
          */
-        Null_Required();
+        RegexUtil_Null_Required();
     };
     
 }

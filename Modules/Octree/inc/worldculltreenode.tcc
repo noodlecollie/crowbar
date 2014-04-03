@@ -17,30 +17,30 @@ template <typename T>
 static const T& deref_if_pointer(const T* t) { return *t; }
 
 template<typename T, int MD, int MO>
-WorldCullTreeNodeAbstract<T,MD,MO>::WorldCullTreeNodeAbstract(QBox3D bounds, WorldCullTreeNodeAbstract* parent) : TreeNode(parent),
+WorldCullTreeNode<T,MD,MO>::WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent) : TreeNode(parent),
     m_ObjectHash(), m_Bounds(bounds)
 {
 }
 
 template<typename T, int MD, int MO>
-WorldCullTreeNodeAbstract<T,MD,MO>::~WorldCullTreeNodeAbstract()
+WorldCullTreeNode<T,MD,MO>::~WorldCullTreeNode()
 {
 }
 
 template<typename T, int MD, int MO>
-QBox3D WorldCullTreeNodeAbstract<T,MD,MO>::bounds() const
+QBox3D WorldCullTreeNode<T,MD,MO>::bounds() const
 {
     return m_Bounds;
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::setBounds(QBox3D bounds)
+void WorldCullTreeNode<T,MD,MO>::setBounds(QBox3D bounds)
 {
     m_Bounds = bounds;
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::addObject(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::addObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -50,7 +50,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::addObject(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::addObjectRecurse(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -63,7 +63,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::addObjectRecurse(const T &obj)
         {
             for ( int i = 0; i < childCount(); i++ )
             {
-                WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+                WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
                 Q_ASSERT( child );
                 child->addObjectRecurse(obj);
             }
@@ -78,7 +78,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::addObjectRecurse(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::removeObject(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::removeObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -88,7 +88,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::removeObject(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::removeObjectRecurse(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::removeObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -99,20 +99,20 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::removeObjectRecurse(const T &obj)
     // Remove from all children too.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         child->removeObject(obj);
     }
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::removeAllObjects()
+void WorldCullTreeNode<T,MD,MO>::removeAllObjects()
 {
     m_ObjectHash.clear();
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::removeAllObjectsRecurse()
+void WorldCullTreeNode<T,MD,MO>::removeAllObjectsRecurse()
 {
     // Remove our objects.
     removeAllObjects();
@@ -120,14 +120,14 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::removeAllObjectsRecurse()
     // Remove all objects from our children.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         child->removeAllObjectsRecurse();
     }
 }
 
 template<typename T, int MD, int MO>
-bool WorldCullTreeNodeAbstract<T,MD,MO>::containsObject(const T &obj) const
+bool WorldCullTreeNode<T,MD,MO>::containsObject(const T &obj) const
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -136,7 +136,7 @@ bool WorldCullTreeNodeAbstract<T,MD,MO>::containsObject(const T &obj) const
 }
 
 template<typename T, int MD, int MO>
-WorldCullTreeNodeAbstract<T,MD,MO>* WorldCullTreeNodeAbstract<T,MD,MO>::findObjectRecurse(const T &obj)
+WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::findObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -147,10 +147,10 @@ WorldCullTreeNodeAbstract<T,MD,MO>* WorldCullTreeNodeAbstract<T,MD,MO>::findObje
     // Check recursively through children to see if the object is there.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         
-        WorldCullTreeNodeAbstract* found = child->findObjectRecurse(obj);
+        WorldCullTreeNode* found = child->findObjectRecurse(obj);
         if ( found ) return found; // Return the node if it holds the object.
     }
     
@@ -158,7 +158,7 @@ WorldCullTreeNodeAbstract<T,MD,MO>* WorldCullTreeNodeAbstract<T,MD,MO>::findObje
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::updateObject(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::updateObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -177,7 +177,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateObject(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::updateObjectRecurse(const T &obj)
+void WorldCullTreeNode<T,MD,MO>::updateObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -187,7 +187,7 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateObjectRecurse(const T &obj)
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
             Q_ASSERT( child );
             child->updateObjectRecurse(obj);
         }
@@ -201,14 +201,14 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateObjectRecurse(const T &obj)
 }
 
 template<typename T, int MD, int MO>
-void WorldCullTreeNodeAbstract<T,MD,MO>::updateAllObjectsRecurse()
+void WorldCullTreeNode<T,MD,MO>::updateAllObjectsRecurse()
 {
     // If we have children, update in them first.
     if ( !isLeaf() )
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNodeAbstract* child = dynamic_cast<WorldCullTreeNodeAbstract*>(childAt(i));
+            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
             Q_ASSERT( child );
             child->updateAllObjectsRecurse();
         }
@@ -251,38 +251,38 @@ void WorldCullTreeNodeAbstract<T,MD,MO>::updateAllObjectsRecurse()
 }
 
 template<typename T, int MD, int MO>
-int WorldCullTreeNodeAbstract<T,MD,MO>::objectCount() const
+int WorldCullTreeNode<T,MD,MO>::objectCount() const
 {
     return m_ObjectHash.size();
 }
 
 template<typename T, int MD, int MO>
-bool WorldCullTreeNodeAbstract<T,MD,MO>::checkImplementsInterfaces(const T &obj) const
+bool WorldCullTreeNode<T,MD,MO>::checkImplementsInterfaces(const T &obj) const
 {
     // This -should- cause a compilation error if the method is not implemented.
     return deref_if_pointer(obj)._implementsIConstBBoxVolume();
 }
 
 template<typename T, int MD, int MO>
-typename QHash<T,char>::const_iterator WorldCullTreeNodeAbstract<T,MD,MO>::objectsConstBegin() const
+typename QHash<T,char>::const_iterator WorldCullTreeNode<T,MD,MO>::objectsConstBegin() const
 {
     return m_ObjectHash.constBegin();
 }
 
 template<typename T, int MD, int MO>
-typename QHash<T,char>::const_iterator WorldCullTreeNodeAbstract<T,MD,MO>::objectsConstEnd() const
+typename QHash<T,char>::const_iterator WorldCullTreeNode<T,MD,MO>::objectsConstEnd() const
 {
     return m_ObjectHash.constEnd();
 }
 
 template<typename T, int MD, int MO>
-typename QHash<T,char>::iterator WorldCullTreeNodeAbstract<T,MD,MO>::objectsBegin()
+typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsBegin()
 {
     return m_ObjectHash.begin();
 }
 
 template<typename T, int MD, int MO>
-typename QHash<T,char>::iterator WorldCullTreeNodeAbstract<T,MD,MO>::objectsEnd()
+typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsEnd()
 {
     return m_ObjectHash.end();
 }

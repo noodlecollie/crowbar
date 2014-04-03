@@ -9,10 +9,23 @@ TreeNode::TreeNode(ITreeNode* parent) :
 
 TreeNode::~TreeNode()
 {
+    // Delete each of our children.
+    // If we're a leaf this won't do anything anyway.
+    pruneSubtree();
 }
 
 void TreeNode::addChild(ITreeNode *node)
 {
+    // We'd like to know if NULL was passed, because it shouldn't be.
+    Q_ASSERT( node );
+    if ( !node ) return;
+    
+    // Check the child doesn't already exist!
+    foreach(ITreeNode* n, m_Children)
+    {
+        if ( n == node ) return;
+    }
+    
     // Add the child to the list.
     m_Children.append(node);
     
@@ -34,6 +47,20 @@ ITreeNode* TreeNode::removeChild(int index)
     
     // Return the child.
     return node;
+}
+
+void TreeNode::removeChild(ITreeNode *node)
+{
+    if ( !node ) return;
+    
+    for ( int i = 0; i < m_Children.size(); i++ )
+    {
+        if ( m_Children.at(i) == node )
+        {
+            m_Children.removeAt(i);
+            return;
+        }
+    }
 }
 
 ITreeNode* TreeNode::childAt(int index) const
@@ -63,18 +90,20 @@ bool TreeNode::isAncestor(const ITreeNode *node) const
     // target node to the root, as the branching factor in this
     // direction is 1.
     
+    const ITreeNode* const me = dynamic_cast<const ITreeNode* const>(this);
+    
     // If the node has a parent:
     while ( node->parent() )
     {
         // Check whether the parent is this node.
-        if ( node->parent() == this ) return true;
+        if ( dynamic_cast<const ITreeNode* const>(node->parent()) == me ) return true;
         
         // Set the new node to the parent and loop.
         node = node->parent();
     }
     
     // The node has no parent, so if it is not equal to us then we are not an ancestor.
-    if ( node == this ) return true;
+    if ( dynamic_cast<const ITreeNode* const>(node) == me ) return true;
     return false;
 }
 
@@ -115,9 +144,44 @@ bool TreeNode::isRoot() const
     return parent() == NULL;
 }
 
-void TreeNode::testFunc() const
+void TreeNode::pruneSubtree()
 {
+    // If we're a leaf, return.
+    if ( isLeaf() ) return;
     
+    // For each child (from the end of the list):
+    while( !m_Children.empty() )
+    {
+        // Call pruneSubtree() on each child.
+        ITreeNode* node = m_Children.takeLast();
+        node->pruneSubtree();
+        
+        // The child has now deleted all of its own children, so we can delete it.
+        delete node;
+    }
+}
+
+QList<ITreeNode*> TreeNode::detachNode()
+{
+    if ( !isRoot() )
+    {
+        // Remove this node from its parent.
+        m_pParent->removeChild(this);
+        m_pParent = NULL;
+    }
+    
+    QList<ITreeNode*> list;
+    
+    while( !m_Children.empty() )
+    {
+        // Remove the child from this node.
+        ITreeNode* node = m_Children.takeLast();
+        Q_ASSERT( node );
+        node->setParent(NULL);
+        list.append(node);
+    }
+    
+    return list;
 }
 
 OCTREE_END_NAMESPACE

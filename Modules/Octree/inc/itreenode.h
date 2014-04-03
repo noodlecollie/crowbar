@@ -1,7 +1,12 @@
+/** \file itreenode.h
+ * \brief Interface for generic recursive tree nodes.
+ */
+
 #ifndef ITREENODE_H
 #define ITREENODE_H
 
 #include "octree_global.h"
+#include <QList>
 
 OCTREE_BEGIN_NAMESPACE
 
@@ -28,6 +33,12 @@ public:
      * @return Child removed, or NULL if the index was invalid.
      */
     virtual ITreeNode* removeChild(int index) = 0;
+    
+    /**
+     * @brief Removes the given child node if it exists.
+     * @param node Node to remove.
+     */
+    virtual void removeChild(ITreeNode* node) = 0;
     
     /**
      * @brief Returns the child at a given index.
@@ -88,6 +99,20 @@ public:
      * @return True if the node is the root of the tree, false otherwise.
      */
     virtual bool isRoot() const = 0;
+    
+    /**
+     * @brief Recursively deletes all of this node's children, leaving this node as a leaf.
+     */
+    virtual void pruneSubtree() = 0;
+    
+    /**
+     * @brief Removes the node from the tree structure, leaving the remainder disjoint.
+     * 
+     * The node will be removed as a child from its parent, and will leave all its children as roots of
+     * their respective subtrees.
+     * @return List of child nodes removed from this node.
+     */
+    virtual QList<ITreeNode*> detachNode() = 0;
 };
 
 OCTREE_END_NAMESPACE

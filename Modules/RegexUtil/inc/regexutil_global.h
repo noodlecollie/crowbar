@@ -21,6 +21,12 @@
 #  define REGEXUTILSHARED_EXPORT Q_DECL_IMPORT
 #endif
 
+//! \def REGEXUTIL_BEGIN_NAMESPACE
+//! \brief Macro for beginning the RegexUtil namespace.
+
+//! \def REGEXUTIL_END_NAMESPACE
+//! \brief Macro for ending the RegexUtil namespace.
+
 #define REGEXUTIL_BEGIN_NAMESPACE namespace NRegexUtil {
 #define REGEXUTIL_END_NAMESPACE }
 
