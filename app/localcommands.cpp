@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QString>
 
-using namespace NIConsole;
+using namespace ICONSOLE_NAMESPACE;
 
 int ccb_DumpGlobalStyleSheet(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
 {

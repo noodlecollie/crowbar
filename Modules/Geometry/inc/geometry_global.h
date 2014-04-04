@@ -27,7 +27,8 @@
 //! \def GEOMETRY_END_NAMESPACE
 //! \brief Macro for ending the Geometry namespace.
 
-#define GEOMETRY_BEGIN_NAMESPACE namespace NGeometry {
+#define GEOMETRY_NAMESPACE NGeometry
+#define GEOMETRY_BEGIN_NAMESPACE namespace GEOMETRY_NAMESPACE {
 #define GEOMETRY_END_NAMESPACE }
 
 #endif // GEOMETRY_GLOBAL_H

@@ -3,7 +3,7 @@
 #include "geomutil.h"
 #include <QList>
 
-OCTREE_BEGIN_NAMESPACE
+DATASTRUCTURES_BEGIN_NAMESPACE
 
 // Helper functions!
 template <typename T>
@@ -56,7 +56,7 @@ void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
     Q_ASSERT( checkImplementsInterfaces(obj) );
     
     // If the bounding box intersects ours, add to this node (or its children).
-    if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
+    if ( GEOMETRY_NAMESPACE::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
     {
         // If we're not a leaf, add to our children.
         if ( !isLeaf() )
@@ -287,4 +287,4 @@ typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsEnd()
     return m_ObjectHash.end();
 }
 
-OCTREE_END_NAMESPACE
+DATASTRUCTURES_END_NAMESPACE

@@ -23,7 +23,7 @@ GEOMETRY_BEGIN_NAMESPACE
  * need not be in the centre of the box volume). The box's min and max points can also be coloured, and the colour
  * will be interpolated between the points if different.
  */
-class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public NIRenderSystem::IRenderable, public IConstBBoxVolume
+class GEOMETRYSHARED_EXPORT RenderBox : public QBox3D, public IRENDERSYSTEM_NAMESPACE::IRenderable, public IConstBBoxVolume
 {
 public:
    /**

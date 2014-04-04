@@ -22,7 +22,7 @@
 
 #define OPENGL_MIN_VERSION 2.0f
 
-using namespace NIConsole;
+using namespace ICONSOLE_NAMESPACE;
 
 void initSystems(int argc, char **argv);
 void shutdownSystems();
@@ -80,7 +80,7 @@ void initSystems(int argc, char **argv)
     applyStyleSheet();
     
     // Create global interpreter and hook up to the CommandStore manager.
-    g_pCommandInterpreter = new CommandInterpreter(NCommandStore::g_pCommandManager);
+    g_pCommandInterpreter = new CommandInterpreter(COMMANDSTORE_NAMESPACE::g_pCommandManager);
     
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();

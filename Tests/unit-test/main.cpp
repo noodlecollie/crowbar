@@ -4,81 +4,11 @@
 #include <QTime>
 #include "worldculltreenode.h"
 #include "renderbox.h"
+#include "datastructures_global.h"
+#include "geometry_global.h"
 
-using namespace NOctree;
-using namespace NGeometry;
-
-class CustomObject
-{
-public:
-	  CustomObject() {}
-	  
-	  void customFunction()
-	  {
-		   qDebug("Custom function called!");
-	  }
-};
-
-template<typename T>
-class A
-{
-public:
-	   A() {}
-	   
-	   void execute(T obj)
-	   {
-			// Call object's custom function.
-			obj.customFunction();
-	   }
-};
-
-template<typename T>
-class B
-{
-public:
-	   B() {}
-	   
-	   void execute(T obj)
-	   {
-			helper(obj);
-	   }
-	   
-protected:
-		  virtual void helper(T obj)
-		  {
-               Q_UNUSED(obj)
-			   qDebug("WRONG FUNCTION CALLED!");
-               Q_ASSERT(false);
-		  }
-};
-
-template<typename T>
-class C : public B<T>
-{
-public:
-	   C() : B<T>() {}
-	   
-protected:
-		  virtual void helper(T obj)
-		  {
-				  qDebug("Correct helper called for object template.");
-				  obj.customFunction();
-		  }
-};
-
-template<typename T>
-class C<T*> : public B<T*>
-{
-public:
-	   C() : B<T*>() {}
-
-protected:
-		  virtual void helper(T* obj)
-		  {
-				  qDebug("Correct helper called for pointer template.");
-				  obj->customFunction();
-		  }
-};
+using namespace DATASTRUCTURES_NAMESPACE;
+using namespace GEOMETRY_NAMESPACE;
 
 int main(int argc, char *argv[])
 {
@@ -93,25 +23,6 @@ int main(int argc, char *argv[])
     
     tree.addObjectRecurse(cbbv);
     qDebug("First node that contains box: %p", tree.findObjectRecurse(cbbv));
-
-#if 0
-    CustomObject obj;
-        
-        // This works
-        A<CustomObject> instance1;
-        instance1.execute(obj);
-        
-        // This doesn't
-        //A<CustomObject*> instance2;
-        //instance2.execute(obj);    // <- This won't compile.
-        
-        // This works correctly.
-        C<CustomObject> instance3;
-        instance3.execute(obj);
-        
-        C<CustomObject*> instance4;
-        instance4.execute(&obj);
-#endif
     
     //return app.exec();
     return 0;

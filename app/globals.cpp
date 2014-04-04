@@ -6,7 +6,7 @@
 #include "wr_listedcommandmanager.h"
 #include "commandsenderinfo.h"
 
-using namespace NIConsole;
+using namespace ICONSOLE_NAMESPACE;
 
 ConsoleWindow*          g_pLog = NULL;
 CommandLineParser*      g_pCmdLine = NULL;

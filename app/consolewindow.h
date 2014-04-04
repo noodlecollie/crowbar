@@ -31,7 +31,7 @@ public:
      * @param interpreter Command interpreter to link to.
      * @param parent QWidget parent, if applicable.
      */
-    explicit ConsoleWindow(NIConsole::CommandInterpreter* interpreter, QWidget *parent = 0);
+    explicit ConsoleWindow(ICONSOLE_NAMESPACE::CommandInterpreter* interpreter, QWidget *parent = 0);
     
 signals:
     
@@ -41,7 +41,7 @@ public slots:
      * @param type Type of message.
      * @param message Message to print.
      */
-    void printToConsole(NIConsole::CommandSenderInfo::OutputType type, const QString &message);
+    void printToConsole(ICONSOLE_NAMESPACE::CommandSenderInfo::OutputType type, const QString &message);
     
     /**
      * @brief Shows the logging window and raises it to be on top of any other windows.
@@ -53,13 +53,13 @@ private:
      * @brief Connects up with the given CommandInterpreter.
      * @param interpreter Interpreter to link to.
      */
-    void init(NIConsole::CommandInterpreter* interpreter);
+    void init(ICONSOLE_NAMESPACE::CommandInterpreter* interpreter);
     
-    QVBoxLayout*                m_pMainLayout;      /**< Vertical window layout. */
-    QHBoxLayout*                m_pSubLayout;       /**< Bottom layout for text box and submit button. */
-    NIConsole::ConsoleWidget*   m_pConsoleWidget;   /**< Console widget. */
-    NIConsole::CommandEntryBox* m_pEntryBox;        /**< Entry box. */
-    QPushButton*                m_pSubmitButton;    /**< "Submit" button. */
+    QVBoxLayout*                            m_pMainLayout;      /**< Vertical window layout. */
+    QHBoxLayout*                            m_pSubLayout;       /**< Bottom layout for text box and submit button. */
+    ICONSOLE_NAMESPACE::ConsoleWidget*      m_pConsoleWidget;   /**< Console widget. */
+    ICONSOLE_NAMESPACE::CommandEntryBox*    m_pEntryBox;        /**< Entry box. */
+    QPushButton*                            m_pSubmitButton;    /**< "Submit" button. */
 };
 
 #endif // CONSOLEWINDOW_H

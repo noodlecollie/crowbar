@@ -180,7 +180,7 @@ void CommandInterpreter::parseCommandString(const QString &cmdString, CommandEnt
             CommandEntryPair pair;
             
             // Retrieve the list of argument matches.
-            QRegularExpression matchArgs(NRegexUtil::RegexMatchCommandArgs);
+            QRegularExpression matchArgs(REGEXUTIL_NAMESPACE::RegexMatchCommandArgs);
             QRegularExpressionMatchIterator m = matchArgs.globalMatch(str2);
             
             while ( m.hasNext() )

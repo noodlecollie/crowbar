@@ -5,12 +5,12 @@
 #ifndef WORLDCULLTREENODE_H
 #define WORLDCULLTREENODE_H
 
-#include "octree_global.h"
+#include "datastructures_global.h"
 #include "treenode.h"
 #include <QHash>
 #include <Qt3D/QBox3D>
 
-OCTREE_BEGIN_NAMESPACE
+DATASTRUCTURES_BEGIN_NAMESPACE
 
 /* The saga of this class: http://stackoverflow.com/questions/22783851/c-calling-derived-specialised-virtual-functions-within-a-base-template-class/
  * For reference if I ever need this again: since the template parameter T could be a pointer or a class, we can't just try and dereference it from
@@ -97,7 +97,7 @@ private:
     QHash<T, char>  m_ObjectHash;   // Hash table of objects this node stores.
 };
 
-OCTREE_END_NAMESPACE
+DATASTRUCTURES_END_NAMESPACE
 
 #include "worldculltreenode.tcc"
 

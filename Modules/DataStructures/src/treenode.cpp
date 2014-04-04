@@ -1,6 +1,6 @@
 #include "treenode.h"
 
-OCTREE_BEGIN_NAMESPACE
+DATASTRUCTURES_BEGIN_NAMESPACE
 
 TreeNode::TreeNode(ITreeNode* parent) :
     m_Children(), m_pParent(parent)
@@ -184,4 +184,4 @@ QList<ITreeNode*> TreeNode::detachNode()
     return list;
 }
 
-OCTREE_END_NAMESPACE
+DATASTRUCTURES_END_NAMESPACE

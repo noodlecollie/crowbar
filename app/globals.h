@@ -138,7 +138,7 @@ extern void LogTaggedWarning(const QString &tag, const QString &message, bool ne
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogOutput(NIConsole::CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
+extern void LogOutput(ICONSOLE_NAMESPACE::CommandSenderInfo::OutputType type, const QString &message, bool newline = true);
 
 /**
  * @brief Logs tagged output of the specified type to the log window.
@@ -151,7 +151,7 @@ extern void LogOutput(NIConsole::CommandSenderInfo::OutputType type, const QStri
  * @param message Message to write.
  * @param newline Whether a newline should follow the message. Defaults to true.
  */
-extern void LogTaggedOutput(NIConsole::CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
+extern void LogTaggedOutput(ICONSOLE_NAMESPACE::CommandSenderInfo::OutputType type, const QString &tag, const QString &message, bool newline = true);
 
 // =========== Window tracking ===========
 /**
@@ -184,7 +184,7 @@ extern QList<MainWin*>* g_pWindowTracker;
 /**
  * @brief Global console command interpreter, created in main.cpp.
  */
-extern NIConsole::CommandInterpreter*  g_pCommandInterpreter;
+extern ICONSOLE_NAMESPACE::CommandInterpreter*  g_pCommandInterpreter;
 
 //extern GlobalOutputRedirector* g_pOutputRedirect;
 

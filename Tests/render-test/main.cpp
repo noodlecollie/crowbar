@@ -7,7 +7,7 @@
 #include <QtMath>
 #include "renderbox.h"
 
-using namespace NGeometry;
+using namespace GEOMETRY_NAMESPACE;
 
 class CustomView : public QGLView
 {

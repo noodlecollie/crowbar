@@ -4,7 +4,7 @@
 
 COMMANDSTORE_BEGIN_NAMESPACE
 
-using namespace NIConsole;
+using namespace ICONSOLE_NAMESPACE;
 
 ListedConsoleCommand* g_pConsoleCommandList = NULL;
 ListedCommandManager* g_pCommandManager = new ListedCommandManager(g_pConsoleCommandList);

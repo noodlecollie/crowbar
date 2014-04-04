@@ -62,13 +62,6 @@ else:unix: LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
 INCLUDEPATH += $$PWD/../../../qt3d/include
 DEPENDPATH += $$PWD/../../../qt3d/include
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Octree/release/ -lOctree
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Octree/debug/ -lOctree
-else:unix: LIBS += -L$$OUT_PWD/../../Modules/Octree/ -lOctree
-
-INCLUDEPATH += $$PWD/../../Modules/Octree/inc
-DEPENDPATH += $$PWD/../../Modules/Octree/inc
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/release/ -lIRenderSystem
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/debug/ -lIRenderSystem
 else:unix: LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/ -lIRenderSystem
@@ -82,3 +75,10 @@ else:unix: LIBS += -L$$OUT_PWD/../../Modules/Geometry/ -lGeometry
 
 INCLUDEPATH += $$PWD/../../Modules/Geometry/inc
 DEPENDPATH += $$PWD/../../Modules/Geometry/inc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/DataStructures/release/ -lDataStructures
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/DataStructures/debug/ -lDataStructures
+else:unix: LIBS += -L$$OUT_PWD/../../Modules/DataStructures/ -lDataStructures
+
+INCLUDEPATH += $$PWD/../../Modules/DataStructures/inc
+DEPENDPATH += $$PWD/../../Modules/DataStructures/inc

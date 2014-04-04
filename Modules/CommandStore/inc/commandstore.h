@@ -30,12 +30,12 @@ COMMANDSTORE_BEGIN_NAMESPACE
  * @param output Output variant.
  * @return Return code representing the success or failure of this callback's execution.
  */
-COMMANDSTORESHARED_EXPORT int ccb_Echo(const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+COMMANDSTORESHARED_EXPORT int ccb_Echo(const ICONSOLE_NAMESPACE::CommandSenderInfo &info, const QStringList &args, QVariant &output);
 
 /**
  * @brief Echo ConCommand for the above function.
  */
-static NIConsole::ConCommand echo("echo", ccb_Echo, g_pCommandManager, &g_pConsoleCommandList,
+static ICONSOLE_NAMESPACE::ConCommand echo("echo", ccb_Echo, g_pCommandManager, &g_pConsoleCommandList,
                        "Echoes arguments to console and output variant.");
 
 /**
@@ -45,12 +45,12 @@ static NIConsole::ConCommand echo("echo", ccb_Echo, g_pCommandManager, &g_pConso
  * @param output Output variant.
  * @return Return code representing the success or failure of this callback's execution.
  */
-COMMANDSTORESHARED_EXPORT int ccb_Con_TestColours(const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+COMMANDSTORESHARED_EXPORT int ccb_Con_TestColours(const ICONSOLE_NAMESPACE::CommandSenderInfo &info, const QStringList &args, QVariant &output);
 
 /**
  * @brief TestColours ConCommand for the above function.
  */
-static NIConsole::ConCommand con_testcolours("con_testcolours", ccb_Con_TestColours, g_pCommandManager, &g_pConsoleCommandList,
+static ICONSOLE_NAMESPACE::ConCommand con_testcolours("con_testcolours", ccb_Con_TestColours, g_pCommandManager, &g_pConsoleCommandList,
                                   "Outputs test phrases for each of the 8 different supported console message colours");
 
 /**
@@ -60,12 +60,12 @@ static NIConsole::ConCommand con_testcolours("con_testcolours", ccb_Con_TestColo
  * @param output Output variant.
  * @return Return code representing the success or failure of this callback's execution.
  */
-COMMANDSTORESHARED_EXPORT int ccb_Find(const NIConsole::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+COMMANDSTORESHARED_EXPORT int ccb_Find(const ICONSOLE_NAMESPACE::CommandSenderInfo &info, const QStringList &args, QVariant &output);
 
 /**
  * @brief Find ConCommand for the above function.
  */
-static NIConsole::ConCommand find("find", ccb_Find, g_pCommandManager, &g_pConsoleCommandList,
+static ICONSOLE_NAMESPACE::ConCommand find("find", ccb_Find, g_pCommandManager, &g_pConsoleCommandList,
                        "Searches the command manager for commands containing the specified string.");
 
 COMMANDSTORE_END_NAMESPACE

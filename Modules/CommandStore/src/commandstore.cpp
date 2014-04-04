@@ -6,7 +6,7 @@
 
 COMMANDSTORE_BEGIN_NAMESPACE
 
-using namespace NIConsole;
+using namespace ICONSOLE_NAMESPACE;
 
 int ccb_Echo(const CommandSenderInfo &info, const QStringList &args, QVariant &output)
 {

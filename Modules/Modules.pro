@@ -9,5 +9,5 @@ SUBDIRS += \
     CommandStore \
     IRenderSystem \
     Geometry \
-    Octree \
-    GlobalUtil
+    GlobalUtil \
+    DataStructures

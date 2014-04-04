@@ -18,12 +18,12 @@ COMMANDSTORE_BEGIN_NAMESPACE
 /**
  * @brief Global command manager pointer. Is NULL if manager has not been created yet.
  */
-COMMANDSTORESHARED_EXPORT extern NIConsole::ListedCommandManager*   g_pCommandManager;
+COMMANDSTORESHARED_EXPORT extern ICONSOLE_NAMESPACE::ListedCommandManager*   g_pCommandManager;
 
 /**
  * @brief Global console command list. If NULL, no console commands are waiting to be added to the manager.
  */
-COMMANDSTORESHARED_EXPORT extern NIConsole::ListedConsoleCommand*   g_pConsoleCommandList;
+COMMANDSTORESHARED_EXPORT extern ICONSOLE_NAMESPACE::ListedConsoleCommand*   g_pConsoleCommandList;
     
 COMMANDSTORE_END_NAMESPACE
 

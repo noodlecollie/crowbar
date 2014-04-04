@@ -27,7 +27,8 @@
 //! \def REGEXUTIL_END_NAMESPACE
 //! \brief Macro for ending the RegexUtil namespace.
 
-#define REGEXUTIL_BEGIN_NAMESPACE namespace NRegexUtil {
+#define REGEXUTIL_NAMESPACE NRegexUtil
+#define REGEXUTIL_BEGIN_NAMESPACE namespace REGEXUTIL_NAMESPACE {
 #define REGEXUTIL_END_NAMESPACE }
 
 #endif // REGEXUTIL_GLOBAL_H

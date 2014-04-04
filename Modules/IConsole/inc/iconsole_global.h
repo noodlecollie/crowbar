@@ -27,7 +27,8 @@
 //! \def ICONSOLE_END_NAMESPACE
 //! \brief Macro for ending the IConsole namespace.
 
-#define ICONSOLE_BEGIN_NAMESPACE namespace NIConsole {
+#define ICONSOLE_NAMESPACE NIConsole
+#define ICONSOLE_BEGIN_NAMESPACE namespace ICONSOLE_NAMESPACE {
 #define ICONSOLE_END_NAMESPACE }
 
 #endif // ICONSOLE_GLOBAL_H
