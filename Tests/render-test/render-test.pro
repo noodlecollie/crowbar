@@ -7,7 +7,7 @@
 QT  += core gui opengl 3d
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = unit-test
+TARGET = render-test
 TEMPLATE = app
 
 SOURCES += \
@@ -35,3 +35,10 @@ else:unix: LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/ -lIRenderSystem
 
 INCLUDEPATH += $$PWD/../../Modules/IRenderSystem/inc
 DEPENDPATH += $$PWD/../../Modules/IRenderSystem/inc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/DataStructures/release/ -lDataStructures
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/DataStructures/debug/ -lDataStructures
+else:unix: LIBS += -L$$OUT_PWD/../../Modules/DataStructures/ -lDataStructures
+
+INCLUDEPATH += $$PWD/../../Modules/DataStructures/inc
+DEPENDPATH += $$PWD/../../Modules/DataStructures/inc

@@ -40,6 +40,12 @@ public:
     virtual void addChild(ITreeNode *node);
 
     /**
+     * @brief Adds a new child to this node and returns the child.
+     * @return Child added.
+     */
+    virtual ITreeNode* addChild();
+
+    /**
      * @brief Removes the child node at the given index from this node. The caller takes ownership of the child.
      * @param index Index of child to remove.
      * @return Child removed, or NULL if the index was invalid.
@@ -124,6 +130,8 @@ public:
      * their respective subtrees.
      */
     virtual QList<ITreeNode*> detachNode();
+
+    // End ITreeNode
 
 private:
     QList<ITreeNode*>   m_Children;  /**< Array of child nodes. */

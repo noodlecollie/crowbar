@@ -21,16 +21,23 @@ void TreeNode::addChild(ITreeNode *node)
     if ( !node ) return;
     
     // Check the child doesn't already exist!
-    foreach(ITreeNode* n, m_Children)
-    {
-        if ( n == node ) return;
-    }
+    if ( dynamic_cast<TreeNode*>(node) == this || m_Children.contains(node) ) return;
     
     // Add the child to the list.
     m_Children.append(node);
     
     // Set the parent of the child to this node.
     node->setParent(this);
+}
+
+ITreeNode* TreeNode::addChild()
+{
+    // Create a new child and add it to the list.
+    ITreeNode* node = new TreeNode();
+    m_Children.append(node);
+    node->setParent(this);
+    
+    return node;
 }
 
 ITreeNode* TreeNode::removeChild(int index)

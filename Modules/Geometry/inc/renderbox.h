@@ -37,6 +37,8 @@ public:
      * @param max Max point of the box, local to its origin.
      */
     explicit RenderBox(const QVector3D &origin, const QVector3D &min, const QVector3D &max);
+
+    explicit RenderBox(const QVector3D &origin, const QVector3D distance);
     
     // === All functions inherited from QBox3D refer to the local space of this object. ===
     

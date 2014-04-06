@@ -90,8 +90,11 @@ public:
     
     QBox3D bounds() const;
     void setBounds(QBox3D bounds);
+        
+    void splitRecurse();
    
 private:
+    WorldCullTreeNode<T,MD,MO>* cullTreeChildAt(int index) const;   // Convenience
     bool checkImplementsInterfaces(const T &obj) const;
     QBox3D          m_Bounds;       // Bounding box for this node.
     QHash<T, char>  m_ObjectHash;   // Hash table of objects this node stores.

@@ -16,6 +16,11 @@ RenderBox::RenderBox(const QVector3D &origin, const QVector3D &min, const QVecto
 {
 }
 
+RenderBox::RenderBox(const QVector3D &origin, const QVector3D distance) :
+    QBox3D(-distance, distance), m_vecPosition(origin), m_colColourMin(255,255,255,255), m_colColourMax(255,255,255,255)
+{
+}
+
 QColor RenderBox::colorMin() const
 {
     return m_colColourMin;

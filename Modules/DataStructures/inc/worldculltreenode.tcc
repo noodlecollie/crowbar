@@ -2,6 +2,7 @@
 #include "iconstbboxvolume.h"
 #include "geomutil.h"
 #include <QList>
+#include <Qt3D/QBox3D>
 
 DATASTRUCTURES_BEGIN_NAMESPACE
 
@@ -285,6 +286,111 @@ template<typename T, int MD, int MO>
 typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsEnd()
 {
     return m_ObjectHash.end();
+}
+
+template<typename T, int MD, int MO>
+void WorldCullTreeNode<T,MD,MO>::splitRecurse()
+{
+    Q_ASSERT( isLeaf() );
+    if ( !isLeaf() ) return;
+    
+    // Splitting process:
+    // If all of the node's dimensions are large enough:
+    // - Create 8 children with appropriate bounding boxes.
+    // - Add the relevant children of this node to each child node.
+    // - Remove all objects from this node since it is no longer a leaf.
+    // - Call splitRecurse() on all children containing enough objects.
+    
+    QVector3D max = bounds().maximum();
+    QVector3D min = bounds().minimum();
+    QVector3D size = max - min;         // Length of box in X/Y/Z axes.
+    
+    // If the box is not large enough for us to split, return.
+    if ( size.x() < splitMinDimensions() || size.y() < splitMinDimensions() || size.z() < splitMinDimensions() ) return;
+    
+    // Get the mid-point of the box.
+    QVector3D midpoint = (min + max) / 2.0;
+    
+    // Create 8 children.
+    for ( int i = 0; i < 8; i++ )
+    {
+        // Calculate the bounds of the new child.
+        QVector3D childMin;
+        QVector3D childMax;
+        
+        // Copying Valve's way of doing this, which seems to be quite efficient and save headaches.
+        if (i & 1)
+        {
+            childMin.setX(min.x());
+            childMax.setX(midpoint.x());
+        }
+        else
+        {
+            childMin.setX(midpoint.x());
+            childMax.setX(max.x());
+        }
+        
+        if (i & 2)
+        {
+            childMin.setY(min.y());
+            childMax.setY(midpoint.y());
+        }
+        else
+        {
+            childMin.setY(midpoint.y());
+            childMax.setY(max.y());
+        }
+        
+        if (i & 4)
+        {
+            childMin.setZ(min.z());
+            childMax.setZ(midpoint.z());
+        }
+        else
+        {
+            childMin.setZ(midpoint.z());
+            childMax.setZ(max.z());
+        }
+        
+        QBox3D childBounds(childMin, childMax);
+        
+        // Add the new node.
+        WorldCullTreeNode<T,MD,MO>* childNode = new WorldCullTreeNode<T,MD,MO>(childBounds, this);
+        addChild(childNode);
+        
+        // For each object in this node, check to see if it should be inserted into this new child.
+        for ( QHash<T,char>::iterator it = m_ObjectHash.begin(); it != m_ObjectHash.end(); it++ )
+        {
+            Q_ASSERT( it.key() != NULL && checkImplementsInterfaces(it.key()) );
+            
+            // If the bounding boxes intersect:
+            if ( GEOMETRY_NAMESPACE::boundingBoxesIntersect(childNode->bounds(), deref_if_pointer(it.key()).boundingBox()) )
+            {
+                childNode->addObject(it.key());
+            }
+        }
+    }
+    
+    // Remove all our objects, since we're no longer a leaf.
+    removeAllObjects();
+    
+    // Call split on all children who meet the minimum object number requirement.
+    for ( int i = 0; i < childCount(); i++ )
+    {
+        WorldCullTreeNode<T,MD,MO>* node = cullTreeChildAt(i);
+        Q_ASSERT( node );
+        
+        if ( node->objectCount() >= splitMinObjects() )
+        {
+            node->splitRecurse();
+        }
+    }
+}
+
+template<typename T, int MD, int MO>
+WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::cullTreeChildAt(int index) const
+{
+    return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(childAt(index));
 }
 
 DATASTRUCTURES_END_NAMESPACE
