@@ -17,7 +17,8 @@ SOURCES += \
 HEADERS +=\
     inc/globals.h \
     inc/globalutil_global.h \
-    inc/interface.h
+    inc/interface.h \
+    inc/classutil.h
 
 unix {
     target.path = /usr/lib

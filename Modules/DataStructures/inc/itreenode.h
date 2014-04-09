@@ -13,14 +13,13 @@ DATASTRUCTURES_BEGIN_NAMESPACE
 /**
  * @brief Interface for a recursive tree node.
  */
-class DATASTRUCTURESSHARED_EXPORT ITreeNode
+class ITreeNode
 {
 public:
     /**
      * @brief Virtual destructor.
      */
     virtual ~ITreeNode() {}
-    
     /**
      * @brief Adds a child node to this node.
      * @param node Node to add.
@@ -119,6 +118,7 @@ public:
      * @return List of child nodes removed from this node.
      */
     virtual QList<ITreeNode*> detachNode() = 0;
+
 };
 
 DATASTRUCTURES_END_NAMESPACE

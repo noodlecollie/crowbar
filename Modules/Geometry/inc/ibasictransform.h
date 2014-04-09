@@ -8,11 +8,10 @@
 
 GEOMETRY_BEGIN_NAMESPACE
 
-class GEOMETRYSHARED_EXPORT IBasicTransform
+class IBasicTransform
 {
 public:
     virtual ~IBasicTransform() {}
-    
     // Translate in the specified X,Y,Z direction.
     virtual void translate(const QVector3D delta) = 0;
     

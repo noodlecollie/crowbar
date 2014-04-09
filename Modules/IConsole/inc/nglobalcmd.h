@@ -10,9 +10,12 @@
 #ifndef NGLOBALCMD_H
 #define NGLOBALCMD_H
 
+#include "iconsole_global.h"
 #include <QString>
 #include <QVariant>
 #include "commandsenderinfo.h"
+
+ICONSOLE_BEGIN_NAMESPACE
 
 // Global command properties.
 namespace NGlobalCmd
@@ -80,6 +83,8 @@ namespace NGlobalCmd
      */
     typedef void (*VarCallback) (const ICONSOLE_NAMESPACE::CommandSenderInfo &info, const QString &oldValue, QString &newValue);
 }
+
+ICONSOLE_END_NAMESPACE
 
 #endif // NGLOBALCMD_H
 

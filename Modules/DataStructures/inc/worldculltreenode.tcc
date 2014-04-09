@@ -292,7 +292,7 @@ template<typename T, int MD, int MO>
 void WorldCullTreeNode<T,MD,MO>::splitRecurse()
 {
     Q_ASSERT( isLeaf() );
-    if ( !isLeaf() ) return;
+    if ( !isLeaf() || objectCount() < splitMinObjects() ) return;
     
     // Splitting process:
     // If all of the node's dimensions are large enough:
@@ -377,20 +377,11 @@ void WorldCullTreeNode<T,MD,MO>::splitRecurse()
     // Call split on all children who meet the minimum object number requirement.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode<T,MD,MO>* node = cullTreeChildAt(i);
+        WorldCullTreeNode<T,MD,MO>* node = childAt(i);
         Q_ASSERT( node );
         
-        if ( node->objectCount() >= splitMinObjects() )
-        {
-            node->splitRecurse();
-        }
+        node->splitRecurse();   // Min objects are checked at function entry.
     }
-}
-
-template<typename T, int MD, int MO>
-WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::cullTreeChildAt(int index) const
-{
-    return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(childAt(index));
 }
 
 DATASTRUCTURES_END_NAMESPACE

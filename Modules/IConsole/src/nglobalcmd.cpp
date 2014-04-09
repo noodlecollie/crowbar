@@ -1,5 +1,7 @@
 #include "nglobalcmd.h"
 
+ICONSOLE_BEGIN_NAMESPACE
+
 namespace NGlobalCmd
 {
     QString commandFlagsToString(CMDFLAGS cmdFlags) 
@@ -24,3 +26,5 @@ namespace NGlobalCmd
         return output;
     }
 }
+
+ICONSOLE_END_NAMESPACE

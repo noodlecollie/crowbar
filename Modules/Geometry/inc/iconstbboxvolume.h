@@ -11,14 +11,13 @@ GEOMETRY_BEGIN_NAMESPACE
  * 
  * This interface does not allow for setting the bounding box, only for retrieving it.
  */
-class GEOMETRYSHARED_EXPORT IConstBBoxVolume
+class IConstBBoxVolume
 {
 public:
     /**
      * @brief Virtual destructor.
      */
     virtual ~IConstBBoxVolume() {}
-    
     /**
      * @brief Dummy function. To check at compile-time whether a type implements
      * this interface, call this function. A compiler error will occur if the
@@ -32,6 +31,7 @@ public:
      * @return Bounding box.
      */
     virtual QBox3D boundingBox() const = 0;
+
 };
 
 GEOMETRY_END_NAMESPACE

@@ -9,5 +9,4 @@ SUBDIRS += \
     CommandStore \
     IRenderSystem \
     Geometry \
-    GlobalUtil \
     DataStructures

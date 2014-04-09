@@ -11,7 +11,9 @@ TARGET = render-test
 TEMPLATE = app
 
 SOURCES += \
-    main.cpp
+    main.cpp \
+    customview.cpp \
+    customview2.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53Dd
@@ -20,7 +22,9 @@ else:unix: LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
 INCLUDEPATH += $$PWD/../../../qt3d/include
 DEPENDPATH += $$PWD/../../../qt3d/include
 
-HEADERS +=
+HEADERS += \
+    customview.h \
+    customview2.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Geometry/release/ -lGeometry
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/Geometry/debug/ -lGeometry

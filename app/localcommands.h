@@ -18,7 +18,7 @@ static ICONSOLE_NAMESPACE::ConCommand dev_refresh_style_sheet("dev_refresh_style
                                                      "Refreshes the global style sheet.");
 
 static ICONSOLE_NAMESPACE::ConVar gl_max_version("gl_max_version", "0.0", COMMANDSTORE_NAMESPACE::g_pCommandManager, &COMMANDSTORE_NAMESPACE::g_pConsoleCommandList, NULL,
-                                        "Read-only. Maximum OpenGL version available on the system.", NGlobalCmd::CMDFLAG_READONLY, true, 0.0);
+                                        "Read-only. Maximum OpenGL version available on the system.", ICONSOLE_NAMESPACE::NGlobalCmd::CMDFLAG_READONLY, true, 0.0);
 
 // Returns true if style sheet was successfully applied.
 bool applyStyleSheet();

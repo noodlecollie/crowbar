@@ -13,10 +13,8 @@
           public: \
           virtual ~name() {}
 
-#define INTERFACE_FUNC virtual
-
 #define END_INTERFACE };
 
-#define implements public
+#define implements public virtual
 
 #endif // INTERFACE_H

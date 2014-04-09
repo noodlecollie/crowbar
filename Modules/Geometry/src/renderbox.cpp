@@ -76,6 +76,7 @@ QGeometryData RenderBox::toGeomData() const
     float colMaxG = colMax.greenF();
     float colMaxB = colMax.blueF();
     QGeometryData geom;
+    geom.detach();
     
     
     // Order of vertices:
@@ -134,7 +135,7 @@ QGeometryData RenderBox::toGeomData() const
     const QVector3D nWest(1, 0, 0);     // West  = +X
 
     int n = 0;
-    // Top face
+//    // Top face
     geom.appendVertex(verts[4], verts[5], verts[6], verts[7]);
     geom.appendNormal(nTop, nTop, nTop, nTop);
     geom.appendColor(cols[4], cols[5], cols[6], cols[7]);
@@ -151,33 +152,33 @@ QGeometryData RenderBox::toGeomData() const
     
     n += 4;
     // North face
-    geom.appendVertex(verts[7], verts[2], verts[1], verts[4]);
-    geom.appendNormal(nNorth, nNorth, nNorth, nNorth);
-    geom.appendColor(cols[7], cols[2], cols[1], cols[4]);
-    geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
-    geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
-    
-    n += 4;
-    // South face
-    geom.appendVertex(verts[0], verts[3], verts[6], verts[5]);
-    geom.appendNormal(nSouth, nSouth, nSouth, nSouth);
-    geom.appendColor(cols[0], cols[3], cols[6], cols[5]);
-    geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
-    geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
-    
-    n += 4;
-    // East face
     geom.appendVertex(verts[7], verts[6], verts[3], verts[2]);
-    geom.appendNormal(nEast, nEast, nEast, nEast);
+    geom.appendNormal(nNorth, nNorth, nNorth, nNorth);
     geom.appendColor(cols[7], cols[6], cols[3], cols[2]);
     geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
     geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
     
     n += 4;
-    // West face
+    // South face
     geom.appendVertex(verts[0], verts[5], verts[4], verts[1]);
-    geom.appendNormal(nWest, nWest, nWest, nWest);
+    geom.appendNormal(nSouth, nSouth, nSouth, nSouth);
     geom.appendColor(cols[0], cols[5], cols[4], cols[1]);
+    geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
+    geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
+    
+    n += 4;
+    // East face
+    geom.appendVertex(verts[3], verts[6], verts[5], verts[0]);
+    geom.appendNormal(nEast, nEast, nEast, nEast);
+    geom.appendColor(cols[3], cols[6], cols[5], cols[0]);
+    geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
+    geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
+    
+    n += 4;
+    // West face
+    geom.appendVertex(verts[4], verts[7], verts[2], verts[1]);
+    geom.appendNormal(nWest, nWest, nWest, nWest);
+    geom.appendColor(cols[4], cols[7], cols[2], cols[1]);
     geom.appendIndex(n);geom.appendIndex(n+1);geom.appendIndex(n+2);
     geom.appendIndex(n+2);geom.appendIndex(n+3);geom.appendIndex(n);
     

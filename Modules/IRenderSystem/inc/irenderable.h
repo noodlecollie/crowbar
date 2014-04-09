@@ -14,14 +14,10 @@ IRENDERSYSTEM_BEGIN_NAMESPACE
 /**
  * @brief Renderables must implement this interface in order for their data to be passed to the renderer.
  */
+
 class IRenderable
 {
 public:
-    /**
-     * @brief Virtual destructor.
-     */
-    virtual ~IRenderable() {}
-    
     // Exports this renderable object's data to a QGeometryData object.
     /**
      * @brief Exports the geometry data from this renderable. Data should be in world co-ordinates.
@@ -30,6 +26,7 @@ public:
     virtual QGeometryData toGeomData() const = 0;
     
     // TODO: Continue - we need things like texture name, etc.
+
 };
 
 IRENDERSYSTEM_END_NAMESPACE

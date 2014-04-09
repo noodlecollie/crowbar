@@ -23,6 +23,7 @@ ICONSOLE_BEGIN_NAMESPACE
 class ICONSOLESHARED_EXPORT CommandSuggestionList : public QListWidget
 {
     Q_OBJECT
+    
     /** @property heightScale
      * @brief Scaling factor for height of suggestion box depending on how many items it contains.
      * @accessors heightScale(), setHeightScale(), resetHeightScale(), heightScaleChanged()

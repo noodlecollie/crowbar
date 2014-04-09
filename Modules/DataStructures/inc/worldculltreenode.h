@@ -25,7 +25,7 @@ template<typename T, int MD = 1024, int MO = 2>
  */
 class WorldCullTreeNode : public TreeNode
 {
-public:
+public:  
     /**
      * @brief Constructor.
      * @param bounds Bounding box representing this node's volume.
@@ -43,7 +43,7 @@ public:
      * considered for recursive splitting.
      * @return Min length of each side of the octree node to split.
      */
-    int splitMinDimensions() const  { return MD; }
+    float splitMinDimensions() const  { return (float)MD; }
         
     /**
      * @brief Convenience function - returns the minimum number of objects inside the node for it to be
@@ -92,9 +92,15 @@ public:
     void setBounds(QBox3D bounds);
         
     void splitRecurse();
+        
+    // Convenience overrides.
+    virtual void addChild(WorldCullTreeNode<T,MD,MO>* node)         { TreeNode::addChild(node); }
+    virtual WorldCullTreeNode<T,MD,MO>* addChild()                  { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::addChild()); }
+    virtual WorldCullTreeNode<T,MD,MO>* removeChild(int index)      { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::removeChild(index)); }
+    virtual WorldCullTreeNode<T,MD,MO>* childAt(int index) const    { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::childAt(index)); }
+    virtual WorldCullTreeNode<T,MD,MO>* parent() const              { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::parent()); }
    
 private:
-    WorldCullTreeNode<T,MD,MO>* cullTreeChildAt(int index) const;   // Convenience
     bool checkImplementsInterfaces(const T &obj) const;
     QBox3D          m_Bounds;       // Bounding box for this node.
     QHash<T, char>  m_ObjectHash;   // Hash table of objects this node stores.
