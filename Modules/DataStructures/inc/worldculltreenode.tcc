@@ -64,7 +64,7 @@ void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
         {
             for ( int i = 0; i < childCount(); i++ )
             {
-                WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+                WorldCullTreeNode* child = WCTN_CAST(childAt(i));
                 Q_ASSERT( child );
                 child->addObjectRecurse(obj);
             }
@@ -100,7 +100,7 @@ void WorldCullTreeNode<T,MD,MO>::removeObjectRecurse(const T &obj)
     // Remove from all children too.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
         Q_ASSERT( child );
         child->removeObject(obj);
     }
@@ -121,7 +121,7 @@ void WorldCullTreeNode<T,MD,MO>::removeAllObjectsRecurse()
     // Remove all objects from our children.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
         Q_ASSERT( child );
         child->removeAllObjectsRecurse();
     }
@@ -148,7 +148,7 @@ WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::findObjectRecurse(const 
     // Check recursively through children to see if the object is there.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
         Q_ASSERT( child );
         
         WorldCullTreeNode* found = child->findObjectRecurse(obj);
@@ -188,7 +188,7 @@ void WorldCullTreeNode<T,MD,MO>::updateObjectRecurse(const T &obj)
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+            WorldCullTreeNode* child = WCTN_CAST(childAt(i));
             Q_ASSERT( child );
             child->updateObjectRecurse(obj);
         }
@@ -209,7 +209,7 @@ void WorldCullTreeNode<T,MD,MO>::updateAllObjectsRecurse()
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
+            WorldCullTreeNode* child = WCTN_CAST(childAt(i));
             Q_ASSERT( child );
             child->updateAllObjectsRecurse();
         }
@@ -385,3 +385,6 @@ void WorldCullTreeNode<T,MD,MO>::splitRecurse()
 }
 
 DATASTRUCTURES_END_NAMESPACE
+
+// Undef the WCTN_CAST macro!
+#undef WCTN_CAST

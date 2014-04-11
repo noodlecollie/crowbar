@@ -10,6 +10,18 @@
 #include <QHash>
 #include <Qt3D/QBox3D>
 
+// For convenience - we -shouldn't- need dynamic_cast if we're only able to add/remove children as
+// WorldCullTreeNodes and not the more abstract ITreeNode, but I'm defining this here in case it'd
+// be useful to turn dynamic_casts on or off.
+#define WCTN_USE_DYN_CAST
+#ifdef WCTN_USE_DYN_CAST
+// Use dynamic_cast to check the type of the child we're returning at runtime.
+#define WCTN_CAST dynamic_cast<WorldCullTreeNode<T,MD,MO>*>
+#else
+// Just use an old C-style cast.
+#define WCTN_CAST (WorldCullTreeNode<T,MD,MO>*)
+#endif
+
 DATASTRUCTURES_BEGIN_NAMESPACE
 
 /* The saga of this class: http://stackoverflow.com/questions/22783851/c-calling-derived-specialised-virtual-functions-within-a-base-template-class/
@@ -17,6 +29,10 @@ DATASTRUCTURES_BEGIN_NAMESPACE
  * within this class by using '.' - we need to be able to use '->' if required. After much headache and faffing around, StackOverflow prevailed and
  * there are helper specialisations defined statically within the .tcc file. Use deref_if_pointer().blah() when calling functions on objects of type T.
  */
+
+// TODO: Change the min dimensions/min object values to be passed in in the constructor - we don't really need
+// to force them as template parameters, especially as it would be more useful to store the min dimension
+// as a float and not an int.
 
 template<typename T, int MD = 1024, int MO = 2>
 /**
@@ -95,10 +111,10 @@ public:
         
     // Convenience overrides.
     virtual void addChild(WorldCullTreeNode<T,MD,MO>* node)         { TreeNode::addChild(node); }
-    virtual WorldCullTreeNode<T,MD,MO>* addChild()                  { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::addChild()); }
-    virtual WorldCullTreeNode<T,MD,MO>* removeChild(int index)      { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::removeChild(index)); }
-    virtual WorldCullTreeNode<T,MD,MO>* childAt(int index) const    { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::childAt(index)); }
-    virtual WorldCullTreeNode<T,MD,MO>* parent() const              { return dynamic_cast<WorldCullTreeNode<T,MD,MO>*>(TreeNode::parent()); }
+    virtual WorldCullTreeNode<T,MD,MO>* removeChild(int index)      { return WCTN_CAST(TreeNode::removeChild(index)); }
+    virtual WorldCullTreeNode<T,MD,MO>* childAt(int index) const    { return WCTN_CAST(TreeNode::childAt(index)); }
+    virtual WorldCullTreeNode<T,MD,MO>* parent() const              { return WCTN_CAST(TreeNode::parent()); }
+    virtual void setParent(WorldCullTreeNode<T,MD,MO>* parent)      { TreeNode::setParent(parent); }
    
 private:
     bool checkImplementsInterfaces(const T &obj) const;

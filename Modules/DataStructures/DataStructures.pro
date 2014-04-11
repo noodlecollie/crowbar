@@ -42,11 +42,13 @@ HEADERS += \
     inc/datastructures_global.h \
     inc/itreenode.h \
     inc/treenode.h \
-    inc/worldculltreenode.h
+    inc/worldculltreenode.h \
+    inc/keyvaluesnode.h
 
 SOURCES += \
     inc/worldculltreenode.tcc \
-    src/treenode.cpp
+    src/treenode.cpp \
+    src/keyvaluesnode.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Geometry/release/ -lGeometry
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Geometry/debug/ -lGeometry

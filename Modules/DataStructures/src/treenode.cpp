@@ -33,9 +33,8 @@ void TreeNode::addChild(ITreeNode *node)
 ITreeNode* TreeNode::addChild()
 {
     // Create a new child and add it to the list.
-    ITreeNode* node = new TreeNode();
-    m_Children.append(node);
-    node->setParent(this);
+    TreeNode* node = new TreeNode();
+    addChild(node);
     
     return node;
 }
@@ -156,7 +155,7 @@ void TreeNode::pruneSubtree()
     // If we're a leaf, return.
     if ( isLeaf() ) return;
     
-    // For each child (from the end of the list):
+    // For each child (from the end of the list so we don't keep shifting items):
     while( !m_Children.empty() )
     {
         // Call pruneSubtree() on each child.

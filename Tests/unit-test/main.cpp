@@ -1,28 +1,29 @@
 #include <QGuiApplication>
-#include <Qt3D/QBox3D>
-#include <QVector3D>
-#include <QTime>
-#include "worldculltreenode.h"
-#include "renderbox.h"
-#include "datastructures_global.h"
-#include "geometry_global.h"
+#include "keyvaluesnode.h"
+#include <QtDebug>
 
 using namespace DATASTRUCTURES_NAMESPACE;
-using namespace GEOMETRY_NAMESPACE;
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     
-    WorldCullTreeNode<IConstBBoxVolume*, 1024, 2> tree(QBox3D(QVector3D(-1024.0f, -1024.0f, -1024.0f), QVector3D(1024.0f, 1024.0f, 1024.0f)));
-    qDebug("Tree stats: %d %d", tree.splitMinDimensions(), tree.splitMinObjects());
+    KeyValuesNode rootNode;
     
-    RenderBox box(QVector3D(5.0f, 3.0f, 2.0f), QVector3D(-1.0f, -1.0f, -1.0f), QVector3D(1.0f, 1.0f, 1.0f));
-    IConstBBoxVolume* cbbv =  dynamic_cast<IConstBBoxVolume*>(&box);
-    Q_ASSERT(cbbv);
+    rootNode.setKey("a_key");
+    rootNode.setValue(100);
     
-    tree.addObjectRecurse(cbbv);
-    qDebug("First node that contains box: %p", tree.findObjectRecurse(cbbv));
+    qDebug() << "Root key:" << rootNode.key() << "Value:" << rootNode.value().toString() << "Has value:" << rootNode.hasValue();
+    
+    KeyValuesNode* child = rootNode.addChild();
+    Q_ASSERT(child);
+    child->setKey("i_am_a_child");
+    child->setValue(QVector3D(1,2,3));
+    
+    qDebug() << "Post - root key:" << rootNode.key() << "Value:" << rootNode.value().toString() << "Has value:" << rootNode.hasValue();
+    qDebug() << "Root's children:" << rootNode.childCount() << "Child key:" << child->key() << "Value:" << child->value() << "Has value:" << child->hasValue();
+    qDebug() << "Root type:" << rootNode.constValue().type() << rootNode.constValue().typeName();
+    qDebug() << "Child's type" << child->constValue().type() << child->constValue().typeName();
     
     //return app.exec();
     return 0;
