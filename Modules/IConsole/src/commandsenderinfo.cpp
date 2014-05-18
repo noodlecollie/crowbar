@@ -63,7 +63,7 @@ void CommandSenderInfo::setCommandName(QString &name)
     m_NameOfCommand = name;
 }
 
-const CommandManager* CommandSenderInfo::commandManager() const
+CommandManager* CommandSenderInfo::commandManager() const
 {
     return m_pManager;
 }

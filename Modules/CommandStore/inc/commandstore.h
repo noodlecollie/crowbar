@@ -68,6 +68,10 @@ COMMANDSTORESHARED_EXPORT int ccb_Find(const ICONSOLE_NAMESPACE::CommandSenderIn
 static ICONSOLE_NAMESPACE::ConCommand find("find", ccb_Find, g_pCommandManager, &g_pConsoleCommandList,
                        "Searches the command manager for commands containing the specified string.");
 
+COMMANDSTORESHARED_EXPORT int ccb_Exec(const ICONSOLE_NAMESPACE::CommandSenderInfo &info, const QStringList &args, QVariant &output);
+static ICONSOLE_NAMESPACE::ConCommand exec("exec", ccb_Exec, g_pCommandManager, &g_pConsoleCommandList,
+                       "Loads a file and executes each line as if the user had typed the commands.");
+
 COMMANDSTORE_END_NAMESPACE
 
 #endif // COMMANDSTORE_H

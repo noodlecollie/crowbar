@@ -33,6 +33,7 @@ class ConVar;
 class ICONSOLESHARED_EXPORT CommandManager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString baseDirectory READ baseDirectory WRITE setBaseDirectory NOTIFY baseDirectoryChanged)
 public:
     
     /**
@@ -43,9 +44,10 @@ public:
     
     /**
      * @brief Constructor.
+     * @param baseDir Absolute path to base directory. File paths specified to commands will act relative to this directory.
      * @param parent QObject parent, if applicable.
      */
-    explicit CommandManager(QObject* parent = 0);
+    explicit CommandManager(const QString &baseDir, QObject* parent = 0);
     
     /**
      * @brief Copy constructor.
@@ -58,6 +60,10 @@ public:
      * @brief Destructor.
      */
     virtual ~CommandManager() {}
+    
+    QString baseDirectory() const;
+    
+    void setBaseDirectory(const QString &dir);
     
     /**
      * @brief Resigters a command into the manager.
@@ -169,7 +175,13 @@ signals:
     /**
      * @brief Emitted to signal to the command interpreter than output is to be written to the console window.
      */
-    void outputMessage(CommandSenderInfo::OutputType, const QString&);
+    void outputMessage(CommandSenderInfo::OutputType, const QString&) const;
+    
+    /**
+     * @brief Emitted when the base directory for this manager is changed.
+     * @param newDirectory New value.
+     */
+    void baseDirectoryChanged(const QString &newDirectory);
     
 public slots:
     
@@ -196,6 +208,7 @@ private:
     inline void warning(const QString &warning) { emit outputMessage(CommandSenderInfo::OutputWarning, warning); }
     
     BaseCommandMap     m_CommandMap;    /**< QMap to hold commands. */
+    QString            m_szBaseDir;     /**< Absolute path from which to look for files on disk. */
 };
 
 ICONSOLE_END_NAMESPACE

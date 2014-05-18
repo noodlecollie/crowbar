@@ -10,19 +10,10 @@
 #include <QHash>
 #include <Qt3D/QBox3D>
 
-// For convenience - we -shouldn't- need dynamic_cast if we're only able to add/remove children as
-// WorldCullTreeNodes and not the more abstract ITreeNode, but I'm defining this here in case it'd
-// be useful to turn dynamic_casts on or off.
-#define WCTN_USE_DYN_CAST
-#ifdef WCTN_USE_DYN_CAST
-// Use dynamic_cast to check the type of the child we're returning at runtime.
-#define WCTN_CAST dynamic_cast<WorldCullTreeNode<T,MD,MO>*>
-#else
-// Just use an old C-style cast.
-#define WCTN_CAST (WorldCullTreeNode<T,MD,MO>*)
-#endif
-
 DATASTRUCTURES_BEGIN_NAMESPACE
+
+#define MIN_DIMENSION   1024.0f
+#define MIN_OBJECTS     2
 
 /* The saga of this class: http://stackoverflow.com/questions/22783851/c-calling-derived-specialised-virtual-functions-within-a-base-template-class/
  * For reference if I ever need this again: since the template parameter T could be a pointer or a class, we can't just try and dereference it from
@@ -34,7 +25,7 @@ DATASTRUCTURES_BEGIN_NAMESPACE
 // to force them as template parameters, especially as it would be more useful to store the min dimension
 // as a float and not an int.
 
-template<typename T, int MD = 1024, int MO = 2>
+template<typename T>
 /**
  * @brief Specifies a tree node to be used for containing 3D geometry.
  * @note The type T stored MUST implement NGeometry::IConstBBoxVolume.
@@ -45,9 +36,18 @@ public:
     /**
      * @brief Constructor.
      * @param bounds Bounding box representing this node's volume.
-     * @param parent
+     * @param minDimension Minimum dimension for this node to be considered for splitting.
+     * @param minObjects Min number of objects this node should contain if it is to be considered for splitting.
+     * @param parent Parent node.
      */
-    explicit WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent = NULL);
+    explicit WorldCullTreeNode(QBox3D bounds, float minDimension = MIN_DIMENSION, int minObjects = MIN_OBJECTS, WorldCullTreeNode* parent = NULL);
+
+    /**
+     * @brief Constructor.
+     * @param bounds Bounding box representing this node's volume.
+     * @param parent Parent node.
+     */
+    explicit WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent);
 
     /**
      * @brief Destructor.
@@ -59,14 +59,14 @@ public:
      * considered for recursive splitting.
      * @return Min length of each side of the octree node to split.
      */
-    float splitMinDimensions() const  { return (float)MD; }
+    float splitMinDimensions() const  { return m_flMinDimension; }
         
     /**
      * @brief Convenience function - returns the minimum number of objects inside the node for it to be
      * considered for recursive splitting.
      * @return Min number of objects in the node to split.
      */
-    int splitMinObjects() const     { return MO; }
+    int splitMinObjects() const     { return m_iMinObjects; }
 
     /**
      * @brief Adds an object to this node. If the object exists it is overwritten.
@@ -88,14 +88,45 @@ public:
      * @param obj Object to remove.
      */
     void removeObject(const T &obj);
+    
+    /**
+     * @brief Removes the given object from the node and all of its children.
+     * @param obj Object to remove.
+     */
     void removeObjectRecurse(const T &obj);
+    
+    /**
+     * @brief Removes all objects from this node only.
+     */
     void removeAllObjects();
+    
+    /**
+     * @brief Removes all objects from this node and all of its children.
+     */
     void removeAllObjectsRecurse();
+    
+    /**
+     * @brief Updates the object's presence in this node. It is added or removed as
+     * applicable depending on its bounding box.
+     * @param obj Object to update.
+     */
     void updateObject(const T &obj);
+    
+    /**
+     * @brief Updates the object's presence in this node and all of its children.
+     * @param obj Object to update.
+     */
     void updateObjectRecurse(const T &obj);
+    
+    /**
+     * @brief Recursively checks object lists in leaf nodes, removing object references
+     * if the object's bounding box no longer intersects this node.
+     * @note This function does not have the scope to add object references to nodes where
+     * it doesn't already exist.
+     */
     void updateAllObjectsRecurse();
     bool containsObject(const T &obj) const;
-    WorldCullTreeNode<T,MD,MO>* findObjectRecurse(const T &obj);
+    WorldCullTreeNode<T>* findObjectRecurse(const T &obj);
     int objectCount() const;
     
     typename QHash<T,char>::const_iterator objectsConstBegin() const;
@@ -110,16 +141,18 @@ public:
     void splitRecurse();
         
     // Convenience overrides.
-    virtual void addChild(WorldCullTreeNode<T,MD,MO>* node)         { TreeNode::addChild(node); }
-    virtual WorldCullTreeNode<T,MD,MO>* removeChild(int index)      { return WCTN_CAST(TreeNode::removeChild(index)); }
-    virtual WorldCullTreeNode<T,MD,MO>* childAt(int index) const    { return WCTN_CAST(TreeNode::childAt(index)); }
-    virtual WorldCullTreeNode<T,MD,MO>* parent() const              { return WCTN_CAST(TreeNode::parent()); }
-    virtual void setParent(WorldCullTreeNode<T,MD,MO>* parent)      { TreeNode::setParent(parent); }
+    virtual void addChild(WorldCullTreeNode<T>* node)         { TreeNode::addChild(node); }
+    virtual WorldCullTreeNode<T>* removeChild(int index)      { return dynamic_cast<WorldCullTreeNode<T>*>(TreeNode::removeChild(index)); }
+    virtual WorldCullTreeNode<T>* childAt(int index) const    { return dynamic_cast<WorldCullTreeNode<T>*>(TreeNode::childAt(index)); }
+    virtual WorldCullTreeNode<T>* parent() const              { return dynamic_cast<WorldCullTreeNode<T>*>(TreeNode::parent()); }
+    virtual void setParent(WorldCullTreeNode<T>* parent)      { TreeNode::setParent(parent); }
    
 private:
     bool checkImplementsInterfaces(const T &obj) const;
-    QBox3D          m_Bounds;       // Bounding box for this node.
-    QHash<T, char>  m_ObjectHash;   // Hash table of objects this node stores.
+    QBox3D          m_Bounds;           // Bounding box for this node.
+    QHash<T, char>  m_ObjectHash;       // Hash table of objects this node stores.
+    float           m_flMinDimension;
+    int             m_iMinObjects;
 };
 
 DATASTRUCTURES_END_NAMESPACE

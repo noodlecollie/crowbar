@@ -7,6 +7,8 @@ COMMANDSTORE_BEGIN_NAMESPACE
 using namespace ICONSOLE_NAMESPACE;
 
 ListedConsoleCommand* g_pConsoleCommandList = NULL;
-ListedCommandManager* g_pCommandManager = new ListedCommandManager(g_pConsoleCommandList);
+
+// Pass a blank string as the base directory for now - we'll update this later.
+ListedCommandManager* g_pCommandManager = new ListedCommandManager(QString(""), g_pConsoleCommandList);
 
 COMMANDSTORE_END_NAMESPACE

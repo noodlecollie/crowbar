@@ -10,7 +10,7 @@ int ccb_DumpGlobalStyleSheet(const CommandSenderInfo &info, const QStringList &a
 {
     Q_UNUSED(args)
     Q_UNUSED(output)
-    info.writeWarning("Global style sheet:\n");
+    //info.writeWarning("Global style sheet:\n");
     info.writeMessage(qApp->styleSheet());
     
     return NGlobalCmd::CCR_OK;

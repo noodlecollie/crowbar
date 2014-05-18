@@ -27,9 +27,10 @@ class ICONSOLESHARED_EXPORT ListedCommandManager : public CommandManager
 public:
     /**
      * @brief Constructor.
+     * @param baseDir Absolute path to base directory. File paths specified to commands will act relative to this directory.
      * @param parent QObject parent, if applicable.
      */
-    explicit ListedCommandManager(QObject* parent = 0);
+    explicit ListedCommandManager(const QString &baseDir, QObject* parent = 0);
     
     /**
      * @brief Copy constructor
@@ -40,10 +41,11 @@ public:
     
     /**
      * @brief Constructor with a pointer to a list to traverse.
+     * @param baseDir Absolute path to base directory. File paths specified to commands will act relative to this directory.
      * @param listHead When constructed, the manager will traverse the list whose head is pointed to by this parameter.
      * @param parent QObject parent, if applicable.
      */
-    explicit ListedCommandManager(ListedConsoleCommand* listHead, QObject* parent = 0);
+    explicit ListedCommandManager(const QString &baseDir, ListedConsoleCommand* listHead, QObject* parent = 0);
     
     /**
      * @brief Destructor.

@@ -55,13 +55,6 @@ SOURCES += \
 
 #copyToResourceDir($$PWD/../crowbar/resource/manifest.qss $$PWD/../crowbar/resource/command_symbol.svg $$PWD/../crowbar/resource/variable_symbol.svg)
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53Dd
-else:unix: LIBS += -L$$PWD/../../../qt3d/lib/ -lQt53D
-
-INCLUDEPATH += $$PWD/../../../qt3d/include
-DEPENDPATH += $$PWD/../../../qt3d/include
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/release/ -lIRenderSystem
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/debug/ -lIRenderSystem
 else:unix: LIBS += -L$$OUT_PWD/../../Modules/IRenderSystem/ -lIRenderSystem

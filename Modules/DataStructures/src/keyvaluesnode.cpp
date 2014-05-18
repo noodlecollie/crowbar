@@ -11,12 +11,6 @@ KeyValuesNode::~KeyValuesNode()
 {
 }
 
-bool KeyValuesNode::hasValue() const
-{
-    // We only have a value if we're a leaf.
-    return isLeaf();
-}
-
 QString KeyValuesNode::key() const
 {
     return m_szKey;
@@ -34,7 +28,7 @@ void KeyValuesNode::setKey(const char *str)
 
 QVariant KeyValuesNode::value() const
 {
-    return hasValue() ? m_Value : QVariant();
+    return m_Value;
 }
 
 const QVariant& KeyValuesNode::constValue() const

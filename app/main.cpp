@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTextStream>
 #include <QDir>
+#include <QSplashScreen>
+#include <QPixmap>
 
 #include "globals.h"
 #include "mainwin.h"
@@ -24,10 +26,11 @@
 
 using namespace ICONSOLE_NAMESPACE;
 
-void initSystems(int argc, char **argv);
+void initSystems(int argc, char **argv, QSplashScreen *splash);
 void shutdownSystems();
 void qDebugIntercept(QtMsgType type, const QMessageLogContext &, const QString &msg);
 bool checkOpenGLVersion(QString* error);
+QSplashScreen* splashScreen(const QString &logofile);
 
 #ifdef QT_DEBUG
 void debugTests();
@@ -56,8 +59,12 @@ int main(int argc, char **argv)
         return 1;
     }
     
+    // Display the splash screen.
+    QSplashScreen* splash = splashScreen(QApplication::applicationDirPath() + QString("/resource/crowbar_splash.png"));
+    splash->show();
+    
     // Create and initialise all core systems.
-    initSystems(argc, argv);
+    initSystems(argc, argv, splash);
     
     // Perform any tests we need.
 #ifdef QT_DEBUG
@@ -67,6 +74,13 @@ int main(int argc, char **argv)
     MainWin win;
     win.setCentralWidget(NULL);
 
+    splash->close();
+    if ( splash )
+    {
+        delete splash;
+        splash = NULL;
+    }
+    
     win.show();
     int ret = app.exec();  // exec() starts the event loop. No user interaction should occur before this, but computation is fine.
 
@@ -74,13 +88,20 @@ int main(int argc, char **argv)
     return ret;
 }
 
-void initSystems(int argc, char **argv)
+void initSystems(int argc, char **argv, QSplashScreen* splash)
 {
+    if ( splash ) splash->showMessage("Initialising systems...", Qt::AlignCenter);
+    QApplication::processEvents();
+    
     // Set style sheet.
     applyStyleSheet();
     
     // Create global interpreter and hook up to the CommandStore manager.
+    Q_ASSERT(COMMANDSTORE_NAMESPACE::g_pCommandManager);
     g_pCommandInterpreter = new CommandInterpreter(COMMANDSTORE_NAMESPACE::g_pCommandManager);
+    
+    // Set the base directory for the command manager.
+    COMMANDSTORE_NAMESPACE::g_pCommandManager->setBaseDirectory(QApplication::applicationDirPath());
     
     // Create global command line parser.
     g_pCmdLine = new CommandLineParser();
@@ -200,4 +221,13 @@ return true; \
     gl_max_version.setFlag(NGlobalCmd::CMDFLAG_READONLY);
     
     return false;
+}
+
+QSplashScreen* splashScreen(const QString &logofile)
+{
+    // Create a pixmap from the file path.
+    QPixmap pixmap(logofile);
+    
+    // Create the splash screen with this pixmap.
+    return new QSplashScreen(pixmap, Qt::WindowStaysOnTopHint);
 }

@@ -24,13 +24,6 @@ unix:!symbian {
 INCLUDEPATH += \
     inc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../../qt3d/lib -lQt53D
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../../qt3d/lib -lQt53Dd
-else:unix: LIBS += -L$$OUT_PWD/../../../qt3d/src/threed/ -lQt53Dd
-
-INCLUDEPATH += $$PWD/../../../qt3d/include
-DEPENDPATH += $$PWD/../../../qt3d/include
-
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../IRenderSystem/release/ -lIRenderSystem
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../IRenderSystem/debug/ -lIRenderSystem
 else:unix: LIBS += -L$$OUT_PWD/../IRenderSystem/ -lIRenderSystem

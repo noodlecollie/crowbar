@@ -1,6 +1,7 @@
 #include "wr_commandinterpreter.h"
 #include "regexutil.h"
 #include <QByteArray>
+#include <QtDebug>
 
 ICONSOLE_BEGIN_NAMESPACE
 
@@ -56,8 +57,9 @@ void CommandInterpreter::getSuggestions(const QString &prefix, QList<CommandIden
     }
 }
 
-void CommandInterpreter::parse(const QString &cmdString)
+void CommandInterpreter::parse(const QString &cmdString, bool print)
 {
+    qDebug("Parsing string: %s", cmdString.toLatin1().constData());
     // Steps:
     // - Create a list to hold <QString, QStringList> pairs. The QString is the command name, the list is its arguments.
     // - If pipes are present, the list will be longer than a single element. If a command is to receive piped output from
@@ -77,7 +79,7 @@ void CommandInterpreter::parse(const QString &cmdString)
     QString newCmdString = cmdString.trimmed();
     
     // Echo back our command string.
-    m_pCommandManager->outputMessage(CommandSenderInfo::OutputGeneral, QString("] %0\n").arg(newCmdString));
+    if ( print ) m_pCommandManager->outputMessage(CommandSenderInfo::OutputGeneral, QString("] %0\n").arg(newCmdString));
     
     // Create a command entry list.
     CommandEntryList masterList;
@@ -94,11 +96,13 @@ void CommandInterpreter::parse(const QString &cmdString)
         // For each of the commands:
         foreach(CommandEntryPair pair, pipeList)
         {
+            qDebug("Processing command %s. Args to pipe: %d", pair.first.toLatin1().constData(), pipeArgs.count());
+            if ( pipeArgs.count() > 0 ) qDebug() << pipeArgs.at(0) << "Empty:" << pipeArgs.at(0).isEmpty();
             int returnVal = NGlobalCmd::CCR_OK;
             QVariant output;
             
             // Insert stored output if we need to.
-            if ( pipeArgs.count() > 0 )
+            if ( pipeArgs.count() > 0 ) // There is output to insert!
             {
                 // Find the index of the first single argument comprised of "$".
                 // We allow for whitespace here.
@@ -107,6 +111,7 @@ void CommandInterpreter::parse(const QString &cmdString)
                 // If the index existed:
                 if ( index >= 0 )
                 {
+                    qDebug("Dollar sign found at argument %d of for command %s", index, pair.first.toLatin1().constData());
                     // Remove the index of "$" first.
                     pair.second.removeAt(index);
                     
@@ -124,10 +129,13 @@ void CommandInterpreter::parse(const QString &cmdString)
                 {
                     foreach(QString str, pipeArgs)
                     {
+                        qDebug() << "Appending:" << str;
                         // Append.
                         pair.second.append(str);
                     }
                 }
+                
+                qDebug() << "Number of arguments passing forward to function:" << pair.second.count();
             }
             
             // If the command was found successfully:

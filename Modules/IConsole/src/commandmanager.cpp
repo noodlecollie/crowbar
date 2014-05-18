@@ -3,13 +3,23 @@
 
 ICONSOLE_BEGIN_NAMESPACE
 
-CommandManager::CommandManager(QObject *parent) : QObject(parent), m_CommandMap()
+CommandManager::CommandManager(const QString &baseDir, QObject *parent) : QObject(parent), m_CommandMap(), m_szBaseDir(baseDir)
 {
 }
 
-CommandManager::CommandManager(const CommandManager &other, QObject* parent) : QObject(parent), m_CommandMap()
+CommandManager::CommandManager(const CommandManager &other, QObject* parent) : QObject(parent), m_CommandMap(), m_szBaseDir(other.baseDirectory())
 {
     registerCommand(other);
+}
+
+QString CommandManager::baseDirectory() const
+{
+    return m_szBaseDir;
+}
+
+void CommandManager::setBaseDirectory(const QString &dir)
+{
+    m_szBaseDir = dir;
 }
 
 bool CommandManager::registerCommand(BaseConsoleCommand *command)

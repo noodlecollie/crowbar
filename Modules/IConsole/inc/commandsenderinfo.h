@@ -158,7 +158,7 @@ public:
      * @brief Gets the manager this object is assigned to.
      * @return Pointer to manager.
      */
-    const CommandManager* commandManager() const;
+    CommandManager* commandManager() const;
     
     /**
      * @brief Sets the manager this object is assigned to.

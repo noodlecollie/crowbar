@@ -148,8 +148,9 @@ public slots:
     /**
      * @brief Parses a command string and executes any commands specified by the string.
      * @param cmdString String to parse.
+     * @param print If false, supresses printing the command name and arguments to the console window before execution.
      */
-    void parse(const QString &cmdString);
+    void parse(const QString &cmdString, bool print = true);
     
     /**
      * @brief Gets suggested commands for the given command prefix.

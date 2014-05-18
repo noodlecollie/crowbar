@@ -24,7 +24,7 @@ public:
     CustomView2(QWindow *parent = 0) : QGLView(parent), m_pCullTreeNode(NULL) {}
     ~CustomView2();
     
-    typedef DATASTRUCTURES_NAMESPACE::WorldCullTreeNode<GeomDataEx*,1,2> CullTreeNode;
+    typedef DATASTRUCTURES_NAMESPACE::WorldCullTreeNode<GeomDataEx*> CullTreeNode;
     
     void setNode(CullTreeNode* node) { m_pCullTreeNode = node; }
     CullTreeNode* node() const { return m_pCullTreeNode; }

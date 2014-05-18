@@ -2,8 +2,8 @@
 
 ICONSOLE_BEGIN_NAMESPACE
 
-ListedCommandManager::ListedCommandManager(ListedConsoleCommand * listHead, QObject *parent) :
-    CommandManager(parent)
+ListedCommandManager::ListedCommandManager(const QString &baseDir, ListedConsoleCommand * listHead, QObject *parent) :
+    CommandManager(baseDir, parent)
 {
    traverse(listHead);
 }
@@ -13,7 +13,7 @@ ListedCommandManager::ListedCommandManager(ListedCommandManager &other, QObject 
 {
 }
 
-ListedCommandManager::ListedCommandManager(QObject *parent) : CommandManager(parent)
+ListedCommandManager::ListedCommandManager(const QString &baseDir, QObject *parent) : CommandManager(baseDir, parent)
 {
 }
 

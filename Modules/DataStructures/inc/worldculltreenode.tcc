@@ -17,31 +17,37 @@ static T& deref_if_pointer(T* t) { return *t; }
 template <typename T>
 static const T& deref_if_pointer(const T* t) { return *t; }
 
-template<typename T, int MD, int MO>
-WorldCullTreeNode<T,MD,MO>::WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent) : TreeNode(parent),
-    m_ObjectHash(), m_Bounds(bounds)
+template<typename T>
+WorldCullTreeNode<T>::WorldCullTreeNode(QBox3D bounds, float minDimension, int minObjects, WorldCullTreeNode* parent) : TreeNode(parent),
+    m_Bounds(bounds), m_ObjectHash(), m_flMinDimension(minDimension), m_iMinObjects(minObjects)
 {
 }
 
-template<typename T, int MD, int MO>
-WorldCullTreeNode<T,MD,MO>::~WorldCullTreeNode()
+template<typename T>
+WorldCullTreeNode<T>::WorldCullTreeNode(QBox3D bounds, WorldCullTreeNode* parent) : TreeNode(parent),
+    m_Bounds(bounds), m_ObjectHash(), m_flMinDimension(MIN_DIMENSION), m_iMinObjects(MIN_OBJECTS)
 {
 }
 
-template<typename T, int MD, int MO>
-QBox3D WorldCullTreeNode<T,MD,MO>::bounds() const
+template<typename T>
+WorldCullTreeNode<T>::~WorldCullTreeNode()
+{
+}
+
+template<typename T>
+QBox3D WorldCullTreeNode<T>::bounds() const
 {
     return m_Bounds;
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::setBounds(QBox3D bounds)
+template<typename T>
+void WorldCullTreeNode<T>::setBounds(QBox3D bounds)
 {
     m_Bounds = bounds;
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::addObject(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::addObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -50,8 +56,8 @@ void WorldCullTreeNode<T,MD,MO>::addObject(const T &obj)
     m_ObjectHash.insert(obj, 0);    // Char used for memory conservation.
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::addObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -64,7 +70,7 @@ void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
         {
             for ( int i = 0; i < childCount(); i++ )
             {
-                WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+                WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
                 Q_ASSERT( child );
                 child->addObjectRecurse(obj);
             }
@@ -78,8 +84,8 @@ void WorldCullTreeNode<T,MD,MO>::addObjectRecurse(const T &obj)
     }
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::removeObject(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::removeObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -88,8 +94,8 @@ void WorldCullTreeNode<T,MD,MO>::removeObject(const T &obj)
     m_ObjectHash.remove(obj);
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::removeObjectRecurse(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::removeObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -100,20 +106,20 @@ void WorldCullTreeNode<T,MD,MO>::removeObjectRecurse(const T &obj)
     // Remove from all children too.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         child->removeObject(obj);
     }
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::removeAllObjects()
+template<typename T>
+void WorldCullTreeNode<T>::removeAllObjects()
 {
     m_ObjectHash.clear();
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::removeAllObjectsRecurse()
+template<typename T>
+void WorldCullTreeNode<T>::removeAllObjectsRecurse()
 {
     // Remove our objects.
     removeAllObjects();
@@ -121,14 +127,14 @@ void WorldCullTreeNode<T,MD,MO>::removeAllObjectsRecurse()
     // Remove all objects from our children.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         child->removeAllObjectsRecurse();
     }
 }
 
-template<typename T, int MD, int MO>
-bool WorldCullTreeNode<T,MD,MO>::containsObject(const T &obj) const
+template<typename T>
+bool WorldCullTreeNode<T>::containsObject(const T &obj) const
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -136,8 +142,8 @@ bool WorldCullTreeNode<T,MD,MO>::containsObject(const T &obj) const
     return m_ObjectHash.contains(obj);
 }
 
-template<typename T, int MD, int MO>
-WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::findObjectRecurse(const T &obj)
+template<typename T>
+WorldCullTreeNode<T>* WorldCullTreeNode<T>::findObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -148,7 +154,7 @@ WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::findObjectRecurse(const 
     // Check recursively through children to see if the object is there.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+        WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
         Q_ASSERT( child );
         
         WorldCullTreeNode* found = child->findObjectRecurse(obj);
@@ -158,8 +164,8 @@ WorldCullTreeNode<T,MD,MO>* WorldCullTreeNode<T,MD,MO>::findObjectRecurse(const 
     return NULL;    // Return NULL otherwise.
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::updateObject(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::updateObject(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -177,8 +183,8 @@ void WorldCullTreeNode<T,MD,MO>::updateObject(const T &obj)
     }
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::updateObjectRecurse(const T &obj)
+template<typename T>
+void WorldCullTreeNode<T>::updateObjectRecurse(const T &obj)
 {
     // Ensure we implement the required interfaces.
     Q_ASSERT( checkImplementsInterfaces(obj) );
@@ -188,7 +194,7 @@ void WorldCullTreeNode<T,MD,MO>::updateObjectRecurse(const T &obj)
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
             Q_ASSERT( child );
             child->updateObjectRecurse(obj);
         }
@@ -201,15 +207,15 @@ void WorldCullTreeNode<T,MD,MO>::updateObjectRecurse(const T &obj)
     }
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::updateAllObjectsRecurse()
+template<typename T>
+void WorldCullTreeNode<T>::updateAllObjectsRecurse()
 {
     // If we have children, update in them first.
     if ( !isLeaf() )
     {
         for ( int i = 0; i < childCount(); i++ )
         {
-            WorldCullTreeNode* child = WCTN_CAST(childAt(i));
+            WorldCullTreeNode* child = dynamic_cast<WorldCullTreeNode*>(childAt(i));
             Q_ASSERT( child );
             child->updateAllObjectsRecurse();
         }
@@ -222,15 +228,6 @@ void WorldCullTreeNode<T,MD,MO>::updateAllObjectsRecurse()
         QList<T> toRemove;
         
         // Discover objects to remove.
-        // Whoops, foreach returns the values from the hash, not the keys...
-//        foreach( T obj, m_ObjectHash )
-//        {
-//            if ( NGeometry::boundingBoxesIntersect(bounds(), deref_if_pointer(obj).boundingBox()) )
-//            {
-//                toRemove.append(obj);
-//            }
-//        }
-        
         QHash<T,char>::const_iterator it = m_ObjectHash.constBegin();
         
         while ( it != m_ObjectHash.constEnd() )
@@ -251,45 +248,45 @@ void WorldCullTreeNode<T,MD,MO>::updateAllObjectsRecurse()
     }
 }
 
-template<typename T, int MD, int MO>
-int WorldCullTreeNode<T,MD,MO>::objectCount() const
+template<typename T>
+int WorldCullTreeNode<T>::objectCount() const
 {
     return m_ObjectHash.size();
 }
 
-template<typename T, int MD, int MO>
-bool WorldCullTreeNode<T,MD,MO>::checkImplementsInterfaces(const T &obj) const
+template<typename T>
+bool WorldCullTreeNode<T>::checkImplementsInterfaces(const T &obj) const
 {
     // This -should- cause a compilation error if the method is not implemented.
     return deref_if_pointer(obj)._implementsIConstBBoxVolume();
 }
 
-template<typename T, int MD, int MO>
-typename QHash<T,char>::const_iterator WorldCullTreeNode<T,MD,MO>::objectsConstBegin() const
+template<typename T>
+typename QHash<T,char>::const_iterator WorldCullTreeNode<T>::objectsConstBegin() const
 {
     return m_ObjectHash.constBegin();
 }
 
-template<typename T, int MD, int MO>
-typename QHash<T,char>::const_iterator WorldCullTreeNode<T,MD,MO>::objectsConstEnd() const
+template<typename T>
+typename QHash<T,char>::const_iterator WorldCullTreeNode<T>::objectsConstEnd() const
 {
     return m_ObjectHash.constEnd();
 }
 
-template<typename T, int MD, int MO>
-typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsBegin()
+template<typename T>
+typename QHash<T,char>::iterator WorldCullTreeNode<T>::objectsBegin()
 {
     return m_ObjectHash.begin();
 }
 
-template<typename T, int MD, int MO>
-typename QHash<T,char>::iterator WorldCullTreeNode<T,MD,MO>::objectsEnd()
+template<typename T>
+typename QHash<T,char>::iterator WorldCullTreeNode<T>::objectsEnd()
 {
     return m_ObjectHash.end();
 }
 
-template<typename T, int MD, int MO>
-void WorldCullTreeNode<T,MD,MO>::splitRecurse()
+template<typename T>
+void WorldCullTreeNode<T>::splitRecurse()
 {
     Q_ASSERT( isLeaf() );
     if ( !isLeaf() || objectCount() < splitMinObjects() ) return;
@@ -355,7 +352,7 @@ void WorldCullTreeNode<T,MD,MO>::splitRecurse()
         QBox3D childBounds(childMin, childMax);
         
         // Add the new node.
-        WorldCullTreeNode<T,MD,MO>* childNode = new WorldCullTreeNode<T,MD,MO>(childBounds, this);
+        WorldCullTreeNode<T>* childNode = new WorldCullTreeNode<T>(childBounds, this);
         addChild(childNode);
         
         // For each object in this node, check to see if it should be inserted into this new child.
@@ -377,7 +374,7 @@ void WorldCullTreeNode<T,MD,MO>::splitRecurse()
     // Call split on all children who meet the minimum object number requirement.
     for ( int i = 0; i < childCount(); i++ )
     {
-        WorldCullTreeNode<T,MD,MO>* node = childAt(i);
+        WorldCullTreeNode<T>* node = childAt(i);
         Q_ASSERT( node );
         
         node->splitRecurse();   // Min objects are checked at function entry.
@@ -385,6 +382,3 @@ void WorldCullTreeNode<T,MD,MO>::splitRecurse()
 }
 
 DATASTRUCTURES_END_NAMESPACE
-
-// Undef the WCTN_CAST macro!
-#undef WCTN_CAST
