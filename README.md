@@ -6,11 +6,10 @@ An open-source level editor for Source games, built using Qt5.
 Current Instructions
 ====================
 
-If you're reading this, you're in the wrong branch! The master will hold stable builds once these exist. As of writing,
-the most current branch is qt3d-experimental - this holds attempts to utilise the Qt3D library for 3D rendering. You
-should be able to obtain this from http://doc-snapshot.qt-project.org/qt3d-1.0/ - the current setup is to have the root
-qt3d directory alongside the crowbar root directory (ie. place it one up from crowbar.pro). Qt3D should be compiled and
-integrated with your current Qt installation in order for it to be functional within Crowbar.
+If you're reading this, you're in the wrong branch! The master will hold stable builds once these exist. As of writing
+the active branch is workbench, and qt3d-experimental is a place for me to test things outside of mainstream development.
+
+Crowbar requires the Qt3D library - you should be able to clone this from https://git.gitorious.org/qt/qt3d.git. Once downloaded, open qt3d.pro in Qt Creator, add an extra make step to the build configuration with the single argument "install" and then build the library - it should integrate itself with your Qt installation.
 
 Crowbar is set up to compile modules in the correct order when building from the root node in the subdirs project layout.
 This does not mean that it'll do so successfully, however! As I muddle through, certain things will work and certain
@@ -23,4 +22,4 @@ check out the tests in https://github.com/x6herbius/crowbar/commit/c94508bc51b69
 Some Doxygen documentation does exist, although it's not currently complete as new things are being added/removed/changed.
 Run Doxygen on the doxyfile to generate it.
 
-- x6herbius
+x6herbius
