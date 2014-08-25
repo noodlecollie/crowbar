@@ -3,5 +3,5 @@ CONFIG += ordered
 
 # Comment the subdir out if you don't want to bother compiling a test.
 
-SUBDIRS += unit-test \
-    render-test
+SUBDIRS += \
+    renderobjects
