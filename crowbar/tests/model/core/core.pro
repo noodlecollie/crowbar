@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    src \
-    tests
+    eulerangle \
+    model_util
