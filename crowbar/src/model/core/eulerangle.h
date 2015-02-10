@@ -46,7 +46,7 @@ public:
     EulerAngle(float pitch, float yaw, float roll);
 
     /**
-     * @brief Constructs an EulerAngke with pitch, yaw and roll set to 0.
+     * @brief Constructs an EulerAngle with pitch, yaw and roll set to 0.
      */
     EulerAngle();
 
@@ -150,10 +150,24 @@ public:
      * @return Vector representing the angle.
      */
     static QVector3D angleToVector(const EulerAngle &angle);
+
+    /**
+     * @brief Equivalent to calling angleToVector() and passing the given angle.
+     * @return Vector representing the angle.
+     */
     inline QVector3D toVector() const { return angleToVector(*this); }
 
     /**
-     * @brief Normalises this angle's pitch, yaw and roll to be within the range [0 360] and returns
+     * @brief Returns two normalised vectors representing the pitch and yaw of the angle, and the
+     * up direction specified by the roll of the angle, respectively.
+     * @param angle Angle to convert.
+     * @param direction Vector representing the direction in which the angle is pointing.
+     * @param up Vector representing the up direction as specified by the roll of the angle.
+     */
+    static void angleToVectors(const EulerAngle &angle, QVector3D &direction, QVector3D &up);
+
+    /**
+     * @brief Normalises this angle's pitch, yaw and roll to be within the range [0 360) and returns
      * a reference to this angle.
      * @return Reference to this angle.
      */
@@ -164,6 +178,21 @@ public:
      * @return Normalised copy.
      */
     EulerAngle normalised() const;
+
+    /**
+     * @brief Normalises this angle's pitch, yaw and roll for camera purposes.
+     * Pitch is normalised within the interval [-90 90].
+     * Yaw is normalised within the interval [0 360);
+     * Roll is normalised within the interval [-180 180].
+     * @return Reference to this angle.
+     */
+    EulerAngle& cameraNormalise();
+
+    /**
+     * @brief Returns a new angle which is a camera-normalised copy of this angle.
+     * @return Camera-normalised copy.
+     */
+    EulerAngle cameraNormalised() const;
 
     /**
      * @brief Negates the pitch value and adds 180 degrees to the yaw value of this angle,
