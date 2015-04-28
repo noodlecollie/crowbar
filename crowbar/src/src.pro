@@ -1,4 +1,12 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    model
+    application \
+    tools \
+    modules
+
+application.depends += \
+    modules
+
+tools.depends += \
+    modules

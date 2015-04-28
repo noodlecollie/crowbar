@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += testlib
-
-QT       -= gui
+QT       += testlib gui
 
 TARGET = tst_tst_model_util
 CONFIG   += console
@@ -17,3 +15,10 @@ TEMPLATE = app
 
 SOURCES += tst_tst_model_util.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../../../src/modules/model/release/ -lmodel
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../../../src/modules/model/debug/ -lmodel
+else:unix: LIBS += -L$$OUT_PWD/../../../../src/modules/model/ -lmodel
+
+INCLUDEPATH += $$PWD/../../../../src/modules/model
+DEPENDPATH += $$PWD/../../../../src/modules/model
