@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="TEX_MISSING">textures/tools/missing.png</file>
+        <file alias="texture_plane">textures/tools/texture_plane.png</file>
+        <file alias="texture_plane_edge">textures/tools/texture_plane_edge.png</file>
+    </qresource>
+    <qresource prefix="/tools">
+        <file alias="measure_texture_coordinates">textures/tools/measure_texture_coordinates.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="block">block.png</file>
+        <file alias="world">world.png</file>
+        <file alias="component">component.png</file>
+    </qresource>
+</RCC>

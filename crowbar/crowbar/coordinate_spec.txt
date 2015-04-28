@@ -1,0 +1,5 @@
+OpenGL object and world space co-ordinate systems are right handed: X right, Y up, Z towards viewer.
+OpenGL screen space co-ordinates are left-handed because of the projection transform: X right, Y up, Z away from viewer.
+
+Hammer co-ordinate system is left-handed with X right, Z up, Y away from viewer.
+Hammer angles in its co-ordinate system are pitch, yaw, roll. Yaw rotates around Z axis: positive values rotate anticlockwise when looking down the negative Z (ie. bird's-eye), and negative values rotate clockwise. Pitch rotates up or down after yaw has been applied: positive rotates down to face closer to the negative Z axis, negative rotates up to face closer to the positive Z axis. Roll is applied last along the vector specified by yaw and pitch: positive rotates clockwise when looking down this vector, negative rotates anticlockwise.

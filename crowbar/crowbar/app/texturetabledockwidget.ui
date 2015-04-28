@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TextureTableDockWidget</class>
+ <widget class="QDockWidget" name="TextureTableDockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>138</width>
+    <height>178</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>138</width>
+    <height>178</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>138</width>
+    <height>178</height>
+   </size>
+  </property>
+  <property name="features">
+   <set>QDockWidget::DockWidgetFloatable</set>
+  </property>
+  <property name="windowTitle">
+   <string>Textures</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QGraphicsView" name="imgTexture">
+      <property name="minimumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>128</width>
+        <height>128</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>1</width>
+        <height>1</height>
+       </size>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="cbbTextureSelection"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cbbTextureSelection</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TextureTableDockWidget</receiver>
+   <slot>displayComboBoxItem(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>68</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>displayComboBoxItem(int)</slot>
+ </slots>
+</ui>

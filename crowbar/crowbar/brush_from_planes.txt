@@ -1,0 +1,9 @@
+Potential algorithm for creating a brush from planes:
+- Each plane will potentially form a side of the brush, and so will need to be converted into vertices.
+- For each plane, "clip" it by all other planes. This means, for the chosen plane and each other plane, generate a line equation
+    representing the intersection (if this occurred).
+- Next, generate a set of all intersections of these lines. This will include the vertices of the resulting polygon,
+    plus some other irrelevant intersections.
+- For each intersection point, check it against all other planes. If it is in front of any, discard it.
+- What's left in the set will be the vertices of the brush. Order them so that the traversal order will result in the normal being
+    in the same direction as the plane that was clipped in the first place.

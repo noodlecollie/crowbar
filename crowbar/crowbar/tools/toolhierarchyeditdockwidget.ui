@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ToolHierarchyEditDockWidget</class>
+ <widget class="QDockWidget" name="ToolHierarchyEditDockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>138</width>
+    <height>63</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>138</width>
+    <height>63</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>138</width>
+    <height>63</height>
+   </size>
+  </property>
+  <property name="features">
+   <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+  </property>
+  <property name="windowTitle">
+   <string>Hierarchy</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="btnDialogue">
+      <property name="text">
+       <string>Edit...</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnDialogue</sender>
+   <signal>clicked()</signal>
+   <receiver>ToolHierarchyEditDockWidget</receiver>
+   <slot>showDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>68</x>
+     <y>31</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>showDialog()</slot>
+ </slots>
+</ui>
