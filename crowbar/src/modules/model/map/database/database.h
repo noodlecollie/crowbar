@@ -7,7 +7,7 @@
 
 MODEL_BEGIN_NAMESPACE
 
-class DatabaseItem;
+class DatabaseNode;
 
 /*!
  * \brief The Database class holds the core information used in a map.
@@ -21,29 +21,35 @@ class MODELSHARED_EXPORT Database : public QAbstractItemModel
     Q_OBJECT
     Q_ENUMS(DatabaseDataRole)
 public:
-    enum DatabaseDataRole
-    {
-        ThreeDimensionalRole = Qt::UserRole    //! Data specifically relating to the 3D representation of the item.
-    };
-
     explicit Database(QObject *parent = 0);
     ~Database();
 
     // QAbstractItemModel interface:
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
     virtual QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
     virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
     virtual int rowCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
     virtual int columnCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const Q_DECL_OVERRIDE;
     virtual QModelIndex parent(const QModelIndex &child) const Q_DECL_OVERRIDE;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
+    virtual bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role) Q_DECL_OVERRIDE;
+    virtual bool insertColumns(int column, int count, const QModelIndex &parent) Q_DECL_OVERRIDE;
+    virtual bool removeColumns(int column, int count, const QModelIndex &parent) Q_DECL_OVERRIDE;
+    virtual bool insertRows(int row, int count, const QModelIndex &parent) Q_DECL_OVERRIDE;
+    virtual bool removeRows(int row, int count, const QModelIndex &parent) Q_DECL_OVERRIDE;
 
 signals:
 
 public slots:
 
 private:
-    DatabaseItem*   m_pRootItem;
+    DatabaseNode* getNode(const QModelIndex &index) const;
+
+    DatabaseNode*   m_pRootItem;
+    QVariant        m_vHeaderKey;
+    QVariant        m_vHeaderValue;
 };
 
 MODEL_END_NAMESPACE

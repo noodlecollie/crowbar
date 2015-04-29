@@ -16,6 +16,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void insertRowBefore();
+    void insertRowAfter();
+    void removeRow();
+    void increaseDepth();
+
 private:
     Ui::MainWindow *ui;
     MODEL_NAMESPACE::Database* m_pDatabase;
