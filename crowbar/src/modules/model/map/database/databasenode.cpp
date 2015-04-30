@@ -76,32 +76,57 @@ bool DatabaseNode::setData(int column, const QVariant &data, int role)
 
 QVariant DatabaseNode::key(int role) const
 {
-    if ( role != Qt::DisplayRole ) return QVariant();
-    return m_vKey;
+    switch (role)
+    {
+    case Qt::DisplayRole:
+        return m_vKey;
+
+    default:
+        return QVariant();
+    }
 }
 
 bool DatabaseNode::setKey(const QVariant &key, int role)
 {
-    if ( role != Qt::EditRole ) return false;
+    switch (role)
+    {
+    case Qt::EditRole:
+        m_vKey = key;
+        return true;
 
-    m_vKey = key;
-    return true;
+    default:
+        return false;
+    }
 }
 
 QVariant DatabaseNode::value(int role) const
 {
-    return isLeaf() && role == Qt::DisplayRole ? m_vValue : QVariant();
+    switch ( role )
+    {
+    case Qt::DisplayRole:
+        return isLeaf() ? m_vValue : QVariant();
+
+    default:
+        return QVariant();
+    }
 }
 
 bool DatabaseNode::setValue(const QVariant &value, int role)
 {
-    if ( isLeaf() && role == Qt::EditRole )
+    switch (role)
     {
-        m_vValue = value;
-        return true;
-    }
+    case Qt::EditRole:
+        if ( isLeaf() )
+        {
+            m_vValue = value;
+            return true;
+        }
 
-    return false;
+        return false;
+
+    default:
+        return false;
+    }
 }
 
 int DatabaseNode::indexInParent() const
