@@ -49,7 +49,7 @@ void MainWindow::removeRow()
     m_pDatabase->removeRow(current.row(), current.parent());
 }
 
-void MainWindow::increaseDepth()
+void MainWindow::newSubkey()
 {
     QModelIndex current = ui->treeView->currentIndex();
     m_pDatabase->insertRow(0, current);

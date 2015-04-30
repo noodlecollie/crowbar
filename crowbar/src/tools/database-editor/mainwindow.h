@@ -20,7 +20,7 @@ public slots:
     void insertRowBefore();
     void insertRowAfter();
     void removeRow();
-    void increaseDepth();
+    void newSubkey();
 
 private:
     Ui::MainWindow *ui;
