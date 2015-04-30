@@ -17,9 +17,6 @@ Database::~Database()
 
 QVariant Database::data(const QModelIndex &index, int role) const
 {
-    // TODO: Account for role.
-    if ( role != Qt::DisplayRole && role != Qt::EditRole ) return QVariant();
-
     // If the index is invalid, don't get anything.
     if ( !index.isValid() ) return QVariant();
 
@@ -28,7 +25,7 @@ QVariant Database::data(const QModelIndex &index, int role) const
 
     // Return its data.
     Q_ASSERT(index.column() == 0 || index.column() == 1);
-    return node->data(index.column());
+    return node->data(index.column(), role);
 }
 
 QVariant Database::headerData(int section, Qt::Orientation orientation, int role) const
@@ -84,9 +81,6 @@ QModelIndex Database::parent(const QModelIndex &child) const
 
 bool Database::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    // TODO: Account for role.
-    if ( role != Qt::DisplayRole && role != Qt::EditRole ) return false;
-
     // If the index is invalid, don't set anything.
     if ( !index.isValid() ) return false;
 
@@ -97,7 +91,13 @@ bool Database::setData(const QModelIndex &index, const QVariant &value, int role
     // We don't need to worry about the row, since the pointer
     // in the index corresponds to the item at that row.
     Q_ASSERT(index.column() == 0 || index.column() == 1);   // Let us know if the column is wrong.
-    return node->setData(index.column(), value);
+    bool result = node->setData(index.column(), value, role);
+    if ( result )
+    {
+        emit dataChanged(index, index, QVector<int>(1, role));
+    }
+
+    return result;
 }
 
 bool Database::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
@@ -130,8 +130,11 @@ bool Database::insertRows(int row, int count, const QModelIndex &parent)
     bool success = false;
 
     beginInsertRows(parent, row, row + count - 1);
-    success = parentNode->insertChildren(row, count);
+    bool valueNullified = false;
+    success = parentNode->insertChildren(row, count, &valueNullified);
     endInsertRows();
+
+    if ( valueNullified ) emit dataChanged(parent, parent);
 
     return success;
 }
@@ -162,6 +165,9 @@ DatabaseNode* Database::getNode(const QModelIndex &index) const
 Qt::ItemFlags Database::flags(const QModelIndex &index) const
 {
     if (!index.isValid()) return Qt::NoItemFlags;
+
+    DatabaseNode* node = getNode(index);
+    if ( !node->isLeaf() && index.column() != 0 ) return QAbstractItemModel::flags(index);
 
     return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
 }
