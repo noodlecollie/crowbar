@@ -1,10 +1,9 @@
 #ifndef MODELTREEA_H
 #define MODELTREEA_H
 
-#include <QObject>
 #include <QAbstractItemModel>
 
-class ModelTreeA : public QObject, public QAbstractItemModel
+class ModelTreeA : public QAbstractItemModel
 {
     Q_OBJECT
 public:
@@ -18,6 +17,8 @@ public:
     virtual QModelIndex index(int row, int column, const QModelIndex &parent) const Q_DECL_OVERRIDE;
     virtual QModelIndex parent(const QModelIndex &child) const Q_DECL_OVERRIDE;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+
+    void setRoot(QObject* obj);
 
 signals:
 

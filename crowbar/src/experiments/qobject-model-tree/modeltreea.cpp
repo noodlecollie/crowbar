@@ -1,7 +1,7 @@
 #include "modeltreea.h"
 #include <QMetaProperty>
 
-ModelTreeA::ModelTreeA(QObject *parent) : QObject(parent)
+ModelTreeA::ModelTreeA(QObject *parent) : QAbstractItemModel(parent)
 {
     m_pRootItem = new QObject(this);
 }
@@ -165,7 +165,7 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
             int childIndex = rowToChildIndex(obj, index.row());
             QList<QObject*> children = obj->children();
             if ( childIndex > children.count() ) return QVariant();
-            return QVariant(children.at(childIndex));
+            return qVariantFromValue(static_cast<void*>(children.at(childIndex))); //QVariant(children.at(childIndex));
         }
     }
 }
@@ -178,4 +178,12 @@ QString ModelTreeA::propertyName(const QObject *obj, int propertyIndex)
 QVariant ModelTreeA::propertyValue(const QObject *obj, int propertyIndex)
 {
     return obj->metaObject()->property(propertyIndex).read(obj);
+}
+
+void ModelTreeA::setRoot(QObject *obj)
+{
+    if ( !obj ) return;
+    delete m_pRootItem;
+    m_pRootItem = obj;
+    m_pRootItem->setParent(this);
 }

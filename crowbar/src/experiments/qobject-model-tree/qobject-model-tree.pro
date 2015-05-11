@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    modeltreea.cpp
+    modeltreea.cpp \
+    arbitrarydataa.cpp
 
 HEADERS  += mainwindow.h \
-    modeltreea.h
+    modeltreea.h \
+    arbitrarydataa.h
 
 FORMS    += mainwindow.ui
