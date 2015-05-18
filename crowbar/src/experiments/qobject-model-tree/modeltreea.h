@@ -28,7 +28,7 @@ private:
     QObject* getItem(const QModelIndex &index) const;
     static bool isValidForParentIndex(const QObject* obj, int row);
     static int rowToChildIndex(const QObject* parent, int row);
-    static int rowCount(const QObject* obj);
+    static int sumOfPropertiesAndChildren(const QObject* obj);
     static QString propertyName(const QObject *obj, int propertyIndex);
     static QVariant propertyValue(const QObject* obj, int propertyIndex);
 

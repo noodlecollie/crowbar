@@ -1,5 +1,6 @@
 #include "modeltreea.h"
 #include <QMetaProperty>
+#include <QtDebug>
 
 ModelTreeA::ModelTreeA(QObject *parent) : QAbstractItemModel(parent)
 {
@@ -26,7 +27,7 @@ QObject* ModelTreeA::getItem(const QModelIndex &index) const
 bool ModelTreeA::isValidForParentIndex(const QObject *obj, int row)
 {
     row = rowToChildIndex(obj, row);
-    return row > 0 && row < obj->children().count();
+    return row >= 0 && row < obj->children().count();
 }
 
 int ModelTreeA::rowToChildIndex(const QObject *parent, int row)
@@ -40,18 +41,19 @@ QModelIndex ModelTreeA::index(int row, int column, const QModelIndex &parent) co
 
     // The index is constructed as follows:
     // - The internal pointer points to the raw QObject that holds this particular property or child.
-    // - If the supplied parent index is valid but not for column 1, or isValidForParentIndex() returns false given
+    // - If the supplied parent index is valid but not for column 0, or isValidForParentIndex() returns false given
     //   the row and pointer to the parent object, an invalid index should be returned.
 
     if ( parent.isValid() ) // Points to an actual parent object.
     {
         // Check that the row/col is valid on the parent.
         QObject* p = getItem(parent);
-        if ( parent.column() != 1 || !isValidForParentIndex(p, parent.row()) ) return QModelIndex();
+        if ( parent.column() != 0 || !isValidForParentIndex(p, parent.row()) ) return QModelIndex();
 
         // The row/col combination does actually refer to a child slot on the parent.
         // Get this child.
-        QObject* c = p->children().at(rowToChildIndex(p, row));
+        qDebug() << "Generating index for" << row << column << "on child on parent" << p->objectName();
+        QObject* c = p->children().at(rowToChildIndex(p, parent.row()));
 
         int propertyCount = c->metaObject()->propertyCount();
         int childCount = c->children().count();
@@ -59,6 +61,7 @@ QModelIndex ModelTreeA::index(int row, int column, const QModelIndex &parent) co
 
         // Return an index with the internal pointer pointing to this object,
         // and the row/col set accordingly.
+        qDebug() << "Internal pointer for this index:" << c->objectName();
         return createIndex(row, column, c);
     }
     else    // Points to invisible root.
@@ -87,7 +90,7 @@ QModelIndex ModelTreeA::parent(const QModelIndex &child) const
     indexInParent += parent->metaObject()->propertyCount();
 
     // Return an index.
-    return createIndex(indexInParent, 1, parent);
+    return createIndex(indexInParent, 0, parent);
 }
 
 Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
@@ -95,14 +98,26 @@ Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
     return index.isValid() ? QAbstractItemModel::flags(index) : Qt::NoItemFlags;
 }
 
-int ModelTreeA::rowCount(const QObject *obj)
+int ModelTreeA::sumOfPropertiesAndChildren(const QObject *obj)
 {
     return obj->metaObject()->propertyCount() + obj->children().count();
 }
 
 int ModelTreeA::rowCount(const QModelIndex &parent) const
 {
-    return rowCount(getItem(parent));
+    if ( !parent.isValid() )
+    {
+        return m_pRootItem ? sumOfPropertiesAndChildren(m_pRootItem) : 0;
+    }
+
+    // Does the index point to a property?
+    QObject* o = getItem(parent);
+    if ( !isValidForParentIndex(o, parent.row()) )
+    {
+        return 0;
+    }
+
+    return sumOfPropertiesAndChildren(o->children().at(rowToChildIndex(o, parent.row())));
 }
 
 int ModelTreeA::columnCount(const QModelIndex &parent) const
@@ -138,6 +153,7 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
     if ( role != Qt::DisplayRole ) return QVariant();
 
     QObject* obj = getItem(index);
+    qDebug() << "Object for index" << index << "=" << obj;
 
     if ( index.column() < 0 || index.column() > 1 || index.row() < 0 ) return QVariant();
 
