@@ -20,11 +20,12 @@ void ModelTreeA::setRoot(QObject *obj)
     m_pRootItem->setParent(this);
 }
 
-QObject* ModelTreeA::childAt(const QModelIndex &index)
+QObject* ModelTreeA::childAt(const QModelIndex &index) const
 {
+    if ( !index.isValid() ) return m_pRootItem;
+
     // Children only reside under column 0.
-    // Also make sure the index is valid.
-    if ( !index.isValid() || index.column() != 0 ) return NULL;
+    if ( index.column() != 0 ) return NULL;
     
     // Get the object that owns the row pointed to by the index.
     QObject* obj = ownerObject(index);
@@ -152,4 +153,6 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
         // Return the value.
         return obj->metaObject()->property(index.row()).read(obj);
     }
+
+    return role == Qt::DisplayRole ? QVariant(QString("Display")) : QVariant();
 }

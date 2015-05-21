@@ -50,7 +50,7 @@ private:
     
     // Returns the QObject that the index refers to, if the index points to a child of the ownerObject(),
     // or NULL otherwise.
-    static QObject* childAt(const QModelIndex &index);
+    QObject* childAt(const QModelIndex &index) const;
     
     static inline int totalRowCount(const QObject* object)
     {
