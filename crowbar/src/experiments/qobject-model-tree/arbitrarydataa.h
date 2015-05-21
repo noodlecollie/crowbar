@@ -11,6 +11,7 @@ class ArbitraryDataA : public QObject
     Q_PROPERTY(int integerProperty READ integerProperty WRITE setIntegerProperty NOTIFY integerPropertyChanged)
     Q_PROPERTY(QString stringProperty READ stringProperty WRITE setStringProperty NOTIFY stringPropertyChanged)
     Q_PROPERTY(QList<QVariant> variantListProperty READ variantListProperty)
+    Q_PROPERTY(float floatProperty READ floatProperty)
 public:
     explicit ArbitraryDataA(QObject *parent = 0);
     ~ArbitraryDataA();
@@ -22,6 +23,7 @@ public:
     void setStringProperty(const QString &value);
     
     QList<QVariant> variantListProperty() const;
+    float floatProperty() const;
 
 signals:
     void integerPropertyChanged(int);
@@ -33,6 +35,7 @@ private:
     int m_iIntegerProperty;
     QString m_szStringProperty;
     QList<QVariant> m_VariantListProperty;
+    float m_flFloatProperty;
 };
 
 #endif // ARBITRARYDATAA_H

@@ -104,23 +104,6 @@ int ModelTreeA::columnCount(const QModelIndex &parent) const
 
 int ModelTreeA::rowCount(const QModelIndex &parent) const
 {
-    // Check for list properties.
-    QObject* owner = ownerObject(parent);
-    if ( owner && parent.row() >= 0 && parent.row() < owner->metaObject()->propertyCount() )
-    {
-        QMetaProperty p = owner->metaObject()->property(parent.row());
-        
-        // If the property is a list, return the number of items in the list.
-        if ( p.type() == QVariant::List )
-        {
-            return p.read(owner).toList().count();
-        }
-        else
-        {
-            return 0;
-        }
-    }
-    
     // Get the object under this index.
     QObject* obj = childAt(parent);
     
@@ -143,18 +126,19 @@ Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
     // If the row refers to a child, just return the default (for normal text).
     if ( index.row() >= obj->metaObject()->propertyCount() ) return QAbstractItemModel::flags(index);
 
-    // If we're not limited to designable properties, return editable if the column is correct.
-    if ( !m_bDesignablePropertiesOnly )
-        return (index.column() == COLUMN_PROPERTY_VALUE)
-            ? (Qt::ItemIsEditable | QAbstractItemModel::flags(index))
-            : QAbstractItemModel::flags(index);
-    
-    // If the property is designable, return editable if the column is correct.
-    if ( obj->metaObject()->property(index.row()).isDesignable() )
+    // If we're not limited to designable properties, or the property is in fact designable,
+    // return editable if the column is correct.
+    if ( !m_bDesignablePropertiesOnly || obj->metaObject()->property(index.row()).isDesignable() )
     {
-        return (index.column() == COLUMN_PROPERTY_VALUE)
-            ? (Qt::ItemIsEditable | QAbstractItemModel::flags(index))
-            : QAbstractItemModel::flags(index);
+        if ( index.column() == COLUMN_PROPERTY_VALUE )
+        {
+            if ( obj->metaObject()->property(index.row()).isWritable() ) return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
+            else return Qt::NoItemFlags;
+        }
+        else
+        {
+            return QAbstractItemModel::flags(index);
+        }
     }
     
     // Otherwise return no flags (greyed out).
@@ -189,7 +173,17 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
 {
     // Validate.
     if ( !index.isValid() || index.row() < 0 || index.column() < 0 || index.column() > MAX_COLUMN ) return QVariant();
-    if ( role != Qt::DisplayRole && role != Qt::EditRole ) return QVariant();
+    
+    switch (role)
+    {
+    // Allowed roles:
+    case Qt::DisplayRole:
+    case Qt::EditRole:
+        break;
+        
+    default:
+        return QVariant();
+    }
     
     // Get the object that owns the index.
     QObject* obj = ownerObject(index);
@@ -199,10 +193,17 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
     // Not sure this is strictly necessary but let's be safe.
     if ( index.row() > totalRowCount(obj) ) return QVariant();
     
-    // If the row refers to a child, ensure the column is 0.
+    // If the row refers to a child:
     if ( isChildRow(obj, index.row()) )
     {
-        return index.column() == 0 ? QVariant(QString("Child %0").arg(childIndex(obj, index.row()))) : QVariant();
+        switch ( index.column() )
+        {
+        case 0: // Display the child number.
+            return QVariant(QString("Child %0").arg(childIndex(obj, index.row())));
+            
+        default:
+            return QVariant();
+        }
     }
     
     // If not, we must refer to a property.

@@ -3,6 +3,7 @@
 ArbitraryDataA::ArbitraryDataA(QObject *parent) : QObject(parent)
 {
     m_VariantListProperty << QVariant(1) << QVariant(2) << QVariant(3);
+    m_flFloatProperty = 2.2f;
 }
 
 ArbitraryDataA::~ArbitraryDataA()
@@ -38,4 +39,9 @@ void ArbitraryDataA::setStringProperty(const QString &value)
 QList<QVariant> ArbitraryDataA::variantListProperty() const
 {
     return m_VariantListProperty;
+}
+
+float ArbitraryDataA::floatProperty() const
+{
+    return m_flFloatProperty;
 }
