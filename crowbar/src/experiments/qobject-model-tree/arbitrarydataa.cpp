@@ -2,7 +2,7 @@
 
 ArbitraryDataA::ArbitraryDataA(QObject *parent) : QObject(parent)
 {
-
+    m_VariantListProperty << QVariant(1) << QVariant(2) << QVariant(3);
 }
 
 ArbitraryDataA::~ArbitraryDataA()
@@ -33,4 +33,9 @@ void ArbitraryDataA::setStringProperty(const QString &value)
     if ( value == m_szStringProperty ) return;
 
     m_szStringProperty = value;
+}
+
+QList<QVariant> ArbitraryDataA::variantListProperty() const
+{
+    return m_VariantListProperty;
 }

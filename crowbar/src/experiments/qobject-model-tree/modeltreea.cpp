@@ -104,6 +104,23 @@ int ModelTreeA::columnCount(const QModelIndex &parent) const
 
 int ModelTreeA::rowCount(const QModelIndex &parent) const
 {
+    // Check for list properties.
+    QObject* owner = ownerObject(parent);
+    if ( owner && parent.row() >= 0 && parent.row() < owner->metaObject()->propertyCount() )
+    {
+        QMetaProperty p = owner->metaObject()->property(parent.row());
+        
+        // If the property is a list, return the number of items in the list.
+        if ( p.type() == QVariant::List )
+        {
+            return p.read(owner).toList().count();
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
     // Get the object under this index.
     QObject* obj = childAt(parent);
     
