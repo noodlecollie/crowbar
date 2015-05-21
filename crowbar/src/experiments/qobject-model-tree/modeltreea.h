@@ -25,12 +25,38 @@ signals:
 public slots:
 
 private:
-    QObject* getItem(const QModelIndex &index) const;
-    static bool isValidForParentIndex(const QObject* obj, int row);
-    static int rowToChildIndex(const QObject* parent, int row);
-    static int sumOfPropertiesAndChildren(const QObject* obj);
-    static QString propertyName(const QObject *obj, int propertyIndex);
-    static QVariant propertyValue(const QObject* obj, int propertyIndex);
+    static inline bool isChildRow(const QObject* object, int row)
+    {
+        Q_ASSERT(object);
+        row = childIndex(object, row);
+        
+        // Return whether it is in range of the number of children.
+        return row >= 0 && row < object->children().count();
+    }
+    
+    static inline int childIndex(const QObject* object, int row)
+    {
+        Q_ASSERT(object);
+        // Subtract the number of properties from the row value.
+        return row - object->metaObject()->propertyCount();
+    }
+    
+    // Returns the QObject that holds the child or property referred to by the index,
+    // or NULL if the index does not point to a QObject.
+    static inline QObject* ownerObject(const QModelIndex &index)
+    {
+        return index.isValid() ? static_cast<QObject*>(index.internalPointer()) : NULL;
+    }
+    
+    // Returns the QObject that the index refers to, if the index points to a child of the ownerObject(),
+    // or NULL otherwise.
+    static QObject* childAt(const QModelIndex &index);
+    
+    static inline int totalRowCount(const QObject* object)
+    {
+        Q_ASSERT(object);
+        return object->metaObject()->propertyCount() + object->children().count();
+    }
 
     QObject* m_pRootItem;
 };

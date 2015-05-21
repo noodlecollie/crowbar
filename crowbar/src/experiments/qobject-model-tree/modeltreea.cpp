@@ -12,112 +12,83 @@ ModelTreeA::~ModelTreeA()
     // Everything will be deleted when the root item is deleted.
 }
 
-QObject* ModelTreeA::getItem(const QModelIndex &index) const
+void ModelTreeA::setRoot(QObject *obj)
 {
-    if ( index.isValid() )
-    {
-        QObject *item = static_cast<QObject*>(index.internalPointer());
-        if ( item ) return item;
-    }
-
-    // Invalid indices, or indices that can't be cast to QObject, return the root item instead.
-    return m_pRootItem;
+    if ( !obj ) return;
+    delete m_pRootItem;
+    m_pRootItem = obj;
+    m_pRootItem->setParent(this);
 }
 
-bool ModelTreeA::isValidForParentIndex(const QObject *obj, int row)
+QObject* ModelTreeA::childAt(const QModelIndex &index)
 {
-    row = rowToChildIndex(obj, row);
-    return row >= 0 && row < obj->children().count();
+    // Children only reside under column 0.
+    // Also make sure the index is valid.
+    if ( !index.isValid() || index.column() != 0 ) return NULL;
+    
+    // Get the object that owns the row pointed to by the index.
+    QObject* obj = ownerObject(index);
+    
+    // If there is no owner, return NULL.
+    if ( !obj ) return NULL;
+    
+    // Convert the row to a child index on the owner object.
+    int i = childIndex(obj, index.row());
+    
+    // If the index is outside the range of children on the owner, return NULL.
+    if ( i < 0 || i >= obj->children().count() ) return NULL;
+    
+    // Otherwise, return the child at this index.
+    return obj->children().at(i);
 }
 
-int ModelTreeA::rowToChildIndex(const QObject *parent, int row)
-{
-    return row - parent->metaObject()->propertyCount();
-}
-
+// Given a row, column and parent, return an index with a correctly set internal pointer.
 QModelIndex ModelTreeA::index(int row, int column, const QModelIndex &parent) const
 {
-    if ( column < 0 || column > 1 || row < 0 ) return QModelIndex();
-
-    // The index is constructed as follows:
-    // - The internal pointer points to the raw QObject that holds this particular property or child.
-    // - If the supplied parent index is valid but not for column 0, or isValidForParentIndex() returns false given
-    //   the row and pointer to the parent object, an invalid index should be returned.
-
-    if ( parent.isValid() ) // Points to an actual parent object.
+    // If the row or column is invalid, return an invalid index.
+    if ( row < 0 || column < 0 || column > 1 ) return QModelIndex();
+    
+    // We want to get the child QObject that is held under the parent index.
+    QObject* child = childAt(parent);
+    if ( !child ) return QModelIndex();
+    
+    // Now validate the row and column.
+    // Not sure this is strictly necessary but let's be safe.
+    if ( row > totalRowCount(child) ) return QModelIndex();
+    
+    // If the row refers to a child, ensure the column is 0.
+    if ( isChildRow(child, row) )
     {
-        // Check that the row/col is valid on the parent.
-        QObject* p = getItem(parent);
-        if ( parent.column() != 0 || !isValidForParentIndex(p, parent.row()) ) return QModelIndex();
-
-        // The row/col combination does actually refer to a child slot on the parent.
-        // Get this child.
-        qDebug() << "Generating index for" << row << column << "on child on parent" << p->objectName();
-        QObject* c = p->children().at(rowToChildIndex(p, parent.row()));
-
-        int propertyCount = c->metaObject()->propertyCount();
-        int childCount = c->children().count();
-        if ( row >= propertyCount + childCount ) return QModelIndex();
-
-        // Return an index with the internal pointer pointing to this object,
-        // and the row/col set accordingly.
-        qDebug() << "Internal pointer for this index:" << c->objectName();
-        return createIndex(row, column, c);
+        return column == 0 ? createIndex(row, column, child) : QModelIndex();
     }
-    else    // Points to invisible root.
-    {
-        int propertyCount = m_pRootItem->metaObject()->propertyCount();
-        int childCount = m_pRootItem->children().count();
-        if ( row >= propertyCount + childCount ) return QModelIndex();
-
-        return createIndex(row, column, m_pRootItem);
-    }
+    
+    // If not, we must refer to a property and validation is already done.
+    return createIndex(row, column, child);
 }
 
 QModelIndex ModelTreeA::parent(const QModelIndex &child) const
 {
-    QObject* obj = getItem(child);
-
-    // If the object or its parent is the invisible root, return an invalid index.
-    if ( obj == m_pRootItem || obj->parent() == m_pRootItem ) return QModelIndex();
-
-    // Get the index of the object within its QObject parent.
+    // Invalid indices have no parent.
+    if ( !child.isValid() ) return QModelIndex();
+    
+    // Get the QObject that owns the index.
+    QObject* obj = ownerObject(child);
+    
+    // If there is no object, or it's the root, return an invalid index.
+    if ( !obj || obj == m_pRootItem ) return QModelIndex();
+    
+    // Get the parent of this object.
     QObject* parent = obj->parent();
-    Q_ASSERT(parent);
-    int indexInParent = parent->children().indexOf(obj);
-
-    // Add on propertyCount().
-    indexInParent += parent->metaObject()->propertyCount();
-
-    // Return an index.
-    return createIndex(indexInParent, 0, parent);
-}
-
-Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
-{
-    return index.isValid() ? QAbstractItemModel::flags(index) : Qt::NoItemFlags;
-}
-
-int ModelTreeA::sumOfPropertiesAndChildren(const QObject *obj)
-{
-    return obj->metaObject()->propertyCount() + obj->children().count();
-}
-
-int ModelTreeA::rowCount(const QModelIndex &parent) const
-{
-    if ( !parent.isValid() )
-    {
-        return m_pRootItem ? sumOfPropertiesAndChildren(m_pRootItem) : 0;
-    }
-
-    // Does the index point to a property?
-    QObject* o = getItem(parent);
-    if ( !isValidForParentIndex(o, parent.row()) )
-    {
-        return 0;
-    }
-
-    return sumOfPropertiesAndChildren(o->children().at(rowToChildIndex(o, parent.row())));
+    
+    // If it doesn't exist, return an invalid index.
+    if ( !parent ) return QModelIndex();
+    
+    // Get the index of the child object within the parent.
+    int chIndex = parent->children().indexOf(obj);
+    Q_ASSERT(chIndex >= 0);
+    
+    // Create an index. The column is set to 0.
+    return createIndex(chIndex + parent->metaObject()->propertyCount(), 0, parent);
 }
 
 int ModelTreeA::columnCount(const QModelIndex &parent) const
@@ -126,80 +97,59 @@ int ModelTreeA::columnCount(const QModelIndex &parent) const
     return 2;
 }
 
+int ModelTreeA::rowCount(const QModelIndex &parent) const
+{
+    // Get the object under this index.
+    QObject* obj = childAt(parent);
+    
+    // If there is no child object, return 0 rows.
+    if ( !obj ) return 0;
+    
+    // Return the total number of rows on this object.
+    return totalRowCount(obj);
+}
+
+Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
+{
+    // Right now we don't allow any editing whatsoever.
+    Q_UNUSED(index);
+    return Qt::NoItemFlags;
+}
+
 QVariant ModelTreeA::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if ( role != Qt::DisplayRole ) return QVariant();
-
-    if ( orientation == Qt::Horizontal )
-    {
-        switch (section)
-        {
-        case 0:
-            return QVariant(QString("Key"));
-
-        case 1:
-            return QVariant(QString("Value"));
-
-        default:
-            return QVariant();
-        }
-    }
-
-    return QVariant(section);
+    if (orientation != Qt::Horizontal || section < 0 || section > 1 || role != Qt::DisplayRole) return QVariant();
+    return section == 0 ? QVariant(QString("Key")) : QVariant(QString("Value"));
 }
 
 QVariant ModelTreeA::data(const QModelIndex &index, int role) const
 {
-    if ( role != Qt::DisplayRole ) return QVariant();
-
-    QObject* obj = getItem(index);
-    qDebug() << "Object for index" << index << "=" << obj;
-
-    if ( index.column() < 0 || index.column() > 1 || index.row() < 0 ) return QVariant();
-
+    // Validate.
+    if ( !index.isValid() || role != Qt::DisplayRole || index.row() < 0 || index.column() < 0 || index.column() > 1 ) return QVariant();
+    
+    // Get the object that owns the index.
+    QObject* obj = ownerObject(index);
+    if ( !obj ) return QVariant();
+    
+    // Now validate the row and column.
+    // Not sure this is strictly necessary but let's be safe.
+    if ( index.row() > totalRowCount(obj) ) return QVariant();
+    
+    // If the row refers to a child, ensure the column is 0.
+    if ( isChildRow(obj, index.row()) )
+    {
+        return index.column() == 0 ? QVariant(QString("Child %0").arg(childIndex(obj, index.row()))) : QVariant();
+    }
+    
+    // If not, we must refer to a property.
     if ( index.column() == 0 )
     {
-        if ( index.row() < obj->metaObject()->propertyCount() )
-        {
-            return QVariant(propertyName(obj, index.row()));
-        }
-        else
-        {
-            int childIndex = rowToChildIndex(obj, index.row());
-            if ( childIndex > obj->children().count() ) return QVariant();
-            return QVariant(QString("child%0").arg(childIndex));
-        }
+        // Return the name.
+        return QVariant(QString(obj->metaObject()->property(index.row()).name()));
     }
     else
     {
-        if ( index.row() < obj->metaObject()->propertyCount() )
-        {
-            return propertyValue(obj, index.row());
-        }
-        else
-        {
-            int childIndex = rowToChildIndex(obj, index.row());
-            QList<QObject*> children = obj->children();
-            if ( childIndex > children.count() ) return QVariant();
-            return qVariantFromValue(static_cast<void*>(children.at(childIndex))); //QVariant(children.at(childIndex));
-        }
+        // Return the value.
+        return obj->metaObject()->property(index.row()).read(obj);
     }
-}
-
-QString ModelTreeA::propertyName(const QObject *obj, int propertyIndex)
-{
-    return QString(obj->metaObject()->property(propertyIndex).name());
-}
-
-QVariant ModelTreeA::propertyValue(const QObject *obj, int propertyIndex)
-{
-    return obj->metaObject()->property(propertyIndex).read(obj);
-}
-
-void ModelTreeA::setRoot(QObject *obj)
-{
-    if ( !obj ) return;
-    delete m_pRootItem;
-    m_pRootItem = obj;
-    m_pRootItem->setParent(this);
 }
