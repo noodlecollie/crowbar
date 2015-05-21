@@ -2,6 +2,9 @@
 #include <QMetaProperty>
 #include <QtDebug>
 
+#define MAX_COLUMN 2
+#define COLUMN_PROPERTY_VALUE 2
+
 ModelTreeA::ModelTreeA(QObject *parent) : QAbstractItemModel(parent)
 {
     m_pRootItem = new QObject(this);
@@ -47,7 +50,7 @@ QObject* ModelTreeA::childAt(const QModelIndex &index) const
 QModelIndex ModelTreeA::index(int row, int column, const QModelIndex &parent) const
 {
     // If the row or column is invalid, return an invalid index.
-    if ( row < 0 || column < 0 || column > 1 ) return QModelIndex();
+    if ( row < 0 || column < 0 || column > MAX_COLUMN ) return QModelIndex();
     
     // We want to get the child QObject that is held under the parent index.
     QObject* child = childAt(parent);
@@ -95,7 +98,7 @@ QModelIndex ModelTreeA::parent(const QModelIndex &child) const
 int ModelTreeA::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return 2;
+    return MAX_COLUMN + 1;
 }
 
 int ModelTreeA::rowCount(const QModelIndex &parent) const
@@ -112,21 +115,46 @@ int ModelTreeA::rowCount(const QModelIndex &parent) const
 
 Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
 {
-    // Right now we don't allow any editing whatsoever.
-    Q_UNUSED(index);
-    return Qt::NoItemFlags;
+    // Validate.
+    if ( !index.isValid() || index.row() < 0 || index.column() != COLUMN_PROPERTY_VALUE ) return QAbstractItemModel::flags(index);
+
+    // Get the object that owns the index.
+    QObject* obj = ownerObject(index);
+    if ( !obj ) return QAbstractItemModel::flags(index);
+
+    // Ensure that the row refers to a property.
+    if ( index.row() >= obj->metaObject()->propertyCount() ) return QAbstractItemModel::flags(index);
+
+    // Property values are editable.
+    return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
 }
 
 QVariant ModelTreeA::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (orientation != Qt::Horizontal || section < 0 || section > 1 || role != Qt::DisplayRole) return QVariant();
-    return section == 0 ? QVariant(QString("Key")) : QVariant(QString("Value"));
+    if (orientation != Qt::Horizontal || section < 0 || section > MAX_COLUMN || role != Qt::DisplayRole) return QVariant();
+
+    switch (section)
+    {
+    case 0:
+        return QVariant(QString("Property"));
+
+    case 1:
+        return QVariant(QString("Type"));
+
+    case 2:
+        return QVariant(QString("Value"));
+
+    default:
+        Q_ASSERT(false);
+        return QVariant();
+    }
 }
 
 QVariant ModelTreeA::data(const QModelIndex &index, int role) const
 {
     // Validate.
-    if ( !index.isValid() || role != Qt::DisplayRole || index.row() < 0 || index.column() < 0 || index.column() > 1 ) return QVariant();
+    if ( !index.isValid() || index.row() < 0 || index.column() < 0 || index.column() > MAX_COLUMN ) return QVariant();
+    if ( role != Qt::DisplayRole && role != Qt::EditRole ) return QVariant();
     
     // Get the object that owns the index.
     QObject* obj = ownerObject(index);
@@ -143,16 +171,43 @@ QVariant ModelTreeA::data(const QModelIndex &index, int role) const
     }
     
     // If not, we must refer to a property.
-    if ( index.column() == 0 )
+    switch (index.column())
     {
-        // Return the name.
+    case 0: // Name of property.
         return QVariant(QString(obj->metaObject()->property(index.row()).name()));
-    }
-    else
-    {
-        // Return the value.
-        return obj->metaObject()->property(index.row()).read(obj);
-    }
 
-    return role == Qt::DisplayRole ? QVariant(QString("Display")) : QVariant();
+    case 1: // Type of property.
+        return QVariant(QString(obj->metaObject()->property(index.row()).typeName()));
+
+    case 2: // Value of property.
+        return obj->metaObject()->property(index.row()).read(obj);
+
+    default:
+        Q_ASSERT(false);
+        return QVariant();
+    }
+}
+
+bool ModelTreeA::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    // Validate.
+    if ( !index.isValid() || role != Qt::EditRole || index.row() < 0 || index.column() < 0 || index.column() > MAX_COLUMN ) return false;
+
+    // Get the object that owns the index.
+    QObject* obj = ownerObject(index);
+    if ( !obj ) return false;
+
+    // If the row refers to a child, we can't edit this right now.
+    if ( isChildRow(obj, index.row()) ) return false;
+
+    // Make sure the column is valid.
+    if ( index.column() != COLUMN_PROPERTY_VALUE ) return false;
+
+    // Set the value.
+    bool result = obj->metaObject()->property(index.row()).write(obj, value);
+    if ( result )
+    {
+        emit dataChanged(index, index, QVector<int>(1, role));
+    }
+    return result;
 }

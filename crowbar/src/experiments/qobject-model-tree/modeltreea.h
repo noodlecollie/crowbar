@@ -18,6 +18,8 @@ public:
     virtual QModelIndex parent(const QModelIndex &child) const Q_DECL_OVERRIDE;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
 
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
+
     void setRoot(QObject* obj);
 
 signals:
