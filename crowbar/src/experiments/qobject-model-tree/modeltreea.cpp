@@ -7,20 +7,21 @@
 
 ModelTreeA::ModelTreeA(QObject *parent) : QAbstractItemModel(parent)
 {
-    m_pRootItem = new QObject(this);
+    m_pRootItem = NULL;
+    m_bOwnsRoot = false;
+    m_bDesignablePropertiesOnly = false;
 }
 
 ModelTreeA::~ModelTreeA()
 {
-    // Everything will be deleted when the root item is deleted.
+    if ( m_bOwnsRoot ) delete m_pRootItem;
 }
 
 void ModelTreeA::setRoot(QObject *obj)
 {
     if ( !obj ) return;
-    delete m_pRootItem;
+    if ( m_bOwnsRoot ) delete m_pRootItem;
     m_pRootItem = obj;
-    m_pRootItem->setParent(this);
 }
 
 QObject* ModelTreeA::childAt(const QModelIndex &index) const
@@ -116,17 +117,34 @@ int ModelTreeA::rowCount(const QModelIndex &parent) const
 Qt::ItemFlags ModelTreeA::flags(const QModelIndex &index) const
 {
     // Validate.
-    if ( !index.isValid() || index.row() < 0 || index.column() != COLUMN_PROPERTY_VALUE ) return QAbstractItemModel::flags(index);
+    if ( !index.isValid() || index.row() < 0 || index.column() < 0 || index.column() > MAX_COLUMN ) return QAbstractItemModel::flags(index);
 
     // Get the object that owns the index.
     QObject* obj = ownerObject(index);
     if ( !obj ) return QAbstractItemModel::flags(index);
 
-    // Ensure that the row refers to a property.
+    // If the row refers to a child, just return the default (for normal text).
     if ( index.row() >= obj->metaObject()->propertyCount() ) return QAbstractItemModel::flags(index);
 
-    // Property values are editable.
-    return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
+    // If we're not limited to designable properties, return editable if the column is correct.
+    if ( !m_bDesignablePropertiesOnly )
+        return (index.column() == COLUMN_PROPERTY_VALUE)
+            ? (Qt::ItemIsEditable | QAbstractItemModel::flags(index))
+            : QAbstractItemModel::flags(index);
+    
+    // If the property is designable, return editable if the column is correct.
+    if ( obj->metaObject()->property(index.row()).isDesignable() )
+    {
+        return (index.column() == COLUMN_PROPERTY_VALUE)
+            ? (Qt::ItemIsEditable | QAbstractItemModel::flags(index))
+            : QAbstractItemModel::flags(index);
+    }
+    
+    // Otherwise return no flags (greyed out).
+    else
+    {
+        return Qt::NoItemFlags;
+    }
 }
 
 QVariant ModelTreeA::headerData(int section, Qt::Orientation orientation, int role) const
@@ -210,4 +228,28 @@ bool ModelTreeA::setData(const QModelIndex &index, const QVariant &value, int ro
         emit dataChanged(index, index, QVector<int>(1, role));
     }
     return result;
+}
+
+bool ModelTreeA::ownsRootItem() const
+{
+    return m_bOwnsRoot;
+}
+
+void ModelTreeA::setOwnsRootItem(bool owns)
+{
+    if ( owns == m_bOwnsRoot ) return;
+    
+    m_bOwnsRoot = owns;
+}
+
+bool ModelTreeA::designablePropertiesOnly() const
+{
+    return m_bDesignablePropertiesOnly;
+}
+
+void ModelTreeA::setDesignablePropertiesOnly(bool enabled)
+{
+    if ( m_bDesignablePropertiesOnly == enabled ) return;
+    
+    m_bDesignablePropertiesOnly = enabled;
 }

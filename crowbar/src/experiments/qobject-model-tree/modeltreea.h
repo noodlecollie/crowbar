@@ -21,6 +21,12 @@ public:
     virtual bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
 
     void setRoot(QObject* obj);
+    
+    bool ownsRootItem() const;
+    void setOwnsRootItem(bool owns);
+    
+    bool designablePropertiesOnly() const;
+    void setDesignablePropertiesOnly(bool enabled);
 
 signals:
 
@@ -61,6 +67,8 @@ private:
     }
 
     QObject* m_pRootItem;
+    bool m_bOwnsRoot;
+    bool m_bDesignablePropertiesOnly;
 };
 
 #endif // MODELTREEA_H

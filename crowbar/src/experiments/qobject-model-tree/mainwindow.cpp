@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Model A:
     m_pTreeA = new ModelTreeA(this);
+    m_pTreeA->setDesignablePropertiesOnly(true);
 
-    ArbitraryDataA* data = new ArbitraryDataA();
+    ArbitraryDataA* data = new ArbitraryDataA(this);
     data->setIntegerProperty(5);
     data->setStringProperty("High Contrast");
     data->setObjectName("Data");
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     data3->setStringProperty("Simian Mobile Disco");
     data3->setObjectName("Data 3");
 
-    m_pTreeA->setRoot(data);
+    m_pTreeA->setRoot(this);
     ui->treeView->setModel(m_pTreeA);
 }
 
