@@ -1,8 +1,8 @@
 INCLUDEPATH += $$PWD
 VPATH += $$PWD
 
-HEADERS += \
-    $$PWD/brushmesh.h
+HEADERS +=
 
-SOURCES += \
-    $$PWD/brushmesh.cpp
+SOURCES +=
+
+DISTFILES +=
