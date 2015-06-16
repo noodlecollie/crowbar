@@ -5,6 +5,7 @@
 #include <QVector3D>
 #include <QMatrix4x4>
 #include "eulerangle.h"
+#include <QPointer>
 
 #define CLASSNAME(_class) _class::staticMetaObject.className()
 
@@ -72,6 +73,10 @@ namespace Model_Util
     QMatrix4x4 MODELSHARED_EXPORT scaleMatrix(const QVector3D &vec);
 
     qreal MODELSHARED_EXPORT angleBetween(const QVector3D &a, const QVector3D &b);
+
+    // Removes any null QPointers from the given list.
+    template<typename T>
+    void clean(QVector<QPointer<T> > list);
 }
 
 MODEL_END_NAMESPACE

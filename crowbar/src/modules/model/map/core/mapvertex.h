@@ -2,14 +2,14 @@
 #define MAPVERTEX_H
 
 #include "model_global.h"
-#include <QObject>
+#include "maphandleobject.h"
 #include <QVector3D>
 #include <QColor>
 #include <QVector2D>
 
 MODEL_BEGIN_NAMESPACE
 
-class MapVertex : public QObject
+class MODELSHARED_EXPORT MapVertex : public MapHandleObject
 {
     Q_OBJECT
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
@@ -18,8 +18,20 @@ class MapVertex : public QObject
 public:
     explicit MapVertex(QObject *parent = 0);
     virtual ~MapVertex();
+
+    QVector3D position() const;
+    void setPosition(const QVector3D &pos);
+
+    QColor color() const;
+    void setColor(const QColor &col);
+
+    QVector2D textureCoordinate() const;
+    void setTextureCoordinate(const QVector2D &coord);
     
 signals:
+    void positionChanged(const QVector3D&);
+    void colorChanged(const QColor&);
+    void textureCoordinateChanged(const QVector2D&);
     
 public slots:
     

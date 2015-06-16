@@ -2,9 +2,9 @@ INCLUDEPATH += $$PWD
 VPATH += $$PWD
 
 HEADERS += \
-    $$PWD/mapvertex.h
+    $$PWD/mapbrush.h
 
 SOURCES += \
-    $$PWD/mapvertex.cpp
+    $$PWD/mapbrush.cpp
 
 DISTFILES +=

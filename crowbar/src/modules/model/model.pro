@@ -1,6 +1,6 @@
 TARGET = model
 TEMPLATE = lib
-QT += core gui
+QT += core gui qml
 CONFIG += dll
 DEFINES += MODEL_LIBRARY
 

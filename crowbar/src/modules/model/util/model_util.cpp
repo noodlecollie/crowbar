@@ -157,6 +157,23 @@ namespace Model_Util
     {
         return qAcos((QVector3D::dotProduct(a,b))/(a.length() * b.length()));
     }
+
+    template <typename T>
+    void clean(QVector<QPointer<T> > list)
+    {
+        for ( int i = 0; i < list.count(); /**/ )
+        {
+            // If the QPointer is not null, skip to the next.
+            if ( !list.at(i).isNull() )
+            {
+                i++;
+                continue;
+            }
+
+            // If it is null, remove it from the list and don't increment i.
+            list.remove(i);
+        }
+    }
 }
 
 MODEL_END_NAMESPACE

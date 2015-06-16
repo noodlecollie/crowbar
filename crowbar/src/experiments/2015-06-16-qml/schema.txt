@@ -1,0 +1,56 @@
+Brush
+{
+    vertices:
+    [
+        Vertex
+        {
+            position: Qt.vector3d(0,0,0)
+            color: #FFFFFF
+            texCoord: Qt.vector2d(0,0)
+        },
+
+        Vertex
+        {
+            position: Qt.vector3d(1,0,0)
+            color: #FFFFFF
+            texCoord: Qt.vector2d(0,0)
+        },
+
+        Vertex
+        {
+            position: Qt.vector3d(0,1,0)
+            color: #FFFFFF
+            texCoord: Qt.vector2d(0,0)
+        }
+    ]
+
+    edges:
+    [
+        Edge
+        {
+            vertex0: 1
+            vertex1: 2
+        },
+
+        Edge
+        {
+            vertex0: 2
+            vertex1: 3
+        },
+
+        Edge
+        {
+            vertex0: 3
+            vertex1: 1
+        }
+    ]
+
+    faces:
+    [
+        Face
+        {
+            vertices: [ 1, 2, 3 ]
+            edges: [ 1, 2, 3 ]
+        }
+    ]
+}
