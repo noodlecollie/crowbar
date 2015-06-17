@@ -1,6 +1,8 @@
 #ifndef HELPER_MACROS_H
 #define HELPER_MACROS_H
 
+// IMPORTANT NOTE: ALWAYS fully qualify namespaces when interfacing with QML!!
+
 // Only works with pointers to objects derived from QObject.
 // The macro type argument itsef should not be specified as a pointer.
 // Eg. if the existing list holds values of type QObject*,
@@ -27,7 +29,7 @@
 #define DECLARE_LIST_TYPE(_type, _name) \
     QVector<_type> m_##_name##List; \
     public: \
-    QVector<_type> _name##List(); \
+    QVector<_type> _name##List() const; \
     _type _name(int index) const; \
     void _name##Append(_type const & item); \
     void _name##RemoveAt(int index); \
@@ -44,7 +46,7 @@
     void _name##Cleared();
 
 #define IMPLEMENT_LIST_TYPE(_ownerType, _type, _name) \
-    QVector<_type> _ownerType::_name##List() \
+    QVector<_type> _ownerType::_name##List() const \
     { return m_##_name##List; } \
     _type _ownerType::_name(int index) const \
     { return _name##At(index); } \

@@ -11,29 +11,29 @@
 
 MODEL_BEGIN_NAMESPACE
 
-class MapBrush : public MapHandleObject
+class MODELSHARED_EXPORT MapBrush : public MapHandleObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QQmlListProperty<MapVertex> vertices READ vertices)
-    DECLARE_LIST_TYPE(MapVertex*, vertices)
-    DECLARE_QML_LIST_TYPE(MapVertex, vertices)
+    Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::MapVertex> vertices READ vertices)
+    DECLARE_LIST_TYPE(MODEL_NAMESPACE::MapVertex*, vertices)
+    DECLARE_QML_LIST_TYPE(MODEL_NAMESPACE::MapVertex, vertices)
 
-    Q_PROPERTY(QQmlListProperty<MapEdge> edges READ edges)
-    DECLARE_LIST_TYPE(MapEdge*, edges)
-    DECLARE_QML_LIST_TYPE(MapEdge, edges)
+    Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::MapEdge> edges READ edges)
+    DECLARE_LIST_TYPE(MODEL_NAMESPACE::MapEdge*, edges)
+    DECLARE_QML_LIST_TYPE(MODEL_NAMESPACE::MapEdge, edges)
 
-    Q_PROPERTY(QQmlListProperty<MapFace> faces READ faces)
-    DECLARE_LIST_TYPE(MapFace*, faces)
-    DECLARE_QML_LIST_TYPE(MapFace, faces)
+    Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::MapFace> faces READ faces)
+    DECLARE_LIST_TYPE(MODEL_NAMESPACE::MapFace*, faces)
+    DECLARE_QML_LIST_TYPE(MODEL_NAMESPACE::MapFace, faces)
 public:
     explicit MapBrush(QObject *parent = 0);
     virtual ~MapBrush();
 
 signals:
-    DECLARE_LIST_TYPE_SIGNALS(MapVertex*, vertices)
-    DECLARE_LIST_TYPE_SIGNALS(MapEdge*, edges)
-    DECLARE_LIST_TYPE_SIGNALS(MapFace*, faces)
+    DECLARE_LIST_TYPE_SIGNALS(MODEL_NAMESPACE::MapVertex*, vertices)
+    DECLARE_LIST_TYPE_SIGNALS(MODEL_NAMESPACE::MapEdge*, edges)
+    DECLARE_LIST_TYPE_SIGNALS(MODEL_NAMESPACE::MapFace*, faces)
 
 public slots:
 

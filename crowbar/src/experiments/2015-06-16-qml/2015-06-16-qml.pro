@@ -13,12 +13,14 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    qmlclass.cpp
 
 DISTFILES += \
     schema.txt
 
-HEADERS +=
+HEADERS += \
+    qmlclass.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../modules/model/release/ -lmodel
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../modules/model/debug/ -lmodel
