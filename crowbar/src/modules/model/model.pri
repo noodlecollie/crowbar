@@ -1,3 +1,4 @@
 include(core/core.pri)
 include(util/util.pri)
-include(map/map.pri)
+include(geometry/geometry.pri)
+include(containers/containers.pri)

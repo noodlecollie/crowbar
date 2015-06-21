@@ -1,8 +1,0 @@
-INCLUDEPATH += $$PWD
-VPATH += $$PWD
-
-HEADERS +=
-
-SOURCES +=
-
-DISTFILES +=

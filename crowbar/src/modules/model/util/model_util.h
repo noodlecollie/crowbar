@@ -4,7 +4,6 @@
 #include "model_global.h"
 #include <QVector3D>
 #include <QMatrix4x4>
-#include "eulerangle.h"
 #include <QPointer>
 
 #define CLASSNAME(_class) _class::staticMetaObject.className()
@@ -64,10 +63,6 @@ namespace Model_Util
 
     // Returns a matrix representing a translation by this vector.
     QMatrix4x4 MODELSHARED_EXPORT translationMatrix(const QVector3D &vec);
-
-    // Returns a matrix representing the rotation of the vector ref
-    // in order to point in the direction specified by ang.
-    QMatrix4x4 MODELSHARED_EXPORT rotationMatrix(const EulerAngle &ang, const QVector3D &ref = QVector3D(1,0,0));
 
     // Returns a matrix representing a scale by this vector along X, Y and Z.
     QMatrix4x4 MODELSHARED_EXPORT scaleMatrix(const QVector3D &vec);

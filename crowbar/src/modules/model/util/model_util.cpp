@@ -126,33 +126,6 @@ namespace Model_Util
                           0, 0, 0, 1);
     }
 
-    // See: http://math.stackexchange.com/questions/180418/calculate-rotation-matrix-to-align-vector-a-to-vector-b-in-3d
-    QMatrix4x4 rotationMatrix(const EulerAngle &ang, const QVector3D &ref)
-    {
-        QVector3D angVec = ang.toVector();
-        if ( angVec == ref ) return QMatrix4x4();
-
-        // Cross-product:
-        QVector3D cross = QVector3D::crossProduct(ref, angVec);
-
-        float sineTheta = cross.length();
-        float cosineTheta = QVector3D::dotProduct(ref, angVec);
-        float frac = (1.0 - cosineTheta)/(sineTheta * sineTheta);
-        QMatrix3x3 cpmx;
-
-        cpmx(0,0) = 0; cpmx(0,1) = -cross.z(); cpmx(0,2) = cross.y();
-        cpmx(1,0) = cross.z(); cpmx(1,1) = 0; cpmx(1,2) = -cross.x();
-        cpmx(2,0) = -cross.y(); cpmx(2,1) = cross.x(); cpmx(2,2) = 0;
-
-        QMatrix3x3 result;
-        result = result + cpmx + ((cpmx * cpmx) * frac);
-
-        return QMatrix4x4(result(0,0), result(0,1), result(0,2), 0,
-                          result(1,0), result(1,1), result(1,2), 0,
-                          result(2,0), result(2,1), result(2,2), 0,
-                          0, 0, 0, 1);
-    }
-
     qreal angleBetween(const QVector3D &a, const QVector3D &b)
     {
         return qAcos((QVector3D::dotProduct(a,b))/(a.length() * b.length()));
