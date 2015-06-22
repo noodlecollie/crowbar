@@ -38,6 +38,7 @@ public:
     int facesCount() const;
     void facesClear();
     void facesClean();
+    int totalFaceVertices() const;
 
 signals:
 

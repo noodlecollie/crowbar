@@ -1,6 +1,6 @@
 TARGET = model
 TEMPLATE = lib
-QT += core gui qml 3dcore
+QT += core gui qml 3dcore 3drenderer
 CONFIG += dll
 DEFINES += MODEL_LIBRARY
 

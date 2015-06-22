@@ -90,4 +90,15 @@ void Brush::facesClean()
     }
 }
 
+int Brush::totalFaceVertices() const
+{
+    int verts = 0;
+    foreach ( BrushFace* f, m_Faces )
+    {
+        verts += f->verticesCount();
+    }
+    
+    return verts;
+}
+
 MODEL_END_NAMESPACE

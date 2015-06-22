@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QVector>
 #include <QPointer>
+#include <QVector3D>
 
 MODEL_BEGIN_NAMESPACE
 
@@ -20,6 +21,9 @@ public:
     BrushVertex* verticesItemAt(int index) const;
     int verticesCount() const;
     void verticesClear();
+    void verticesClean();
+    
+    QVector3D normal() const;
 
 signals:
 
