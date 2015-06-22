@@ -1,8 +1,6 @@
 INCLUDEPATH += $$PWD
 VPATH += $$PWD
 
-HEADERS += \
-    $$PWD/changenotifier.h
+HEADERS +=
 
-SOURCES += \
-    $$PWD/changenotifier.cpp
+SOURCES +=

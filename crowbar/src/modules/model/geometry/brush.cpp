@@ -1,62 +1,93 @@
 #include "brush.h"
-#include <QVector3D>
-#include <QVector>
-#include "brushvertexreference.h"
+#include "brushvertex.h"
+#include "brushface.h"
+#include <QSet>
 
 MODEL_BEGIN_NAMESPACE
 
-struct VertexPrivate
-{
-    QVector3D position;
-    QSet<FacePrivate*> linkedFaces;
-    QVector<BrushVertexReference*> references;
-};
-
-struct FacePrivate
-{
-    QVector<VertexPrivate*> linkedVertices;
-};
-
-Brush::Brush(QObject *parent) : ChangeNotifier(parent)
+Brush::Brush(QNode *parent) : Qt3D::QEntity(parent)
 {
 }
 
-VertexPrivate* Brush::createVertex()
+void Brush::verticesAppend(BrushVertex *vertex)
 {
-    VertexPrivate* v = new VertexPrivate;
-    m_Vertices.insert(v);
-    return v;
+    m_Vertices.append(vertex);
 }
 
-void Brush::destroyVertex(VertexPrivate *v)
+BrushVertex* Brush::verticesItemAt(int index) const
 {
-    // Remove this vertex from any faces in which it is referenced.
-    foreach ( FacePrivate* f, v->linkedFaces )
+    return m_Vertices.at(index);
+}
+
+int Brush::verticesCount() const
+{
+    return m_Vertices.count();
+}
+
+void Brush::verticesClear()
+{
+    qDeleteAll(m_Vertices);
+    m_Vertices.clear();
+}
+
+void Brush::facesAppend(BrushFace *face)
+{
+    m_Faces.append(face);
+}
+
+BrushFace* Brush::facesItemAt(int index) const
+{
+    return m_Faces.at(index);
+}
+
+int Brush::facesCount() const
+{
+    return m_Faces.count();
+}
+
+void Brush::facesClear()
+{
+    qDeleteAll(m_Faces);
+    m_Faces.clear();
+}
+
+void Brush::verticesClean()
+{
+    QSet<BrushVertex*> verts;
+    for ( int i = 0; i < verticesCount(); i++ )
     {
-        f->linkedVertices.removeAll(v);
+        verts.insert(verticesItemAt(i));
     }
 
-    m_Vertices.remove(v);
-    delete v;
-}
-
-FacePrivate* Brush::createFace()
-{
-    FacePrivate* f = new FacePrivate;
-    m_Faces.insert(f);
-    return f;
-}
-
-void Brush::destroyFace(FacePrivate *f)
-{
-    // Remove this face from any vertices in which it is referenced.
-    foreach ( VertexPrivate* v, f->linkedVertices )
+    foreach ( BrushFace* f, m_Faces )
     {
-        v->linkedFaces.remove(f);
+        for ( int i = 0; i < f->verticesCount(); i++ )
+        {
+            verts.remove(f->verticesItemAt(i));
+        }
     }
 
-    m_Faces.remove(f);
-    delete f;
+    foreach ( BrushVertex* v, verts )
+    {
+        m_Vertices.removeOne(v);    // These should all be unique.
+        delete v;
+    }
+}
+
+void Brush::facesClean()
+{
+    for ( int i = 0; i < facesCount(); )
+    {
+        BrushFace* f = facesItemAt(i);
+        if ( f->verticesCount() < 1 )
+        {
+            m_Faces.remove(i);
+            delete f;
+            continue;
+        }
+
+        i++;
+    }
 }
 
 MODEL_END_NAMESPACE
