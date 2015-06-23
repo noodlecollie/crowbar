@@ -96,27 +96,25 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     {
         BrushFace* f = brush->facesItemAt(i);
         QVector3D normal = f->normal();
-        float n[3];
-        n[0] = normal.x();
-        n[1] = normal.y();
-        n[2] = normal.z();
+        float n[6];
+        n[3] = normal.x();
+        n[4] = normal.y();
+        n[5] = normal.z();
         
         for ( int j = 0; j < f->verticesCount(); j++ )
         {
             QVector3D pos = f->verticesItemAt(j)->position();
             
             // Copy position data.
-            *vertices = pos.x();
-            *(vertices + sizeof(float)) = pos.y();
-            *(vertices + (2*sizeof(float))) = pos.z();
+            n[0] = pos.x();
+            n[1] = pos.y();
+            n[2] = pos.z();
             
-            // Copy in the normal.
-            memcpy(vertices + (3*sizeof(float)), n, 3 * sizeof(float));
+            // Copy in all the data.
+            memcpy(&vertices[currentIndex * vertexDataFloats], n, stride);
             
-            vertices += stride;
-            
-            *indices = currentIndex++;
-            indices += sizeof(quint16);
+            indices[currentIndex] = currentIndex;
+            currentIndex++;
         }
     }
     
@@ -130,18 +128,15 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     indexBuffer->setData(indexBytes);
     
     // Create the actual mesh data.
-    Qt3D::QMeshDataPtr mesh(new Qt3D::QMeshData(Qt3D::QMeshData::Triangles));
-    quint32 offset = 0;
+    Qt3D::QMeshDataPtr mesh(new Qt3D::QMeshData(Qt3D::QMeshData::TriangleFan));
     
     mesh->addAttribute(Qt3D::QMeshData::defaultPositionAttributeName(),
-                       Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, offset, stride)));
-    offset += 3 * sizeof(float);
+                       Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, 0, stride)));
     
     mesh->addAttribute(Qt3D::QMeshData::defaultNormalAttributeName(),
-                       Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, offset, stride)));
-    offset += 3 * sizeof(float);
+                       Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, 3 * sizeof(float), stride)));
     
-    mesh->setIndexAttribute(Qt3D::AttributePtr(new Qt3D::Attribute(indexBuffer, GL_UNSIGNED_SHORT, numVertices, 0, 0)));
+    mesh->setIndexAttribute(Qt3D::AttributePtr(new Qt3D::Attribute(indexBuffer, GL_UNSIGNED_SHORT, numVertices)));
     
     mesh->computeBoundsFromAttribute(Qt3D::QMeshData::defaultPositionAttributeName());
     
