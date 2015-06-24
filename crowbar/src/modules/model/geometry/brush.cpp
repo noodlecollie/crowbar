@@ -5,6 +5,54 @@
 
 MODEL_BEGIN_NAMESPACE
 
+// ///////////////////////////////////////
+// Begin QQmlListProperty helper functions
+// ///////////////////////////////////////
+
+static void qmlVerticesAppend(QQmlListProperty<BrushVertex> *property, BrushVertex *value)
+{
+    static_cast<Brush*>(property->object)->verticesAppend(value);
+}
+
+static BrushVertex* qmlVerticesItemAt(QQmlListProperty<BrushVertex> *property, int index)
+{
+    return static_cast<Brush*>(property->object)->verticesItemAt(index);
+}
+
+static void qmlVerticesClear(QQmlListProperty<BrushVertex> *property)
+{
+    static_cast<Brush*>(property->object)->verticesClear();
+}
+
+static int qmlVerticesCount(QQmlListProperty<BrushVertex> *property)
+{
+    return static_cast<Brush*>(property->object)->verticesCount();
+}
+
+static void qmlFacesAppend(QQmlListProperty<BrushFace> *property, BrushFace *value)
+{
+    static_cast<Brush*>(property->object)->facesAppend(value);
+}
+
+static BrushFace* qmlFacesItemAt(QQmlListProperty<BrushFace> *property, int index)
+{
+    return static_cast<Brush*>(property->object)->facesItemAt(index);
+}
+
+static void qmlFacesClear(QQmlListProperty<BrushFace> *property)
+{
+    static_cast<Brush*>(property->object)->facesClear();
+}
+
+static int qmlFacesCount(QQmlListProperty<BrushFace> *property)
+{
+    return static_cast<Brush*>(property->object)->facesCount();
+}
+
+// ///////////////////////////////////////
+//  End QQmlListProperty helper functions
+// ///////////////////////////////////////
+
 Brush::Brush(QNode *parent) : Qt3D::QEntity(parent)
 {
 }
@@ -99,6 +147,54 @@ int Brush::totalFaceVertices() const
     }
     
     return verts;
+}
+
+bool Brush::verticesContains(BrushVertex *vertex) const
+{
+    return m_Vertices.contains(vertex);
+}
+
+bool Brush::facesContains(BrushFace *face) const
+{
+    return m_Faces.contains(face);
+}
+
+void Brush::verticesInsertAt(int index, BrushVertex *vertex)
+{
+    m_Vertices.insert(index, vertex);
+}
+
+void Brush::facesInsertAt(int index, BrushFace *face)
+{
+    m_Faces.insert(index, face);
+}
+
+void Brush::verticesRemoveAt(int index)
+{
+    m_Vertices.removeAt(index);
+}
+
+void Brush::facesRemoveAt(int index)
+{
+    m_Faces.removeAt(index);
+}
+
+QQmlListProperty<BrushVertex> Brush::vertices()
+{
+    return QQmlListProperty<BrushVertex>(this, NULL,
+                                         &qmlVerticesAppend,
+                                         &qmlVerticesCount,
+                                         &qmlVerticesItemAt,
+                                         &qmlVerticesClear);
+}
+
+QQmlListProperty<BrushFace> Brush::faces()
+{
+    return QQmlListProperty<BrushFace>(this, NULL,
+                                         &qmlFacesAppend,
+                                         &qmlFacesCount,
+                                         &qmlFacesItemAt,
+                                         &qmlFacesClear);
 }
 
 MODEL_END_NAMESPACE

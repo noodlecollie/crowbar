@@ -4,17 +4,7 @@
 #include "model_global.h"
 #include <Qt3DCore/QEntity>
 #include <QVector>
-
-/*
- * Add vertex - brush changes
- * Remove vertex - remove all face-to-vertex links for vertex, relevant faces change, brush changes
- * Add face - brush changes
- * Remove face - remove all vertex-to-face links for vertex, brush changes
- * Add face-to-vertex link - pair with a vertex-to-face link, vertex and face change, brush changes
- * Remove face-to-vertex link - pair with a vertex-to-face unlink, vertex and face change, brush changes
- * Change vertex: linked faces change, brush changes
- * Change face: brush changes.
- */
+#include <QQmlListProperty>
 
 MODEL_BEGIN_NAMESPACE
 
@@ -24,6 +14,8 @@ class BrushFace;
 class MODELSHARED_EXPORT Brush : public Qt3D::QEntity
 {
     Q_OBJECT
+    Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::BrushVertex> vertices READ vertices)
+    Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::BrushFace> faces READ faces)
 public:
     explicit Brush(QNode *parent = 0);
 
@@ -32,6 +24,11 @@ public:
     int verticesCount() const;
     void verticesClear();
     void verticesClean();
+    QQmlListProperty<BrushVertex> vertices();
+
+    bool verticesContains(BrushVertex* vertex) const;
+    void verticesInsertAt(int index, BrushVertex* vertex);
+    void verticesRemoveAt(int index);
 
     void facesAppend(BrushFace* face);
     BrushFace* facesItemAt(int index) const;
@@ -39,6 +36,11 @@ public:
     void facesClear();
     void facesClean();
     int totalFaceVertices() const;
+    QQmlListProperty<BrushFace> faces();
+
+    bool facesContains(BrushFace* face) const;
+    void facesInsertAt(int index, BrushFace* face);
+    void facesRemoveAt(int index);
 
 signals:
 

@@ -1,5 +1,6 @@
 #include "brushface.h"
 #include "brushvertex.h"
+#include <QVariant>
 
 MODEL_BEGIN_NAMESPACE
 
@@ -49,6 +50,42 @@ void BrushFace::verticesClean()
         
         i++;
     }
+}
+
+bool BrushFace::verticesContains(BrushVertex *vertex) const
+{
+    return m_Vertices.contains(QPointer<BrushVertex>(vertex));
+}
+
+void BrushFace::verticesInsertAt(int index, BrushVertex *vertex)
+{
+    m_Vertices.insert(index, QPointer<BrushVertex>(vertex));
+}
+
+void BrushFace::verticesRemoveAt(int index)
+{
+    m_Vertices.remove(index);
+}
+
+QVariant BrushFace::vertexIndices() const
+{
+    return QVariant::fromValue<QVector<int> >(m_VertexIndices);
+}
+
+void BrushFace::setVertexIndices(const QVariant &list)
+{
+    m_VertexIndices.clear();
+    foreach ( QVariant item, list.toList() )
+    {
+        bool ok = false;
+        int v = item.toInt(&ok);
+        if ( ok )
+        {
+            m_VertexIndices.append(v);
+        }
+    }
+
+    emit vertexIndicesChanged();
 }
 
 MODEL_END_NAMESPACE

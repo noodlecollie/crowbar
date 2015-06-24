@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui 3dcore 3drenderer 3dinput
+QT       += core gui 3dcore 3drenderer 3dinput qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
