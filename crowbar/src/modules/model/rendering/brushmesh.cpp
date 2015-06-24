@@ -66,6 +66,11 @@ Qt3D::QAbstractMeshFunctorPtr BrushMesh::meshFunctor() const
     return Qt3D::QAbstractMeshFunctorPtr(new BrushMeshFunctor(*this));
 }
 
+int numIndices(BrushFace* face)
+{
+    return (3 * face->verticesCount()) - 6;
+}
+
 Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
 {
     Q_ASSERT(brush);
@@ -74,6 +79,12 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     // Right now we have position (3 floats) and normal (3 floats).
     const quint32 vertexDataFloats = 3 + 3;
     const quint32 stride = vertexDataFloats * sizeof(float);
+
+    int totalIndices = 0;
+    for ( int i = 0; i < brush->facesCount(); i++ )
+    {
+        totalIndices += numIndices(brush->facesItemAt(i));
+    }
     
     // Create buffers.
     QByteArray vertexBytes;
@@ -84,17 +95,21 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     // Perhaps there's a way around this with shaders?
     int numVertices = brush->totalFaceVertices();
     vertexBytes.resize(stride * numVertices);
-    indexBytes.resize(sizeof(quint16) * numVertices);
+    indexBytes.resize(sizeof(quint16) * totalIndices);
     
-    // Apparently you can do this.
+    // Cast the raw byte pointers to the correct types for easier assignment.
     float* vertices = reinterpret_cast<float*>(vertexBytes.data());
     quint16* indices = reinterpret_cast<quint16*>(indexBytes.data());
     
     // Populate the arrays.
-    quint16 currentIndex = 0;
+    int currentVertIndex = 0;
+    int verticesWritten = 0;
+    int cIndex = 0;
     for ( int i = 0; i < brush->facesCount(); i++ )
     {
         BrushFace* f = brush->facesItemAt(i);
+        int baseVertex = verticesWritten;
+
         QVector3D normal = f->normal();
         float n[6];
         n[3] = normal.x();
@@ -111,10 +126,16 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
             n[2] = pos.z();
             
             // Copy in all the data.
-            memcpy(&vertices[currentIndex * vertexDataFloats], n, stride);
-            
-            indices[currentIndex] = currentIndex;
-            currentIndex++;
+            memcpy(&vertices[currentVertIndex], n, 6 * sizeof(float));
+            currentVertIndex += vertexDataFloats;
+            verticesWritten++;
+
+            if ( j >= 2 )
+            {
+                indices[cIndex++] = baseVertex;
+                indices[cIndex++] = baseVertex + j - 1;
+                indices[cIndex++] = baseVertex + j;
+            }
         }
     }
     
@@ -128,7 +149,7 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     indexBuffer->setData(indexBytes);
     
     // Create the actual mesh data.
-    Qt3D::QMeshDataPtr mesh(new Qt3D::QMeshData(Qt3D::QMeshData::TriangleFan));
+    Qt3D::QMeshDataPtr mesh(new Qt3D::QMeshData(Qt3D::QMeshData::Triangles));
     
     mesh->addAttribute(Qt3D::QMeshData::defaultPositionAttributeName(),
                        Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, 0, stride)));
@@ -136,7 +157,7 @@ Qt3D::QMeshDataPtr createBrushMesh(Brush* brush)
     mesh->addAttribute(Qt3D::QMeshData::defaultNormalAttributeName(),
                        Qt3D::AttributePtr(new Qt3D::Attribute(vertexBuffer, GL_FLOAT_VEC3, numVertices, 3 * sizeof(float), stride)));
     
-    mesh->setIndexAttribute(Qt3D::AttributePtr(new Qt3D::Attribute(indexBuffer, GL_UNSIGNED_SHORT, numVertices)));
+    mesh->setIndexAttribute(Qt3D::AttributePtr(new Qt3D::Attribute(indexBuffer, GL_UNSIGNED_SHORT, totalIndices, 0, 0)));
     
     mesh->computeBoundsFromAttribute(Qt3D::QMeshData::defaultPositionAttributeName());
     

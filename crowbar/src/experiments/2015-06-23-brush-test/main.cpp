@@ -12,12 +12,19 @@
 #include "geometry/brushvertex.h"
 #include "geometry/brushface.h"
 #include "rendering/brushmesh.h"
+#include <QQmlEngine>
+#include <QQmlComponent>
+#include <QFile>
 
 using namespace MODEL_NAMESPACE;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    qmlRegisterType<Brush>("crowbar.experiments.qml", 1, 0, "Brush");
+    qmlRegisterType<BrushVertex>("crowbar.experiments.qml", 1, 0, "BrushVertex");
+    qmlRegisterType<BrushFace>("crowbar.experiments.qml", 1, 0, "BrushFace");
 
     // Create a window and an aspect engine.
     Qt3D::Window* m_pWindow = new Qt3D::Window();
@@ -57,61 +64,57 @@ int main(int argc, char *argv[])
     // Camera
     Qt3D::QCamera* m_pCamera = new Qt3D::QCamera(m_pRootEntity);
     m_pCamera->lens()->setPerspectiveProjection(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
-    m_pCamera->setPosition(QVector3D(0, 0, 5.0f));
+    m_pCamera->setPosition(QVector3D(0, 0, 15.0f));
     m_pCamera->setUpVector(QVector3D(0, 1, 0));
     m_pCamera->setViewCenter(QVector3D(0, 0, 0));
     input->setCamera(m_pCamera);
 
-    Qt3D::QEntity* testCube = new Qt3D::QEntity(m_pRootEntity);
-    Qt3D::QCuboidMesh* testCubeMesh = new Qt3D::QCuboidMesh();
-    testCubeMesh->setXExtent(1);
-    testCubeMesh->setYExtent(1);
-    testCubeMesh->setZExtent(1);
-    testCubeMesh->setXYMeshResolution(QSize(2,2));
-    testCubeMesh->setXZMeshResolution(QSize(2,2));
-    testCubeMesh->setYZMeshResolution(QSize(2,2));
-    testCube->addComponent(testCubeMesh);
+//    Qt3D::QEntity* testCube = new Qt3D::QEntity(m_pRootEntity);
+//    Qt3D::QCuboidMesh* testCubeMesh = new Qt3D::QCuboidMesh();
+//    testCubeMesh->setXExtent(1);
+//    testCubeMesh->setYExtent(1);
+//    testCubeMesh->setZExtent(1);
+//    testCubeMesh->setXYMeshResolution(QSize(2,2));
+//    testCubeMesh->setXZMeshResolution(QSize(2,2));
+//    testCubeMesh->setYZMeshResolution(QSize(2,2));
+//    testCube->addComponent(testCubeMesh);
 
-    Brush* brush = new Brush(m_pRootEntity);
-    BrushVertex* v;
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(1,1,1));
-    brush->verticesAppend(v);
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(2,1,1));
-    brush->verticesAppend(v);
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(2,2,1));
-    brush->verticesAppend(v);
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(1,2,1));
-    brush->verticesAppend(v);
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(1,1,0));
-    brush->verticesAppend(v);
-
-    v = new BrushVertex();
-    v->setPosition(QVector3D(2,1,0));
-    brush->verticesAppend(v);
-
-    BrushFace* f = new BrushFace();
-    for ( int i = 0; i < 4; i++ )
+    QQmlEngine engine;
+    QQmlComponent component(&engine);
+    QFile qmlFile(":/sample.qml");
+    if ( !qmlFile.open(QIODevice::ReadOnly) )
     {
-        f->verticesAppend(brush->verticesItemAt(i));
+        qDebug() << "Unable to load sample QML file.";
+        return 1;
     }
-    brush->facesAppend(f);
 
-    f = new BrushFace();
-    f->verticesAppend(brush->verticesItemAt(0));
-    f->verticesAppend(brush->verticesItemAt(4));
-    f->verticesAppend(brush->verticesItemAt(5));
-    f->verticesAppend(brush->verticesItemAt(1));
-    brush->facesAppend(f);
+    component.setData(qmlFile.readAll(), QUrl());
+    qmlFile.close();
+
+    QObject* o = component.create();
+
+    if ( !o )
+    {
+        QList<QQmlError> errors = component.errors();
+        qDebug() << "QML parse errors encountered:" << errors.count();
+
+        foreach ( QQmlError e, errors )
+        {
+            qDebug() << e.toString();
+        }
+
+        return 1;
+    }
+
+    Brush* brush = qobject_cast<Brush*>(o);
+    brush->setParent(m_pRootEntity);
+    brush->convertFaceVertexIndices();
+
+    BrushFace* f = brush->facesItemAt(0);
+    for ( int i = 0; i < f->verticesCount(); i++ )
+    {
+        qDebug().nospace() << "Vertex " << i << ": " << f->verticesItemAt(i)->position();
+    }
 
     BrushMesh* mesh = new BrushMesh();
     mesh->setBrush(brush);

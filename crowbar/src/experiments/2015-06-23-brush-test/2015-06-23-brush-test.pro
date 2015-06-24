@@ -24,3 +24,8 @@ else:unix: LIBS += -L$$OUT_PWD/../../modules/model/ -lmodel
 
 INCLUDEPATH += $$PWD/../../modules/model
 DEPENDPATH += $$PWD/../../modules/model
+
+DISTFILES +=
+
+RESOURCES += \
+    resource.qrc
