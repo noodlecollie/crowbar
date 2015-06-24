@@ -14,6 +14,8 @@ class BrushFace;
 class MODELSHARED_EXPORT Brush : public Qt3D::QEntity
 {
     Q_OBJECT
+
+    // ALWAYS fully qualify namespaces for these macros.
     Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::BrushVertex> vertices READ vertices)
     Q_PROPERTY(QQmlListProperty<MODEL_NAMESPACE::BrushFace> faces READ faces)
 public:
@@ -41,6 +43,10 @@ public:
     bool facesContains(BrushFace* face) const;
     void facesInsertAt(int index, BrushFace* face);
     void facesRemoveAt(int index);
+
+    // Replaces the vertex pointer list of each face with pointers
+    // to the vertices specified in the index array of the face.
+    void convertFaceVertexIndices();
 
 signals:
 

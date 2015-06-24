@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui qml
+QT       += core gui qml 3dcore 3drenderer 3dinput
 
 TARGET = 2015-06-16-qml
 CONFIG   += console

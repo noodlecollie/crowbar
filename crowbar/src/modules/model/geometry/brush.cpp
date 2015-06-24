@@ -197,4 +197,20 @@ QQmlListProperty<BrushFace> Brush::faces()
                                          &qmlFacesClear);
 }
 
+void Brush::convertFaceVertexIndices()
+{
+    foreach ( BrushFace* f, m_Faces )
+    {
+        f->verticesClear();
+
+        QVector<int> indices = f->vertexIndices().value<QVector<int> >();
+        foreach ( int i, indices )
+        {
+            if ( i < 0 || i >= verticesCount() ) continue;
+
+            f->verticesAppend(verticesItemAt(i));
+        }
+    }
+}
+
 MODEL_END_NAMESPACE
