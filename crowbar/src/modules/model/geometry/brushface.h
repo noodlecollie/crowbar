@@ -35,6 +35,7 @@ public:
     void verticesRemoveAt(int index);
     
     QVector3D normal() const;
+    bool isValid() const;
 
 signals:
     void vertexIndicesChanged();

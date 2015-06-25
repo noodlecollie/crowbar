@@ -10,6 +10,7 @@ MODEL_BEGIN_NAMESPACE
 
 class BrushVertex;
 class BrushFace;
+class BrushEdge;
 
 class MODELSHARED_EXPORT Brush : public Qt3D::QEntity
 {
@@ -44,9 +45,17 @@ public:
     void facesInsertAt(int index, BrushFace* face);
     void facesRemoveAt(int index);
 
+    void edgesAppend(BrushEdge* edge);
+    BrushEdge* edgesItemAt(int index) const;
+    int edgesCount() const;
+    void edgesClear();
+
     // Replaces the vertex pointer list of each face with pointers
     // to the vertices specified in the index array of the face.
     void convertFaceVertexIndices();
+
+    // Populate the edge list with the edges from the given faces.
+    void populateEdgesFromFaces();
 
 signals:
 
@@ -55,6 +64,7 @@ public slots:
 private:
     QVector<BrushVertex*> m_Vertices;
     QVector<BrushFace*> m_Faces;
+    QVector<BrushEdge*> m_Edges;
 };
 
 MODEL_END_NAMESPACE

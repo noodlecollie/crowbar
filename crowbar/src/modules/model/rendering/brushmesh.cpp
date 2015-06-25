@@ -68,6 +68,11 @@ Qt3D::QAbstractMeshFunctorPtr BrushMesh::meshFunctor() const
 
 int numIndices(BrushFace* face)
 {
+    // Because we can't draw using a single triangle fan for each face,
+    // we just draw with dumb triangles instead.
+    // This means the indices go 0 1 2; 0 2 3; 0 3 4; ...
+    // The formula for the number of indices, given n vertices, is:
+
     return (3 * face->verticesCount()) - 6;
 }
 

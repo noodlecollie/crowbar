@@ -1,6 +1,7 @@
 #include "brush.h"
 #include "brushvertex.h"
 #include "brushface.h"
+#include "brushedge.h"
 #include <QSet>
 
 MODEL_BEGIN_NAMESPACE
@@ -210,6 +211,51 @@ void Brush::convertFaceVertexIndices()
 
             f->verticesAppend(verticesItemAt(i));
         }
+    }
+}
+
+void Brush::edgesAppend(BrushEdge *edge)
+{
+    m_Edges.append(edge);
+}
+
+BrushEdge* Brush::edgesItemAt(int index) const
+{
+    return m_Edges.at(index);
+}
+
+int Brush::edgesCount() const
+{
+    return m_Edges.count();
+}
+
+void Brush::edgesClear()
+{
+    qDeleteAll(m_Edges);
+    m_Edges.clear();
+}
+
+void Brush::populateEdgesFromFaces()
+{
+    QSet<BrushEdge*> edges;
+
+    foreach ( BrushFace* f, m_Faces )
+    {
+        for ( int i = 0; i < f->verticesCount(); i++ )
+        {
+            int next = i == f->verticesCount() - 1 ? 0 : i+1;
+
+            // Edges are defined as equal if their vertex pairs are equal, regardless of order.
+            // Therefore we shouldn't need to worry about duplicates.
+            edges.insert(new BrushEdge(f->verticesItemAt(i), f->verticesItemAt(next)));
+        }
+    }
+
+    // Add the edges to the brush.
+    edgesClear();
+    foreach ( BrushEdge* edge, edges )
+    {
+        edgesAppend(edge);
     }
 }
 

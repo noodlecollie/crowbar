@@ -88,4 +88,9 @@ void BrushFace::setVertexIndices(const QVariant &list)
     emit vertexIndicesChanged();
 }
 
+bool BrushFace::isValid() const
+{
+    return m_Vertices.count() >= 3;
+}
+
 MODEL_END_NAMESPACE
