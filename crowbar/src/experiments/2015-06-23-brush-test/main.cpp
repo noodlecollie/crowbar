@@ -107,6 +107,7 @@ int main(int argc, char *argv[])
     }
 
     Brush* brush = qobject_cast<Brush*>(o);
+    brush->setObjectName("brush1");
     brush->setParent(m_pRootEntity);
     brush->convertFaceVertexIndices();
 
@@ -117,8 +118,8 @@ int main(int argc, char *argv[])
     }
 
     BrushMesh* mesh = new BrushMesh();
-    mesh->setBrush(brush);
     brush->addComponent(mesh);
+    qDebug() << "BrushMesh parent:" << mesh->parentNode();
 
     // FrameGraph
     Qt3D::QFrameGraph* m_pFrameGraph = new Qt3D::QFrameGraph();

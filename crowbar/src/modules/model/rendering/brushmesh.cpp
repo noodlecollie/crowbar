@@ -11,28 +11,15 @@ MODEL_BEGIN_NAMESPACE
 
 BrushMesh::BrushMesh(QNode *parent) : Qt3D::QAbstractMesh(parent)
 {
-    m_pBrush = NULL;
     update();
-}
-
-Brush* BrushMesh::brush() const
-{
-    return m_pBrush;
-}
-
-void BrushMesh::setBrush(Brush *b)
-{
-    if ( m_pBrush == b ) return;
-    
-    m_pBrush = b;
-    emit brushChanged(m_pBrush);
 }
 
 void BrushMesh::copy(const QNode *ref)
 {
     QAbstractMesh::copy(ref);
-    const BrushMesh *mesh = static_cast<const BrushMesh*>(ref);
-    m_pBrush = mesh->m_pBrush;
+
+    // TODO if we have anything to copy later.
+    //const BrushMesh *mesh = static_cast<const BrushMesh*>(ref);
 }
 
 Qt3D::QMeshDataPtr createBrushMesh(Brush* brush);
@@ -42,7 +29,7 @@ class BrushMeshFunctor : public Qt3D::QAbstractMeshFunctor
 public:
     BrushMeshFunctor(const BrushMesh &c) : QAbstractMeshFunctor()
     {
-        m_pBrush = c.brush();
+        m_pBrush = qobject_cast<Brush*>(c.parent());
     }
     
     Qt3D::QMeshDataPtr operator ()() Q_DECL_OVERRIDE
