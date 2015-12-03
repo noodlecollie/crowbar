@@ -1,6 +1,8 @@
 Crowbar
 =======
 
+## NOTE: This repository no longer holds active Crowbar development files! See [https://github.com/x6herbius/calliper](https://github.com/x6herbius/calliper)
+
 An open-source level editor for Source games, built using Qt5.
 
 Current Instructions
